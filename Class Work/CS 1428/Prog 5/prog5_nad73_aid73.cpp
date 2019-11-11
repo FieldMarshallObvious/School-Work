@@ -136,7 +136,7 @@ void getName ( string &first1, string &last1, string &first2, string &last2 );
 void printIdInfo ( );
 void printIdInfo ( ostream &output_file, string first1, string last1, string first2, string last2,                 const string CLASS, string section, string lab_section1, string lab_section2,
                    const string DUE_DATE );
-void readExpression ( ostream input_file, double &operand1, char &operatr, double &operand2)
+void readExpression ( ostream &input_file, double &operand1, char &operatr, double &operand2)
 void echoExpression ( ostream &output_file, double operand1, char operatr, double operand2 );
 void evaluateExpression ( ostream &output_file, double operand1, char operatr, double operand2 );
 void writeFileLocation ( );
@@ -348,9 +348,9 @@ void printIdInfo ( ostream &output_file, string first1, string last1, string fir
  Returns: operand1 (double), operatr (char), operand2 (double)
  */
 
-void readExpression ( ostream input_file, double &operand1, char &operatr, double &operand2)
+void readExpression ( ostream &input_file, double &operand1, char &operatr, double &operand2)
 {
-    
+    input_file >> operand1 >> operatr >> operand2;
 }
 
 /*
