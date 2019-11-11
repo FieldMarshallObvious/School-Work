@@ -139,6 +139,7 @@ void printIdInfo ( ostream &output_file, string first1, string last1, string fir
 void readExpression ( ostream input_file, double &operand1, char &operatr, double &operand2)
 void echoExpression ( ostream &output_file, double operand1, char operatr, double operand2 );
 void evaluateExpression ( ostream &output_file, double operand1, char operatr, double operand2 );
+void writeFileLocation ( );
 
 
 string getLectureSection ( );
@@ -225,7 +226,25 @@ int main ( )
  */
 void getName ( string &first1, string &last1, string &first2, string &last2 )
 {
+    cout << "Enter your first name: ";
+    cin >> first1;
     
+    cout << endl;
+    
+    cout << "Enter your last name: ";
+    cin >> last1;
+    
+    cout << endl;
+    
+    cout << "Enter your team member's first name: ";
+    cin >> first2;
+    
+    cout << endl;
+    
+    cout << "Enter your team member's last name: ";
+    cin >> last2;
+    
+    cout << endl << endl;
 }
 
 /*
@@ -245,7 +264,12 @@ void getName ( string &first1, string &last1, string &first2, string &last2 )
 
 string getLectureSection ( )
 {
+    string sectionInput;
     
+    cout << "Enter your three-digit lecture section number: ";
+    cin >> sectionInput;
+    
+    return sectionInput;
 }
 
 /*
@@ -266,7 +290,13 @@ string getLectureSection ( )
 
 void getLabSection ( string &section1, string &section2 )
 {
+    cout << "Enter your two-digit lab section number: ";
+    cin >> section1;
     
+    cout << endl << endl;
+    
+    cout << "Enter your team member's two digit lab section number: ";
+    cin >> section2;
 }
 
 /*
@@ -296,10 +326,13 @@ void getLabSection ( string &section1, string &section2 )
  Returns: nothing; prints user's team identifying info to a file
  */
 
-void printIdInfo ( ostream &output_file, string first1, string last1, string first2, string last2,                 const string CLASS, string section, string lab_section1, string lab_section2,
+void printIdInfo ( ostream &output_file, string first1, string last1, string first2, string last2, const string CLASS,                   string section, string lab_section1, string lab_section2,
                    const string DUE_DATE )
 {
-    
+    output_file << first1 << " " << last1 << " & " << first2 <<  last2 << endl
+         << CLASS << "." << section << endl
+         << "Lab Section: " << "L" << lab_section1 << " & " << "L" << lab_section2 << endl
+    << DUE_DATE << endl;
 }
 
 /*
@@ -339,7 +372,7 @@ void readExpression ( ostream input_file, double &operand1, char &operatr, doubl
 
 void echoExpression ( ostream &output_file, double operand1, char operatr, double operand2 )
 {
-    
+    output_file << operand1 << " " << operatr << " " << operand2 << " ";
 }
 
 /*
@@ -365,7 +398,26 @@ void echoExpression ( ostream &output_file, double operand1, char operatr, doubl
 
 void evaluateExpression ( ostream &output_file, double operand1, char operatr, double operand2 )
 {
-    
+    switch ( operatr )
+    {
+        case '+':
+            output_file << "= " << operand1 + operand2;
+            break;
+        case '-':
+            output_file << "= " <<  operand1 - operand2;
+            break;
+        case '*':
+            output_file << "= " << operand1 * operand2;
+            break;
+        case '/':
+            if ( operand2 == 0 )
+                output_file << "Division by zero produces an undefined result.";
+            else
+                output_file << operand1 / operand2;
+            break;
+        default:
+            output_file << "Encountered unknown operator.";
+    }
 }
 
 /*
@@ -386,5 +438,6 @@ void evaluateExpression ( ostream &output_file, double operand1, char operatr, d
 
 void writeFileLocation ( )
 {
-    
+    cout << "Program results have been written to prog5_001out.txt."
+         << endl;
 }
