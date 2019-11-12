@@ -1,0 +1,4 @@
+#Don't tract the following file types
+*.exe
+*.out
+*.o
