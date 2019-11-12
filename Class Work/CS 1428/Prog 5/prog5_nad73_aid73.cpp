@@ -171,16 +171,30 @@ int main ( )
     ifstream fin;
     fin.open("prog5_001inp.txt");
 
-    // REPLACE THIS COMMENT WITH CODE TO VERIFY THE INPUT FILE OPENS.
-    // USE THE CODE FROM THE EXAMPLE PROVIDED ON THE ASSIGNMENTS PAGE.
-    // ONLY MAKE NECESSARY ADJUSTMENTS, OR POINTS WILL BE DEDUCTED.
+    
+    if ( !fin )
+    {
+        cout << endl << endl
+        << "***Program Terminated.***" << endl << endl
+        << "Input file failed to open." << endl;
+        
+        return 1; // Quit, but don't return a 0; send back a non-zero value.
+    }
 
     ofstream fout;
     fout.open("prog5_001out.txt");
 
-    // REPLACE THIS COMMENT WITH CODE TO VERIFY THE OUTPUT FILE OPENS.
-    // USE THE CODE FROM THE EXAMPLE PROVIDED ON THE ASSIGNMENTS PAGE.
-    // ONLY MAKE NECESSARY ADJUSTMENTS, OR POINTS WILL BE DEDUCTED.
+    if ( !fout )
+    {
+        cout << endl << endl
+        << " ***Program Terminated.*** " << endl << endl
+        << "Output file failed to open." << endl;
+        
+        fin.close( );
+        
+        return 2; // Quit, but don't return a 0, send back a non-zero value.
+    }
+    
 
     getName ( first1_name, last1_name, first2_name, last2_name );
     lecture_section = getLectureSection ( );
