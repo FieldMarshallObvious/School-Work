@@ -1,11 +1,11 @@
 /*
- File: prog5_bb0000.cpp  // Remove this inline comment after replacing 'bb0000' with your account number.
+ File: prog5_nad73_aid73.cpp
 
- Author: Betty Boop      // Remove this inline comment after replacing Betty Boop with your first & last names.
- C.S.1428.?              // Remove this inline comment after replacing the '?' with your three-digit lecture section number.
- Lab Section: L?         // Remove this inline comment after replacing the '?' with your two-digit lab section number.
+ Author: Noah del Angel & Alyssa De La Cruz
+ C.S.1428.001
+ Lab Section: L32 & L06
  Program: #5
- Due Date: --/--/--      // Remove this inline comment after replacing the dashes with the due date, in this format - month, day, year.
+ Due Date: 11/13/19
 
  This program reads an unknown number of simple binary expressions
  of the form 'operand1 operator operand2' from an input file. Each
@@ -135,20 +135,20 @@ using namespace std;
 void getName ( string &first1, string &last1, string &first2, string &last2 );
 void printIdInfo ( );
 void printIdInfo ( ostream &output_file, string first1, string last1,
-                  string first2, string last2, const string CLASS,
-                  string section, string lab_section1, string lab_section2,
+                   string first2, string last2, const string CLASS,
+                   string section, string lab_section1, string lab_section2,
                    const string DUE_DATE );
 void readExpression ( ifstream &input_file, double &operand1, char &operatr,
-                     double &operand2);
-void echoExpression ( ostream &output_file, double operand1, char operatr,
-                     double operand2 );
-void evaluateExpression ( ostream &output_file, double operand1, char operatr,
-                         double operand2 );
+                      double &operand2);
+void echoExpression ( ofstream &output_file, double operand1, char operatr,
+                      double operand2 );
+void evaluateExpression ( ofstream &output_file, double operand1, char operatr,
+                          double operand2 );
 void writeFileLocation ( );
+void getLabSection ( string &section1, string &section2 );
 
 
 string getLectureSection ( );
-string getLabSection ( string &section1, string &section2 );
 
 int main ( )
 {
@@ -171,16 +171,36 @@ int main ( )
     ifstream fin;
     fin.open("prog5_001inp.txt");
 
-    // REPLACE THIS COMMENT WITH CODE TO VERIFY THE INPUT FILE OPENS.
-    // USE THE CODE FROM THE EXAMPLE PROVIDED ON THE ASSIGNMENTS PAGE.
-    // ONLY MAKE NECESSARY ADJUSTMENTS, OR POINTS WILL BE DEDUCTED.
+
+    if ( !fin )
+    {
+        cout << endl << endl
+             << "***Program Terminated.***" << endl << endl
+             << "Input file failed to open." << endl;
+
+        fin.close( );
+
+        system("PAUSE>NUL");
+
+        return 1; // Quit, but don't return a 0; send back a non-zero value.
+    }
 
     ofstream fout;
     fout.open("prog5_001out.txt");
 
-    // REPLACE THIS COMMENT WITH CODE TO VERIFY THE OUTPUT FILE OPENS.
-    // USE THE CODE FROM THE EXAMPLE PROVIDED ON THE ASSIGNMENTS PAGE.
-    // ONLY MAKE NECESSARY ADJUSTMENTS, OR POINTS WILL BE DEDUCTED.
+    if ( !fout )
+    {
+        cout << endl << endl
+             << " ***Program Terminated.*** " << endl << endl
+             << "Output file failed to open." << endl;
+
+        fin.close( );
+
+        system("PAUSE>NUL");
+
+        return 2; // Quit, but don't return a 0, send back a non-zero value.
+    }
+
 
     getName ( first1_name, last1_name, first2_name, last2_name );
     lecture_section = getLectureSection ( );
@@ -202,8 +222,8 @@ int main ( )
                  CLASS, lecture_section, lab_section1, lab_section2, DUE_DATE );
     writeFileLocation ( );
 
-    fin.close();
-    fout.close();
+    fin.close( );
+    fout.close( );
 
     system("PAUSE>NUL");
 
@@ -234,8 +254,6 @@ void getName ( string &first1, string &last1, string &first2, string &last2 )
     cout << "Enter your first name: ";
     cin >> first1;
 
-    cout << endl;
-
     cout << "Enter your last name: ";
     cin >> last1;
 
@@ -244,12 +262,10 @@ void getName ( string &first1, string &last1, string &first2, string &last2 )
     cout << "Enter your team member's first name: ";
     cin >> first2;
 
-    cout << endl;
-
     cout << "Enter your team member's last name: ";
     cin >> last2;
 
-    cout << endl << endl;
+    cout << endl;
 }
 
 /*
@@ -274,6 +290,8 @@ string getLectureSection ( )
     cout << "Enter your three-digit lecture section number: ";
     cin >> sectionInput;
 
+    cout << endl;
+
     return sectionInput;
 }
 
@@ -293,12 +311,12 @@ string getLectureSection ( )
  Returns: team members' lab section numbers
  */
 
-string getLabSection ( string &section1, string &section2 )
+void getLabSection ( string &section1, string &section2 )
 {
     cout << "Enter your two-digit lab section number: ";
     cin >> section1;
 
-    cout << endl << endl;
+    cout << endl;
 
     cout << "Enter your team member's two digit lab section number: ";
     cin >> section2;
@@ -331,17 +349,17 @@ string getLabSection ( string &section1, string &section2 )
  Returns: nothing; prints user's team identifying info to a file
  */
 
-void printIdInfo ( ostream &output_file, string first1, string last1,
-                  string first2, string last2, const string CLASS,
-                  string section, string lab_section1, string lab_section2,
+void printIdInfo ( ostream &out, string first1, string last1,
+                   string first2, string last2, const string CLASS,
+                   string section, string lab_section1, string lab_section2,
                    const string DUE_DATE )
 {
-    output_file << first1 << " " << last1 << " & " << first2 << " " << last2
-                << endl
-                << CLASS << "." << section << endl
-                << "Lab Section: " << "L" << lab_section1 << " & " << "L"
-                << lab_section2 << endl
-                << DUE_DATE << endl << endl;
+    out << first1 << " " << last1 << " & " << first2 << " " << last2
+        << endl
+        << CLASS << "." << section << endl
+        << "Lab Section: " << "L" << lab_section1 << " & " << "L"
+        << lab_section2 << endl
+        << DUE_DATE << endl << endl;
 }
 
 /*
@@ -380,7 +398,7 @@ void readExpression ( ifstream &input_file, double &operand1, char &operatr,
  Returns: nothing; writes expression to a file
  */
 
-void echoExpression ( ostream &output_file, double operand1, char operatr,
+void echoExpression ( ofstream &output_file, double operand1, char operatr,
                       double operand2 )
 {
     output_file << operand1 << " " << operatr << " " << operand2 << " ";
@@ -407,7 +425,7 @@ void echoExpression ( ostream &output_file, double operand1, char operatr,
  Returns: nothing; writes results to a file
  */
 
-void evaluateExpression ( ostream &output_file, double operand1, char operatr,
+void evaluateExpression ( ofstream &output_file, double operand1, char operatr,
                           double operand2 )
 {
     switch ( operatr )
