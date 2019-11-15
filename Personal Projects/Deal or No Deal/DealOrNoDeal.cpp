@@ -16,8 +16,9 @@ const int RAND_PLACE_HOLDER = 1;
 
 void pickCase ( char (&casesOpened)[CASE_AMOUNT],
                 int (&casesList)[CASE_AMOUNT][RAND_PLACE_HOLDER]);
-void createCases ( int (&casesList)[CASE_AMOUNT][RAND_PLACE_HOLDER],
-                   std::string (&casesPrint)[CASE_AMOUNT/2][CASE_AMOUNT/3] );
+void createCases ( int possibleChoices[] ,int
+                  (&casesList)[CASE_AMOUNT][RAND_PLACE_HOLDER],
+                  std::string (&casesPrint)[CASE_AMOUNT/2][CASE_AMOUNT/3] );
 void drawCases ( std::string (&casesPrint)[CASE_AMOUNT/2][CASE_AMOUNT/3] );
 
 std::string drawCase ( int index, int difference );
@@ -25,7 +26,7 @@ std::string drawCase ( int (&casesList)[CASE_AMOUNT][RAND_PLACE_HOLDER], int ind
 
 bool inputCaseCheck ( char (&casesOpened)[CASE_AMOUNT], int input );
 
-int ranNumGen ( );
+int ranNumGen ( int possibleChoices[], int (&casesList)[CASE_AMOUNT][RAND_PLACE_HOLDER]);
 
 using namespace std;
 
@@ -34,9 +35,10 @@ int main ( )
     string casesPrint[CASE_AMOUNT/2][CASE_AMOUNT/3];
     char casesOpened[CASE_AMOUNT];
     
-    int casesList[CASE_AMOUNT][RAND_PLACE_HOLDER];
+    int casesList[CASE_AMOUNT][RAND_PLACE_HOLDER],
+        possibleChoices[CASE_AMOUNT];
     
-    createCases(casesList, casesPrint );
+    createCases( possibleChoices, casesList, casesPrint );
     drawCases(casesPrint);
 }
 
@@ -58,8 +60,9 @@ void pickCase ( char (&casesOpened)[CASE_AMOUNT],
     
 }
 
-void createCases ( int (&casesList)[CASE_AMOUNT][RAND_PLACE_HOLDER],
-                   std::string (&casesPrint)[CASE_AMOUNT/2][CASE_AMOUNT/3] )
+void createCases ( int possibleChoices[] ,int
+                  (&casesList)[CASE_AMOUNT][RAND_PLACE_HOLDER],
+                  std::string (&casesPrint)[CASE_AMOUNT/2][CASE_AMOUNT/3] )
 {
     
     bool passed = false;
@@ -68,7 +71,7 @@ void createCases ( int (&casesList)[CASE_AMOUNT][RAND_PLACE_HOLDER],
     
     for ( int index = 0; index < CASE_AMOUNT; index++ )
     {
-        casesList[index][0] = ranNumGen( );
+        casesList[index][0] = ranNumGen( possibleChoices, casesList );
     }
     
     for ( int row = 0; row < CASE_AMOUNT/2; row++)
@@ -156,13 +159,26 @@ bool inputCaseCheck ( char (&casesOpened)[CASE_AMOUNT], int input )
     
 }
 
-int ranNumGen  ( )
+int ranNumGen  ( int possibleChoices[], int (&casesList)[CASE_AMOUNT][RAND_PLACE_HOLDER] )
 {
     int randnum = 1;
-    while ( !(randnum % 5 == 0) )
+    
+    bool repeat = true;
+    
+    while ( repeat == true )
     {
         srand (time(NULL));
-        randnum = rand() % 10000;
+        randnum = rand() % 25;
+        for ( int index = 0; index < CASE_AMOUNT; index++ )
+        {
+            if ( possibleChoices[randnum] == casesList[index][0])
+            {
+                repeat = true;
+                break;
+            }
+            else
+                repeat = false;
+        }
     }
     
     return randnum;
