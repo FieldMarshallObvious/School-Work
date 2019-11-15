@@ -1,0 +1,179 @@
+In addition to working correctly, programs should be both readable and maintainable. Studies have shown that for large software projects, the cost of writing a program is significantly less than the cost of maintaining the code over its lifetime.  Therefore, it is economically critical to write code using a clear and consistent style.
+
+There are many different satisfactory styles for coding in C++, and  a consistent style is probably more important than the particular style used.  Most large programming groups will have a style manual that must be followed by its programmers.
+
+This document describes the style conventions expected to be used in my C.S.1428 course.  In some cases I present options to use; in other cases, a precise style is specified. This document is not complete. In other words, it is possible to follow it and still write poorly styled code. (If you insist on writing poor C++ code, consider entering The International Obfuscated C Code Contest rather than doing it in my class.)
+
+File layout and documentation:
+
+    At the top of each source code file, you must place a block of comments listing the name of the file, the full name of the programmer, the course and section number, the program number, the due date (month/day/year), a brief but complete description of the program's purpose, input (indicate keyboard or file & name of file), named constants (if any), and output (indicate screen or file & name of file).
+
+    /*     
+           File: NameOfFile.cpp              (Replace NameOfFile.cpp with the appropriate name for each assignment.)
+
+           Author: StudentName               (Replace StudentName with your own name, first and last)
+           C.S.1428.#                        (Replace the # sign with your lecture section number.)     
+           Program: #?                       (Replace the question mark with the programming assignment number. See sample code for other options.)     
+           Due Date: --/--/--                (Replace the dashes with the appropriate month/day/year.)
+
+
+           This program ...                  (Complete description of what the function does. Be sure to include 
+                                              identifier names and data types as indicated in the specifications.)
+           
+           Input (keyboard or file - NameOfInputFile):  name(s)/data type(s) of input values
+           Constants:                                   name(s)/data type(s) of named constants
+           Output (screen or file - NameOfOutputFile):  generic layout of output screen or file 
+                                                           - should not include prompts
+                                                           - must include student's personal identifying information)
+    */
+
+    Complete sample documentation blocks can be found on the assignments page and throughout the lecture material.
+
+    Use one blank line to separate sections ( #includes, functions, sections within a function, etc) of the file.
+        Leave one blank line after the documentation block before listing any preprocessor directives (#include ...) needed for the program.
+        Leave one blank line after any preprocessor directives before including using namespace std;
+        Leave one blank line after using namespace std; before beginning the next section of code, either int main ( ) or a list of prototypes or...
+        etc
+    Each curly brace in a set should be on a line by itself.
+    Source code lines should be no longer than 80 characters. In fact, it might need to be less than 80 characters depending on the printer used. For example, some printers 'wrap' text that goes beyond the 'standard' margin while the printer in my office 'chops off' any characters that go beyond 74 characters. (The right margin can be specified in most compilers.)
+    All source code for C.S.1428 programs will be included in one file with functions (documentation and definitions) listed after the curly brace closing the main program.
+
+Indentation & Spacing
+
+    Indentation
+        I prefer the use of spaces over tabs for indentation since tabs are not consistent across systems.
+        Leave 3 to 5 spaces for indentation.
+
+    Curly Braces
+
+            I prefer the following style for use of curly braces:
+
+            if ( a < b )
+            {
+                 cout << "less";
+                 cin >> i;
+            }
+
+            Do not do the following:
+
+            if ( a < b ) {
+                 cout << "less";
+                 cin >> i;
+            }
+
+            
+    Spaces
+        A space must be placed on each side of a binary operator.
+            e.g.  total  =  total  +  1;
+            e.g.  cout << total;
+        With the exception of parentheses following the name of a built-in function, a space should be placed after each  (   and before each   ).
+            e.g.    if  (  a  <=  b  )
+            Either of the following is acceptable in the case of built-in functions:
+            e.g.   pow ( base, exponent ) or pow( base, exponent )
+                     fin.close ( ); or fin.close( );
+        However, in the built-in functions setprecision(?) and setw(?), leave no such spacing.
+        setprecision ( 1 ) and setw ( 12 ) look a bit awkward..."stretched out."
+        You should leave a space after each comma separating items in a list.
+        e.g. pow( base, exponent )
+        e.g. int scores[SIZE] = {50, 94, 63, 79};
+        A space should be left between the opening parentheses and the closing parenthses if the argument list of a function is empty.
+            e.g. int main( ) or fin.close( );
+        a space should not be placed between an array name and its index
+            e.g.   use  array1[x]   instead of   array1  [x]
+
+Naming Conventions
+
+        Names must be self-documenting (meaningful); and, normally they should be standard English words or conventional abbreviations.
+        e.g. It is self-documenting/meaningful to use a single word variable such as donation to receive an input value representing how much someone wants to donate for a charity. Using donuts is not.
+        e.g. It is self-documenting/meaningful when calculating the surface area of a geometric figure, to use the variable name surface_area instead of surf_area which brings to mind a beach!
+        Exceptions include
+            loop index variables which may be single letters ( i, j, k ) IF a meaningful name is not readily obvious
+            generic pointer variables which may be named  ptr1,  ptr2, etc. (not applicable for C.S.1428)
+            generic arrays or matrices
+                int  array1[CLASS_SIZE];
+
+Capitalization
+
+        named constants should be named in ALL CAPS with multiple words separated by underscores
+            e.g.    const double FUDGE_FACTOR = 27.82;
+                      const double PI = 3.141592;
+        single word variable names should be all lower case
+        multiple word variable names should be named
+            in all lower case with the words separated by an underscore
+                e.g.   amount_due
+        functions should be named
+            capitalizing the first letter of each word used other than the first
+                e.g.  double capitalGainsTax
+
+Declarations (definitions)
+
+    Named constants and variables must be declared one per line. In short programs such as those written for C.S.1428, there is no need for a brief description to follow the defined names as long as the names are self-documenting. Identifiers should be aligned within a multi-line declaration (definition) statement.
+
+        e.g.     const double   TAX_RATE = 0.0825,                  // current tax rate
+                                          INFLATION_RATE = 0.025;       // current rate of inflation
+
+                         double sales_tax;        // calculated sales tax
+
+                         int   length,                 // length of rectangle in inches
+                                width;                  //  width of rectangle in inches
+
+    With the exception of named constants used for defining the size of two dimensional arrays, all named constants and variables should be included in a declaration (definition) section first thing inside the main program with named constants listed first.
+
+Named Constants
+
+    Few numeric constants should appear in a program. Constant variables should be used both for readability and for maintainability.
+    For example, if a program calculates sales tax, the actual numeric sales tax rate should not be used in the calculation. Instead, a named constant variable should be declared (defined) and used.
+
+        e.g.    const double SALES_TAX_RATE = 0.0825;                  // current sales tax rate
+                  ...
+
+                  tax = subtotal * SALES_TAX_RATE;                            // use SALES_TAX_RATE in calculation not 0.0825
+
+User-defined Functions
+
+    A user-defined function should perform a single task. If your description of the post condition uses the word and you should think about breaking the function into multiple functions.
+    If the function(s) are included in one file with the main program, you must place a block of comments at the beginning of each function (much like the documentation written for the main program) listing the function name, a brief but complete description of the function's purpose, what information the function receives, what named constants are used by the function, and what the function returns. The author(s), class and section number, program # and due date should not be included unless the function(s) are in a separate file, not in the same file with the main program.
+
+    /*
+          Function: NameOfFunction 
+
+          The function,NameOfFunction, ... (brief description of what the function does) 
+
+          Receives:  name and data type of all parameters received from the calling routine
+          Constants: named constants either local or from the parameter list 
+          Returns:   name/data type of the one value returned to the calling routine (typed functions)
+                     or
+                     names/data types of multiple values returned to the calling routine via the parameter list (void functions)
+                     or
+                     nothing (restate what the function does) (void functions)
+    */  
+
+     Complete sample documentation blocks can be found throughout the lecture material on functions. e.g. Week 10 lecture outlines
+
+There is a list of important information about program grading at the top of each lecture outline (with the exception of week 1) to which you should always refer.
+
+          Important information about program grading.
+
+    Each of the following errors will result in at least a 10 point deduction:
+
+        Parts of file documentation block missing or incomplete (name, course, program #, due date, description, input, constants, output...)
+        File documentation block completely missing (20 point deduction)
+        Parts of function documentation block missing or incomplete (function name, description, receives, constants, returns...)
+        Function documentation block completely missing (10 points per function) See instructor.
+        Order of declaration/definition section
+            Named constants
+            Variables
+                data variable(s)
+                file variable(s)
+                open file(s)
+                Failure to verify input/output files open on all programming assignments involving file I/O (10 points per file)
+        Initialization section (variables may be initialized in the declaration/definition section)
+        Lack of appropriate indentation
+        Lack of appropriate spacing
+        Lack of appropriate output heading(s)
+        Not following the required file name specifications
+        Not turning in a printout of a created output file (10 point deduction)
+        Incorrect output values (30 point deduction)
+        Not uploading the correct program file(s) (.cpp/input file(s) - 0 points) See instructor.
+        Late (20 point deduction)
+
