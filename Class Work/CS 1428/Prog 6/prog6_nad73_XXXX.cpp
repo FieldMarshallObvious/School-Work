@@ -267,7 +267,7 @@ int main ( )
  --/--/--               // dashes represent due date, month/day/year
  <blank line>
 
- Receives: output fiel variable,
+ Receives: output file variable(ostream),
  AUTHORS (string const), LECTURE_SECTION (int const),
  LAB_SECTION (const string), DUE_DATE (const string)
  Constants: AUTHORS, LECTURE_SECTION, LAB_SECTION, LAB_SECTION, DUE_DATE
@@ -295,11 +295,10 @@ void printIdInfo ( ostream &out, const string AUTHORS,
 
  Sample Output:
                          Monthly Payroll Report
-         <blank line>
-     ID#     Hours
-       Hourly    Overtime   Gross    State   Federal    Net
+        <blank line>
+     ID#     Hours    Hourly    Overtime   Gross    State   Federal    Net
             Worked     Rate       Hours     Pay      Tax      Tax      Pay
- Recieves: outputfile variable
+ Recieves: outputfile variable (ofstream)
  Constants: none
  Returns: nothing; writes results to a file
 */
@@ -307,7 +306,13 @@ void printReportHeadings ( ofstream &output_file )
 {
     output_file << fixed << setfill(' ') << setw(20);
 
-    output_file << "Monthly Payroll Report" << endl;
+    output_file << "                         Monthly Payroll Report" << endl
+                << endl
+                << "ID#     Hours    Hourly    Overtime   Gross    State   Federal    Net"
+                << endl
+                << "        Worked     Rate       Hours     Pay      Tax      Tax      Pay"
+                << endl << endl;
+
 }
 
 /*
@@ -325,7 +330,7 @@ void dataIn ( ifstream &input_file, int employee[],
  The function, overTime, determines wether the employee has any overtime.
  If the employee has any overtime the program will calculate how much
 
- Recieves: payroll array
+ Recieves: payroll array(double)
  Constants: none
  Returns: nothing
 */
@@ -347,7 +352,7 @@ void overTime ( double (&payroll)[ROWS][COLS] )
  The function, grossPay, calculates the pay with ours worked ant overtime hours.
  This is done without taking int oaccount any taxes.
 
- Recieves: payroll array
+ Recieves: payroll array(double)
  Constants: none
  Returns: nothing
 */
@@ -368,7 +373,14 @@ void grossPay ( double (&payroll)[ROWS][COLS] )
 }
 
 /*
+ Function: stateTax
 
+ The function, stateTax, calculates the state tax for each employee's pay. In a
+ for loop.
+
+ Recieves: payroll array(double)
+ Constants: none
+ Returns: nothing
 */
 void stateTax ( double (&payroll)[ROWS][COLS] )
 {
@@ -380,18 +392,41 @@ void stateTax ( double (&payroll)[ROWS][COLS] )
 }
 
 /*
+ Function: federalTax
 
+ The function, federalTax, calculates the federal tax for each of the
+ employee's gross pay. If the employee is above the cutoff limit calculates the
+ amount over at the higher rate, and the amount under at the lower rate. If it
+ falls below or equal to the limit, it calculates the lower tax rate.
+
+ Recieves: payroll array(double)
+ Constants: none
+ Returns: nothing
 */
 void federalTax ( double (&payroll)[ROWS][COLS] )
 {
     for ( int id = 0; id < ROWS; ++id )
     {
-        payroll[id][FED_TAX] = payroll[id][GROSS] * FED_TAX;
+        if ( payroll[id][GROSS] > TAX_CUT_OFF )
+        {
+            payroll[id][FED_TAX] = (( payroll[id][GROSS] - TAX_CUT_OFF)
+                                      * HI_TAX_RATE) + ( TAX_CUT_OFF
+                                      * LOW_TAX_RATE);
+        }
+        else
+            payroll[id][FED_TAX] = payroll[id][GROSS] * LOW_TAX_RATE;
     }
 }
 
 /*
+ Function: netPay
 
+ The function, netPay, calculates the pay for each employee subtracting the
+ state and federal tax.
+
+ Recieves: payroll array(double)
+ Constants: none
+ Returns: nothing
 */
 void netPay ( double (&payroll)[ROWS][COLS] )
 {
@@ -403,7 +438,22 @@ void netPay ( double (&payroll)[ROWS][COLS] )
 }
 
 /*
+ Function: printReportData
 
+ The function, printReportData, prints the employee id, hours worked,
+ hourly rate, over time hours, gross pay, state tax, federal tax, and net pay.
+ After each employee's information is printed a new line is started.
+
+ Sample Output:
+    1000     51.00      6.55      11.00   370.07    22.20    74.02   273.86
+    ...
+    1002     26.00     15.00       0.00   390.00    23.40    78.00   288.60
+    ...
+
+ Recieves: output file variable (ofstream), employee array (const int),
+ payroll array (const double)
+ Constants: employee[], payroll[ROWS[COLS]
+ Returns: nothing; writes a message to the screen
 */
 void printReportData ( ofstream &output_file, const int employee[],
                        const double (&payroll)[ROWS][COLS] )
