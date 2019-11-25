@@ -202,15 +202,15 @@ void writeFileLocation ( const char output_filename[] );
 
 int main ( )
 {
-   const string AUTHORS = "...",       // REMOVE THIS COMMENT AFTER REPLACING ... WITH THE NAMES OF YOUR TEAM MEMBERS.
-                LAB_SECTION = "L?",    // REMOVE THIS COMMENT AFTER REPLACING THE QUESTION MARK WITH A TWO-DIGIT LAB LECTURE_SECTION NUMBER.
-                DUE_DATE = "--/--/--"; // REMOVE THIS COMMENT AFTER REPLACING --/--/-- WITH THE DUE DATE IN THIS FORMAT.
+   const string AUTHORS = "Noah del Angel & XXXX",       // REMOVE THIS COMMENT AFTER REPLACING ... WITH THE NAMES OF YOUR TEAM MEMBERS.
+                LAB_SECTION = "L32 & LXX",    // REMOVE THIS COMMENT AFTER REPLACING THE QUESTION MARK WITH A TWO-DIGIT LAB LECTURE_SECTION NUMBER.
+                DUE_DATE = "12/02/19";
 
    const int LECTURE_SECTION = 1,
              MAX_LENGTH_FN = 20;
 
-   char input_filename[MAX_LENGTH_FN + 1] = "...",  // REMOVE THIS COMMENT AFTER REPLACING ... WITH THE NAME OF THE INPUT FILE.
-        output_filename[MAX_LENGTH_FN + 1] = "..."; // REMOVE THIS COMMENT AFTER REPLACING ... WITH THE NAME OF THE OUTPUT FILE.
+   char input_filename[MAX_LENGTH_FN + 1] = "prog6_001inp.txt",
+        output_filename[MAX_LENGTH_FN + 1] = "prog6_001out.txt";
 
    int employee[ROWS];          // employee ID#s
 
@@ -224,7 +224,7 @@ int main ( )
     // ONLY MAKE NECESSARY ADJUSTMENTS, OR POINTS WILL BE DEDUCTED.
 
     ofstream fout;
-    fout.open ( output_filename );
+    fout.open ( output_filename);
 
     // REPLACE THIS COMMENT WITH CODE TO VERIFY THE INPUT FILE OPENS.
     // USE THE CODE FROM THE EXAMPLE PROVIDED ON THE ASSIGNMENTS PAGE.
@@ -249,24 +249,65 @@ int main ( )
    return 0;
 }
 
-// REPLACE THIS COMMENT WITH DOCUMENTATION & CODE FOR THE FUNCTION DEFINITIONS.
 /*
+ Function: printIdInfo
 
+ The function, printIdInfo, writes the team members' identifying
+ information to the output file on four separate lines
+ - AUTHORS
+ - Class with one digit LECTURE_SECTION constant
+ - "Lab Section: " with LAB_SECTION constant
+ - program due data
+ - one blank line after the due date.
+
+ Sample Output:
+ Authors' Names
+ C.S.1428.?             // '?' represents three-digit lecture section #
+ Lab Section: L? & L?   // '?' represents two-digit lab section #s
+ --/--/--               // dashes represent due date, month/day/year
+ <blank line>
+
+ Receives: output fiel variable,
+ AUTHORS (string const), LECTURE_SECTION (int const),
+ LAB_SECTION (const string), DUE_DATE (const string)
+ Constants: AUTHORS, LECTURE_SECTION, LAB_SECTION, LAB_SECTION, DUE_DATE
+ Returns: nothing; prints user's team identifying info to a file
 */
 void printIdInfo ( ostream &out, const string AUTHORS,
                    const int LECTURE_SECTION, const string LAB_SECTION,
                    const string DUE_DATE )
 {
-
-
+    out << AUTHORS << endl
+        << "C.S.1428.00" << LECTURE_SECTION << endl
+        << "Lab Section: " << LAB_SECTION << endl
+        << DUE_DATE << endl << endl;
 }
 
 /*
+ Function: printReportHeadings
 
+ The function, printReportHeadings, writes the output files
+ headers on 4 seperate lines
+ - writes "Monthly Payroll Report"
+ - blank line
+ - writes the first word for all the headers
+ - Writes the second word for all the headers
+
+ Sample Output:
+                         Monthly Payroll Report
+         <blank line>
+     ID#     Hours
+       Hourly    Overtime   Gross    State   Federal    Net
+            Worked     Rate       Hours     Pay      Tax      Tax      Pay
+ Recieves: outputfile variable
+ Constants: none
+ Returns: nothing; writes results to a file
 */
 void printReportHeadings ( ofstream &output_file )
 {
+    output_file << fixed << setfill(' ') << setw(20);
 
+    output_file << "Monthly Payroll Report" << endl;
 }
 
 /*
@@ -279,18 +320,50 @@ void dataIn ( ifstream &input_file, int employee[],
 }
 
 /*
+ Function: overTime
 
+ The function, overTime, determines wether the employee has any overtime.
+ If the employee has any overtime the program will calculate how much
+
+ Recieves: payroll array
+ Constants: none
+ Returns: nothing
 */
 void overTime ( double (&payroll)[ROWS][COLS] )
 {
+    for(int id = 0; id < ROWS; ++id)
+    {
+        if ( payroll[id][HRS_WRKD] >= CUT_OFF )
+            payroll[id][OVRTIME] = payroll[id][HRS_WRKD] - CUT_OFF;
 
+        else
+            payroll[id][OVRTIME] = 0;
+    }
 }
 
 /*
+ Function: grossPay
 
+ The function, grossPay, calculates the pay with ours worked ant overtime hours.
+ This is done without taking int oaccount any taxes.
+
+ Recieves: payroll array
+ Constants: none
+ Returns: nothing
 */
 void grossPay ( double (&payroll)[ROWS][COLS] )
 {
+    double regWorked;
+    double overtimeWorked;
+
+    for(int id = 0; id < ROWS; ++id)
+    {
+        double regWorked = payroll[id][HRS_WRKD] * payroll[id][PAYRATE];
+        double overtimeWorked = payroll[id][OVRTIME] * payroll[id][PAYRATE]
+                                + 0.5;
+
+        payroll[id][4] =  regWorked + overtimeWorked;
+    }
 
 }
 
@@ -299,7 +372,11 @@ void grossPay ( double (&payroll)[ROWS][COLS] )
 */
 void stateTax ( double (&payroll)[ROWS][COLS] )
 {
+    for( int id = 0; id < ROWS; ++id)
+    {
+        payroll[id][ST_TAX] = payroll[id][GROSS] * STATE_TX_RATE;
 
+    }
 }
 
 /*
@@ -307,7 +384,10 @@ void stateTax ( double (&payroll)[ROWS][COLS] )
 */
 void federalTax ( double (&payroll)[ROWS][COLS] )
 {
-
+    for ( int id = 0; id < ROWS; ++id )
+    {
+        payroll[id][FED_TAX] = payroll[id][GROSS] * FED_TAX;
+    }
 }
 
 /*
@@ -315,7 +395,11 @@ void federalTax ( double (&payroll)[ROWS][COLS] )
 */
 void netPay ( double (&payroll)[ROWS][COLS] )
 {
-
+    for ( int id = 0; id < ROWS; ++id )
+    {
+        payroll[id][NETPAY] = payroll[id][GROSS] -
+                              (payroll[id][ST_TAX] + payroll[id][FED_TAX]);
+    }
 }
 
 /*
@@ -324,13 +408,37 @@ void netPay ( double (&payroll)[ROWS][COLS] )
 void printReportData ( ofstream &output_file, const int employee[],
                        const double (&payroll)[ROWS][COLS] )
 {
-
+    for ( int id = 0; id < ROWS; ++id )
+    {
+        for ( int item = 0; item < COLS; ++item )
+        {
+            if ( item != 0)
+                output_file << payroll[id][item];
+            else
+            {
+                output_file << setfill(' ') << setw(20);
+                output_file << payroll [id][item];
+            }
+            output_file << endl;
+        }
+    }
 }
 
 /*
+ Function: writeFileLocation
 
+ The function, writeFileLocation, writes a message to the screen
+ indicating to the user the name of the output file to which the
+ results have been written.
+
+ Sample Display:
+ Program results have been written to prog6_001out.txt.
+
+ Receives: nothing
+ Constants: none
+ Returns: nothing; writes a message to the screen
 */
 void writeFileLocation ( const char output_filename[] )
 {
-
+    cout << "Program reults have been written to " << output_filename << ".";
 }
