@@ -1,11 +1,11 @@
 /*
-   File: prog6_bb0000.cpp  // Remove this inline comment after replacing 'bb0000' with your account number.
+   File: prog6_nad73_aid7.cpp
 
-   Author: Betty Boop      // Remove this inline comment after replacing Betty Boop with your first & last names.
-   C.S.1428.?              // Remove this inline comment after replacing the '?' with your three-digit lecture section number.
-   Lab Section: L?         // Remove this inline comment after replacing the '?' with your two-digit lab section number.
+   Author: Noah del Angel & Alyssa De La Cruz
+   C.S.1428.001
+   Lab Section: L32 & L06
    Program: #6
-   Due Date: --/--/--      // Remove this inline comment after replacing the dashes with the due date, in this format - month, day, year.
+   Due Date: 12/02/19
 
    This program prints to an output file a title and column headers for a
    payroll report. It then reads an employees work record from an input file.
@@ -183,7 +183,6 @@ const double CUT_OFF = 40.00,      // work week
              LOW_TAX_RATE = 0.20,
              HI_TAX_RATE = 0.31;
 
-// REPLACE THIS COMMENT WITH PROTOTYPES.
 void printIdInfo ( ostream &out, const string AUTHORS,
                    const int LECTURE_SECTION, const string LAB_SECTION,
                    const string DUE_DATE );
@@ -202,8 +201,8 @@ void writeFileLocation ( const char output_filename[] );
 
 int main ( )
 {
-   const string AUTHORS = "Noah del Angel & XXXX",       // REMOVE THIS COMMENT AFTER REPLACING ... WITH THE NAMES OF YOUR TEAM MEMBERS.
-                LAB_SECTION = "L32 & LXX",    // REMOVE THIS COMMENT AFTER REPLACING THE QUESTION MARK WITH A TWO-DIGIT LAB LECTURE_SECTION NUMBER.
+   const string AUTHORS = "Noah del Angel & Alyssa De La Cruz",
+                LAB_SECTION = "L32 & L06",
                 DUE_DATE = "12/02/19";
 
    const int LECTURE_SECTION = 1,
@@ -260,9 +259,10 @@ int main ( )
    printIdInfo( cout, AUTHORS, LECTURE_SECTION, LAB_SECTION, DUE_DATE );
    writeFileLocation ( output_filename );
 
-   // REPLACE THIS COMMENT WITH CODE TO CLOSE THE INPUT/OUTPUT FILES.
+    fin.close();
+    fout.close();
 
-   system("PAUSE>NUL");
+   //system("PAUSE>NUL");
 
    return 0;
 }
@@ -328,13 +328,25 @@ void printReportHeadings ( ofstream &output_file )
                 << endl
                 << "ID#      Hours    Hourly    Overtime   Gross    State   Federal    Net"
                 << endl
-                << "        Worked     Rate       Hours     Pay      Tax      Tax      Pay"
-                << endl << endl;
+                << "         Worked     Rate       Hours     Pay      Tax      Tax      Pay"
+                << endl;
 
 }
 
 /*
-
+ Function: dataIn
+ 
+ The function, dataIn, reads information from the input file then
+ places this data into the approporiate arrays.
+ - reads first value from input file than puts it into the employee array
+ - Reads the second value and then places it into the HRS_WRKD collumn in the
+ payroll array.
+ - Reads the third value and then places it into the PAYRATE collumn in the
+ payroll array
+ 
+ Recieves: outputfile variable (ofstream)
+ Constants: none
+ Returns: nothing; reads from a file
 */
 void dataIn ( ifstream &input_file, int employee[],
               double (&payroll)[ROWS][COLS] )
@@ -361,7 +373,8 @@ void dataIn ( ifstream &input_file, int employee[],
 
  Recieves: payroll array(double)
  Constants: none
- Returns: nothing
+ Returns: nothing; calculates the amount of overtime for each employee,
+ then places it in the payroll array
 */
 void overTime ( double (&payroll)[ROWS][COLS] )
 {
@@ -383,18 +396,27 @@ void overTime ( double (&payroll)[ROWS][COLS] )
 
  Recieves: payroll array(double)
  Constants: none
- Returns: nothing
+ Returns: nothing; calculates the gross pay for each employee,
+ then places it in the payroll array
 */
 void grossPay ( double (&payroll)[ROWS][COLS] )
 {
-    double regWorked;
-    double overtimeWorked;
+    double regWorked,
+           overtimeWorked = 0;
 
-    for(int id = 0; id < ROWS; ++id)
+    for ( int id = 0; id < ROWS; ++id )
     {
-        double regWorked = payroll[id][HRS_WRKD] * payroll[id][PAYRATE];
-        double overtimeWorked = payroll[id][OVRTIME] * payroll[id][PAYRATE]
-                                + 0.5;
+        if ( payroll[id][HRS_WRKD] > CUT_OFF )
+        {
+            regWorked = CUT_OFF * payroll[id][PAYRATE];
+            
+            overtimeWorked = payroll[id][OVRTIME]
+            * ( payroll[id][PAYRATE] + ( payroll[id][PAYRATE] * 0.5 ));
+        }
+        else
+            regWorked = payroll[id][HRS_WRKD] * payroll[id][PAYRATE];
+
+
 
         payroll[id][GROSS] =  regWorked + overtimeWorked;
     }
@@ -409,11 +431,12 @@ void grossPay ( double (&payroll)[ROWS][COLS] )
 
  Recieves: payroll array(double)
  Constants: none
- Returns: nothing
+ Returns: nothing; calculates the state tax for each employee,
+ then places it in the payroll array
 */
 void stateTax ( double (&payroll)[ROWS][COLS] )
 {
-    for( int id = 0; id < ROWS; ++id)
+    for( int id = 0; id < ROWS; ++id )
     {
         payroll[id][ST_TAX] = payroll[id][GROSS] * STATE_TX_RATE;
 
@@ -430,7 +453,8 @@ void stateTax ( double (&payroll)[ROWS][COLS] )
 
  Recieves: payroll array(double)
  Constants: none
- Returns: nothing
+ Returns: nothing; calculates the federal tax for each employee,
+ then places it in the payroll array
 */
 void federalTax ( double (&payroll)[ROWS][COLS] )
 {
@@ -455,7 +479,8 @@ void federalTax ( double (&payroll)[ROWS][COLS] )
 
  Recieves: payroll array(double)
  Constants: none
- Returns: nothing
+ Returns: nothing; calculates the net pay for each employee,
+ then place it in the payroll array
 */
 void netPay ( double (&payroll)[ROWS][COLS] )
 {
@@ -482,7 +507,7 @@ void netPay ( double (&payroll)[ROWS][COLS] )
  Recieves: output file variable (ofstream), employee array (const int),
  payroll array (const double)
  Constants: employee[], payroll[ROWS[COLS]
- Returns: nothing; writes a message to the screen
+ Returns: nothing; writes the employee payroll information to the outputfile
 */
 void printReportData ( ofstream &output_file, const int employee[],
                        const double (&payroll)[ROWS][COLS] )
@@ -516,7 +541,8 @@ void printReportData ( ofstream &output_file, const int employee[],
 
  Receives: nothing
  Constants: none
- Returns: nothing; writes a message to the screen
+ Returns: nothing; displays the the location of the output file to the
+ command line
 */
 void writeFileLocation ( const char output_filename[] )
 {
