@@ -219,16 +219,34 @@ int main ( )
    ifstream fin;
    fin.open( input_filename );
 
-    // REPLACE THIS COMMENT WITH CODE TO VERIFY THE INPUT FILE OPENS.
-    // USE THE CODE FROM THE EXAMPLE PROVIDED ON THE ASSIGNMENTS PAGE.
-    // ONLY MAKE NECESSARY ADJUSTMENTS, OR POINTS WILL BE DEDUCTED.
+    if ( !fin )
+    {
+        cout << endl << endl
+             << "***Program Terminated.***" << endl << endl
+             << "Input file failed to open." << endl;
+
+        fin.close( );
+
+        system("PAUSE>NUL");
+
+        return 1; // Quit, but don't return a 0; send back a non-zero value.
+    }
 
     ofstream fout;
     fout.open ( output_filename);
 
-    // REPLACE THIS COMMENT WITH CODE TO VERIFY THE INPUT FILE OPENS.
-    // USE THE CODE FROM THE EXAMPLE PROVIDED ON THE ASSIGNMENTS PAGE.
-    // ONLY MAKE NECESSARY ADJUSTMENTS, OR POINTS WILL BE DEDUCTED.
+    if ( !fout )
+    {
+        cout << endl << endl
+             << " ***Program Terminated.*** " << endl << endl
+             << "Output file failed to open." << endl;
+
+        fin.close( );
+
+        system("PAUSE>NUL");
+
+        return 2; // Quit, but don't return a 0, send back a non-zero value.
+    }
 
    printIdInfo( fout, AUTHORS, LECTURE_SECTION, LAB_SECTION, DUE_DATE );
    printReportHeadings ( fout );
@@ -308,7 +326,7 @@ void printReportHeadings ( ofstream &output_file )
 
     output_file << "                         Monthly Payroll Report" << endl
                 << endl
-                << "ID#     Hours    Hourly    Overtime   Gross    State   Federal    Net"
+                << "ID#      Hours    Hourly    Overtime   Gross    State   Federal    Net"
                 << endl
                 << "        Worked     Rate       Hours     Pay      Tax      Tax      Pay"
                 << endl << endl;
@@ -321,7 +339,18 @@ void printReportHeadings ( ofstream &output_file )
 void dataIn ( ifstream &input_file, int employee[],
               double (&payroll)[ROWS][COLS] )
 {
+    int inputId;
+    double hoursWorked,
+           hourlyRate;
+    for ( int rows = 0; rows < ROWS; ++rows )
+    {
+        input_file >> inputId >> hoursWorked >> hourlyRate;
+        employee[rows] = inputId;
 
+        payroll[rows][HRS_WRKD] = hoursWorked;
+
+        payroll[rows][PAYRATE] = hourlyRate;
+    }
 }
 
 /*
@@ -367,7 +396,7 @@ void grossPay ( double (&payroll)[ROWS][COLS] )
         double overtimeWorked = payroll[id][OVRTIME] * payroll[id][PAYRATE]
                                 + 0.5;
 
-        payroll[id][4] =  regWorked + overtimeWorked;
+        payroll[id][GROSS] =  regWorked + overtimeWorked;
     }
 
 }
@@ -460,17 +489,18 @@ void printReportData ( ofstream &output_file, const int employee[],
 {
     for ( int id = 0; id < ROWS; ++id )
     {
+        output_file << employee[id] << fixed << setw(10) << setfill(' ');
         for ( int item = 0; item < COLS; ++item )
         {
-            if ( item != 0)
-                output_file << payroll[id][item];
+            if ( item == 0 )
+                output_file << fixed << setprecision(2) << payroll[id][item];
             else
             {
-                output_file << setfill(' ') << setw(20);
-                output_file << payroll [id][item];
+                output_file << fixed << setw(10) << setfill(' ')
+                            << setprecision(2) << payroll[id][item];
             }
-            output_file << endl;
         }
+        output_file << endl;
     }
 }
 
