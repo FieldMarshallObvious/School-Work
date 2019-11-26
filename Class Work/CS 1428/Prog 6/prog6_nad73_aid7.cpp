@@ -262,7 +262,7 @@ int main ( )
     fin.close();
     fout.close();
 
-   //system("PAUSE>NUL");
+   system("PAUSE>NUL");
 
    return 0;
 }
@@ -401,26 +401,17 @@ void overTime ( double (&payroll)[ROWS][COLS] )
 */
 void grossPay ( double (&payroll)[ROWS][COLS] )
 {
-    double regWorked,
-           overtimeWorked = 0;
-
     for ( int id = 0; id < ROWS; ++id )
     {
         if ( payroll[id][HRS_WRKD] > CUT_OFF )
-        {
-            regWorked = CUT_OFF * payroll[id][PAYRATE];
-            
-            overtimeWorked = payroll[id][OVRTIME]
-            * ( payroll[id][PAYRATE] + ( payroll[id][PAYRATE] * 0.5 ));
-        }
+            payroll[id][GROSS] = CUT_OFF * payroll[id][PAYRATE] + ( payroll[id][OVRTIME] * ( payroll[id][PAYRATE] + ( payroll[id][PAYRATE] * 0.5 )));
+        
         else
-            regWorked = payroll[id][HRS_WRKD] * payroll[id][PAYRATE];
+              payroll[id][GROSS] = payroll[id][HRS_WRKD] * payroll[id][PAYRATE];
 
 
 
-        payroll[id][GROSS] =  regWorked + overtimeWorked;
     }
-
 }
 
 /*
