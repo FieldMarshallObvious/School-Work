@@ -285,7 +285,7 @@ int main ( )
  --/--/--               // dashes represent due date, month/day/year
  <blank line>
 
- Receives: output file variable(ostream),
+ Recieves: output file variable(ostream),
  AUTHORS (string const), LECTURE_SECTION (int const),
  LAB_SECTION (const string), DUE_DATE (const string)
  Constants: AUTHORS, LECTURE_SECTION, LAB_SECTION, LAB_SECTION, DUE_DATE
@@ -322,20 +322,18 @@ void printIdInfo ( ostream &out, const string AUTHORS,
 */
 void printReportHeadings ( ofstream &output_file )
 {
-    output_file << fixed << setfill(' ') << setw(20);
-
     output_file << "                         Monthly Payroll Report" << endl
                 << endl
-                << "ID#      Hours    Hourly    Overtime   Gross    State   Federal    Net"
-                << endl
-                << "         Worked     Rate       Hours     Pay      Tax      Tax      Pay"
-                << endl;
+                << "ID#      Hours    Hourly   Overtime    Gross    State     "
+                << "Federal    Net " << endl
+                << "        Worked     Rate      Hours      Pay      Tax       "
+                << " " << "Tax      Pay" << endl;
 
 }
 
 /*
  Function: dataIn
- 
+
  The function, dataIn, reads information from the input file then
  places this data into the approporiate arrays.
  - reads first value from input file than puts it into the employee array
@@ -343,10 +341,15 @@ void printReportHeadings ( ofstream &output_file )
  payroll array.
  - Reads the third value and then places it into the PAYRATE collumn in the
  payroll array
- 
+
  Recieves: outputfile variable (ofstream)
- Constants: none
- Returns: nothing; reads from a file
+ Constants: globally declared integers:
+                ROWS - parallel arrays row dimension
+                COLS - 2D array column dimension
+                column designations in 2D array
+                HRS_WRKD, PAYRATE
+ Returns: nothing; reads from a file, and assigns read data to the approriate
+ locations in the payroll and employee array
 */
 void dataIn ( ifstream &input_file, int employee[],
               double (&payroll)[ROWS][COLS] )
@@ -372,7 +375,12 @@ void dataIn ( ifstream &input_file, int employee[],
  If the employee has any overtime the program will calculate how much
 
  Recieves: payroll array(double)
- Constants: none
+ Constants: globally declared integers:
+                ROWS - parallel arrays row dimension
+                COLS - 2D array column dimension
+              column designations in 2D array
+                OVERTIME, HRS_WRKD
+                CUT_OFF - number if hours at which work is considered over time
  Returns: nothing; calculates the amount of overtime for each employee,
  then places it in the payroll array
 */
@@ -395,7 +403,12 @@ void overTime ( double (&payroll)[ROWS][COLS] )
  This is done without taking int oaccount any taxes.
 
  Recieves: payroll array(double)
- Constants: none
+ Constants: globally declared integers:
+                ROWS - parallel arrays row dimension
+                COLS - 2D array column dimension
+              column designations in 2D array
+                OVERTIME, HRS_WRKD, GROSS, PAYRATE
+                CUT_OFF - number if hours at which work is considered over time
  Returns: nothing; calculates the gross pay for each employee,
  then places it in the payroll array
 */
@@ -404,8 +417,11 @@ void grossPay ( double (&payroll)[ROWS][COLS] )
     for ( int id = 0; id < ROWS; ++id )
     {
         if ( payroll[id][HRS_WRKD] > CUT_OFF )
-            payroll[id][GROSS] = CUT_OFF * payroll[id][PAYRATE] + ( payroll[id][OVRTIME] * ( payroll[id][PAYRATE] + ( payroll[id][PAYRATE] * 0.5 )));
-        
+            payroll[id][GROSS] = CUT_OFF * payroll[id][PAYRATE]
+                                 + ( payroll[id][OVRTIME]
+                                 * ( payroll[id][PAYRATE]
+                                 + ( payroll[id][PAYRATE] * 0.5 )));
+
         else
               payroll[id][GROSS] = payroll[id][HRS_WRKD] * payroll[id][PAYRATE];
 
@@ -421,7 +437,13 @@ void grossPay ( double (&payroll)[ROWS][COLS] )
  for loop.
 
  Recieves: payroll array(double)
- Constants: none
+ Constants: globally declared integers:
+                ROWS - parallel arrays row dimension
+                COLS - 2D array column dimension
+              column designations in 2D array
+                OVERTIME, HRS_WRKD, GROSS, PAYRATE
+            globally declared reals:
+                STATE_TX_RATE - rate for state tax
  Returns: nothing; calculates the state tax for each employee,
  then places it in the payroll array
 */
@@ -443,7 +465,17 @@ void stateTax ( double (&payroll)[ROWS][COLS] )
  falls below or equal to the limit, it calculates the lower tax rate.
 
  Recieves: payroll array(double)
- Constants: none
+ Constants: globally declared integers:
+                ROWS - parallel arrays row dimension
+                COLS - 2D array column dimension
+              column designations in 2D array
+                OVERTIME, HRS_WRKD, GROSS, PAYRATE
+            globally declared reals:
+                TAX_CUT_OFF - Amount at which income is considered to be taxed
+                at a higher rate
+                HI_TAX_RATE - High income tax rate
+                LOW_TAX_RATE - Low income tax rate
+
  Returns: nothing; calculates the federal tax for each employee,
  then places it in the payroll array
 */
@@ -469,7 +501,11 @@ void federalTax ( double (&payroll)[ROWS][COLS] )
  state and federal tax.
 
  Recieves: payroll array(double)
- Constants: none
+ Constants: globally declared integers:
+                ROWS - parallel arrays row dimension
+                COLS - 2D array column dimension
+              column designations in 2D array
+                OVERTIME, HRS_WRKD, GROSS, PAYRATE, ST_TAX, FED_TAX, NETPAY
  Returns: nothing; calculates the net pay for each employee,
  then place it in the payroll array
 */
@@ -497,7 +533,10 @@ void netPay ( double (&payroll)[ROWS][COLS] )
 
  Recieves: output file variable (ofstream), employee array (const int),
  payroll array (const double)
- Constants: employee[], payroll[ROWS[COLS]
+ Constants: employee[], payroll[ROWS[COLS],
+            globally declared integers:
+                ROWS - parallel arrays row dimension
+                COLS - 2D array column dimension
  Returns: nothing; writes the employee payroll information to the outputfile
 */
 void printReportData ( ofstream &output_file, const int employee[],
@@ -530,8 +569,8 @@ void printReportData ( ofstream &output_file, const int employee[],
  Sample Display:
  Program results have been written to prog6_001out.txt.
 
- Receives: nothing
- Constants: none
+ Recieves: output_filename array (const char)
+ Constants: output_filename[]
  Returns: nothing; displays the the location of the output file to the
  command line
 */
