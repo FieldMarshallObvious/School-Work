@@ -262,7 +262,7 @@ int main ( )
     fin.close();
     fout.close();
 
-   system("PAUSE>NUL");
+   //system("PAUSE>NUL");
 
    return 0;
 }
@@ -324,10 +324,10 @@ void printReportHeadings ( ofstream &output_file )
 {
     output_file << "                         Monthly Payroll Report" << endl
                 << endl
-                << "ID#      Hours    Hourly   Overtime    Gross    State     "
-                << "Federal    Net " << endl
-                << "        Worked     Rate      Hours      Pay      Tax       "
-                << " " << "Tax      Pay" << endl;
+                << " ID#     Hours    Hourly   Overtime    Gross     State    "
+                << "Federal     Net  " << endl
+                << "        Worked     Rate      Hours      Pay       Tax      "
+                << " Tax       Pay" << endl;
 
 }
 

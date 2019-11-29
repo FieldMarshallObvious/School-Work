@@ -5,8 +5,8 @@ Lab Section: L32 & L06
 
                          Monthly Payroll Report
 
-ID#      Hours    Hourly    Overtime   Gross    State   Federal    Net
-         Worked     Rate       Hours     Pay      Tax      Tax      Pay
+ ID#     Hours    Hourly   Overtime    Gross     State    Federal     Net  
+        Worked     Rate      Hours      Pay       Tax       Tax       Pay
 1000     51.00      6.55     11.00    370.07     22.20     74.02    273.86
 1001     40.50      6.50      0.50    264.88     15.89     52.98    196.01
 1002     26.00     15.00      0.00    390.00     23.40     78.00    288.60
