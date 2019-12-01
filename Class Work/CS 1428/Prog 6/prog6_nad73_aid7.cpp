@@ -262,7 +262,7 @@ int main ( )
     fin.close();
     fout.close();
 
-   //system("PAUSE>NUL");
+   system("PAUSE>NUL");
 
    return 0;
 }
