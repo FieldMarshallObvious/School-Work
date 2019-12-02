@@ -259,8 +259,8 @@ int main ( )
    printIdInfo( cout, AUTHORS, LECTURE_SECTION, LAB_SECTION, DUE_DATE );
    writeFileLocation ( output_filename );
 
-    fin.close();
-    fout.close();
+   fin.close();
+   fout.close();
 
    system("PAUSE>NUL");
 
@@ -387,13 +387,11 @@ void dataIn ( ifstream &input_file, int employee[],
 void overTime ( double (&payroll)[ROWS][COLS] )
 {
     for(int id = 0; id < ROWS; ++id)
-    {
         if ( payroll[id][HRS_WRKD] >= CUT_OFF )
             payroll[id][OVRTIME] = payroll[id][HRS_WRKD] - CUT_OFF;
 
         else
             payroll[id][OVRTIME] = 0;
-    }
 }
 
 /*
@@ -415,7 +413,6 @@ void overTime ( double (&payroll)[ROWS][COLS] )
 void grossPay ( double (&payroll)[ROWS][COLS] )
 {
     for ( int id = 0; id < ROWS; ++id )
-    {
         if ( payroll[id][HRS_WRKD] > CUT_OFF )
             payroll[id][GROSS] = CUT_OFF * payroll[id][PAYRATE]
                                  + ( payroll[id][OVRTIME]
@@ -424,10 +421,6 @@ void grossPay ( double (&payroll)[ROWS][COLS] )
 
         else
               payroll[id][GROSS] = payroll[id][HRS_WRKD] * payroll[id][PAYRATE];
-
-
-
-    }
 }
 
 /*
@@ -482,16 +475,12 @@ void stateTax ( double (&payroll)[ROWS][COLS] )
 void federalTax ( double (&payroll)[ROWS][COLS] )
 {
     for ( int id = 0; id < ROWS; ++id )
-    {
         if ( payroll[id][GROSS] > TAX_CUT_OFF )
-        {
             payroll[id][FED_TAX] = (( payroll[id][GROSS] - TAX_CUT_OFF)
                                       * HI_TAX_RATE) + ( TAX_CUT_OFF
                                       * LOW_TAX_RATE);
-        }
         else
             payroll[id][FED_TAX] = payroll[id][GROSS] * LOW_TAX_RATE;
-    }
 }
 
 /*
@@ -512,10 +501,8 @@ void federalTax ( double (&payroll)[ROWS][COLS] )
 void netPay ( double (&payroll)[ROWS][COLS] )
 {
     for ( int id = 0; id < ROWS; ++id )
-    {
         payroll[id][NETPAY] = payroll[id][GROSS] -
                               (payroll[id][ST_TAX] + payroll[id][FED_TAX]);
-    }
 }
 
 /*
@@ -546,15 +533,12 @@ void printReportData ( ofstream &output_file, const int employee[],
     {
         output_file << employee[id] << fixed << setw(10) << setfill(' ');
         for ( int item = 0; item < COLS; ++item )
-        {
             if ( item == 0 )
                 output_file << fixed << setprecision(2) << payroll[id][item];
             else
-            {
                 output_file << fixed << setw(10) << setfill(' ')
                             << setprecision(2) << payroll[id][item];
-            }
-        }
+        
         output_file << endl;
     }
 }
