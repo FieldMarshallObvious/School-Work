@@ -357,9 +357,11 @@ void dataIn ( ifstream &input_file, int employee[],
     int inputId;
     double hoursWorked,
            hourlyRate;
+    
     for ( int rows = 0; rows < ROWS; ++rows )
     {
         input_file >> inputId >> hoursWorked >> hourlyRate;
+        
         employee[rows] = inputId;
 
         payroll[rows][HRS_WRKD] = hoursWorked;
