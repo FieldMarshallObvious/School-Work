@@ -386,7 +386,7 @@ void dataIn ( ifstream &input_file, int employee[],
 */
 void overTime ( double (&payroll)[ROWS][COLS] )
 {
-    for(int id = 0; id < ROWS; ++id)
+    for ( int id = 0; id < ROWS; ++id )
         if ( payroll[id][HRS_WRKD] >= CUT_OFF )
             payroll[id][OVRTIME] = payroll[id][HRS_WRKD] - CUT_OFF;
 
