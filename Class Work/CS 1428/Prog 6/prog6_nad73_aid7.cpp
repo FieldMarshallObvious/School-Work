@@ -534,6 +534,7 @@ void printReportData ( ofstream &output_file, const int employee[],
     for ( int id = 0; id < ROWS; ++id )
     {
         output_file << employee[id] << fixed << setw(10) << setfill(' ');
+        
         for ( int item = 0; item < COLS; ++item )
             if ( item == 0 )
                 output_file << fixed << setprecision(2) << payroll[id][item];
