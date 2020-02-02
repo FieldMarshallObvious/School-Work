@@ -40,7 +40,7 @@ int main ()
     
     ifstream answers_bank;
     
-    answers_bank.open("questions.txt");
+    answers_bank.open("answers.txt");
     
     if( ! answers_bank )
     {
@@ -85,11 +85,14 @@ bool Player_try ( ifstream &answers_bank )
     string choice;
     string correct_choice = Get_answer( answers_bank );
     
-    
     bool output = false;
     
     cout << "Your choice? > ";
     cin >> choice;
+    
+    cout << "The correct choice " << correct_choice << endl
+         << "Comparisson shows " << choice.compare(correct_choice) << endl;
+    
     
     if( choice == correct_choice )
         output = true;
@@ -105,16 +108,37 @@ void Play_game ( ifstream &question_bank, ifstream &answers_bank, ofstream &summ
     string q_array[50][4];
     string student;
     
-    int q_num;
+    int q_num = 1;
     
     cout << "What is your name?" << endl;
     getline(cin, student);
     
     cout << endl;
     
-    Show_question(student, q_num, question_bank, answers_bank);
+    while( (! question_bank.eof()) && (! answers_bank.eof()) )
+    {
+        Show_question(student, q_num, question_bank, answers_bank);
     
-    cout << Player_try(answers_bank);
+        cout << Player_try(answers_bank) << endl;
+        
+        q_num++;
+    }
+    
+    if( question_bank.eof() && (! answers_bank.eof()) )
+    {
+        cout << "***Program Terminated.***" << endl << endl
+            << "There are more answers then there are questions." << endl;
+        
+        return;
+    }
+    
+    else if ( (! question_bank.eof()) && answers_bank.eof() )
+    {
+        cout << "***Program Terminated.***" << endl << endl
+            << "There are more questions then there are answers." << endl;
+        
+        return;
+    }
     
 }
 
@@ -139,6 +163,7 @@ string Read_questions ( ifstream &question_bank )
 void Show_question ( string student, int q_num, ifstream &question_bank, ifstream &answers_bank )
 {
     string multipe_choice[4] = {"A.", "B.", "C.", "D."};
+    
     //Question existence check
     
     //Question answer loop check
@@ -148,9 +173,6 @@ void Show_question ( string student, int q_num, ifstream &question_bank, ifstrea
     
     for( int i = 0; i < 5; i++)
         cout << multipe_choice[i] << " " << Read_questions(question_bank) << endl;
-    
-    //cout << q_array[0] << " Here's Question Number " << q_array[1]<< endl
-      //   << q_array[2] << endl;
     
     //Question options loop - using delimeter for endls
 }
