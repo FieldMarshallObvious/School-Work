@@ -5,8 +5,6 @@ Documentation block
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <cctype>
-#include <cstdlib>
 
 //Global constants if needed
 
@@ -15,10 +13,11 @@ Documentation block
 
 using namespace std;
 //Function prototypes
-string Read_questions ( );
-string Read_answers( );
-void Show_question( );
-bool Player_try( char choice, string q_array[], int correct_choice );
+string Get_answer ( ifstream &answers_bank );
+string Read_questions ( ifstream &question_bank );
+string Read_answers( ifstream &question_bank);
+void Show_question( string student, int q_num, ifstream &question_bank, ifstream &answers_bank  );
+bool Player_try( ifstream &answers_bank );
 void Play_game( ifstream &question_bank, ifstream &answers_bank, ofstream &summary );
 void Sort_score( );
 
@@ -63,6 +62,8 @@ int main ()
         return -3;
     }
     
+    Play_game(question_bank, answers_bank, summary);
+    
     question_bank.close();
     answers_bank.close();
     summary.close();
@@ -70,14 +71,30 @@ int main ()
     return 0;
 }
 
-bool Player_try ( string choice, string q_array[], int correct_choice )
+string Get_answer ( ifstream &answers_bank )
 {
-    if( toupper(choice) == q_array[correct_choice] )
-    {
-        
-    }
+    string output;
     
-    return false;
+    getline(answers_bank, output);
+    
+    return output;
+}
+
+bool Player_try ( ifstream &answers_bank )
+{
+    string choice;
+    string correct_choice = Get_answer( answers_bank );
+    
+    
+    bool output = false;
+    
+    cout << "Your choice? > ";
+    cin >> choice;
+    
+    if( choice == correct_choice )
+        output = true;
+    
+    return output;
 }
 
 void Play_game ( ifstream &question_bank, ifstream &answers_bank, ofstream &summary )
@@ -85,46 +102,55 @@ void Play_game ( ifstream &question_bank, ifstream &answers_bank, ofstream &summ
     const int POINT_MULTIPLE = 10;
     const int POINT_MULTIPLE_HALF = 5;
     
-    string q_array[4];
+    string q_array[50][4];
     string student;
-    string choice;
     
-    int correct_choice;
+    int q_num;
     
     cout << "What is your name?" << endl;
-    cin >> choice;
+    getline(cin, student);
     
     cout << endl;
     
-    Show_question();
+    Show_question(student, q_num, question_bank, answers_bank);
     
-    cout << "Your choice? > ";
-    cin >> choice;
+    cout << Player_try(answers_bank);
+    
 }
 
-string Read_answers ( )
+string Read_answers ( ifstream &answers_bank )
 {
+    string output;
     
-    return " ";
+    getline(answers_bank, output);
+    
+    return output;
 }
 
-string Read_questions ( )
+string Read_questions ( ifstream &question_bank )
 {
+    string output;
     
-    return " ";
+    getline(question_bank, output);
+    
+    return output;
 }
 
-void show_question ( string q_array[], int &correct_choice, ifstream &question_bank, ifstream &answers_bank)
+void Show_question ( string student, int q_num, ifstream &question_bank, ifstream &answers_bank )
 {
+    string multipe_choice[4] = {"A.", "B.", "C.", "D."};
     //Question existence check
     
     //Question answer loop check
     
-    q_array[1] = Read_questions();
-    q_array[3] = Read_answers();
+    cout << student << " Here's Question Number " << q_num << endl
+         << Read_questions(question_bank) << endl;
     
-    cout << q_array[0] << " Here's Question Number " << q_array[1]<< endl
-         << q_array[2] << endl;
+    for( int i = 0; i < 5; i++)
+        cout << multipe_choice[i] << " " << Read_questions(question_bank) << endl;
+    
+    //cout << q_array[0] << " Here's Question Number " << q_array[1]<< endl
+      //   << q_array[2] << endl;
     
     //Question options loop - using delimeter for endls
 }
