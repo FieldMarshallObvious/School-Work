@@ -90,11 +90,7 @@ bool Player_try ( ifstream &answers_bank )
     cout << "Your choice? > ";
     cin >> choice;
     
-    cout << "The correct choice " << correct_choice << endl
-         << "Comparisson shows " << choice.compare(correct_choice) << endl;
-    
-    
-    if( choice == correct_choice )
+    if( choice[0] == correct_choice[0] )
         output = true;
     
     return output;
