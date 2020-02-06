@@ -5,6 +5,7 @@ Documentation block
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cctype>
 
 //Global constants if needed
 
@@ -14,10 +15,11 @@ Documentation block
 using namespace std;
 //Function prototypes
 string Get_answer ( ifstream &answers_bank );
+int Randinex( int chosen_questions[] );
 string Read_questions ( ifstream &question_bank );
 string Read_answers( ifstream &question_bank);
-void Show_question( string student, int q_num, ifstream &question_bank, ifstream &answers_bank  );
-bool Player_try( ifstream &answers_bank );
+void Show_question( string student, int q_num, string q_array[][5], int index );
+bool Player_try( string answers_array[], int index );
 void Play_game( ifstream &question_bank, ifstream &answers_bank, ofstream &summary );
 void Sort_score( );
 
@@ -80,17 +82,17 @@ string Get_answer ( ifstream &answers_bank )
     return output;
 }
 
-bool Player_try ( ifstream &answers_bank )
+bool Player_try ( string answers_array[], int index )
 {
+    string correct_choice = answers_array[index];
     string choice;
-    string correct_choice = Get_answer( answers_bank );
     
     bool output = false;
     
     cout << "Your choice? > ";
     cin >> choice;
     
-    if( choice[0] == correct_choice[0] )
+    if( toupper(choice[0]) == toupper(correct_choice[0]) )
         output = true;
     
     return output;
@@ -101,21 +103,48 @@ void Play_game ( ifstream &question_bank, ifstream &answers_bank, ofstream &summ
     const int POINT_MULTIPLE = 10;
     const int POINT_MULTIPLE_HALF = 5;
     
-    string q_array[50][4];
+    string q_array[50][5];
+    string answers_array[50];
     string student;
     
+    int chosen_questions[50];
     int q_num = 1;
+    int total_ques = 0;
     
     cout << "What is your name?" << endl;
     getline(cin, student);
     
     cout << endl;
     
-    while( (! question_bank.eof()) && (! answers_bank.eof()) )
+    //Question array creation
+    for(int i = 0; i < 50; i++)
     {
-        Show_question(student, q_num, question_bank, answers_bank);
+        for(int j = 0; j < 5; j++)
+        {
+            if(j == 0)
+                q_array[i][j] = Read_questions( question_bank );
+            else
+                q_array[i][j] = Read_questions( question_bank );
+        }
+        
+        answers_array[i] = Get_answer( answers_bank );
+        
+        if( !question_bank.eof() )
+            total_ques++;
+    }
     
-        cout << Player_try(answers_bank) << endl;
+    //Display questions and accept input from user
+    while( q_num <= total_ques )
+    {
+        int index = Randinex( chosen_questions );
+        
+        //Question existence check
+        
+        //Question answer loop check
+        
+        Show_question( student, q_num, q_array, index );
+    
+        cout << Player_try( answers_array, index) << endl;
         
         q_num++;
     }
@@ -138,6 +167,11 @@ void Play_game ( ifstream &question_bank, ifstream &answers_bank, ofstream &summ
     
 }
 
+int Randinex( int chosen_questions[] )
+{
+    return 0;
+}
+
 string Read_answers ( ifstream &answers_bank )
 {
     string output;
@@ -156,19 +190,14 @@ string Read_questions ( ifstream &question_bank )
     return output;
 }
 
-void Show_question ( string student, int q_num, ifstream &question_bank, ifstream &answers_bank )
+void Show_question ( string student, int q_num, string q_array[][5], int index )
 {
     string multipe_choice[4] = {"A.", "B.", "C.", "D."};
     
-    //Question existence check
-    
-    //Question answer loop check
-    
     cout << student << " Here's Question Number " << q_num << endl
-         << Read_questions(question_bank) << endl;
+         << q_array[index][0] << endl;
     
     for( int i = 0; i < 5; i++)
-        cout << multipe_choice[i] << " " << Read_questions(question_bank) << endl;
+        cout << multipe_choice[i] << " " << q_array[index][i] << endl;
     
-    //Question options loop - using delimeter for endls
 }
