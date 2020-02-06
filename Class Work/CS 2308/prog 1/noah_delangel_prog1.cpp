@@ -5,7 +5,9 @@ Documentation block
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstring>
 #include <cctype>
+#include <random>
 
 //Global constants if needed
 
@@ -15,7 +17,7 @@ Documentation block
 using namespace std;
 //Function prototypes
 string Get_answer ( ifstream &answers_bank );
-int Randinex( int chosen_questions[] );
+int Randinex( int chosen_questions[], int max );
 string Read_questions ( ifstream &question_bank );
 string Read_answers( ifstream &question_bank);
 void Show_question( string student, int q_num, string q_array[][5], int index );
@@ -106,6 +108,7 @@ void Play_game ( ifstream &question_bank, ifstream &answers_bank, ofstream &summ
     string q_array[50][5];
     string answers_array[50];
     string student;
+    string input;
     
     int chosen_questions[50];
     int q_num = 1;
@@ -119,24 +122,30 @@ void Play_game ( ifstream &question_bank, ifstream &answers_bank, ofstream &summ
     //Question array creation
     for(int i = 0; i < 50; i++)
     {
-        for(int j = 0; j < 5; j++)
-        {
-            if(j == 0)
-                q_array[i][j] = Read_questions( question_bank );
-            else
-                q_array[i][j] = Read_questions( question_bank );
-        }
-        
-        answers_array[i] = Get_answer( answers_bank );
-        
         if( !question_bank.eof() )
             total_ques++;
+        
+        for(int j = 0; j < 5; j++)
+        {
+            input = Read_questions( question_bank );
+            if(j == 0 && ( strlen( input.c_str()) != 0 || strlen(input.c_str()) != 1 ) )
+            {
+                q_array[i][j] = input;
+            }
+            else if ( strlen(input.c_str()) != 0 || strlen(input.c_str()) != 1 )
+            {
+                q_array[i][j] = input;
+            }
+        }
+        
+        answers_array[i] = Read_answers( answers_bank );
     }
     
+    cout << "Total questions is" << total_ques << endl;
     //Display questions and accept input from user
     while( q_num <= total_ques )
     {
-        int index = Randinex( chosen_questions );
+        int index = 0;
         
         //Question existence check
         
@@ -145,6 +154,8 @@ void Play_game ( ifstream &question_bank, ifstream &answers_bank, ofstream &summ
         Show_question( student, q_num, q_array, index );
     
         cout << Player_try( answers_array, index) << endl;
+        
+        chosen_questions[q_num-1] = index;
         
         q_num++;
     }
@@ -167,9 +178,31 @@ void Play_game ( ifstream &question_bank, ifstream &answers_bank, ofstream &summ
     
 }
 
-int Randinex( int chosen_questions[] )
+int Randinex( int chosen_questions[], int max )
 {
-    return 0;
+    bool unique_item = false;
+    
+    int rand_int;
+    
+    srand(time(NULL));
+    
+    do {
+        unique_item = true;
+        
+        int rand_int = rand()%max + 0;
+        
+        for( int cntr = 0; cntr < max; cntr++)
+        {
+            if( chosen_questions[cntr] == rand_int )
+            {
+                unique_item = false;
+                break;
+            }
+        }
+    } while( unique_item == false );
+    
+    cout << "The rand int is " << rand_int << endl;
+    return rand_int;
 }
 
 string Read_answers ( ifstream &answers_bank )
@@ -178,14 +211,32 @@ string Read_answers ( ifstream &answers_bank )
     
     getline(answers_bank, output);
     
+    cout << "The answer is: " << output << endl;
+    
     return output;
 }
 
 string Read_questions ( ifstream &question_bank )
 {
-    string output;
+    string output = "";
     
-    getline(question_bank, output);
+    while ( getline(question_bank, output) && (!question_bank.eof()) )
+    {
+        if (strlen(output.c_str()) == 1 || strlen(output.c_str()) == 0) {
+            cout << "Detected empty line" << endl;
+            cout << "The line is: " << output << endl;
+            continue;
+        }
+        
+        else
+        {
+            cout << "Detected non-empty line" << endl;
+            cout << "The line is: " << output << endl;
+            break;
+        }
+    }
+    
+    cout << "End of loop" << endl;
     
     return output;
 }
@@ -197,7 +248,7 @@ void Show_question ( string student, int q_num, string q_array[][5], int index )
     cout << student << " Here's Question Number " << q_num << endl
          << q_array[index][0] << endl;
     
-    for( int i = 0; i < 5; i++)
+    for( int i = 1; i < 5; i++)
         cout << multipe_choice[i] << " " << q_array[index][i] << endl;
     
 }
