@@ -51,7 +51,7 @@ int main ()
         cout << "***Program Terminated.***" << endl << endl
              << "Answer bank file failed to open." << endl;
         
-        return -2;
+        return -1;
     }
     
     ofstream summary;
@@ -63,7 +63,7 @@ int main ()
         cout << "***Program Terminated.***" << endl << endl
              << "Answer bank file failed to open." << endl;
         
-        return -3;
+        return -1;
     }
     
     Play_game(question_bank, answers_bank, summary);
@@ -113,6 +113,7 @@ void Play_game ( ifstream &question_bank, ifstream &answers_bank, ofstream &summ
     int chosen_questions[50];
     int q_num = 1;
     int total_ques = 0;
+    int total_ans = 0;
     
     cout << "What is your name?" << endl;
     getline(cin, student);
@@ -124,6 +125,9 @@ void Play_game ( ifstream &question_bank, ifstream &answers_bank, ofstream &summ
     {
         if( !question_bank.eof() )
             total_ques++;
+        
+        if( !question_bank.eof() )
+            total_ans++;
         
         for(int j = 0; j < 5; j++)
         {
@@ -138,19 +142,21 @@ void Play_game ( ifstream &question_bank, ifstream &answers_bank, ofstream &summ
             }
         }
         
-        answers_array[i] = Read_answers( answers_bank );
+        input = Read_answers( answers_bank );
+        
+        if( strlen(input.c_str()) != 0 || strlen(input.c_str()) != 1 )
+            answers_array[i] = input;
     }
-    
-    cout << "Total questions is" << total_ques << endl;
+
     //Display questions and accept input from user
     while( q_num <= total_ques )
     {
-        int index = 0;
+        int index = Randinex(chosen_questions, total_ques);
         
         //Question existence check
         
         //Question answer loop check
-        
+                
         Show_question( student, q_num, q_array, index );
     
         cout << Player_try( answers_array, index) << endl;
@@ -160,18 +166,18 @@ void Play_game ( ifstream &question_bank, ifstream &answers_bank, ofstream &summ
         q_num++;
     }
     
-    if( question_bank.eof() && (! answers_bank.eof()) )
+    if( total_ans > total_ques )
     {
         cout << "***Program Terminated.***" << endl << endl
-            << "There are more answers then there are questions." << endl;
+             << "There are more answers then there are questions." << endl;
         
         return;
     }
     
-    else if ( (! question_bank.eof()) && answers_bank.eof() )
+    else if ( total_ans < total_ques  )
     {
         cout << "***Program Terminated.***" << endl << endl
-            << "There are more questions then there are answers." << endl;
+             << "There are more questions then there are answers." << endl;
         
         return;
     }
@@ -189,19 +195,21 @@ int Randinex( int chosen_questions[], int max )
     do {
         unique_item = true;
         
-        int rand_int = rand()%max + 0;
-        
+        rand_int = rand() % max + 0;
+
         for( int cntr = 0; cntr < max; cntr++)
         {
+            cout << "In the loop" << endl;
             if( chosen_questions[cntr] == rand_int )
             {
+                cout << "The index is " << rand_int << endl;
+                cout << "The index is not unique" << endl;
                 unique_item = false;
                 break;
             }
         }
     } while( unique_item == false );
     
-    cout << "The rand int is " << rand_int << endl;
     return rand_int;
 }
 
@@ -209,9 +217,14 @@ string Read_answers ( ifstream &answers_bank )
 {
     string output;
     
-    getline(answers_bank, output);
-    
-    cout << "The answer is: " << output << endl;
+    while ( getline(answers_bank, output) && (!answers_bank.eof()))
+    {
+        if (strlen(output.c_str()) == 1 || strlen(output.c_str()) == 0)
+            continue;
+        
+        else
+            break;
+    }
     
     return output;
 }
@@ -222,21 +235,12 @@ string Read_questions ( ifstream &question_bank )
     
     while ( getline(question_bank, output) && (!question_bank.eof()) )
     {
-        if (strlen(output.c_str()) == 1 || strlen(output.c_str()) == 0) {
-            cout << "Detected empty line" << endl;
-            cout << "The line is: " << output << endl;
+        if (strlen(output.c_str()) == 1 || strlen(output.c_str()) == 0)
             continue;
-        }
         
         else
-        {
-            cout << "Detected non-empty line" << endl;
-            cout << "The line is: " << output << endl;
             break;
-        }
     }
-    
-    cout << "End of loop" << endl;
     
     return output;
 }
@@ -249,6 +253,6 @@ void Show_question ( string student, int q_num, string q_array[][5], int index )
          << q_array[index][0] << endl;
     
     for( int i = 1; i < 5; i++)
-        cout << multipe_choice[i] << " " << q_array[index][i] << endl;
+        cout << multipe_choice[i-1] << " " << q_array[index][i] << endl;
     
 }
