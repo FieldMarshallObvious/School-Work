@@ -21,7 +21,8 @@ int Randinex( int chosen_questions[], int max );
 string Read_questions ( ifstream &question_bank );
 string Read_answers( ifstream &question_bank);
 void Show_question( string student, int q_num, string q_array[][5], int index );
-bool Player_try( string answers_array[], int index );
+void Show_question( string student, string choice, int q_num, string q_array[][5], int index );
+bool Player_try( string answers_array[], int index, string choice );
 void Play_game( ifstream &question_bank, ifstream &answers_bank, ofstream &summary );
 void Sort_score( );
 
@@ -84,15 +85,13 @@ string Get_answer ( ifstream &answers_bank )
     return output;
 }
 
-bool Player_try ( string answers_array[], int index )
+bool Player_try ( string answers_array[], int index, string choice )
 {
     string correct_choice = answers_array[index];
-    string choice;
     
     bool output = false;
     
-    cout << "Your choice? > ";
-    cin >> choice;
+    cout << "The correct choice is " << correct_choice << endl;
     
     if( toupper(choice[0]) == toupper(correct_choice[0]) )
         output = true;
@@ -109,11 +108,14 @@ void Play_game ( ifstream &question_bank, ifstream &answers_bank, ofstream &summ
     string answers_array[50];
     string student;
     string input;
+    string choice;
     
     int chosen_questions[50];
     int q_num = 1;
     int total_ques = 0;
     int total_ans = 0;
+    
+    bool truth_value;
     
     cout << "What is your name?" << endl;
     getline(cin, student);
@@ -156,10 +158,27 @@ void Play_game ( ifstream &question_bank, ifstream &answers_bank, ofstream &summ
         //Question existence check
         
         //Question answer loop check
-                
+        
         Show_question( student, q_num, q_array, index );
+        
+        cout << "Your choice? > ";
+        cin >> choice;
     
-        cout << Player_try( answers_array, index) << endl;
+        truth_value = Player_try( answers_array, index, choice);
+        
+        cout << truth_value << endl;
+        
+        if( truth_value == false )
+        {
+            Show_question ( student, choice, q_num, q_array, index );
+            
+            cout << "Your choice? > ";
+            cin >> choice;
+            
+            truth_value = Player_try( answers_array, index, choice);
+            
+            cout << truth_value << endl;
+        }
         
         chosen_questions[q_num-1] = index;
         
@@ -195,15 +214,12 @@ int Randinex( int chosen_questions[], int max )
     do {
         unique_item = true;
         
-        rand_int = rand() % max + 0;
+        rand_int = rand() % (max-1) + 0;
 
         for( int cntr = 0; cntr < max; cntr++)
         {
-            cout << "In the loop" << endl;
             if( chosen_questions[cntr] == rand_int )
             {
-                cout << "The index is " << rand_int << endl;
-                cout << "The index is not unique" << endl;
                 unique_item = false;
                 break;
             }
@@ -247,12 +263,30 @@ string Read_questions ( ifstream &question_bank )
 
 void Show_question ( string student, int q_num, string q_array[][5], int index )
 {
-    string multipe_choice[4] = {"A.", "B.", "C.", "D."};
+    string multipe_choice[4] = {"A", "B", "C", "D"};
     
     cout << student << " Here's Question Number " << q_num << endl
          << q_array[index][0] << endl;
     
     for( int i = 1; i < 5; i++)
-        cout << multipe_choice[i-1] << " " << q_array[index][i] << endl;
+        cout << multipe_choice[i-1] << ". " << q_array[index][i] << endl;
     
+}
+
+void Show_question( string student, string choice, int q_num, string q_array[][5], int index )
+{
+    string multipe_choice[4] = {"A", "B", "C", "D"};
+    
+    cout << student << " Here's Question Number " << q_num << " (second try)" << endl
+         << q_array[index][0] << endl;
+    
+    for( int i = 1; i < 5; i++)
+    {
+        string current_index = multipe_choice[i-1];
+        
+        if( toupper( current_index[0] ) != toupper( choice[0] ) )
+            cout << multipe_choice[i-1] << ". " << q_array[index][i] << endl;
+        else {}
+            
+    }
 }
