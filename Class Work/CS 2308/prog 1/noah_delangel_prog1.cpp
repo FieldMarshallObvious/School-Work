@@ -427,11 +427,14 @@ void Sort_score ( string name, int score, fstream &summary )
 
 void Show_question ( string student, int q_num, string q_array[][5], int index )
 {
+    //Variable declarations
     string multipe_choice[4] = {"A", "B", "C", "D"};
     
+    //Outputs student's name with current question number
     cout << student << " Here's Question Number " << q_num << endl
          << q_array[index][0] << endl;
     
+    //Outputs answers with multiple choice options
     for( int i = 1; i < 5; i++)
         cout << multipe_choice[i-1] << ". " << q_array[index][i] << endl;
     
@@ -439,11 +442,16 @@ void Show_question ( string student, int q_num, string q_array[][5], int index )
 
 void Show_question( string student, string choice, int q_num, string q_array[][5], int index )
 {
+    //Variable declarations
     string multipe_choice[4] = {"A", "B", "C", "D"};
     
+    //Outputs students name with current question number, along with
+    //an indiciation this is the second try
     cout << student << " Here's Question Number " << q_num << " (second try)" << endl
          << q_array[index][0] << endl;
     
+    //Outputs answers with multiple choice options, but skips choice
+    //already chosen by user
     for( int i = 1; i < 5; i++)
     {
         string current_index = multipe_choice[i-1];
