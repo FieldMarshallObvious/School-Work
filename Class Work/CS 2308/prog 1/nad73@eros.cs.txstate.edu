@@ -7,7 +7,7 @@ Documentation block
 #include <string>
 #include <cstring>
 #include <cctype>
-#include <cstdlib>
+#include <random>
 
 //Global constants if needed
 
@@ -63,7 +63,7 @@ int main ()
     if ( ! summary )
     {
         cout << "***Program Terminated.***" << endl << endl
-             << "Summary file failed to open." << endl;
+             << "Answer bank file failed to open." << endl;
         
         return -1;
     }
@@ -117,6 +117,7 @@ void Play_game ( ifstream &question_bank, ifstream &answers_bank, fstream &summa
     string q_array[50][5];
     string answers_array[50];
     string student;
+    string input;
     string choice;
     
     int chosen_questions[50];
@@ -145,16 +146,19 @@ void Play_game ( ifstream &question_bank, ifstream &answers_bank, fstream &summa
         
         for(int j = 0; j < 5; j++)
         {
+            input = Read_questions( question_bank );
             
             if(j == 0)
-                q_array[i][j] = Read_questions( question_bank );
+                q_array[i][j] = input;
             
             else
-                q_array[i][j] = Read_questions( question_bank );
+                q_array[i][j] = input;
         }
         
+        input = Read_answers( answers_bank );
         
-        answers_array[i] = Read_answers( answers_bank );
+        if( strlen(input.c_str()) != 0 || strlen(input.c_str()) != 1 )
+            answers_array[i] = input;
     }
     
     
@@ -313,57 +317,7 @@ string Read_questions ( ifstream &question_bank )
 
 void Sort_score ( string name, int score, fstream &summary )
 {
-    int num_of_players = 0;
-    string input;
-    
-    while( ! summary.eof() )
-    {
-        summary >> input;
-        
-        if (strlen(input.c_str()) == 1 || strlen(input.c_str()) == 0) {}
-        
-        else
-            num_of_players++;
-    }
-    
-    summary.close();
-    
-    summary.open("summary.txt", ios::in | ios::out);
-    
-    if ( ! summary )
-    {
-        cout << "***Program Terminated.***" << endl << endl
-        << "Summary file failed to open." << endl;
-        
-        return;
-    }
-    
-    
-    string summary_entries[num_of_players+1][3];
-    
-    for( int i = 0; i <= num_of_players; i++ )
-    {
-        for( int j = 0; j < 3; j++)
-        {
-            summary >> input;
-            
-            if ( strlen(input.c_str()) == 1 || strlen(input.c_str()) == 0 ) {}
-            
-            else
-                summary_entries[i][j] = input;
-                
-        }
-    }
-    
-    for( int i = 0; i <= num_of_players; i++ )
-    {
-        if( stoi(summary_entries[i][2]) < score )
-        {
-            
-        }
-    }
-    
-    
+    string BRUH;
 }
 
 void Show_question ( string student, int q_num, string q_array[][5], int index )
