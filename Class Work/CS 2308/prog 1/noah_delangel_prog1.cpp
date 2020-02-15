@@ -17,7 +17,6 @@ Documentation block
 using namespace std;
 //Function prototypes
 void Game_over ( string name, int score );
-string Get_answer ( ifstream &answers_bank );
 int Randinex( int chosen_questions[], int max );
 string Read_questions ( ifstream &question_bank );
 string Read_answers( ifstream &question_bank);
@@ -31,11 +30,12 @@ void Sort_score( string name, int score, fstream &summary );
 
 int main ()
 {
-    //Create file in and out var
+    //Variable declarations
     ifstream question_bank;
     
     question_bank.open("questions.txt");
     
+    //Checks if question bank file succesfully opened
     if( ! question_bank )
     {
         cout << "***Program Terminated.***" << endl << endl
@@ -47,7 +47,8 @@ int main ()
     ifstream answers_bank;
     
     answers_bank.open("answers.txt");
-    
+
+    //Checks if answer bank file succesfully opened
     if( ! answers_bank )
     {
         cout << "***Program Terminated.***" << endl << endl
@@ -60,6 +61,7 @@ int main ()
     
     summary.open("summary.txt", ios::in | ios::out);
     
+    //Checks if summary file succesfully opened
     if ( ! summary )
     {
         cout << "***Program Terminated.***" << endl << endl
@@ -68,8 +70,10 @@ int main ()
         return -1;
     }
     
+    //Runs game function
     Play_game(question_bank, answers_bank, summary);
     
+    //Closes all files
     question_bank.close();
     answers_bank.close();
     summary.close();
@@ -79,6 +83,7 @@ int main ()
 
 void Game_over ( string name, int score )
 {
+    //Displays end game message
     cout << "--- Game Over! ---" << endl;
     
     cout << name << " you scored " << score << " !" << endl
@@ -86,23 +91,14 @@ void Game_over ( string name, int score )
     
 }
 
-string Get_answer ( ifstream &answers_bank )
-{
-    string output;
-    
-    getline(answers_bank, output);
-    
-    return output;
-}
-
 bool Player_try ( string answers_array[], int index, string choice )
 {
+    //Variable declarations
     string correct_choice = answers_array[index];
     
     bool output = false;
     
-    cout << "The correct choice is " << correct_choice << endl;
-    
+    //Checks to see if the users choice is correct regardless of case
     if( toupper(choice[0]) == toupper(correct_choice[0]) )
         output = true;
     
@@ -111,19 +107,20 @@ bool Player_try ( string answers_array[], int index, string choice )
 
 void Play_game ( ifstream &question_bank, ifstream &answers_bank, fstream &summary )
 {
-    const int POINT_MULTIPLE = 10;
-    const int POINT_MULTIPLE_HALF = 5;
+    //Variable declarations
+    const int POINT_MULTIPLE = 10,
+              POINT_MULTIPLE_HALF = 5;
     
-    string q_array[50][5];
-    string answers_array[50];
-    string student;
-    string choice;
+    string q_array[50][5],
+           answers_array[50],
+           student,
+           choice;
     
-    int chosen_questions[50];
-    int q_num = 1;
-    int score = 0;
-    int total_ques = 0;
-    int total_ans = 0;
+    int chosen_questions[50],
+        q_num = 1,
+        score = 0,
+        total_ques = 0,
+        total_ans = 0;
     
     bool truth_value;
     
@@ -158,7 +155,7 @@ void Play_game ( ifstream &question_bank, ifstream &answers_bank, fstream &summa
     }
     
     
-    //Checks to ensure same numbers of
+    //Checks to ensure same numbers of questions and answers
     if( total_ans > total_ques )
     {
         cout << "***Program Terminated.***" << endl << endl
@@ -178,6 +175,7 @@ void Play_game ( ifstream &question_bank, ifstream &answers_bank, fstream &summa
     //Display questions and accept input from user
     while( q_num <= total_ques )
     {
+        //Variable declarations
         string retry_choice;
         
         int index = Randinex(chosen_questions, total_ques);
@@ -196,12 +194,14 @@ void Play_game ( ifstream &question_bank, ifstream &answers_bank, fstream &summa
         
         cout << truth_value << endl;
         
+        //If user gets question wrong it allows them to try again
         if( truth_value == false )
         {
             cout << "Would you try again? (Y/N)" << endl
                  << "> ";
             cin >> retry_choice;
             
+            //If user picks yes then they can reattempt the question
             if ( toupper(retry_choice[0]) == toupper('Y'))
             {
                 //Displays question for second attempt
@@ -216,17 +216,19 @@ void Play_game ( ifstream &question_bank, ifstream &answers_bank, fstream &summa
             
                 cout << truth_value << endl;
                 
+                //Assigns score if user got the question correct
                 if ( truth_value == true )
                 {
                     if( score >= 1)
                         score *= 5;
                     else
                         score = 5;
-                    cout << "The score is now " << score << endl;
                 }
                 
+                //Ends game if user got the question wrong
                 else
                 {
+                    Sort_score(student, score, summary);
                     Game_over(student, score);
                     return;
                 }
@@ -234,20 +236,23 @@ void Play_game ( ifstream &question_bank, ifstream &answers_bank, fstream &summa
 
         }
         
+        //Assigns score if user got the question correct
         else
         {
-            
-            if(score >= 1)
+            if( score >= 1 )
                 score *= 10;
             else
                 score = 10;
-            cout << "The score is now " << score << endl;
         }
         
+        //Keeps track of chosen random indexes
         chosen_questions[q_num-1] = index;
         
+        //Keeps track of number of questions displayed
         q_num++;
     }
+    
+    Sort_score(student, score, summary);
     
     Game_over(student, score);
     
@@ -255,19 +260,26 @@ void Play_game ( ifstream &question_bank, ifstream &answers_bank, fstream &summa
 
 int Randinex( int chosen_questions[], int max )
 {
+    //Variable declarations
     bool unique_item = false;
     
     int rand_int;
     
+    //Initializes random time to system time
     srand(time(NULL));
     
+    //Finds random number between max and 1
+    //Also ensures that the random number has not already been selected
     do {
         unique_item = true;
         
         rand_int = rand() % (max-1) + 0;
-
+        
+        //Checks for every item in array to make sure it has not already been selected
         for( int cntr = 0; cntr < max; cntr++)
         {
+            //If the index exists it sets the boolean value to repeat array
+            //then breaks out of the for loop.
             if( chosen_questions[cntr] == rand_int )
             {
                 unique_item = false;
@@ -281,8 +293,11 @@ int Randinex( int chosen_questions[], int max )
 
 string Read_answers ( ifstream &answers_bank )
 {
-    string output;
+    //Variable declarations
+    string output = "";
     
+    //Reads lines from input file until it finds a non-blank line.
+    //After the line has been determined to not be blank returns that line
     while ( getline(answers_bank, output) && (!answers_bank.eof()))
     {
         if (strlen(output.c_str()) == 1 || strlen(output.c_str()) == 0)
@@ -297,8 +312,11 @@ string Read_answers ( ifstream &answers_bank )
 
 string Read_questions ( ifstream &question_bank )
 {
+    //Variable declarations
     string output = "";
     
+    //Reads lines from input file until it finds a non-blank line.
+    //After the line has been determined to not be blank returns that line
     while ( getline(question_bank, output) && (!question_bank.eof()) )
     {
         if (strlen(output.c_str()) == 1 || strlen(output.c_str()) == 0)
@@ -313,9 +331,16 @@ string Read_questions ( ifstream &question_bank )
 
 void Sort_score ( string name, int score, fstream &summary )
 {
-    int num_of_players = 0;
-    string input;
+    //Variable declarations
+    int num_of_players = 0,
+        min_score,
+        min_index,
+        temp_score;
     
+    string input,
+           temp_name;
+    
+    //Determines how many previous entries there have been
     while( ! summary.eof() )
     {
         summary >> input;
@@ -326,10 +351,13 @@ void Sort_score ( string name, int score, fstream &summary )
             num_of_players++;
     }
     
+    //Closes file as to bring it back to the top
     summary.close();
     
+    //Opens file after having it be closed
     summary.open("summary.txt", ios::in | ios::out);
     
+    //Checks to make sure file has been opened succesfully
     if ( ! summary )
     {
         cout << "***Program Terminated.***" << endl << endl
@@ -338,13 +366,16 @@ void Sort_score ( string name, int score, fstream &summary )
         return;
     }
     
+    //Creation of array for previous entries
+    // The + 1 allows for the entry of the new user
+    string summary_entries[num_of_players+1][2];
     
-    string summary_entries[num_of_players+1][3];
-    
+    //Reads in data from file and assigns it to array
     for( int i = 0; i <= num_of_players; i++ )
     {
-        for( int j = 0; j < 3; j++)
+        for( int j = 0; j < 2; j++)
         {
+            cout << "In intitilization loop" << endl;
             summary >> input;
             
             if ( strlen(input.c_str()) == 1 || strlen(input.c_str()) == 0 ) {}
@@ -355,12 +386,40 @@ void Sort_score ( string name, int score, fstream &summary )
         }
     }
     
+    //Appends new entry to end of array
+    summary_entries[num_of_players][0] = name;
+    summary_entries[num_of_players][1] = to_string(score);
+    
+    //Sorts array via selection sort
     for( int i = 0; i <= num_of_players; i++ )
     {
-        if( stoi(summary_entries[i][2]) < score )
+        min_index = i;
+        min_score = stoi(summary_entries[i][1]);
+        for(int j = 0; j <= num_of_players; j++)
         {
-            
+            if( min_score < stoi(summary_entries[j][1]))
+            {
+                min_index = j;
+                min_score = stoi(summary_entries[j][1]);
+            }
         }
+        
+        temp_name = summary_entries[i][0];
+        temp_score = stoi(summary_entries[i][1]);
+        
+        summary_entries[i][0] = summary_entries[min_index][0];
+        summary_entries[i][1] = min_score;
+        
+        summary_entries[min_index][0] = temp_name;
+        summary_entries[min_index][1] = to_string(temp_score);
+    }
+    
+    //Writes new order to summary file
+    for( int i = 0; i <= num_of_players; i++ )
+    {
+        
+        summary << "Rank " << i+1 << summary_entries[i][0] << endl
+                << "      Score: " <<summary_entries[i][1] << endl;
     }
     
     
