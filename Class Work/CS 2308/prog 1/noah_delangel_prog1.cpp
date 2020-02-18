@@ -64,12 +64,34 @@ int main ()
     summary.open("summary.txt", ios::in | ios::out);
     
     //Checks if summary file succesfully opened
+    //If summary file does not exist then create it
     if ( ! summary )
     {
-        cout << "***Program Terminated.***" << endl << endl
-             << "Summary file failed to open." << endl;
+        summary.close();
         
-        return -1;
+        ofstream temp;
+        temp.open("summary.txt");
+        
+        if( ! temp )
+        {
+            cout << "***Program Terminated.***" << endl << endl
+                << "Summary file failed to open." << endl;
+            return -1;
+        }
+       
+        else
+        {
+            temp.close();
+            
+            //If summary still fails to open, then return not normal
+            summary.open("summary.txt", ios::in | ios::out);
+            if( ! summary )
+            {
+                cout << "***Program Terminated.***" << endl << endl
+                << "Summary file failed to open." << endl;
+                return -1;
+            }
+        }
     }
     
     //Runs game function
@@ -140,6 +162,7 @@ void Play_game ( ifstream &question_bank, ifstream &answers_bank, fstream &summa
         
         if( !answers_bank.eof() )
             total_ans++;
+        
         for(int j = 0; j < 5; j++)
         {
             
@@ -228,6 +251,7 @@ void Play_game ( ifstream &question_bank, ifstream &answers_bank, fstream &summa
                 //Ends game if user got the question wrong
                 else
                 {
+                    score = 0;
                     Sort_score(student, score, summary);
                     Game_over(student, score);
                     return;
@@ -335,11 +359,11 @@ void Sort_score ( string name, int score, fstream &summary )
     int num_of_players = 0,
         min_score,
         min_index,
-        temp_score,
         line_num = 0;
     
     string input,
-           temp_name;
+           temp_name,
+           temp_score;
     
     //Determines how many previous entries there have been
     while( getline(summary, input) && (!summary.eof()))
@@ -399,8 +423,6 @@ void Sort_score ( string name, int score, fstream &summary )
                 summary_entries[i][j] = temp_input;
             }
             
-            
-            cout << "The array element is " << summary_entries[i][j] << endl;
         }
     }
     
@@ -414,7 +436,7 @@ void Sort_score ( string name, int score, fstream &summary )
     if ( ! summary )
     {
         cout << "***Program Terminated.***" << endl << endl
-        << "Summary file failed to open." << endl;
+             << "Summary file failed to open." << endl;
         
         return;
     }
@@ -423,29 +445,45 @@ void Sort_score ( string name, int score, fstream &summary )
     summary_entries[num_of_players][0] = name;
     summary_entries[num_of_players][1] = to_string(score);
     
+    
     //Sorts array via selection sort
     for( int i = 0; i <= num_of_players; i++ )
     {
         min_index = i;
-        cout << "Converting " <<  summary_entries[i][1] << " to int" << endl;
         min_score = stoi(summary_entries[i][1]);
+        cout << "The new min_score " << min_score << endl;
         for(int j = 0; j <= num_of_players; j++)
         {
-            if( min_score < stoi(summary_entries[j][1]))
+            cout << "J is " << j << endl;
+
+            if( min_score >= stoi(summary_entries[j][1]))
             {
                 min_index = j;
+                cout << "Converting in inner loop" <<  summary_entries[j][1] << " to int"  << endl;
                 min_score = stoi(summary_entries[j][1]);
+                cout << "The new min_score " << min_score << endl;
+                cout << "The new min index is " << min_index << endl;
             }
         }
         
         temp_name = summary_entries[i][0];
-        temp_score = stoi(summary_entries[i][1]);
+        temp_score = summary_entries[i][1];
+        
+        cout << "The temp name is " << temp_name << endl;
+        cout << "The temp_score is " << temp_score << endl;
         
         summary_entries[i][0] = summary_entries[min_index][0];
-        summary_entries[i][1] = min_score;
+        summary_entries[i][1] = summary_entries[min_index][1];
         
         summary_entries[min_index][0] = temp_name;
-        summary_entries[min_index][1] = to_string(temp_score);
+        summary_entries[min_index][1] =temp_score;
+        
+        cout << "The array is now" << endl;
+        for( int x = 0; x <= num_of_players; x++ )
+        {
+            cout << summary_entries[x][0] << " " << summary_entries[x][1] << endl;
+        }
+    
     }
     
     //Writes new order to summary file
