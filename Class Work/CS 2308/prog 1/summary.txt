@@ -1,10 +1,2 @@
-Rank 1 Noah
-       Score: 0
-Rank 2 Noah
-       Score:  0
-Rank 3 Noah1
-       Score:   0
-Rank 4 Noah2
-       Score:   10
-Rank 5 Noah3
-       Score:   0
+Noah
+    Score: 0

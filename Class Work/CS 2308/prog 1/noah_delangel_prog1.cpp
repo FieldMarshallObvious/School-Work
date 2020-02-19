@@ -17,16 +17,18 @@ const int QUESTION_COLS = 5,
 
 
 using namespace std;
+
 //Function prototypes
 void Game_over ( string name, int score );
+bool Player_try ( string answers_array[], int index, string choice );
+void Play_game ( ifstream &question_bank, ifstream &answers_bank, fstream &summary );
 int Randindex( int chosen_questions[], int max );
-string Read_questions ( ifstream &question_bank );
-string Read_answers( ifstream &question_bank);
-void Show_question( string student, int q_num, string q_array[][5], int index );
-void Show_question( string student, string choice, int q_num, string q_array[][5], int index );
-bool Player_try( string answers_array[], int index, string choice );
-void Play_game( ifstream &question_bank, ifstream &answers_bank, fstream &summary );
-void Sort_score( string name, int score, fstream &summary );
+string Read_file ( ifstream &input_file );
+int summary_file_error ( fstream &file );
+void Sort_score ( string name, int score, fstream &summary );
+void Show_question ( string student, int q_num, string q_array[][5], int index );
+void Show_question( string student, string choice, int q_num,
+                    string q_array[][5], int index );
 
 
 
@@ -61,7 +63,7 @@ int main ()
     
     fstream summary;
     
-    summary.open("summary.txt", ios::in | ios::out);
+    summary.open("summary.txt", ios::in | ios::app);
     
     //Checks if summary file succesfully opened
     //If summary file does not exist then create it
@@ -75,7 +77,7 @@ int main ()
         if( ! temp )
         {
             cout << "***Program Terminated.***" << endl << endl
-                << "Summary file failed to open." << endl;
+                 << "Answer bank file failed to open." << endl;
             return -1;
         }
        
@@ -84,11 +86,9 @@ int main ()
             temp.close();
             
             //If summary still fails to open, then return not normal
-            summary.open("summary.txt", ios::in | ios::out);
-            if( ! summary )
+            summary.open("summary.txt", ios::in | ios::app);
+            if( summary_file_error( summary ) == -1  )
             {
-                cout << "***Program Terminated.***" << endl << endl
-                << "Summary file failed to open." << endl;
                 return -1;
             }
         }
@@ -135,16 +135,16 @@ void Play_game ( ifstream &question_bank, ifstream &answers_bank, fstream &summa
     const int POINT_MULTIPLE = 10,
               POINT_MULTIPLE_HALF = 5;
     
-    string q_array[50][QUESTION_COLS],
-           answers_array[50],
-           student,
-           choice;
-    
     int chosen_questions[50],
         q_num = 1,
         score = 0,
         total_ques = 0,
         total_ans = 0;
+    
+    string q_array[50][QUESTION_COLS],
+           answers_array[50],
+           student,
+           choice;
     
     bool truth_value;
     
@@ -167,14 +167,14 @@ void Play_game ( ifstream &question_bank, ifstream &answers_bank, fstream &summa
         {
             
             if(j == 0)
-                q_array[i][j] = Read_questions( question_bank );
+                q_array[i][j] = Read_file( question_bank );
             
             else
-                q_array[i][j] = Read_questions( question_bank );
+                q_array[i][j] = Read_file( question_bank );
         }
         
         
-        answers_array[i] = Read_answers( answers_bank );
+        answers_array[i] = Read_file( answers_bank );
     }
     
     
@@ -315,14 +315,14 @@ int Randindex( int chosen_questions[], int max )
     return rand_int;
 }
 
-string Read_answers ( ifstream &answers_bank )
+string Read_file ( ifstream &input_file )
 {
     //Variable declarations
     string output = "";
     
     //Reads lines from input file until it finds a non-blank line.
     //After the line has been determined to not be blank returns that line
-    while ( getline(answers_bank, output) && (!answers_bank.eof()))
+    while ( getline(input_file, output) && (!input_file.eof()))
     {
         if (strlen(output.c_str()) == 1 || strlen(output.c_str()) == 0)
             continue;
@@ -334,24 +334,19 @@ string Read_answers ( ifstream &answers_bank )
     return output;
 }
 
-string Read_questions ( ifstream &question_bank )
+int summary_file_error ( fstream &file )
 {
-    //Variable declarations
-    string output = "";
-    
-    //Reads lines from input file until it finds a non-blank line.
-    //After the line has been determined to not be blank returns that line
-    while ( getline(question_bank, output) && (!question_bank.eof()) )
+    if ( ! file )
     {
-        if (strlen(output.c_str()) == 1 || strlen(output.c_str()) == 0)
-            continue;
+        cout << "***Program Terminated.***" << endl << endl
+        << "Summary file failed to open." << endl;
         
-        else
-            break;
+        return -1;
     }
     
-    return output;
+    return 0;
 }
+
 
 void Sort_score ( string name, int score, fstream &summary )
 {
@@ -364,6 +359,8 @@ void Sort_score ( string name, int score, fstream &summary )
     string input,
            temp_name,
            temp_score;
+    
+    bool swapped = false;
     
     //Determines how many previous entries there have been
     while( getline(summary, input) && (!summary.eof()))
@@ -385,16 +382,11 @@ void Sort_score ( string name, int score, fstream &summary )
     summary.close();
     
     //Opens file after having it be closed
-    summary.open("summary.txt", ios::in | ios::out);
+    summary.open("summary.txt", ios::in | ios::app);
     
     //Checks to make sure file has been opened succesfully
-    if ( ! summary )
-    {
-        cout << "***Program Terminated.***" << endl << endl
-        << "Summary file failed to open." << endl;
-        
+    if ( summary_file_error ( summary ) == -1)
         return;
-    }
     
     //Creation of array for previous entries
     // The + 1 allows for the entry of the new user
@@ -410,15 +402,15 @@ void Sort_score ( string name, int score, fstream &summary )
         
             if(j == 0)
             {
-                string temp_input(input, 7);
+                string temp_input(input, 0);
                 summary_entries[i][j] = temp_input;
             }
             else
             {
-                string temp_input(input, 13);
+                string temp_input(input, 11);
                 
                 if(temp_input[0] == ' ')
-                    string temp_input(input, 14);
+                    string temp_input(input, 12);
                 
                 summary_entries[i][j] = temp_input;
             }
@@ -430,68 +422,55 @@ void Sort_score ( string name, int score, fstream &summary )
     summary.close();
     
     //Opens file after having it be closed
-    summary.open("summary.txt", ios::in | ios::out);
+    summary.open("summary.txt", ios::in | ios::app);
     
     //Checks to make sure file has been opened succesfully
-    if ( ! summary )
-    {
-        cout << "***Program Terminated.***" << endl << endl
-             << "Summary file failed to open." << endl;
-        
+    if ( summary_file_error ( summary ) == -1)
         return;
-    }
     
     //Appends new entry to end of array
     summary_entries[num_of_players][0] = name;
     summary_entries[num_of_players][1] = to_string(score);
     
+    //Appends new entry to summary file
+    summary << summary_entries[num_of_players][0] << endl
+            << "    Score: " << summary_entries[num_of_players][1] << endl;
     
     //Sorts array via selection sort
-    for( int i = 0; i <= num_of_players; i++ )
-    {
-        min_index = i;
-        min_score = stoi(summary_entries[i][1]);
-        cout << "The new min_score " << min_score << endl;
-        for(int j = 0; j <= num_of_players; j++)
-        {
-            cout << "J is " << j << endl;
-
-            if( min_score >= stoi(summary_entries[j][1]))
+    do {
+        swapped = false;
+            for( int i = 0; i <= num_of_players - 1; i++ )
             {
-                min_index = j;
-                cout << "Converting in inner loop" <<  summary_entries[j][1] << " to int"  << endl;
-                min_score = stoi(summary_entries[j][1]);
-                cout << "The new min_score " << min_score << endl;
-                cout << "The new min index is " << min_index << endl;
+
+                if( stoi(summary_entries[i][1]) < stoi(summary_entries[i + 1][1]))
+                {
+                    temp_name = summary_entries[i][0];
+                    temp_score = summary_entries[i][1];
+                    
+                    summary_entries[i][0] = summary_entries[i + 1][0];
+                    summary_entries[i][1] = summary_entries[i + 1][1];
+                    
+                    summary_entries[i + 1][0] = temp_name;
+                    summary_entries[i + 1][1] = temp_score;
+                    swapped = true;
+                }
+            
             }
-        }
         
-        temp_name = summary_entries[i][0];
-        temp_score = summary_entries[i][1];
-        
-        cout << "The temp name is " << temp_name << endl;
-        cout << "The temp_score is " << temp_score << endl;
-        
-        summary_entries[i][0] = summary_entries[min_index][0];
-        summary_entries[i][1] = summary_entries[min_index][1];
-        
-        summary_entries[min_index][0] = temp_name;
-        summary_entries[min_index][1] =temp_score;
-        
-        cout << "The array is now" << endl;
-        for( int x = 0; x <= num_of_players; x++ )
-        {
-            cout << summary_entries[x][0] << " " << summary_entries[x][1] << endl;
-        }
+    }while(swapped);
     
-    }
+    int cntr = 0;
     
     //Writes new order to summary file
-    for( int i = 0; i <= num_of_players; i++ )
+    for( int i = num_of_players; i >= 0; i-- )
     {
+        //Remove all empty spaces from string
+        summary_entries[cntr][1].erase(remove(summary_entries[cntr][1].begin(), summary_entries[cntr][1].end(), ' '), summary_entries[cntr][1].end());
         
-        summary << "Rank " << i+1 << " " << summary_entries[i][0] << endl
-                << "       Score: " <<summary_entries[i][1] << endl;
+        cout << summary_entries[i][0] << endl
+             << "    Score: " << summary_entries[i][1] << endl;
+        
+        cntr++;
     }
     
     
