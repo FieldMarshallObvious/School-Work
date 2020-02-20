@@ -21,10 +21,10 @@
         Zilliang
             Score: 1000000
  Compilation instructions: All that is needed to do compile the program is to run the
-                           g++ command with the file name. C++11 is required, thus you
-                           will need it compile the program. You can change the name of
-                           the output file, as this should have no effect. An example
-                           of theg++ command is given below:
+                           g++ command with the file name. C++11 is not required, thus
+                           you do not  need it compile the program using C++11. You can
+                           change the name of the output file, as this should have no
+                           effect. An example of theg++ command is given below:
                            g++ noah_delangel_prog1.cpp
  Usage:
  Modifications:
@@ -40,32 +40,59 @@
 #include <cstdlib>
 
 /*====================== global symbolic constants ===================*/
-const int QUESTION_COLS = 5,
-          MAX_NUM_OF_ROUNDS = 6;
+const int MAX_NUM_OF_ROUNDS = 6,
+          MAX_NUM_OF_QUESTIONS = 50,
+          QUESTION_COLS = 5;
 
 
 using namespace std;
 
 /*======================= function prototypes ========================*/
 void Game_over ( string name, int score );
+string Input_check ( string acceptable_answers[], string choice, int size );
 bool Player_try ( string answers_array[], string choice, int index );
-void Play_game ( ifstream &answers_bank, ifstream &question_bank, fstream &summary );
-int Randindex( int chosen_questions[], int max );
+void Play_game ( int seed, ifstream &answers_bank, ifstream &question_bank,
+                 fstream &summary );
+int Randindex( int chosen_questions[], int seed, int max );
 string Read_file ( ifstream &input_file );
 int Summary_file_error ( fstream &file );
 void Sort_score ( string name, int score, fstream &summary );
-void Show_question ( string student, int q_num, string q_array[][5], int index );
+void Show_question ( string student, string q_array[][QUESTION_COLS], int index,
+                     int q_num );
 void Show_question( string student, string choice, int q_num,
-                    string q_array[][5], int index );
+                    string q_array[][QUESTION_COLS], int index );
 
 
 
-int main( )
+int main( int argc, char *argv[] )
 {
     //Variable declarations
     ifstream question_bank;
     
-    question_bank.open( "questions.txt" );
+    string answers_file,
+           questions_file;
+    
+    int seed;
+    
+    if ( argc != 4 )
+    {
+        cout << "***Program Terminated.***" << endl
+        << "Invalid args." << endl
+        << "This program requires the following arguements" << endl
+        << " <questions file>.txt, <answers file>.txt, int seed" << endl;
+        
+        return -2;
+    }
+    
+    
+    
+    questions_file = argv[1];
+    answers_file = argv[2];
+    seed = atoi(argv[3]);
+    
+    
+    //Opening all required files
+    question_bank.open( questions_file.c_str() );
     
     //Checks if question bank file succesfully opened
     if( ! question_bank )
@@ -78,7 +105,7 @@ int main( )
     
     ifstream answers_bank;
     
-    answers_bank.open( "answers.txt" );
+    answers_bank.open( answers_file.c_str() );
 
     //Checks if answer bank file succesfully opened
     if( ! answers_bank )
@@ -123,7 +150,7 @@ int main( )
     }
     
     //Runs game function
-    Play_game( answers_bank, question_bank, summary );
+    Play_game( seed, answers_bank, question_bank, summary );
     
     //Closes all files
     question_bank.close();
@@ -148,6 +175,36 @@ void Game_over ( string name, int score )
     cout << name << " you scored " << score << " !" << endl
          << "Check summary.txt for your ranking!" << endl;
     
+}
+
+string Input_check ( string acceptable_answers[], string choice, int size )
+{
+    bool correct = false;
+    
+    while ( correct == false )
+    {
+        for( int i = 0; i < size; i++ )
+        {
+            if ( toupper( choice[0] ) ==
+                 toupper( acceptable_answers[i].c_str( )[0]  ) )
+            {
+                correct = true;
+            }
+        }
+        
+        if ( ! correct )
+        {
+            cout << "Please pick an answer choice from the following options:" << endl;
+             for( int i = 0; i <  size; i++ )
+            {
+                cout << acceptable_answers[i] << endl;
+            }
+            cout << "Your choice? > ";
+            cin >> choice;
+        }
+    }
+    
+    return choice;
 }
 
 /*=====================================================================
@@ -176,24 +233,29 @@ bool Player_try ( string answers_array[], string choice, int index )
  Description: Runs, and calls, all operations that run the overall
               structure of the game. As a result this function hanldes,
               and tracks all relevant varaibles to the game.
- Parameters: string[] answers_array, string choice, int index
+ Parameters: int seed, string[] answers_array, string choice, int index
  ======================================================================*/
-void Play_game ( ifstream &answers_bank, ifstream &question_bank, fstream &summary )
+void Play_game ( int seed, ifstream &answers_bank, ifstream &question_bank,
+                 fstream &summary )
 {
     //Variable declarations
     const int POINT_MULTIPLE = 10,
               POINT_MULTIPLE_HALF = 5;
     
-    int chosen_questions[50],
+    int chosen_questions[MAX_NUM_OF_QUESTIONS],
+        num_of_multiple_choice = 4,
+        num_of_yes_no = 2,
         q_num = 1,
         score = 0,
         total_ques = 0,
         total_ans = 0;
     
-    string q_array[50][QUESTION_COLS],
-           answers_array[50],
-           student,
-           choice;
+    string allowed_answers[4] = { "A", "B", "C", "D"},
+           allowed_y_or_no[2] = { "Y", "N" },
+           answers_array[MAX_NUM_OF_QUESTIONS],
+           choice,
+           q_array[MAX_NUM_OF_QUESTIONS][QUESTION_COLS],
+           student;
     
     bool truth_value;
     
@@ -203,7 +265,7 @@ void Play_game ( ifstream &answers_bank, ifstream &question_bank, fstream &summa
     cout << endl;
     
     //Question array creation
-    for(int i = 0; i < 50; i++)
+    for(int i = 0; i < MAX_NUM_OF_QUESTIONS; i++)
     {
         //Keeps track of total number of questions
         if( !question_bank.eof( ) )
@@ -212,7 +274,7 @@ void Play_game ( ifstream &answers_bank, ifstream &question_bank, fstream &summa
         if( !answers_bank.eof( ) )
             total_ans++;
         
-        for(int j = 0; j < 5; j++)
+        for( int j = 0; j < QUESTION_COLS; j++ )
         {
             
             if(j == 0)
@@ -220,13 +282,16 @@ void Play_game ( ifstream &answers_bank, ifstream &question_bank, fstream &summa
             
             else
                 q_array[i][j] = Read_file( question_bank );
+            
+            
         }
         
         
         answers_array[i] = Read_file( answers_bank );
     }
     
-    
+    cout << "Total number of questions " << total_ques << endl
+         << "Total number of answers " << total_ans << endl;
     //Checks to ensure same numbers of questions and answers
     if( total_ans > total_ques )
     {
@@ -250,16 +315,16 @@ void Play_game ( ifstream &answers_bank, ifstream &question_bank, fstream &summa
         //Variable declarations
         string retry_choice;
         
-        int index = Randindex( chosen_questions, total_ques );
+        int index = Randindex( chosen_questions, seed, total_ques );
 
         //Display question first round
-        Show_question( student, q_num, q_array, index );
+        Show_question( student, q_array, index, q_num );
         
         //Acquires answer choice from user
         cout << "Your choice? > ";
         cin >> choice;
         
-        
+        choice = Input_check ( allowed_answers, choice, num_of_multiple_choice);
         
         //Asses correctness of user choice
         truth_value = Player_try( answers_array, choice, index );
@@ -273,6 +338,9 @@ void Play_game ( ifstream &answers_bank, ifstream &question_bank, fstream &summa
                  << "> ";
             cin >> retry_choice;
             
+            retry_choice = Input_check ( allowed_y_or_no, retry_choice,  num_of_yes_no );
+
+            
             //If user picks yes then they can reattempt the question
             if ( toupper( retry_choice[0] ) == toupper( 'Y' ) )
             {
@@ -284,7 +352,7 @@ void Play_game ( ifstream &answers_bank, ifstream &question_bank, fstream &summa
                 cin >> choice;
             
                 //Asses correctness of user choice
-                truth_value = Player_try( answers_array, choice ,index );
+                truth_value = Player_try( allowed_y_or_no, choice ,index );
             
                 cout << truth_value << endl;
                 
@@ -335,9 +403,9 @@ void Play_game ( ifstream &answers_bank, ifstream &question_bank, fstream &summa
  Function: Randindex
  Description: Generates a random index that is unique from all indexes
               previsouly chosen. Then returns that integer.
- Parameters: int chosen_questions[], int max
+ Parameters: int chosen_questions[], int seed, int max
  ======================================================================*/
-int Randindex( int chosen_questions[], int max )
+int Randindex( int chosen_questions[], int seed, int max )
 {
     //Variable declarations
     bool unique_item = false;
@@ -345,7 +413,7 @@ int Randindex( int chosen_questions[], int max )
     int rand_int;
     
     //Initializes random time to system time
-    srand( time(NULL) );
+    srand( seed );
     
     //Finds random number between max and 1
     //Also ensures that the random number has not already been selected
@@ -373,7 +441,8 @@ int Randindex( int chosen_questions[], int max )
 /*=====================================================================
  Function: Read_file
  Description: Outputs a single line from the requested file, if it is
-              not blank.
+              not blank. Once a non-blank line has been found, it
+              returns that line.
  Parameters: ifstream input_file
  ======================================================================*/
 string Read_file ( ifstream &input_file )
@@ -397,9 +466,9 @@ string Read_file ( ifstream &input_file )
 
 /*=====================================================================
  Function: Summary_file_error
- Description: Outputs a single line from the requested file, if it is
- not blank.
- Parameters: ifstream input_file
+ Description: Checks to see if the summary file was able to open
+              correctly. Returns a -1 if the file was not opened
+ Parameters:  fstream file
  ======================================================================*/
 int Summary_file_error ( fstream &file )
 {
@@ -414,7 +483,12 @@ int Summary_file_error ( fstream &file )
     return 0;
 }
 
-
+/*=====================================================================
+ Function: Sort_score
+ Description: Sorts the score of all previous users, and ass the current
+              users to the list of users.
+ Parameters:  string name, int score, fstream summary
+ ======================================================================*/
 void Sort_score ( string name, int score, fstream &summary )
 {
     //Variable declarations
@@ -432,7 +506,6 @@ void Sort_score ( string name, int score, fstream &summary )
     //Determines how many previous entries there have been
     while( getline( summary, input ) && ( !summary.eof( ) ) )
     {
-        cout << "in the loop " << endl;
         if (strlen( input.c_str( ) ) == 1 || strlen( input.c_str( ) ) == 0)
             continue;
         else
@@ -462,7 +535,6 @@ void Sort_score ( string name, int score, fstream &summary )
     // The + 1 allows for the entry of the new user
     string summary_entries[num_of_players+1][2];
     
-    cout << "Num of players is " << num_of_players+1 << endl;
     //Reads in data from file and assigns it to array
     for( int i = 0; i < num_of_players; i++ )
     {
@@ -549,7 +621,14 @@ void Sort_score ( string name, int score, fstream &summary )
     
 }
 
-void Show_question ( string student, int q_num, string q_array[][5], int index )
+/*=====================================================================
+ Function: Show_question
+ Description: Displays a question, whose index it has recieved from the
+              play game function. It also displays the answers,
+              including A, B, C, D, options.
+ Parameters:  string student, string q_array[][5], int index, int q_num
+ ======================================================================*/
+void Show_question ( string student, string q_array[][5], int index, int q_num )
 {
     //Variable declarations
     string multipe_choice[4] = {"A", "B", "C", "D"};
@@ -564,6 +643,15 @@ void Show_question ( string student, int q_num, string q_array[][5], int index )
     
 }
 
+/*=====================================================================
+ Function: Show_question
+ Description: Displays a question, whose index it has recieved from the
+              play game function. It also displays the answers,
+              including A, B, C, D, options. However, it does not print
+              the answer choice the user just choice
+ Parameters:  string choice, string student, string q_array[][5],
+              int index, int q_num
+ ======================================================================*/
 void Show_question( string student, string choice, int q_num, string q_array[][5], int index )
 {
     //Variable declarations
