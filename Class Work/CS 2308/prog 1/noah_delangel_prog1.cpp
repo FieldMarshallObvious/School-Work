@@ -162,6 +162,11 @@ int main( int argc, char *argv[] )
     return 0;
 }
 
+/*=====================================================================
+ Function: convertInt
+ Description: Converts an integer to a string, then returns it
+ Parameters: int input_number
+ ======================================================================*/
 string convertInt( int input_number )
 {
     stringstream int_to_string;
@@ -182,7 +187,7 @@ void Game_over ( string name, int score )
     cout << "--- Game Over! ---" << endl;
     
     cout << name << " you scored " << score << " !" << endl
-         << "Check summary.txt for your ranking!" << endl;
+         << "Check summary.txt to see how your peers did!" << endl;
     
 }
 
@@ -614,11 +619,6 @@ void Sort_score ( string name, int score, fstream &summary )
     //Writes new order to summary file
     for( int i = 0; i <= num_of_players; i++ )
     {
-        //Remove all empty spaces from string
-        summary_entries[i][1].erase( remove( summary_entries[i][1].begin( ),
-                                                summary_entries[i][1].end( ), ' ' ),
-                                                summary_entries[i][1].end( ) );
-        
         cout << "Rank " << i+1 << " " << summary_entries[i][0] << endl
              << "       Score: " << summary_entries[i][1] << endl;
     }
@@ -631,7 +631,7 @@ void Sort_score ( string name, int score, fstream &summary )
  Description: Displays a question, whose index it has recieved from the
               play game function. It also displays the answers,
               including A, B, C, D, options.
- Parameters:  string student, string q_array[][5], int index, int q_num
+ Parameters:  string student, string q_array[][], int index, int q_num
  ======================================================================*/
 void Show_question ( string student, string q_array[][5], int index, int q_num )
 {
@@ -654,7 +654,7 @@ void Show_question ( string student, string q_array[][5], int index, int q_num )
               play game function. It also displays the answers,
               including A, B, C, D, options. However, it does not print
               the answer choice the user just choice
- Parameters:  string choice, string student, string q_array[][5],
+ Parameters:  string choice, string student, string q_array[][],
               int index, int q_num
  ======================================================================*/
 void Show_question( string student, string choice, int q_num, string q_array[][5], int index )
