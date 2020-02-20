@@ -168,14 +168,19 @@ int main( int argc, char *argv[] )
 }
 
 /*=====================================================================
- Function: convertInt
+ Function: ConvertInt
  Description: Converts an integer to a string, then returns it
  Parameters: int input_number
  ======================================================================*/
 string convertInt( int input_number )
 {
+    //variables declaration
     stringstream int_to_string;
+
+    //Adds new num to the string stream
     int_to_string << input_number;
+
+    //Returns string stream items as string
     return int_to_string.str();
 }
 
@@ -185,7 +190,6 @@ string convertInt( int input_number )
               also informs the user of their score.
  Parameters: string name, int score
  ======================================================================*/
-
 void Game_over ( string name, int score )
 {
     //Displays end game message
@@ -196,12 +200,23 @@ void Game_over ( string name, int score )
 
 }
 
+/*=====================================================================
+ Function: Input_check
+ Description: Checks to see if users input is correct. If incorrect,
+              displays option avialable to user to choose from. Then
+              requests new input, after it is determined to be allowed,
+              the new input is returned
+ Parameters: string[] acceptable_answers, string choice, int size
+ ======================================================================*/
 string Input_check ( string acceptable_answers[], string choice, int size )
 {
+    //Variable declarations
     bool correct = false;
 
+    //Loop that checks if the users input is an acceptable answer
     while ( correct == false )
     {
+        //Checks each item in the acceptable answers array with users input
         for( int i = 0; i < size; i++ )
         {
             if ( toupper( choice[0] ) ==
@@ -211,15 +226,18 @@ string Input_check ( string acceptable_answers[], string choice, int size )
             }
         }
 
+        //If the users input did not match with any of the answers, ask them for
+        //input again.
         if ( ! correct )
         {
             cout << "Please pick an answer choice from the following options:"
                  << endl;
 
+            //Displays answers the user can choose from
             for( int i = 0; i <  size; i++ )
-             {
+            {
                 cout << acceptable_answers[i] << endl;
-             }
+            }
 
             cout << "Your choice? > ";
             cin >> choice;
@@ -589,7 +607,7 @@ void Sort_score ( string name, int score, fstream &summary )
     summary.close( );
 
     //Opens file after having it be closed
-    summary.open( "summary.txt", ios::app );
+    summary.open( "summary.txt", fstream::out | ios::app );
 
     //Checks to make sure file has been opened succesfully
     if ( Summary_file_error ( summary ) == -1 )

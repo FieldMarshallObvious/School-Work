@@ -1,2 +1,10 @@
 DUDE
     Score: 1000000
+Noah
+    Score: 500000
+Noah
+    Score: 0
+MyGUY
+    Score: 500000
+Senior
+    Score: 1000000
