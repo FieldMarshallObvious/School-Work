@@ -27,7 +27,11 @@
                            output file, as this should have no effect. An
                            example of theg++ command is given below:
                            g++ noah_delangel_prog1.cpp
- Usage:
+ Usage: In order to run the program you must execute the output file in the order listed
+        below:
+        ./<output file> <questions file .txt> <answers file.txt> int <seed>
+        An example of a proper usage is shown below
+        ./a.out questions.txt answers.txt 1001
  Modifications:
  Date Comment: 2/19/2020
  ---- ------------------------------------------------
