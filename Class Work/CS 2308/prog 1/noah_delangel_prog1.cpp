@@ -38,6 +38,7 @@
 #include <cstring>
 #include <cctype>
 #include <cstdlib>
+#include <sstream>
 
 /*====================== global symbolic constants ===================*/
 const int MAX_NUM_OF_ROUNDS = 6,
@@ -48,6 +49,7 @@ const int MAX_NUM_OF_ROUNDS = 6,
 using namespace std;
 
 /*======================= function prototypes ========================*/
+string convertInt( int input_number );
 void Game_over ( string name, int score );
 string Input_check ( string acceptable_answers[], string choice, int size );
 bool Player_try ( string answers_array[], string choice, int index );
@@ -160,6 +162,13 @@ int main( int argc, char *argv[] )
     return 0;
 }
 
+string convertInt( int input_number )
+{
+    stringstream int_to_string;
+    int_to_string << input_number;
+    return int_to_string.str();
+}
+
 /*=====================================================================
  Function: Game_Over
  Description: Prints to the screen that the game has ended. The function
@@ -250,6 +259,8 @@ void Play_game ( int seed, ifstream &answers_bank, ifstream &question_bank,
         total_ques = 0,
         total_ans = 0;
     
+    fill_n(chosen_questions, MAX_NUM_OF_QUESTIONS, -1);
+    
     string allowed_answers[4] = { "A", "B", "C", "D"},
            allowed_y_or_no[2] = { "Y", "N" },
            answers_array[MAX_NUM_OF_QUESTIONS],
@@ -283,15 +294,13 @@ void Play_game ( int seed, ifstream &answers_bank, ifstream &question_bank,
             else
                 q_array[i][j] = Read_file( question_bank );
             
-            
         }
         
         
         answers_array[i] = Read_file( answers_bank );
     }
     
-    cout << "Total number of questions " << total_ques << endl
-         << "Total number of answers " << total_ans << endl;
+
     //Checks to ensure same numbers of questions and answers
     if( total_ans > total_ques )
     {
@@ -310,7 +319,7 @@ void Play_game ( int seed, ifstream &answers_bank, ifstream &question_bank,
     }
 
     //Display questions and accept input from user
-    while( q_num <= MAX_NUM_OF_ROUNDS )
+    while( q_num - 1 < MAX_NUM_OF_ROUNDS )
     {
         //Variable declarations
         string retry_choice;
@@ -328,8 +337,6 @@ void Play_game ( int seed, ifstream &answers_bank, ifstream &question_bank,
         
         //Asses correctness of user choice
         truth_value = Player_try( answers_array, choice, index );
-        
-        cout << truth_value << endl;
         
         //If user gets question wrong it allows them to try again
         if( truth_value == false )
@@ -351,10 +358,10 @@ void Play_game ( int seed, ifstream &answers_bank, ifstream &question_bank,
                 cout << "Your choice? > ";
                 cin >> choice;
             
+                choice = Input_check ( allowed_answers, choice, num_of_multiple_choice);
+                
                 //Asses correctness of user choice
-                truth_value = Player_try( allowed_y_or_no, choice ,index );
-            
-                cout << truth_value << endl;
+                truth_value = Player_try( answers_array, choice ,index );
                 
                 //Assigns score if user got the question correct
                 if ( truth_value == true )
@@ -369,8 +376,8 @@ void Play_game ( int seed, ifstream &answers_bank, ifstream &question_bank,
                 else
                 {
                     score = 0;
-                    Sort_score(student, score, summary);
                     Game_over(student, score);
+                    Sort_score(student, score, summary);
                     return;
                 }
             }
@@ -393,9 +400,8 @@ void Play_game ( int seed, ifstream &answers_bank, ifstream &question_bank,
         q_num++;
     }
     
-    Sort_score( student, score, summary );
-    
     Game_over( student, score );
+    Sort_score( student, score, summary );
     
 }
 
@@ -432,7 +438,12 @@ int Randindex( int chosen_questions[], int seed, int max )
                 unique_item = false;
                 break;
             }
+
         }
+        
+        if ( unique_item == true )
+            break;
+        
     } while( unique_item == false );
     
     return rand_int;
@@ -475,7 +486,7 @@ int Summary_file_error ( fstream &file )
     if ( ! file )
     {
         cout << "***Program Terminated.***" << endl << endl
-        << "Summary file failed to open." << endl;
+             << "Summary file failed to open." << endl;
         
         return -1;
     }
@@ -511,8 +522,6 @@ void Sort_score ( string name, int score, fstream &summary )
         else
         {
             line_num++;
-            cout << input << endl;
-            cout << line_num << endl;
             if( line_num == 2)
             {
                 num_of_players++;
@@ -572,7 +581,7 @@ void Sort_score ( string name, int score, fstream &summary )
     
     //Appends new entry to end of array
     summary_entries[num_of_players][0] = name;
-    summary_entries[num_of_players][1] = score;
+    summary_entries[num_of_players][1] = convertInt( score );
     
     //Appends new entry to summary file
     summary << summary_entries[num_of_players][0] << endl
@@ -581,7 +590,7 @@ void Sort_score ( string name, int score, fstream &summary )
     //Sorts array via selection sort
     do {
         swapped = false;
-            for( int i = 0; i < num_of_players - 1; i++ )
+            for( int i = 0; i <= num_of_players - 1; i++ )
             {
 
                 if( atoi( summary_entries[i][1].c_str( ) ) <
@@ -602,20 +611,16 @@ void Sort_score ( string name, int score, fstream &summary )
         
     }while(swapped);
     
-    int cntr = 0;
-    
     //Writes new order to summary file
-    for( int i = num_of_players; i >= 0; i-- )
+    for( int i = 0; i <= num_of_players; i++ )
     {
         //Remove all empty spaces from string
-        summary_entries[cntr][1].erase( remove( summary_entries[cntr][1].begin( ),
-                                                summary_entries[cntr][1].end( ), ' ' ),
-                                                summary_entries[cntr][1].end( ) );
+        summary_entries[i][1].erase( remove( summary_entries[i][1].begin( ),
+                                                summary_entries[i][1].end( ), ' ' ),
+                                                summary_entries[i][1].end( ) );
         
         cout << "Rank " << i+1 << " " << summary_entries[i][0] << endl
              << "       Score: " << summary_entries[i][1] << endl;
-        
-        cntr++;
     }
     
     
