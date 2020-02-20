@@ -8,3 +8,5 @@ MyGUY
     Score: 500000
 Senior
     Score: 1000000
+Work
+    Score: 12500

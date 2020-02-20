@@ -99,7 +99,7 @@ int main( int argc, char *argv[] )
 
 
     //Opening all required files
-    question_bank.open( questions_file.c_str() );
+    question_bank.open( questions_file.c_str( ) );
 
     //Checks if question bank file succesfully opened
     if( ! question_bank )
@@ -112,7 +112,7 @@ int main( int argc, char *argv[] )
 
     ifstream answers_bank;
 
-    answers_bank.open( answers_file.c_str() );
+    answers_bank.open( answers_file.c_str( ) );
 
     //Checks if answer bank file succesfully opened
     if( ! answers_bank )
@@ -160,9 +160,9 @@ int main( int argc, char *argv[] )
     Play_game( seed, answers_bank, question_bank, summary );
 
     //Closes all files
-    question_bank.close();
-    answers_bank.close();
-    summary.close();
+    question_bank.close( );
+    answers_bank.close( );
+    summary.close( );
 
     return 0;
 }
@@ -302,12 +302,12 @@ void Play_game ( int seed, ifstream &answers_bank, ifstream &question_bank,
     bool truth_value;
 
     cout << "What is your name?" << endl;
-    getline(cin, student);
+    getline( cin, student );
 
     cout << endl;
 
     //Question array creation
-    for(int i = 0; i < MAX_NUM_OF_QUESTIONS; i++)
+    for(int i = 0; i < MAX_NUM_OF_QUESTIONS; i++ )
     {
         //Keeps track of total number of questions
         if( !question_bank.eof( ) )
@@ -364,7 +364,8 @@ void Play_game ( int seed, ifstream &answers_bank, ifstream &question_bank,
         cout << "Your choice? > ";
         cin >> choice;
 
-        choice = Input_check ( allowed_answers, choice, num_of_multiple_choice);
+        choice = Input_check ( allowed_answers, choice,
+                               num_of_multiple_choice );
 
         //Asses correctness of user choice
         truth_value = Player_try( answers_array, choice, index );
@@ -409,8 +410,8 @@ void Play_game ( int seed, ifstream &answers_bank, ifstream &question_bank,
                 else
                 {
                     score = 0;
-                    Game_over(student, score);
-                    Sort_score(student, score, summary);
+                    Game_over( student, score );
+                    Sort_score( student, score, summary );
                     return;
                 }
             }
@@ -459,7 +460,7 @@ int Randindex( int chosen_questions[], int seed, int max )
     do {
         unique_item = true;
 
-        rand_int = rand( ) % (max-1) + 0;
+        rand_int = rand( ) % ( max-1 ) + 0;
 
         //Checks for every item in array to make sure it has not already been
         //selected
@@ -497,9 +498,9 @@ string Read_file ( ifstream &input_file )
 
     //Reads lines from input file until it finds a non-blank line.
     //After the line has been determined to not be blank returns that line
-    while ( getline(input_file, output) && (!input_file.eof()))
+    while ( getline( input_file, output ) && ( !input_file.eof( ) ) )
     {
-        if (strlen(output.c_str()) == 1 || strlen(output.c_str()) == 0)
+        if ( strlen(output.c_str( ) ) == 1 || strlen( output.c_str( ) ) == 0 )
             continue;
 
         else
@@ -551,7 +552,7 @@ void Sort_score ( string name, int score, fstream &summary )
     //Determines how many previous entries there have been
     while( getline( summary, input ) && ( !summary.eof( ) ) )
     {
-        if (strlen( input.c_str( ) ) == 1 || strlen( input.c_str( ) ) == 0)
+        if (strlen( input.c_str( ) ) == 1 || strlen( input.c_str( ) ) == 0 )
             continue;
         else
         {
@@ -571,7 +572,7 @@ void Sort_score ( string name, int score, fstream &summary )
     summary.open( "summary.txt", ios::in );
 
     //Checks to make sure file has been opened succesfully
-    if ( Summary_file_error ( summary ) == -1)
+    if ( Summary_file_error ( summary ) == -1 )
         return;
 
     //Creation of array for previous entries
@@ -643,7 +644,7 @@ void Sort_score ( string name, int score, fstream &summary )
 
             }
 
-    }while(swapped);
+    }while( swapped );
 
     //Writes new order to summary file
     for( int i = 0; i <= num_of_players; i++ )
