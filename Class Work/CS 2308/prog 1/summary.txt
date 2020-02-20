@@ -10,3 +10,5 @@ Senior
     Score: 1000000
 Work
     Score: 12500
+F
+    Score: 500000

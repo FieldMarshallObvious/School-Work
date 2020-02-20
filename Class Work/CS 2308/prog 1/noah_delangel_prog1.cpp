@@ -181,7 +181,7 @@ string convertInt( int input_number )
     int_to_string << input_number;
 
     //Returns string stream items as string
-    return int_to_string.str();
+    return int_to_string.str( );
 }
 
 /*=====================================================================
@@ -673,7 +673,7 @@ void Show_question ( string student, string q_array[][5], int index, int q_num )
          << q_array[index][0] << endl;
 
     //Outputs answers with multiple choice options
-    for( int i = 1; i < 5; i++)
+    for( int i = 1; i < 5; i++ )
         cout << multipe_choice[i-1] << ". " << q_array[index][i] << endl;
 
 }
@@ -701,7 +701,7 @@ void Show_question( string student, string choice, int q_num,
 
     //Outputs answers with multiple choice options, but skips choice
     //already chosen by user
-    for( int i = 1; i < 5; i++)
+    for( int i = 1; i < 5; i++ )
     {
         string current_index = multipe_choice[i-1];
 
