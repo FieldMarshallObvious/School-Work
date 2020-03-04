@@ -19,6 +19,7 @@
 #include <cstring>
 #include <cctype>
 #include <cstdlib>
+#include <algorithm>
 
 
 /*====================== global symbolic constants ===================*/
@@ -56,6 +57,8 @@ void Exit( Song playlist[] );
 
 int main ( )
 {
+    Song playlist[1];
+    
     ifstream input_songs;
     
     input_songs.open( "input_song.txt" );
@@ -69,7 +72,8 @@ int main ( )
         return -1;
     }
     
-    Songs_array_mod ( input_songs );
+    
+    Run_ipod( playlist, input_songs );
     
     input_songs.close();
     
@@ -220,6 +224,40 @@ string Read_lines ( ifstream &input_songs )
     return output;
 }
 
+/*=====================================================================
+ Function: Run_ipod
+ Description:
+ Parameters: Song playlist[], ifstream &input_songs
+ ======================================================================*/
+void Run_ipod( Song playlist[], ifstream &input_songs )
+{
+    string choice = " ";
+    playlist = Songs_array_mod ( input_songs );
+    
+    cout << "in function " << endl;
+    while( choice != "5" &&
+           choice != "EXIT")
+    {
+        cout << "   Welcome to My Ipod!" << endl
+             << "Please choose your options:" << endl
+             << "   1. Show the playlist" << endl
+             << "   2. Remove a song" << endl
+             << "   3. Cleanup my ipod" << endl
+             << "   4. Shuffle the playlist" << endl
+             << "   5. Exit" << endl;
+        
+        cout << "> ";
+        cin >> choice;
+        
+        //convert choice to to upper
+        for( int i = 0; i < strlen( choice.c_str() ); i++ )
+        {
+            choice[i] = toupper( choice.c_str()[i] );
+        }
+    }
+    
+    cout << "She works!" << endl;
+}
 
 /*=====================================================================
  Function: Songs_array_mod
@@ -245,17 +283,10 @@ Song * Songs_array_mod ( ifstream &input_songs )
     for( int i = 0; i < size; i++ )
     {
         new_array[i].title = Read_lines( input_songs );
-                
+        
         new_array[i].artist = Read_lines( input_songs );
         
         new_array[i].size = stod( Read_lines( input_songs ).c_str() );
-    }
-    
-    for( int i = 0; i < size; i++)
-    {
-        cout << new_array[i].title << endl
-             << new_array[i].artist << endl
-             << new_array[i].size << endl;
     }
     
     return new_array;
