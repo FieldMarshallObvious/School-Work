@@ -42,8 +42,8 @@ void Cleanup ( Song playlist[] );
 bool Is_number( const string input);
 int Rand_num_generator ( int chosen_songs[], int seed );
 string Read_lines ( ifstream &input_songs );
-void Remove_a_song( Song playlist[] );
-void Run_ipod( Song playlist[], ifstream &input_songs );
+void Remove_a_song( Song playlist[], string choice, int seed );
+void Run_ipod( Song playlist[], ifstream &input_songs, int seed );
 void Show_playlist( Song playlist[] );
 void Shuffle( Song playlist[] );
 Song * Songs_array_mod ( ifstream &input_songs );
@@ -73,7 +73,7 @@ int main ( )
     }
     
     
-    Run_ipod( playlist, input_songs );
+    Run_ipod( playlist, input_songs, 1001 );
     
     input_songs.close();
     
@@ -193,6 +193,17 @@ int Rand_num_generator ( int chosen_songs[], int seed, int max )
 }
 
 /*=====================================================================
+ Function: Remove_a_song
+ Description:
+ Parameters: Song[] playlist, string choice, int seed
+ ======================================================================*/
+void Remove_a_song( Song playlist[], string choice, int seed )
+{
+    Song * temp = new Song[sizeof(playlist) - 1];
+    
+}
+
+/*=====================================================================
  Function: Read_lines
  Description:
  Parameters: ifstream input_songs
@@ -227,9 +238,9 @@ string Read_lines ( ifstream &input_songs )
 /*=====================================================================
  Function: Run_ipod
  Description:
- Parameters: Song playlist[], ifstream &input_songs
+ Parameters: Song playlist[], ifstream &input_songs, int seed
  ======================================================================*/
-void Run_ipod( Song playlist[], ifstream &input_songs )
+void Run_ipod( Song playlist[], ifstream &input_songs, int seed )
 {
     string choice = " ";
     playlist = Songs_array_mod ( input_songs );
@@ -254,9 +265,62 @@ void Run_ipod( Song playlist[], ifstream &input_songs )
         {
             choice[i] = toupper( choice.c_str()[i] );
         }
+        
+        //Check to see what menu item the use selected
+        if ( choice == "1" || choice == "SHOW THE PLAYLIST" )
+        {
+            Show_playlist(playlist);
+        }
+        
+        else if ( choice == "2" || choice == "REMOVE A SONG" )
+        {
+            //Create a line space
+            cout << endl;
+            
+            cout << "What song would you like to remove?" << endl;
+            
+            cout << "> ";
+            cin >> choice;
+            
+            Remove_a_song(playlist, choice, seed);
+        }
+        
+        else if( choice == "3" || choice == "CLEANUP MY IPOD" )
+        {
+            Cleanup(playlist);
+            
+            cout << endl << endl;
+        }
+        
+        else if ( choice == "4" || choice == "SHUFFLE THE PLAYLIST" )
+        {
+            
+        }
+        
+        else if( choice == "5" || choice == "EXIT" )
+        {
+            Cleanup(playlist);
+            
+            cout << endl;
+        }
     }
-    
-    cout << "She works!" << endl;
+}
+
+/*=====================================================================
+ Function: Show_playlist
+ Description:
+ Parameters: Song[] playlist
+ ======================================================================*/
+void Show_playlist( Song * playlist )
+{
+    for( int i = 0; i < sizeof(playlist); i++ )
+    {
+        cout << "Title: " << playlist[i].title << endl
+             << "Author: " << playlist[i].artist << endl
+             << "Memory Size: " << playlist[i].size << endl;
+        
+        cout << endl << endl;
+    }
 }
 
 /*=====================================================================
