@@ -38,14 +38,14 @@ struct Song
 /*======================= function prototypes ========================*/
 
 int Count_songs ( ifstream &input_songs );
-void Cleanup ( Song playlist[] );
+Song * Cleanup ( Song playlist[] );
 bool Is_number( const string input);
 int Rand_num_generator ( int chosen_songs[], int seed );
 string Read_lines ( ifstream &input_songs );
 Song *  Remove_a_song( Song playlist[], string choice, int &size, int seed );
 void Run_ipod( Song playlist[], ifstream &input_songs, int seed );
 void Show_playlist( Song playlist[], int size );
-void Shuffle( Song playlist[] );
+Song * Shuffle( Song playlist[], int seed, int size );
 Song * Songs_array_mod ( ifstream &input_songs, int &size );
 void Exit( Song playlist[] );
 
@@ -87,14 +87,18 @@ int main ( )
  ======================================================================*/
 int Count_songs ( ifstream &input_songs )
 {
+    //Variable declarations
     string cur_line;
     
     double mem_used,
            cntr = 0,
            num_songs = 0;
+
     
     while( mem_used <= MAX_MEMORY )
     {
+        char * end;
+        
         cntr++;
         cur_line = Read_lines( input_songs );
         
@@ -106,11 +110,11 @@ int Count_songs ( ifstream &input_songs )
         
         if( cntr == 3 )
         {
-            if ( ( mem_used + stod( cur_line.c_str( ) ) ) <= MAX_MEMORY )
+            if ( ( mem_used + strtod( cur_line.c_str( ), &end) ) <= MAX_MEMORY )
             {
                 cntr = 0;
                 num_songs++;
-                mem_used+= stod( cur_line.c_str( ) );
+                mem_used+= strtod( cur_line.c_str( ), &end);
             }
         }
     }
@@ -124,10 +128,14 @@ int Count_songs ( ifstream &input_songs )
  Description:
  Parameters: Song[] playlist
  ======================================================================*/
-void Cleanup( Song playlist[] )
+Song * Cleanup( Song * playlist )
 {
     //Clears up dynamic memory space
     delete [] playlist;
+    
+    playlist = NULL;
+    
+    return playlist;
 }
 
 /*=====================================================================
@@ -168,7 +176,7 @@ int Rand_num_generator ( int chosen_songs[], int seed, int max )
     do {
         unique_item = true;
         
-        rand_int = rand( ) % ( max-1 ) + 0;
+        rand_int = rand( ) % ( max ) + 0;
         
         //Checks for every item in array to make sure it has not already been
         //selected
@@ -207,14 +215,11 @@ Song * Remove_a_song( Song playlist[], string choice, int &size, int seed )
     Song temp[size];
     
     //convert choice to to upper
-    cout << "The string lenght is " << strlen( choice.c_str( ) ) << endl;
     for( int i = 0; i < strlen( choice.c_str( ) ); i++ )
     {
         choice[i] = toupper( choice.c_str( )[i] );
-        cout << "The new char is " << endl;
     }
     
-    cout << "The choice is " << choice << endl;
     
     //Find the index that needs to be removed
     for( int i = 0; i < size + 1; i++ )
@@ -230,15 +235,11 @@ Song * Remove_a_song( Song playlist[], string choice, int &size, int seed )
         
         if( choice == cur_string )
         {
-            cout << "Found index!" << endl;
             index_to_remove = i;
             break;
         }
-        
-        cout << "The caps title is " << cur_string << endl;
     }
     
-    cout << "The index to remove is " << index_to_remove << endl;
     //Remove the specific index
     for( int i = 0; i < size; i++ )
     {
@@ -249,33 +250,20 @@ Song * Remove_a_song( Song playlist[], string choice, int &size, int seed )
         else
         {
             temp[i] = playlist[i + 1];
-            cout << "The current index " << i << endl;
-            cout << "Current temp item " << temp[i].title << endl;
             offset++;
         }
     }
     
-    cout << "The temp playlist is " << endl;
-    
-    Show_playlist( temp, size );
-    
+    //Remove old items in array and create with new size
     delete [] playlist;
     
     playlist = new Song [size];
     
-    cout << "The new size is " << size << endl;
-    cout << "copying new playlist" << endl;
     
     for( int i = 0; i < size; i++ )
     {
-        cout << "Current temp item " << temp[i].title << endl;
-
         playlist[i] = temp[i];
     }
-    
-    Show_playlist( playlist, size );
-    
-    cout << "end of function" << endl;
     
     return playlist;
 }
@@ -347,6 +335,8 @@ void Run_ipod( Song playlist[], ifstream &input_songs, int seed )
         if ( choice == "1" || choice == "SHOW THE PLAYLIST" )
         {
             Show_playlist( playlist, size );
+            
+            cout << endl;
         }
         
         else if ( choice == "2" || choice == "REMOVE A SONG" )
@@ -361,29 +351,32 @@ void Run_ipod( Song playlist[], ifstream &input_songs, int seed )
             
             playlist = Remove_a_song(playlist, choice, size, seed);
             
-            cout << "Passed function" << endl;
+            cout << endl;
         }
         
         else if( choice == "3" || choice == "CLEANUP MY IPOD" )
         {
-            Cleanup(playlist);
+            playlist = Cleanup(playlist);
             
-            cout << endl << endl;
-        }
-        
-        else if ( choice == "4" || choice == "SHUFFLE THE PLAYLIST" )
-        {
-            
-        }
-        
-        else if( choice == "5" || choice == "EXIT" )
-        {
-            Cleanup(playlist);
+            size = 0;
             
             cout << endl;
         }
         
-
+        else if ( choice == "4" || choice == "SHUFFLE THE PLAYLIST" )
+        {
+            playlist = Shuffle( playlist, seed, size );
+            
+            cout << endl;
+        }
+        
+        else if( choice == "5" || choice == "EXIT" )
+        {
+            playlist = Cleanup(playlist);
+            
+            cout << endl;
+        }
+        
     }
 }
 
@@ -405,6 +398,46 @@ void Show_playlist( Song * playlist, int size )
 }
 
 /*=====================================================================
+ Function: Shuffle
+ Description:
+ Parameters: Song[] playlist, int seed, int size
+ ======================================================================*/
+Song * Shuffle( Song playlist[], int seed, int size )
+{
+    //Variable declarations
+    int randarray[size];
+    
+    Song temp[size];
+    
+    //Initializes values to the random array to prevent
+    //random memory values from causing issues
+    for( int i = 0; i < size; i++ )
+    {
+        randarray[i] = -1;
+    }
+    
+    //Generate array of random indexes
+    for( int i = 0; i < size; i++ )
+    {
+        randarray[i] = Rand_num_generator( randarray, seed, size );
+    }
+    
+    //Assign random values to temporary array
+    for( int i = 0; i < size; i++)
+    {
+        temp[i] = playlist[randarray[i]];
+    }
+    
+    //Copy over new value order to orginal array
+    for( int i = 0; i < size; i++ )
+    {
+        playlist[i] = temp[i];
+    }
+    
+    return playlist;
+}
+
+/*=====================================================================
  Function: Songs_array_mod
  Description:
  Parameters: ifstream input_songs, int size
@@ -419,6 +452,8 @@ Song * Songs_array_mod ( ifstream &input_songs, int &size )
     
     new_array = new Song[size];
     
+    char * end;
+
     //reset file to the top of the stream
     input_songs.clear();
     
@@ -431,7 +466,7 @@ Song * Songs_array_mod ( ifstream &input_songs, int &size )
         
         new_array[i].artist = Read_lines( input_songs );
         
-        new_array[i].size = stod( Read_lines( input_songs ).c_str() );
+        new_array[i].size = strtod( Read_lines( input_songs ).c_str(), &end );
     }
     
     return new_array;
