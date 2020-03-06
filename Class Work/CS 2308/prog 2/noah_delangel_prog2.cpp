@@ -42,11 +42,11 @@ void Cleanup ( Song playlist[] );
 bool Is_number( const string input);
 int Rand_num_generator ( int chosen_songs[], int seed );
 string Read_lines ( ifstream &input_songs );
-void Remove_a_song( Song playlist[], string choice, int seed );
+Song *  Remove_a_song( Song playlist[], string choice, int &size, int seed );
 void Run_ipod( Song playlist[], ifstream &input_songs, int seed );
-void Show_playlist( Song playlist[] );
+void Show_playlist( Song playlist[], int size );
 void Shuffle( Song playlist[] );
-Song * Songs_array_mod ( ifstream &input_songs );
+Song * Songs_array_mod ( ifstream &input_songs, int &size );
 void Exit( Song playlist[] );
 
 /*=====================================================================
@@ -195,12 +195,89 @@ int Rand_num_generator ( int chosen_songs[], int seed, int max )
 /*=====================================================================
  Function: Remove_a_song
  Description:
- Parameters: Song[] playlist, string choice, int seed
+ Parameters: Song[] playlist, string choice, int size, int seed
  ======================================================================*/
-void Remove_a_song( Song playlist[], string choice, int seed )
+Song * Remove_a_song( Song playlist[], string choice, int &size, int seed )
 {
-    Song * temp = new Song[sizeof(playlist) - 1];
+    //Variable declarations
+    int index_to_remove,
+        offset = 0;
+    size-=1;
     
+    Song temp[size];
+    
+    //convert choice to to upper
+    cout << "The string lenght is " << strlen( choice.c_str( ) ) << endl;
+    for( int i = 0; i < strlen( choice.c_str( ) ); i++ )
+    {
+        choice[i] = toupper( choice.c_str( )[i] );
+        cout << "The new char is " << endl;
+    }
+    
+    cout << "The choice is " << choice << endl;
+    
+    //Find the index that needs to be removed
+    for( int i = 0; i < size + 1; i++ )
+    {
+        string cur_string = playlist[i].title;
+
+        
+        //convert current string to upper
+        for( int j = 0; j < strlen( playlist[i].title.c_str( ) ); j++ )
+        {
+            cur_string[j] = toupper( playlist[i].title.c_str( )[j] );
+        }
+        
+        if( choice == cur_string )
+        {
+            cout << "Found index!" << endl;
+            index_to_remove = i;
+            break;
+        }
+        
+        cout << "The caps title is " << cur_string << endl;
+    }
+    
+    cout << "The index to remove is " << index_to_remove << endl;
+    //Remove the specific index
+    for( int i = 0; i < size; i++ )
+    {
+        if( i != index_to_remove )
+        {
+            temp[i] = playlist[i + offset];
+        }
+        else
+        {
+            temp[i] = playlist[i + 1];
+            cout << "The current index " << i << endl;
+            cout << "Current temp item " << temp[i].title << endl;
+            offset++;
+        }
+    }
+    
+    cout << "The temp playlist is " << endl;
+    
+    Show_playlist( temp, size );
+    
+    delete [] playlist;
+    
+    playlist = new Song [size];
+    
+    cout << "The new size is " << size << endl;
+    cout << "copying new playlist" << endl;
+    
+    for( int i = 0; i < size; i++ )
+    {
+        cout << "Current temp item " << temp[i].title << endl;
+
+        playlist[i] = temp[i];
+    }
+    
+    Show_playlist( playlist, size );
+    
+    cout << "end of function" << endl;
+    
+    return playlist;
 }
 
 /*=====================================================================
@@ -243,9 +320,9 @@ string Read_lines ( ifstream &input_songs )
 void Run_ipod( Song playlist[], ifstream &input_songs, int seed )
 {
     string choice = " ";
-    playlist = Songs_array_mod ( input_songs );
+    int size;
+    playlist = Songs_array_mod ( input_songs, size );
     
-    cout << "in function " << endl;
     while( choice != "5" &&
            choice != "EXIT")
     {
@@ -258,18 +335,18 @@ void Run_ipod( Song playlist[], ifstream &input_songs, int seed )
              << "   5. Exit" << endl;
         
         cout << "> ";
-        cin >> choice;
+        getline(cin, choice);
         
         //convert choice to to upper
-        for( int i = 0; i < strlen( choice.c_str() ); i++ )
+        for( int i = 0; i < strlen( choice.c_str( ) ); i++ )
         {
-            choice[i] = toupper( choice.c_str()[i] );
+            choice[i] = toupper( choice.c_str( )[i] );
         }
         
         //Check to see what menu item the use selected
         if ( choice == "1" || choice == "SHOW THE PLAYLIST" )
         {
-            Show_playlist(playlist);
+            Show_playlist( playlist, size );
         }
         
         else if ( choice == "2" || choice == "REMOVE A SONG" )
@@ -280,9 +357,11 @@ void Run_ipod( Song playlist[], ifstream &input_songs, int seed )
             cout << "What song would you like to remove?" << endl;
             
             cout << "> ";
-            cin >> choice;
+            getline(cin, choice);
             
-            Remove_a_song(playlist, choice, seed);
+            playlist = Remove_a_song(playlist, choice, size, seed);
+            
+            cout << "Passed function" << endl;
         }
         
         else if( choice == "3" || choice == "CLEANUP MY IPOD" )
@@ -303,6 +382,8 @@ void Run_ipod( Song playlist[], ifstream &input_songs, int seed )
             
             cout << endl;
         }
+        
+
     }
 }
 
@@ -311,9 +392,9 @@ void Run_ipod( Song playlist[], ifstream &input_songs, int seed )
  Description:
  Parameters: Song[] playlist
  ======================================================================*/
-void Show_playlist( Song * playlist )
+void Show_playlist( Song * playlist, int size )
 {
-    for( int i = 0; i < sizeof(playlist); i++ )
+    for( int i = 0; i < size ; i++ )
     {
         cout << "Title: " << playlist[i].title << endl
              << "Author: " << playlist[i].artist << endl
@@ -326,15 +407,15 @@ void Show_playlist( Song * playlist )
 /*=====================================================================
  Function: Songs_array_mod
  Description:
- Parameters: ifstream input_songs
+ Parameters: ifstream input_songs, int size
  ======================================================================*/
-Song * Songs_array_mod ( ifstream &input_songs )
+Song * Songs_array_mod ( ifstream &input_songs, int &size )
 {
     //Varaibles declaration
     Song * new_array;
     string input;
     
-    int size = Count_songs(input_songs);
+    size = Count_songs(input_songs);
     
     new_array = new Song[size];
     
