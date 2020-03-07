@@ -55,13 +55,34 @@ void Exit( Song playlist[] );
  Parameters:
  ======================================================================*/
 
-int main ( )
+int main ( int argc, char * argv [ ] )
 {
+    //variable declarations
     Song playlist[1];
+    
+    string file_name;
     
     ifstream input_songs;
     
-    input_songs.open( "input_song.txt" );
+    int seed;
+    
+    
+    //Checking to see if  number of arguments is correct
+    if( argc != 3 )
+    {
+        cout << "***Program Terminated.***" << endl
+        << "Invalid args." << endl
+        << "This program requires the following arguements" << endl
+        << " <songs file>.txt, int seed" << endl;
+        
+        return -1;
+    }
+    
+    //Assign command line inputs to program variables
+    file_name = argv[1];
+    seed = atoi( argv[2] );
+    
+    input_songs.open( file_name.c_str ( ));
     
     //Checks if question bank file succesfully opened
     if( ! input_songs )
@@ -73,7 +94,7 @@ int main ( )
     }
     
     
-    Run_ipod( playlist, input_songs, 1001 );
+    Run_ipod( playlist, input_songs, seed );
     
     input_songs.close();
     
@@ -202,13 +223,13 @@ int Rand_num_generator ( int chosen_songs[], int seed, int max )
 
 /*=====================================================================
  Function: Remove_a_song
- Description:
+ Description: Removes a specifc song from the playlist 
  Parameters: Song[] playlist, string choice, int size, int seed
  ======================================================================*/
 Song * Remove_a_song( Song playlist[], string choice, int &size, int seed )
 {
     //Variable declarations
-    int index_to_remove,
+    int index_to_remove = -1,
         offset = 0;
     size-=1;
     
@@ -238,6 +259,16 @@ Song * Remove_a_song( Song playlist[], string choice, int &size, int seed )
             index_to_remove = i;
             break;
         }
+    }
+    
+    //Check to see if the users requested song was found
+    if( index_to_remove == -1 )
+    {
+        cout << endl;
+        
+        cout << "The song you were looking for was not found" << endl;
+        
+        return playlist;
     }
     
     //Remove the specific index
@@ -325,6 +356,8 @@ void Run_ipod( Song playlist[], ifstream &input_songs, int seed )
         cout << "> ";
         getline(cin, choice);
         
+        cout << endl;
+        
         //convert choice to to upper
         for( int i = 0; i < strlen( choice.c_str( ) ); i++ )
         {
@@ -375,6 +408,11 @@ void Run_ipod( Song playlist[], ifstream &input_songs, int seed )
             playlist = Cleanup(playlist);
             
             cout << endl;
+        }
+        
+        else
+        {
+            cout << "Please enter a valid option" << endl << endl;
         }
         
     }
