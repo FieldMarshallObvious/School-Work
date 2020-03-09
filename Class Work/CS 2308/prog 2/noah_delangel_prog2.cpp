@@ -152,22 +152,31 @@ int Count_songs ( ifstream &input_songs )
            cntr = 0,
            num_songs = 0;
 
-    
+    //Counts number of songs read in, until
+    //the max memory hass been reached.
     while( mem_used <= MAX_MEMORY )
     {
+        //Creates end pointer for strtod function
+        //call.
         char * end;
         
         cntr++;
+        
         cur_line = Read_lines( input_songs );
         
-        
+        //If there is a blank line passed then the
+        //program has reached the end of the file
         if ( cur_line == " " )
         {
             break;
         }
         
+        //If the number of non-blank lines has
+        //reached 3 then it is a song.
         if( cntr == 3 )
         {
+            //If the memory of the new song plus the memory used
+            //is less than the total memory available. Add the song.
             if ( ( mem_used + strtod( cur_line.c_str( ), &end) ) <= MAX_MEMORY )
             {
                 cntr = 0;
@@ -219,8 +228,7 @@ bool Is_number( const string input )
         it++;
     }
     
-    //return the value of if the iterator reached the end,
-    //and if the passed string was not empty.
+    //return the value of if the iterator reached the end.
     return ( ! input.empty() && ( it == input.end( ) ) );
 }
 
@@ -442,6 +450,7 @@ void Run_ipod( Song playlist[], ifstream &input_songs, int seed )
             cout << "> ";
             getline(cin, choice);
             
+            //Assign playlist to one with the removed song 
             playlist = Remove_a_song(playlist, choice, size );
             
             cout << endl;
