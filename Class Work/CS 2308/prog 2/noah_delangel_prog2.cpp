@@ -4,12 +4,44 @@
  Class: CS 2308
  Instructor: Zilliang Zong
  Date: 3/10/20
- Description:
+ Description: A program that simulate an ipod player, by taking songs from a
+              text file passed by the command line. The program determines
+              the number of songs from the text file. The program can display
+              the current playlist, remove a song, cleanup dynamically allocated
+              memory, and shuffle the playlist.
  Input: input_song.txt
  Output:
- Compilation instructions: Usage:
+         (Main menu)(to console)
+            Welcome to My Ipod!
+        Please choose your options:
+            1. Show the playlist
+            2. Remove a song
+            3. Cleanup my ipod
+            4. Shuffle the playlist
+            5. Exit
+        >
+ 
+        (Playlist)(to console)
+        Title: Come out and Play!!
+        Author: Offspring
+        Memory Size: 1
+ 
+    Title:  Smells like the Teen Spirit
+    Author: Nirvana
+    Memory Size: 0.45
+
+ Compilation instructions: All that is needed to do compile the program is to
+                           run the g++ command with the file name. C++11 is not
+                           required, thus you do not  need it compile the
+                           program using C++11. You can change the name of the
+                           output file, as this should have no effect. An
+                           example of theg++ command is given below:
+                           g++ noah_delangel_prog1.cpp
+ Usage: In order to run the program you must execute in the output file in the
+        order listed below:
+        ./<output file> <songs.txt> <int seed>
  Modifications:
- Date Comment:
+ Date Comment: 3/7/20
  ---- -----------------------------------------------
  ======================================================================*/
 
@@ -38,21 +70,24 @@ struct Song
 /*======================= function prototypes ========================*/
 
 int Count_songs ( ifstream &input_songs );
-Song * Cleanup ( Song playlist[] );
+Song * Cleanup ( Song playlist[ ] );
 bool Is_number( const string input);
-int Rand_num_generator ( int chosen_songs[], int seed );
+int Rand_num_generator ( int chosen_songs[ ], int seed );
 string Read_lines ( ifstream &input_songs );
-Song *  Remove_a_song( Song playlist[], string choice, int &size, int seed );
-void Run_ipod( Song playlist[], ifstream &input_songs, int seed );
-void Show_playlist( Song playlist[], int size );
+Song * Remove_a_song( Song playlist[ ], string choice, int &size );
+void Run_ipod( Song playlist[ ], ifstream &input_songs, int seed );
+void Show_playlist( Song playlist[ ], int size );
 Song * Shuffle( Song playlist[], int seed, int size );
 Song * Songs_array_mod ( ifstream &input_songs, int &size );
 void Exit( Song playlist[] );
 
 /*=====================================================================
  Function: main
- Description:
- Parameters:
+ Description: Ensure proper number of arguements was given to program
+              at run time. Also ensure all fstream objects are
+              initiliazed correctly. Then passes neccesary vars to
+              Run_ipod function.
+ Parameters: int argc, char[] argv
  ======================================================================*/
 
 int main ( int argc, char * argv [ ] )
@@ -103,7 +138,9 @@ int main ( int argc, char * argv [ ] )
 
 /*=====================================================================
  Function: Count_songs
- Description:
+ Description: Reads the number of songs that can be entered into the
+              iPod without exceeding the iPod's maxium allowed data.
+              It then returns this number.
  Parameters: ifstream input_songs
  ======================================================================*/
 int Count_songs ( ifstream &input_songs )
@@ -146,7 +183,8 @@ int Count_songs ( ifstream &input_songs )
 
 /*=====================================================================
  Function: Cleanup
- Description:
+ Description: Clears up all dynamic memory, and removes all items from
+              the array.
  Parameters: Song[] playlist
  ======================================================================*/
 Song * Cleanup( Song * playlist )
@@ -154,6 +192,7 @@ Song * Cleanup( Song * playlist )
     //Clears up dynamic memory space
     delete [] playlist;
     
+    //set the playlist pointer to NULL
     playlist = NULL;
     
     return playlist;
@@ -161,18 +200,27 @@ Song * Cleanup( Song * playlist )
 
 /*=====================================================================
  Function: Is_number
- Description:
+ Description: Checks to see if the inputed string is a number. Returns
+              with a true boolean if the string is an int.
  Parameters: string input
  ======================================================================*/
 bool Is_number( const string input )
 {
+    //Assign an iterator to the passed string
     string::const_iterator it = input.begin();
     
+    //Go through the iterator, as long the current iterator
+    //value is a digit and it has not reached the end of
+    //iterator.
     while( ( it != input.end( ) ) && isdigit(*it))
     {
+        //increment the pointer to the next iterator
+        //value.
         it++;
     }
     
+    //return the value of if the iterator reached the end,
+    //and if the passed string was not empty.
     return ( ! input.empty() && ( it == input.end( ) ) );
 }
 
@@ -213,6 +261,8 @@ int Rand_num_generator ( int chosen_songs[], int seed, int max )
             
         }
         
+        //If the loop has not found a duplicate value
+        //break the loop.
         if ( unique_item == true )
             break;
         
@@ -223,10 +273,14 @@ int Rand_num_generator ( int chosen_songs[], int seed, int max )
 
 /*=====================================================================
  Function: Remove_a_song
- Description: Removes a specifc song from the playlist 
- Parameters: Song[] playlist, string choice, int size, int seed
+ Description: Attempts to find the song the user wants to remove. If the
+              function cannot find the song the user wants to remove it
+              displays an error message indicating this. If the song is
+              found the function removes the song from the passed array,
+              then returns the new modified array.
+ Parameters: Song[] playlist, string choice, int size
  ======================================================================*/
-Song * Remove_a_song( Song playlist[], string choice, int &size, int seed )
+Song * Remove_a_song( Song playlist[], string choice, int &size  )
 {
     //Variable declarations
     int index_to_remove = -1,
@@ -285,12 +339,14 @@ Song * Remove_a_song( Song playlist[], string choice, int &size, int seed )
         }
     }
     
-    //Remove old items in array and create with new size
+    //Removes old items in array
     delete [] playlist;
     
+    //Creates array with new size
     playlist = new Song [size];
     
-    
+    //Assings each element to new order from
+    //temp.
     for( int i = 0; i < size; i++ )
     {
         playlist[i] = temp[i];
@@ -301,7 +357,9 @@ Song * Remove_a_song( Song playlist[], string choice, int &size, int seed )
 
 /*=====================================================================
  Function: Read_lines
- Description:
+ Description: Reads lines in the given input file stream, until it finds
+               a non-blank line. After finding a non-blank line it
+               it returns that line.
  Parameters: ifstream input_songs
  ======================================================================*/
 string Read_lines ( ifstream &input_songs )
@@ -333,7 +391,7 @@ string Read_lines ( ifstream &input_songs )
 
 /*=====================================================================
  Function: Run_ipod
- Description:
+ Description: Runs all the methods, and choices, for iPod functionality.
  Parameters: Song playlist[], ifstream &input_songs, int seed
  ======================================================================*/
 void Run_ipod( Song playlist[], ifstream &input_songs, int seed )
@@ -353,6 +411,7 @@ void Run_ipod( Song playlist[], ifstream &input_songs, int seed )
              << "   4. Shuffle the playlist" << endl
              << "   5. Exit" << endl;
         
+        //Grabs the menu item the user wants to select
         cout << "> ";
         getline(cin, choice);
         
@@ -364,7 +423,8 @@ void Run_ipod( Song playlist[], ifstream &input_songs, int seed )
             choice[i] = toupper( choice.c_str( )[i] );
         }
         
-        //Check to see what menu item the use selected
+        //The following if branches determine what menu item
+        //the user selected.
         if ( choice == "1" || choice == "SHOW THE PLAYLIST" )
         {
             Show_playlist( playlist, size );
@@ -374,23 +434,25 @@ void Run_ipod( Song playlist[], ifstream &input_songs, int seed )
         
         else if ( choice == "2" || choice == "REMOVE A SONG" )
         {
-            //Create a line space
             cout << endl;
             
+            //Grabs the song the user wants to remove
             cout << "What song would you like to remove?" << endl;
             
             cout << "> ";
             getline(cin, choice);
             
-            playlist = Remove_a_song(playlist, choice, size, seed);
+            playlist = Remove_a_song(playlist, choice, size );
             
             cout << endl;
         }
         
         else if( choice == "3" || choice == "CLEANUP MY IPOD" )
         {
+            //Assign playlist pointer to NULL
             playlist = Cleanup(playlist);
             
+            //After cleaning all items in array, adjusts size to zero
             size = 0;
             
             cout << endl;
@@ -398,6 +460,7 @@ void Run_ipod( Song playlist[], ifstream &input_songs, int seed )
         
         else if ( choice == "4" || choice == "SHUFFLE THE PLAYLIST" )
         {
+            //Assign playlist pointer to new adjusted array
             playlist = Shuffle( playlist, seed, size );
             
             cout << endl;
@@ -405,14 +468,19 @@ void Run_ipod( Song playlist[], ifstream &input_songs, int seed )
         
         else if( choice == "5" || choice == "EXIT" )
         {
+            //Assign playlist ponter to NULL
             playlist = Cleanup(playlist);
             
             cout << endl;
         }
         
+        //If the user's choice matched with none of the above branches
+        //displays message that menu item the user attempted to select
+        //was not found.
         else
         {
-            cout << "Please enter a valid option" << endl << endl;
+            cout << "Could not find that item." << endl
+                 << "Please enter a valid option" << endl << endl;
         }
         
     }
@@ -420,7 +488,8 @@ void Run_ipod( Song playlist[], ifstream &input_songs, int seed )
 
 /*=====================================================================
  Function: Show_playlist
- Description:
+ Description: Goes through each index of the array and outputs each
+              struct's items.
  Parameters: Song[] playlist
  ======================================================================*/
 void Show_playlist( Song * playlist, int size )
@@ -431,13 +500,16 @@ void Show_playlist( Song * playlist, int size )
              << "Author: " << playlist[i].artist << endl
              << "Memory Size: " << playlist[i].size << endl;
         
+        //For spacing between each array item
         cout << endl << endl;
     }
 }
 
 /*=====================================================================
  Function: Shuffle
- Description:
+ Description: Reassigns elements of the playlist to random locations,
+              based on the seed passed to the program at run-time. After
+              this is done the function returns the new shuffled array.
  Parameters: Song[] playlist, int seed, int size
  ======================================================================*/
 Song * Shuffle( Song playlist[], int seed, int size )
@@ -477,7 +549,11 @@ Song * Shuffle( Song playlist[], int seed, int size )
 
 /*=====================================================================
  Function: Songs_array_mod
- Description:
+ Description: Reads size of the array from the the number of songs
+              given by the Count_songs function. Then resets the fstream
+              buffer to top of the file. Then reads the songs into the
+              new array. After this complete, the function returns the
+              new array.
  Parameters: ifstream input_songs, int size
  ======================================================================*/
 Song * Songs_array_mod ( ifstream &input_songs, int &size )
@@ -492,7 +568,8 @@ Song * Songs_array_mod ( ifstream &input_songs, int &size )
     
     char * end;
 
-    //reset file to the top of the stream
+    //reset file to the top of the stream, after reaching
+    //end of file to determine song size
     input_songs.clear();
     
     input_songs.seekg(0, ios::beg );
