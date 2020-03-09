@@ -70,13 +70,13 @@ struct Song
 /*======================= function prototypes ========================*/
 
 int Count_songs ( ifstream &input_songs );
-Song * Cleanup ( Song playlist[ ] );
+Song * Cleanup ( Song playlist[] );
 bool Is_number( const string input);
-int Rand_num_generator ( int chosen_songs[ ], int seed );
+int Rand_num_generator ( int chosen_songs[], int seed );
 string Read_lines ( ifstream &input_songs );
-Song * Remove_a_song( Song playlist[ ], string choice, int &size );
-void Run_ipod( Song playlist[ ], ifstream &input_songs, int seed );
-void Show_playlist( Song playlist[ ], int size );
+Song * Remove_a_song( Song playlist[], string choice, int &size );
+void Run_ipod( Song playlist[], ifstream &input_songs, int seed );
+void Show_playlist( Song playlist[], int size );
 Song * Shuffle( Song playlist[], int seed, int size );
 Song * Songs_array_mod ( ifstream &input_songs, int &size );
 void Exit( Song playlist[] );
@@ -131,7 +131,7 @@ int main ( int argc, char * argv [ ] )
     
     Run_ipod( playlist, input_songs, seed );
     
-    input_songs.close();
+    input_songs.close( );
     
     return 0;
 }
@@ -177,7 +177,7 @@ int Count_songs ( ifstream &input_songs )
         {
             //If the memory of the new song plus the memory used
             //is less than the total memory available. Add the song.
-            if ( ( mem_used + strtod( cur_line.c_str( ), &end) ) <= MAX_MEMORY )
+            if ( ( mem_used + strtod( cur_line.c_str( ), &end ) ) <= MAX_MEMORY )
             {
                 cntr = 0;
                 num_songs++;
@@ -199,7 +199,7 @@ int Count_songs ( ifstream &input_songs )
 Song * Cleanup( Song * playlist )
 {
     //Clears up dynamic memory space
-    delete [] playlist;
+    delete [ ] playlist;
     
     //set the playlist pointer to NULL
     playlist = NULL;
@@ -216,12 +216,12 @@ Song * Cleanup( Song * playlist )
 bool Is_number( const string input )
 {
     //Assign an iterator to the passed string
-    string::const_iterator it = input.begin();
+    string::const_iterator it = input.begin( );
     
     //Go through the iterator, as long the current iterator
     //value is a digit and it has not reached the end of
     //iterator.
-    while( ( it != input.end( ) ) && isdigit(*it))
+    while( ( it != input.end( ) ) && isdigit( *it ) )
     {
         //increment the pointer to the next iterator
         //value.
@@ -229,7 +229,7 @@ bool Is_number( const string input )
     }
     
     //return the value of if the iterator reached the end.
-    return ( ! input.empty() && ( it == input.end( ) ) );
+    return ( ! input.empty( ) && ( it == input.end( ) ) );
 }
 
 /*=====================================================================
@@ -391,7 +391,7 @@ string Read_lines ( ifstream &input_songs )
     
     
     if ( ( strlen(temp.c_str( ) ) == 1 || strlen( temp.c_str( ) ) == 0 ) &&
-        ( ! Is_number(temp) ) )
+        ( ! Is_number( temp ) ) )
         output = " ";
     
     return output;
@@ -421,7 +421,7 @@ void Run_ipod( Song playlist[], ifstream &input_songs, int seed )
         
         //Grabs the menu item the user wants to select
         cout << "> ";
-        getline(cin, choice);
+        getline( cin, choice );
         
         cout << endl;
         
@@ -448,10 +448,10 @@ void Run_ipod( Song playlist[], ifstream &input_songs, int seed )
             cout << "What song would you like to remove?" << endl;
             
             cout << "> ";
-            getline(cin, choice);
+            getline( cin, choice );
             
-            //Assign playlist to one with the removed song 
-            playlist = Remove_a_song(playlist, choice, size );
+            //Assign playlist to one with the removed song
+            playlist = Remove_a_song( playlist, choice, size );
             
             cout << endl;
         }
@@ -459,7 +459,7 @@ void Run_ipod( Song playlist[], ifstream &input_songs, int seed )
         else if( choice == "3" || choice == "CLEANUP MY IPOD" )
         {
             //Assign playlist pointer to NULL
-            playlist = Cleanup(playlist);
+            playlist = Cleanup( playlist );
             
             //After cleaning all items in array, adjusts size to zero
             size = 0;
@@ -478,7 +478,7 @@ void Run_ipod( Song playlist[], ifstream &input_songs, int seed )
         else if( choice == "5" || choice == "EXIT" )
         {
             //Assign playlist ponter to NULL
-            playlist = Cleanup(playlist);
+            playlist = Cleanup( playlist );
             
             cout << endl;
         }
@@ -571,7 +571,7 @@ Song * Songs_array_mod ( ifstream &input_songs, int &size )
     Song * new_array;
     string input;
     
-    size = Count_songs(input_songs);
+    size = Count_songs( input_songs );
     
     new_array = new Song[size];
     
@@ -579,7 +579,7 @@ Song * Songs_array_mod ( ifstream &input_songs, int &size )
 
     //reset file to the top of the stream, after reaching
     //end of file to determine song size
-    input_songs.clear();
+    input_songs.clear( );
     
     input_songs.seekg(0, ios::beg );
     
@@ -590,7 +590,7 @@ Song * Songs_array_mod ( ifstream &input_songs, int &size )
         
         new_array[i].artist = Read_lines( input_songs );
         
-        new_array[i].size = strtod( Read_lines( input_songs ).c_str(), &end );
+        new_array[i].size = strtod( Read_lines( input_songs ).c_str( ), &end );
     }
     
     return new_array;
