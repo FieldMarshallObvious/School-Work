@@ -177,8 +177,8 @@ int Count_songs ( ifstream &input_songs )
         {
             //If the memory of the new song plus the memory used
             //is less than the total memory available. Add the song.
-            if ( ( mem_used + strtod( cur_line.c_str( ), &end ) )
-                  <= MAX_MEMORY )
+            if ( ( mem_used + strtod( cur_line.c_str( ), &end ) ) <=
+                 MAX_MEMORY )
             {
                 cntr = 0;
                 num_songs++;
@@ -392,7 +392,7 @@ string Read_lines ( ifstream &input_songs )
 
 
     if ( ( strlen(temp.c_str( ) ) == 1 || strlen( temp.c_str( ) ) == 0 ) &&
-        ( ! Is_number( temp ) ) )
+         ( ! Is_number( temp ) ) )
         output = " ";
 
     return output;
@@ -410,7 +410,7 @@ void Run_ipod( Song playlist[], ifstream &input_songs, int seed )
     playlist = Songs_array_mod ( input_songs, size );
 
     while( choice != "5" &&
-           choice != "EXIT")
+           choice != "EXIT" )
     {
         cout << "   Welcome to My Ipod!" << endl
              << "Please choose your options:" << endl
@@ -543,7 +543,7 @@ Song * Shuffle( Song playlist[], int seed, int size )
     }
 
     //Assign random values to temporary array
-    for( int i = 0; i < size; i++)
+    for( int i = 0; i < size; i++ )
     {
         temp[i] = playlist[randarray[i]];
     }
@@ -582,7 +582,7 @@ Song * Songs_array_mod ( ifstream &input_songs, int &size )
     //end of file to determine song size
     input_songs.clear( );
 
-    input_songs.seekg(0, ios::beg );
+    input_songs.seekg( 0, ios::beg );
 
     //Reads all songs into the array
     for( int i = 0; i < size; i++ )
