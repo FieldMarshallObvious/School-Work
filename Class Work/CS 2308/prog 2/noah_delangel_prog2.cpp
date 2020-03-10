@@ -117,7 +117,7 @@ int main ( int argc, char * argv [ ] )
     file_name = argv[1];
     seed = atoi( argv[2] );
 
-    input_songs.open( file_name.c_str ( ));
+    input_songs.open( file_name.c_str ( ) );
 
     //Checks if question bank file succesfully opened
     if( ! input_songs )
@@ -182,7 +182,7 @@ int Count_songs ( ifstream &input_songs )
             {
                 cntr = 0;
                 num_songs++;
-                mem_used+= strtod( cur_line.c_str( ), &end);
+                mem_used+= strtod( cur_line.c_str( ), &end );
             }
         }
     }
