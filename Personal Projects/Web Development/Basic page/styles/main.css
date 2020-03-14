@@ -1,0 +1,28 @@
+body {
+	background:#FFFFFF;
+	font-family: arial;
+}
+
+h1, h2, li {
+	color: #000;
+}
+
+a {
+	color: blue;
+}
+
+p {
+	background: #666;
+	color: white;
+	padding: 10px 10px 10px 10px;
+}
+
+.angry {
+	background: red;
+	color: white;
+}
+
+#special {
+	background: #777;
+	color: white;
+}
