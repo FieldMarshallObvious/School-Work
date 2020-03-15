@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Love your CSV Files</title>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+	</head>
+	<body>
+
+		<canvas id="myChart" width="400" height="400"></canvas>
+		<script type="text/javascript">
+
+
+
+			create_Chart();
+
+			async function create_Chart()
+			{
+				const data = await getData();
+
+				const ctx = document.getElementById('myChart').getContext('2d');
+				const myChart = new Chart(ctx, {
+	    			type: 'line',
+	    			data: {
+	        			labels: data.xlabels,
+	        			datasets: [{
+	            			label: 'Global Average Temperature',
+	            			fill: false,
+	            			data: data.temperature_data,
+	            			backgroundColor: 'rgba(255, 99, 132, 0.2)',
+	            			borderColor:'rgba(255, 99, 132, 1)',
+	           			 	borderWidth: 1
+	        			}]
+	    			},
+				});
+			}
+
+
+			async function getData() 
+			{
+				const xlabels = [];
+				const temperature_data = [];
+
+				const response = await fetch('ZonAnn.Ts+dSST.csv');
+				const data = await response.text();
+
+				//splits data between line endings
+				const table = data.split(/\n/).slice(1);
+
+				//Iterates through the table
+				table.forEach( row => {
+
+					//Splits each item by ,
+					const col = row.split(',');
+
+					const year = col[0];
+
+					//Add parsed years to labels
+					xlabels.push(year);
+
+					const temp = col[1];
+
+					//Adds parsed years to the chart
+					temperature_data.push( parseFloat(temp) + 14);
+
+					console.log(year, temp);
+				});
+
+				return {xlabels, temperature_data};
+
+			}		
+		</script>
+	</body>
+</html>	
