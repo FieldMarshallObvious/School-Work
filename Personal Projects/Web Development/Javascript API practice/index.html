@@ -17,8 +17,8 @@
 	
 	<h1>Where is the ISS?</h1>
 
-	<p> latitude: <span id="lat"></span></p>
-	<p> longitude: <span id="long"></span></p>
+	<p> latitude: <span id="lat"></span>°</p>
+	<p> longitude: <span id="long"></span>°</p>
 
 	<div id="ISSMap" style="height: 500px; width: 500px;"></div>
 
@@ -41,10 +41,14 @@
 		const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 		const tiles = L.tileLayer( tileUrl, {attribution} );
 
+		let firstTime = true; 
+
 		//Add tiles to map
 		tiles.addTo( ISSMap );
 
 		getData();
+
+		setInterval(getData, 1000);
 
 		//Function gets data from the api
 		async function getData( ) {
@@ -59,9 +63,16 @@
 			//Set latitude and longtitude of marker
 			marker.setLatLng([latitude, longitude]);
 
+			//Change view of map to the ISS if it's the first time
+			if  ( firstTime )
+			{
+				firstTime = false;
+				ISSMap.setView( [latitude, longitude], 2);
+			}
+			
 			//Assign elements to the data from the API
-			document.getElementById( 'lat' ).textContent = latitude;
-			document.getElementById( 'long' ).textContent = longitude;
+			document.getElementById( 'lat' ).textContent = latitude.toFixed(2);
+			document.getElementById( 'long' ).textContent = longitude.toFixed(2);
 		}
 
 	</script>
