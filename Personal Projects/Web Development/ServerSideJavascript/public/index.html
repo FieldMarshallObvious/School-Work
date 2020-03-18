@@ -6,5 +6,30 @@
 	<title>Serverside JS</title>
 </head>
 <body>
-	
+	<script>
+		//Check if the current location is available
+		if ( 'geolocation' in navigator )
+		{
+			console.log( 'geolocation available' );
+
+			navigator.geolocation.getCurrentPosition(function(position) 
+			{
+				//Get lat and long as vars
+				const lat = position.coords.latitude;
+				const long = position.coords.longitude;
+
+				//Set them to the span elements
+				document.getElementById('latitude').textContent = lat;
+				document.getElementById('longitude').textContent = long;
+		    });
+		}
+
+		else
+		{
+			console.log( 'geolocation not available' );
+		}
+	</script>
+
+	<p>latitude: <span id="latitude"></span>&deg;</p>
+	<p>longitude: <span id="longitude"></span>&deg;</p>
 </body>
