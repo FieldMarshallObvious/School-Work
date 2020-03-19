@@ -4,9 +4,36 @@
 	<meta name="viewport" />
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 	<title>Serverside JS</title>
+
+	<!-- Leaflet JS required tags -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+   		  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   		  crossorigin=""/>
+   	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   			integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+   			crossorigin=""></script>
 </head>
 <body>
+	<p>latitude: <span id="latitude"></span>&deg;</p>
+	<p>longitude: <span id="longitude"></span>&deg;</p>
+
+	<div id="UserMap" style="height: 500px; width: 500px;"></div>
+
 	<script>
+		//Variable declarations
+		const UserMap = L.map( 'UserMap' ).setView( [0, 0], 1 );
+
+		const marker = L.marker( [0,0] ).addTo(UserMap);
+		
+		const attribution = '&copy; <a href="https://www.openstreetmap.org/copyright"OpenStreetMap</a> contributors';
+		const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+		const tiles = L.tileLayer( tileUrl, {attribution} );
+
+		let firstTime = true; 
+
+		//Add tiles to map
+		tiles.addTo( UserMap );
+
 		//Check if the current location is available
 		if ( 'geolocation' in navigator )
 		{
@@ -18,9 +45,8 @@
 				const lat = position.coords.latitude;
 				const long = position.coords.longitude;
 
-				//Set them to the span elements
-				document.getElementById('latitude').textContent = lat;
-				document.getElementById('longitude').textContent = long;
+				//Call function to map user location onto map
+				getData(lat, long);
 		    });
 		}
 
@@ -28,8 +54,29 @@
 		{
 			console.log( 'geolocation not available' );
 		}
+
+		async function getData(lat, long)
+		{
+			const latitude = lat;
+			const longitude = long;
+
+			//Set latitude and longtitude of marker
+			marker.setLatLng([latitude, longitude]);
+
+			//Change view of map to the user if it's the first time
+			if  ( firstTime )
+			{
+				firstTime = false;
+				UserMap.setView( [latitude, longitude], 20 );
+			}
+			
+
+			//Set them to the span elements
+			document.getElementById( 'latitude' ).textContent = lat;
+			document.getElementById( 'longitude' ).textContent = long;
+
+
+		}
 	</script>
 
-	<p>latitude: <span id="latitude"></span>&deg;</p>
-	<p>longitude: <span id="longitude"></span>&deg;</p>
 </body>
