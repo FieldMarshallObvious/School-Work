@@ -39,7 +39,7 @@
 		{
 			console.log( 'geolocation available' );
 
-			navigator.geolocation.getCurrentPosition(function(position) 
+			navigator.geolocation.getCurrentPosition( async position => 
 			{
 				//Get lat and long as vars
 				const lat = position.coords.latitude;
@@ -47,7 +47,28 @@
 
 				//Call function to map user location onto map
 				getData(lat, long);
-		    });
+
+				//Post data to the server
+				const data = { lat, long };
+
+				//Creates settings for how to post data to server
+				const options = {
+					method:  'POST',
+					headers: {
+      					'Content-Type': 'application/json'
+   					},
+					body: JSON.stringify(data)
+				};
+
+				//Post the data to the server
+				//Also recieve as data for incoming info from the server
+				const response = await fetch( '/api', options );
+
+				const json_data = await response.json();
+
+				console.log(json_data);
+
+			});
 		}
 
 		else
@@ -72,8 +93,8 @@
 			
 
 			//Set them to the span elements
-			document.getElementById( 'latitude' ).textContent = lat;
-			document.getElementById( 'longitude' ).textContent = long;
+			document.getElementById( 'latitude' ).textContent = lat.toFixed(2);
+			document.getElementById( 'longitude' ).textContent = long.toFixed(2);
 
 
 		}
