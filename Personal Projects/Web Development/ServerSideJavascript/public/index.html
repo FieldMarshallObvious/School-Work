@@ -18,6 +18,9 @@
 
 </head>
 <body>
+	<p style="color: red;" id="Image_not_in"><b>Please input an image</b></p>
+	<p style="color: red;" id="Webcam_failed_text"><b>Youre webcam has failed to load. Please input an image below</b></p>
+
 	<p>latitude: <span id="latitude"></span>&deg;</p>
 	<p>longitude: <span id="longitude"></span>&deg;</p>
 
@@ -25,9 +28,12 @@
 
 	<div id="UserMap" style="height: 500px; width: 500px;"></div>
 
+	<div id="imageInput"style="height: 500px; width: 500px;"> <input type="file" accept="image/*" id="FileInput"> </div>
 	<!-- Client side javascript logic -->
 	<script>
 		//Variable declarations
+		const imageInput = document.getElementById('FileInput');
+
 		const UserMap = L.map( 'UserMap' ).setView( [0, 0], 1 );
 
 		//Set market to invisble on first go
@@ -40,8 +46,20 @@
 
 		let firstTime = true; 
 
+
 		//Add tiles to map
 		tiles.addTo( UserMap );
+
+		//Set div element opacities to 0
+		document.getElementById("Webcam_failed_text").style.opacity = "0";
+
+		//Set div element opacities to 0
+		document.getElementById("imageInput").style.opacity = "0";
+
+		//Set div element opacities to 0
+		document.getElementById("Image_not_in").style.opacity = "0";  
+
+
 
 		//Function graphs and sets all data onto the webpage
 		async function displayData(lat, long)
@@ -74,8 +92,23 @@
 
 		//This function is called whenever the button is pressed.
 		//After the button is pressed it will update the geolocation
-		function getData()
+		async function getData()
 		{
+			const video = await setup();
+
+			//Convert image to base 64 if it has pixels
+			if ( video == null)
+			{
+				document.getElementById("Image_not_in").style.opacity = "1";  
+
+				return;
+			}
+
+			else
+			{
+				const image64 = video.canvas.toDataURL();
+			}
+
 			//Check if the current location is available
 			if ( 'geolocation' in navigator )
 			{
@@ -91,7 +124,7 @@
 					displayData(lat, long);
 
 					//Post data to the server
-					const data = { lat, long };
+					const data = { lat, long, image64 };
 
 					//Creates settings for how to post data to server
 					const options = {
@@ -122,17 +155,39 @@
 		//Required for p5Js setup
 		async function setup() 
 		{
+			//Create canvas
+			var canvas = createCanvas(windowWidth, windowHeight);
+
+			console.log("I am defined here!");
+
+			var video = createCapture(VIDEO);
+
 			//Removes defualt P5 canvas
 			noCanvas();
 
-			const video = createCapture(VIDEO);
+			//Set video size
+			video.size(320, 240);
 
+			//Load webcam pixels
 			video.loadPixels();
 			
+			//If webcam pixels are not greater than zero
+			//There is no webcame device
 			if ( ! ( video.pixels[1] > 0 ) )
 			{
-				console.log("It has failed!");
+				console.log("Webcam unavailable");
+
+				//Notify the user their webcam has failed
+				document.getElementById("Webcam_failed_text").style.opacity = "1";
+
+				//Allow the user to input an image
+				document.getElementById("imageInput").style.opacity = "1";
+
+				//set video to the input that the user gives
+				video = document.getElementById('FileInput').files[0];
 			}
+
+			return video;
 		}
 	</script>
 
