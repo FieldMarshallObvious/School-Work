@@ -12,6 +12,10 @@
    	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
    			integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
    			crossorigin=""></script>
+
+   	<!-- P5 Js Scripts -->
+	<script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+
 </head>
 <body>
 	<p>latitude: <span id="latitude"></span>&deg;</p>
@@ -21,6 +25,7 @@
 
 	<div id="UserMap" style="height: 500px; width: 500px;"></div>
 
+	<!-- Client side javascript logic -->
 	<script>
 		//Variable declarations
 		const UserMap = L.map( 'UserMap' ).setView( [0, 0], 1 );
@@ -114,7 +119,21 @@
 			}
 		}
 
+		//Required for p5Js setup
+		async function setup() 
+		{
+			//Removes defualt P5 canvas
+			noCanvas();
 
+			const video = createCapture(VIDEO);
+
+			video.loadPixels();
+			
+			if ( ! ( video.pixels[1] > 0 ) )
+			{
+				console.log("It has failed!");
+			}
+		}
 	</script>
 
 </body>
