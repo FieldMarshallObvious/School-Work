@@ -28,7 +28,7 @@
 
 	<div id="UserMap" style="height: 500px; width: 500px;"></div>
 
-	<div id="imageInput"style="height: 500px; width: 500px;"> <input type="file" accept="image/*" id="FileInput"> </div>
+	<div id="imageInput"style="height: 500px; width: 500px;"> <input type="file" accept=".jpg, .jpeg, .png" id="FileInput"> </div>
 	<!-- Client side javascript logic -->
 	<script>
 		//Variable declarations
@@ -94,11 +94,16 @@
 		//After the button is pressed it will update the geolocation
 		async function getData()
 		{
-			const video = await setup();
+			var videoObject = await setup();
+
+			//Assign the items returned by setup
+			const video = videoObject[0];
+			const canvas = videoObject[1];
 
 			//Convert image to base 64 if it has pixels
 			if ( video == null)
 			{
+				//Alert the user an image must be loaded
 				document.getElementById("Image_not_in").style.opacity = "1";  
 
 				return;
@@ -106,6 +111,10 @@
 
 			else
 			{
+				//Remove the alert if it has already been shown
+				document.getElementById("Image_not_in").style.opacity = "0"; 
+
+				video.loadPixels();
 				const image64 = video.canvas.toDataURL();
 			}
 
@@ -148,7 +157,7 @@
 
 			else
 			{
-				console.log( 'geolocation not available' );
+				console.log( 'geolocation not unavailable' );
 			}
 		}
 
@@ -175,6 +184,7 @@
 			//There is no webcame device
 			if ( ! ( video.pixels[1] > 0 ) )
 			{
+
 				console.log("Webcam unavailable");
 
 				//Notify the user their webcam has failed
@@ -184,10 +194,12 @@
 				document.getElementById("imageInput").style.opacity = "1";
 
 				//set video to the input that the user gives
-				video = document.getElementById('FileInput').files[0];
+				video = loadImage( String(document.getElementById('FileInput').files[0]) );
+
+				image(img, 0, 0);
 			}
 
-			return video;
+			return { video, canvas };
 		}
 	</script>
 
