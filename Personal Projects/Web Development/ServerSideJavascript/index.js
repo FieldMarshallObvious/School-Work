@@ -4,6 +4,12 @@ const express = require( 'express' );
 //import NEDB database
 const Datastore = require( 'nedb' );
 
+//Require file delete libraries
+const fs = require('fs');
+
+//Create path to delete 
+const path = './public/uploads/upload.php'
+
 const app = express( );
 
 //Tell the web application to listen for request at port 3000
@@ -33,6 +39,9 @@ app.post( '/api', ( request, response ) =>
 
 		database.insert( data );
 
+		//Clean the upload file
+		cleanUploadFile();
+
 		//Sends data back to the client
 		response.json({
 			//Inform the client data was recieved
@@ -45,4 +54,20 @@ app.post( '/api', ( request, response ) =>
 			//Send back timestamp
 			timestamp: timestamp
 		});
-	} );
+	});
+
+//Create function to upload files
+function cleanUploadFile() 
+{
+	try {
+		fs.unlinkSync(path)
+	} catch(err) {
+		console.error(err)
+	}
+}
+
+//Convert image data in base 64
+function convertImgto64()
+{
+
+}

@@ -28,10 +28,14 @@
 
 	<div id="UserMap" style="height: 500px; width: 500px;"></div>
 
-	<div id="imageInput"style="height: 500px; width: 500px;"> <input type="file" accept=".jpg, .jpeg, .png" id="FileInput"> </div>
+	<form id="ImageForm">
+		<input type="file" accept=".jpg, .jpeg, .png" id="FileInput">
+	</form>
+
 	<!-- Client side javascript logic -->
 	<script>
 		//Variable declarations
+		const imageForm = document.getElementById('ImageForm');
 		const imageInput = document.getElementById('FileInput');
 
 		const UserMap = L.map( 'UserMap' ).setView( [0, 0], 1 );
@@ -53,13 +57,37 @@
 		//Set div element opacities to 0
 		document.getElementById("Webcam_failed_text").style.opacity = "0";
 
-		//Set div element opacities to 0
-		document.getElementById("imageInput").style.opacity = "0";
+		//Set input element to opacity 0
+		document.getElementById("FileInput").style.opacity = "0";
 
 		//Set div element opacities to 0
 		document.getElementById("Image_not_in").style.opacity = "0";  
 
+		//Set form element to opacity 0
+		document.getElementById("ImageForm").style.opacity = "0";  
 
+		//Prevent the refresh of page when uploading files
+		//and uploads data to server
+		imageForm.addEventListener("change", e => {
+
+			console.log('uploading file');
+
+			e.preventDefault();
+
+			//Creates reqyured destination for file
+			const endpoint = "upload.php";
+			const formData = new FormData();
+
+			//Send file data to the server
+			formData.append("FileInput", imageInput.files[0]);
+
+			console.log(imageInput.files);
+
+			fetch(endpoint, {
+				method: "post",
+				body: formData
+			}).catch(console.error);
+		});
 
 		//Function graphs and sets all data onto the webpage
 		async function displayData(lat, long)
@@ -100,6 +128,8 @@
 			const video = videoObject[0];
 			const canvas = videoObject[1];
 
+			//
+
 			//Convert image to base 64 if it has pixels
 			if ( video == null)
 			{
@@ -115,7 +145,7 @@
 				document.getElementById("Image_not_in").style.opacity = "0"; 
 
 				video.loadPixels();
-				const image64 = video.canvas.toDataURL();
+				const image64 = canvas.toDataURL();
 			}
 
 			//Check if the current location is available
@@ -191,12 +221,10 @@
 				document.getElementById("Webcam_failed_text").style.opacity = "1";
 
 				//Allow the user to input an image
-				document.getElementById("imageInput").style.opacity = "1";
+				document.getElementById("ImageForm").style.opacity = "1"; 
+				document.getElementById("FileInput").style.opacity = "1";
 
-				//set video to the input that the user gives
-				video = loadImage( String(document.getElementById('FileInput').files[0]) );
-
-				image(img, 0, 0);
+				video = loadImage(String(imageInput));
 			}
 
 			return { video, canvas };
