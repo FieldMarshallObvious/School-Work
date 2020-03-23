@@ -66,6 +66,9 @@
 		//Set form element to opacity 0
 		document.getElementById("ImageForm").style.opacity = "0";  
 
+		//Check if there is a webcam device
+		setInterval(checkWebCam, 1000);
+
 		//Prevent the refresh of page when uploading files
 		//and uploads data to server
 		imageForm.addEventListener("change", e => {
@@ -122,13 +125,11 @@
 		//After the button is pressed it will update the geolocation
 		async function getData()
 		{
-			var videoObject = await setup();
+			var videoObject = await checkWebCam();
 
 			//Assign the items returned by setup
-			const video = videoObject[0];
-			const canvas = videoObject[1];
-
-			//
+			const video = videoObject.video;
+			const canvas = videoObject.canvas;
 
 			//Convert image to base 64 if it has pixels
 			if ( video == null)
@@ -145,7 +146,7 @@
 				document.getElementById("Image_not_in").style.opacity = "0"; 
 
 				video.loadPixels();
-				const image64 = canvas.toDataURL();
+				const image64 = video.toDataURL();
 			}
 
 			//Check if the current location is available
@@ -192,12 +193,10 @@
 		}
 
 		//Required for p5Js setup
-		async function setup() 
+		function setup() 
 		{
 			//Create canvas
 			var canvas = createCanvas(windowWidth, windowHeight);
-
-			console.log("I am defined here!");
 
 			var video = createCapture(VIDEO);
 
@@ -209,26 +208,46 @@
 
 			//Load webcam pixels
 			video.loadPixels();
-			
+
+			return { video, canvas };
+		}
+
+		function checkWebCam()
+		{
+			var videoObject = setup();
+
+			var video = videoObject.video;
+			var canvas = videoObject.canvas;
+
+			//Load webcam pixels
+			video.loadPixels();
+
 			//If webcam pixels are not greater than zero
 			//There is no webcame device
-			if ( ! ( video.pixels[1] > 0 ) )
+			if ( ! ( video.pixels.length > 0 ) )
 			{
-
-				console.log("Webcam unavailable");
-
 				//Notify the user their webcam has failed
 				document.getElementById("Webcam_failed_text").style.opacity = "1";
 
 				//Allow the user to input an image
 				document.getElementById("ImageForm").style.opacity = "1"; 
 				document.getElementById("FileInput").style.opacity = "1";
+			}
 
-				video = loadImage(String(imageInput));
+			//In case the text was revealed before
+			else
+			{
+
+				//Notify the user their webcam has failed
+				document.getElementById("Webcam_failed_text").style.opacity = "0";
+
+				//Allow the user to input an image
+				document.getElementById("ImageForm").style.opacity = "0"; 
 			}
 
 			return { video, canvas };
 		}
+
 	</script>
 
 </body>
