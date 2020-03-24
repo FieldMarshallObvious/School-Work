@@ -128,12 +128,8 @@
 		async function getData()
 		{
 			//Variable declarations
-			var videoObject = await checkWebCam();
-			var image64;
+			var video = await checkWebCam();
 
-			//Assign the items returned by setup
-			const video = videoObject.video;
-			const canvas = videoObject.canvas;
 
 			//Convert image to base 64 if it has pixels
 			if ( video == null)
@@ -150,7 +146,10 @@
 				document.getElementById("Image_not_in").style.opacity = "0"; 
 
 				video.loadPixels();
-				image64 = video.canvas.toDataURL();
+				let image = image.get(0, 0, 100, 100); 
+				const image64 = image.toDataURL();
+
+				console.log(image64);
 
 				//Check if the current location is available
 				if ( 'geolocation' in navigator )
@@ -199,12 +198,7 @@
 		//Required for p5Js setup
 		function setup() 
 		{	
-			clear();
-			
 			var createVideo = true;
-
-			//Create canvas
-			var canvas = createCanvas(windowWidth, windowHeight);
 
 			var video;
 			try{
@@ -215,38 +209,38 @@
 				createVideo = false;
 			}
 
-			//Removes defualt P5 canvas
-			noCanvas();
-
 			//Set video size
 			video.size(320, 240);
 
 			//Load webcam pixels
 			video.loadPixels();
 
-			if( createVideo == true )
+			let image = video.get(0, 0, 100, 100); 
+			const image64 = image.canvas.toDataURL();
+
+			console.log(image64);
+
+			if( createVideo == false )
 			{
 				video.pixels[0] = -1;
 			}
 
-			return { video, canvas };
+			return video;
 		}
 
 		function checkWebCam()
 		{
-			var videoObject = setup();
+			var video = setup();
 
-			var video = videoObject.video;
-			var canvas = videoObject.canvas;
 
 			//Load webcam pixels
 			video.loadPixels();
 
-			console.log(video.pixels);
+			console.log(video.pixels[0]);
 
 			//If webcam pixels are not greater than zero
 			//There is no webcame device
-			if ( ! ( video.pixels[0] > 0 ) )
+			if ( video.pixels[0] == -1  )
 			{
 				//Notify the user their webcam has failed
 				document.getElementById("Webcam_failed_text").style.opacity = "1";
@@ -267,7 +261,7 @@
 				document.getElementById("ImageForm").style.opacity = "0"; 
 			}
 
-			return { video, canvas };
+			return video;
 		}
 
 	</script>
