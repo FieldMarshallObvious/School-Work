@@ -28,7 +28,21 @@ const database = new Datastore('database.db');
 //load old database
 database.loadDatabase();
 
+//send data to the client if requested
+app.get( '/api', ( request, response ) => {
+	database.find({}, (err, data) => {
+		if (err)
+		{
+			response.end();
+			return;
+		}
+		response.json( data );
+	});
 
+	///response.json({test:123});
+});
+
+//Send data to the database
 app.post( '/api', ( request, response ) =>
 	{
 		const data = request.body;

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Serverside JS</title>
+
+	<!-- Leaflet JS required tags -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+   		  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   		  crossorigin=""/>
+   	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   			integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+   			crossorigin=""></script>
+</head>
+<body>
+	<p><a href = "index.html">home page</a> | list </p>
+
+	<script>
+		displayData();
+
+		async function displayData()
+		{
+			console.log('In function');
+			const response = await fetch('/api');
+
+			console.log('In function');
+
+			const data = await response.json();
+
+			console.log(data);
+			
+			console.log('In function');
+			for( item of data )
+			{	
+				console.log(item);
+				//Create location to store data
+				const root = document.createElement('div');
+				const geo = document.createElement('div');
+				const date = document.createElement('div');
+
+				//Add data to elements on page
+				geo.textContent = `${item.lat}°, ${item.long}°`;
+
+				//Convert date information into a proper date
+				const dateString = new Date(item.timestamp).toLocaleString();
+				date.textContent = dateString;
+
+				//Convert image from base 64 to actual image
+				image.src = image.image64;
+
+
+				root.append(geo, date, image);
+				document.body.append(root);
+
+			}
+			console.log(data);
+		}
+	</script>
+</body>
