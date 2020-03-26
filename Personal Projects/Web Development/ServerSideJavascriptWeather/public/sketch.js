@@ -51,8 +51,6 @@ async function displayData(lat, long)
 //After the button is pressed it will update the geolocation
 button.addEventListener('click', async event => 
 {
-	//Remove the alert if it has already been shown
-	document.getElementById("Image_not_in").style.opacity = "0"; 
 
 
 	//Check if the current location is available
