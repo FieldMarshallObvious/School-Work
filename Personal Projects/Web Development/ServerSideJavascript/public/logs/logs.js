@@ -30,6 +30,7 @@ async function displayData()
 
 		//Convert image from base 64 to actual image
 		image.src = item.image64;
+		image.alt = "Database images";
 
 
 		root.append(geo, date, image);
