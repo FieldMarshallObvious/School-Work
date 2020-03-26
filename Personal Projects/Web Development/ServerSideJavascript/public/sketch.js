@@ -1,6 +1,6 @@
 //Variable declarations
 const imageForm = document.getElementById('ImageForm');
-const imageInput = document.getElementById('FileInput')
+const imageInput = document.getElementById('FileInput');
 const button = document.getElementById('button');
 
 const UserMap = L.map( 'UserMap' ).setView( [0, 0], 1 );
