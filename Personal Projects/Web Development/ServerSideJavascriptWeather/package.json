@@ -1,0 +1,22 @@
+{
+  "name": "serversidejavascriptweather",
+  "version": "1.0.0",
+  "description": "determines weather and location when user presses a button",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "nedb": "^1.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "weather",
+    "api",
+    "javascript"
+  ],
+  "author": "Noah del Angel",
+  "license": "MIT"
+}
