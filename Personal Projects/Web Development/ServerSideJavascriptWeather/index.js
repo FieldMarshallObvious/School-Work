@@ -4,11 +4,8 @@ const express = require( 'express' );
 //import NEDB database
 const Datastore = require( 'nedb' );
 
-//Require file delete libraries
-const fs = require('fs');
-
-//Create path to delete 
-const path = './public/uploads/upload.php'
+//Pull node fetch function
+const fetch = require( 'node-fetch' );
 
 const app = express( );
 
@@ -39,7 +36,31 @@ app.get( '/api', ( request, response ) => {
 		response.json( data );
 	});
 
-	///response.json({test:123});
+});
+
+app.get( '/weather/:latlong', async ( request, response ) =>
+{
+	
+	console.log(request.params);
+
+	//Get data parameters from the client
+	const latlong = request.params.latlong.split(',');
+
+	const lat = latlong[0];
+
+	const long = latlong[1];
+
+	console.log(lat,long);
+
+	//Get api for weather current posistion
+	const api_url = "https://api.darksky.net/forecast/8f3f1bd51c4adb287b601101338e044f/${lat},${long}";
+
+	const weather_response = await fetch(api_url);
+
+	const json = await weather_response.json();
+
+	//Send dark sky response
+	response.json(json);
 });
 
 //Send data to the database
@@ -52,9 +73,6 @@ app.post( '/api', ( request, response ) =>
 		console.log( request.body );
 
 		database.insert( data );
-
-		//Clean the upload file
-		cleanUploadFile();
 
 		//Sends data back to the client
 		response.json({
@@ -69,19 +87,3 @@ app.post( '/api', ( request, response ) =>
 			timestamp: timestamp
 		});
 	});
-
-//Create function to upload files
-function cleanUploadFile() 
-{
-	try {
-		fs.unlinkSync(path)
-	} catch(err) {
-		console.error(err)
-	}
-}
-
-//Convert image data in base 64
-function convertImgto64()
-{
-
-}

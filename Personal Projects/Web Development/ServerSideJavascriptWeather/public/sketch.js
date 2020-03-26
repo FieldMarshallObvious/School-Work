@@ -61,14 +61,24 @@ button.addEventListener('click', async event =>
 		navigator.geolocation.getCurrentPosition( async position => 
 		{
 			//Set latitude and long to the new posistion
-			const lat = position.coords.latitude;
-			const long = position.coords.longitude;
+			const lat = await position.coords.latitude;
+			const long = await position.coords.longitude;
+
+			console.log(lat);
+			console.log(long);
+
+			//Get weather data for lat and long
+			const api_url = 'weather/${lat}, ${long}';
+			const weather_response = await fetch(api_url);
+			const json = await weather_response.json();
+
+			console.log(json);
 
 			//Call function to map user location onto map
 			displayData(lat, long);
 
 			//Post data to the server
-			const data = { lat, long, image64 };
+			const data = { lat, long };
 
 			//Creates settings for how to post data to server
 			const options = {
