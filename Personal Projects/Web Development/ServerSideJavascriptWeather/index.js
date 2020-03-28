@@ -40,7 +40,7 @@ app.get( '/api', ( request, response ) => {
 
 app.get( '/weather/:latlong', async ( request, response ) =>
 {
-	
+
 	console.log(request.params);
 
 	//Get data parameters from the client
@@ -52,15 +52,23 @@ app.get( '/weather/:latlong', async ( request, response ) =>
 
 	console.log(lat,long);
 
-	//Get api for weather current posistion
-	const api_url = "https://api.darksky.net/forecast/8f3f1bd51c4adb287b601101338e044f/${lat},${long}";
+	//Get weather for current posistion using dark sky API
+	const weahter_url = `https://api.darksky.net/forecast/8f3f1bd51c4adb287b601101338e044f/${lat},${long}`;
+	const weather_response = await fetch(weahter_url);
+	const weather_data = await weather_response.json();
 
-	const weather_response = await fetch(api_url);
+	//Get air quality for current posistion using air quality API
+	const aq_url = `https://api.openaq.org/v1/latest?coordinates=${lat},${long}`;
+	const aq_response = await fetch(aq_url);
+	const aq_data = await aq_response.json();
 
-	const json = await weather_response.json();
+	const output = {
+		weather: weather_data,
+		air_qauality: aq_data
+	};
 
 	//Send dark sky response
-	response.json(json);
+	response.json(output);
 });
 
 //Send data to the database

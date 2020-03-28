@@ -18,7 +18,7 @@ tiles.addTo( UserMap );
 
 
 //Function graphs and sets all data onto the webpage
-async function displayData(lat, long)
+async function displayData(lat, long, json)
 {
 	const latitude = lat;
 	const longitude = long;
@@ -39,11 +39,26 @@ async function displayData(lat, long)
 		//Updating view
 		UserMap.setView( [latitude, longitude], 20 );
 	}
+
+	//If it's not the first time, update view
+	//and marker location
+	else
+	{
+		//Update marker
+		marker.setLatLng( [latitude, longitude] );
+
+		//Updating view
+		UserMap.setView( [latitude, longitude], 20 );
+	}
 	
 
-	//Set them to the span elements
+	//Set lat long data to span elements in the page
 	document.getElementById( 'latitude' ).textContent = lat.toFixed(2);
 	document.getElementById( 'longitude' ).textContent = long.toFixed(2);
+
+	//Set weather data to span elements in the page
+	document.getElementById( 'summary' ).textContent = json.currently.summary;
+	document.getElementById( 'temperature' ).textContent = json.currently.temperature;
 }
 	
 
@@ -64,18 +79,16 @@ button.addEventListener('click', async event =>
 			const lat = await position.coords.latitude;
 			const long = await position.coords.longitude;
 
-			console.log(lat);
-			console.log(long);
-
 			//Get weather data for lat and long
-			const api_url = 'weather/${lat}, ${long}';
+			const api_url = `weather/${lat}, ${long}`;
 			const weather_response = await fetch(api_url);
 			const json = await weather_response.json();
 
 			console.log(json);
 
 			//Call function to map user location onto map
-			displayData(lat, long);
+			//As well as write weather information
+			displayData(lat, long, json.weather );
 
 			//Post data to the server
 			const data = { lat, long };

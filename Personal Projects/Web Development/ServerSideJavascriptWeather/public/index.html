@@ -3,7 +3,7 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" />
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-	<title>Serverside JS</title>
+	<title>The Weather Here</title>
 
 	<!-- Leaflet JS required tags -->
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -18,16 +18,24 @@
 
 </head>
 <body>
+	<h1>The Weather here</h1>
 	<p>home page | <a href = "/logs/all.html">list</a> </p>
 
 	<p>latitude: <span id="latitude"></span>&deg;</p>
 	<p>longitude: <span id="longitude"></span>&deg;</p>
+
+	<p>
+		The weather here is: <span id="summary"></span>
+		<br>
+		With a temperature of: <span id="temperature"></span>°F
+	</p>
+
 
 	<input id="button" type="submit" name="button" value="submit" />
 
 	<div id="UserMap" style="height: 500px; width: 500px;"></div>
 
 	<!-- Client side javascript logic -->
-	<script src="sketch.js"></script>
+	<script src="sketch.js" type="text/javascript"></script>
 
 </body>
