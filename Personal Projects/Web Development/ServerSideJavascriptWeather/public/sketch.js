@@ -148,14 +148,14 @@ function setDomMarginZero(dom)
 //to a margin of -4em
 function setDomMarginNegative(dom)
 {
-	document.getElementById( dom ).style.margin = "-3em";
+	document.getElementById( dom ).style.marginBottom = "-7em";
 }
 
 //This function sets a particular dom element to
 //to a margin 1em
 function setDomMarginNormal(dom)
 {
-	document.getElementById( dom ).style.margin = "1em";
+	document.getElementById( dom ).style.marginBottom = "1em";
 }
 
 //This function is called whenever the button is pressed.
