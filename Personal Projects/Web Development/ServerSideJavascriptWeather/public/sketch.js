@@ -145,7 +145,7 @@ function setDomMarginZero(dom)
 }
 
 //This function sets a particular dom element to
-//to a margin of -4em
+//to a margin of -7em
 function setDomMarginNegative(dom)
 {
 	document.getElementById( dom ).style.marginBottom = "-7em";
