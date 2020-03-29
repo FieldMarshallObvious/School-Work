@@ -64,7 +64,7 @@ app.get( '/weather/:latlong', async ( request, response ) =>
 
 	const output = {
 		weather: weather_data,
-		air_qauality: aq_data
+		air_quality: aq_data
 	};
 
 	//Send dark sky response

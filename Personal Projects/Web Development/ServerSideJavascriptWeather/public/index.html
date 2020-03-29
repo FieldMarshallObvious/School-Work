@@ -21,17 +21,23 @@
 	<h1>The Weather here</h1>
 	<p>home page | <a href = "/logs/all.html">list</a> </p>
 
-	<p>latitude: <span id="latitude"></span>&deg;</p>
-	<p>longitude: <span id="longitude"></span>&deg;</p>
+	<p id="latitude_info">latitude: <span id="latitude"></span>&deg;</p>
+	<p id="longitude_info">longitude: <span id="longitude"></span>&deg;</p>
 
-	<p>
+	<p id = "weather_info">
 		The weather here is: <span id="summary"></span>
 		<br>
 		With a temperature of: <span id="temperature"></span>°F
+		<br>
+		The concentration of particulate matter: <span id="aq_particulate_matter"></span>
+		<br>
+		The air quality is: <span id="aq_value"></span> <span id="aq_units"></span>
+		<br>
+		The air quality data was last recorded: <span id="aq_date"></span>
 	</p>
 
 
-	<input id="button" type="submit" name="button" value="submit" />
+	<input id="button" type="submit" name="button" value="submit" style="z-index: 5;" />
 
 	<div id="UserMap" style="height: 500px; width: 500px;"></div>
 
