@@ -4,7 +4,7 @@ const DOMIDs = ['latitude_info', 'longitude_info', 'weather_info'];
 
 const UserMap = L.map( 'UserMap' ).setView( [0, 0], 1 );
 
-//Set market to invisble on first go
+//Set marker to invisble on first go
 const marker = L.marker( [0,0] ).addTo( UserMap );
 marker.setOpacity(0);
 

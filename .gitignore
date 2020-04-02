@@ -2,3 +2,5 @@
 *.exe
 *.out
 *.o
+.env
+database.db

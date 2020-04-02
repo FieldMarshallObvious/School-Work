@@ -7,6 +7,11 @@ const Datastore = require( 'nedb' );
 //Pull node fetch function
 const fetch = require( 'node-fetch' );
 
+//Setup API key protection
+require('dotenv').config();
+
+console.log(process.env);
+
 const app = express( );
 
 //Tell the web application to listen for request at port 3000
@@ -52,8 +57,12 @@ app.get( '/weather/:latlong', async ( request, response ) =>
 
 	console.log(lat,long);
 
+	//Get API Key
+	const api_key =  process.env.API_KEY;
+
+
 	//Get weather for current posistion using dark sky API
-	const weahter_url = `https://api.darksky.net/forecast/8f3f1bd51c4adb287b601101338e044f/${lat},${long}/?units=si`;
+	const weahter_url = `https://api.darksky.net/forecast/${api_key}/${lat},${long}/?units=si`;
 	const weather_response = await fetch(weahter_url);
 	const weather_data = await weather_response.json();
 
