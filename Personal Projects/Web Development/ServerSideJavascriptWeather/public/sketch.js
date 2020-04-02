@@ -44,7 +44,7 @@ async function displayData(lat, long, weather, aq)
 		firstTime = false;
 
 		//Set market to visible
-		marker.setOpacity(1);
+		marker.setOpacity( 1 );
 
 
 		//Updating view
@@ -77,7 +77,7 @@ async function displayData(lat, long, weather, aq)
 		document.getElementById( 'aq_value' ).textContent = aq.value;
 		document.getElementById( 'aq_units' ).textContent = aq.unit;
 		document.getElementById( 'aq_date' ).textContent = Date( aq.lastUpdated ).toLocaleString();
-	} catch(error) {
+	} catch( error ) {
 		document.getElementById( 'aq_particulate_matter' ).textContent = not_def;
 		document.getElementById( 'aq_value' ).textContent = ot_def;
 		document.getElementById( 'aq_units' ).textContent = not_def;
@@ -87,44 +87,44 @@ async function displayData(lat, long, weather, aq)
 
 //This function sets all the DOM elements to a 
 //passed opacity
-function setAllDomOpacity(opacity)
+function setAllDomOpacity( opacity )
 {
 
 	//For each dom element in the array set it to visible
 	if( opacity == 1  )
 	{
-		DOMIDs.forEach( dom => setDomVisible(dom));
+		DOMIDs.forEach( dom => setDomVisible( dom ) );
 	}
 
 	//For each dom element in the array set it to invisible
 	else
 	{
-		DOMIDs.forEach( dom => setDomInvisible(dom));
+		DOMIDs.forEach( dom => setDomInvisible( dom ) );
 	}
 }
 
 //This function sets a particular dom element to an 
 //opacity of zero
-function setDomInvisible(dom)
+function setDomInvisible( dom )
 {
 	document.getElementById( dom ).className = "invisble";
 }
 
 //This function sets a particular dom element to  an
 //opacity of one
-function setDomVisible(dom)
+function setDomVisible( dom )
 {
 	document.getElementById( dom ).className = "visible";
 }
 
 //Set all the DOM margins based on user's choice
-function setAllMargin(choice)
+function setAllMargin( choice )
 {
 	//If the function calls none,
 	//remove all margins and set last margin to negative
 	if( choice == 'none'  )
 	{
-		DOMIDs.forEach( dom => setDomMarginZero(dom));
+		DOMIDs.forEach( dom => setDomMarginZero( dom ) );
 
 		//set the last DOM element to negative
 		setDomMarginNegative( DOMIDs[DOMIDs.length - 1] );
@@ -133,34 +133,34 @@ function setAllMargin(choice)
 	//Else set all margins to default
 	else
 	{
-		DOMIDs.forEach( dom => setDomMarginNormal(dom));
+		DOMIDs.forEach( dom => setDomMarginNormal( dom ) );
 	}
 }
 
 //This function sets a particular DOM element to
 //a margin of zero
-function setDomMarginZero(dom)
+function setDomMarginZero( dom )
 {
 	document.getElementById( dom ).style.margin = "0";
 }
 
 //This function sets a particular dom element to
 //to a margin of -7em
-function setDomMarginNegative(dom)
+function setDomMarginNegative( dom )
 {
 	document.getElementById( dom ).style.marginBottom = "-7em";
 }
 
 //This function sets a particular dom element to
 //to a margin 1em
-function setDomMarginNormal(dom)
+function setDomMarginNormal( dom )
 {
 	document.getElementById( dom ).style.marginBottom = "1em";
 }
 
 //This function is called whenever the button is pressed.
 //After the button is pressed it will update the geolocation
-button.addEventListener('click', async event => 
+button.addEventListener( 'click', async event => 
 {
 
 
@@ -203,7 +203,7 @@ button.addEventListener('click', async event =>
 				headers: {
   					'Content-Type': 'application/json'
 					},
-				body: JSON.stringify(data)
+				body: JSON.stringify( data )
 			};
 
 			//Post the data to the server
