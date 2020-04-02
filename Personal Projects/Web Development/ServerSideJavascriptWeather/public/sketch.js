@@ -1,12 +1,11 @@
-const button = document.getElementById('button');
+//Variable declarations
+const button = document.getElementById( 'button' );
 const DOMIDs = ['latitude_info', 'longitude_info', 'weather_info'];
-
-
 
 const UserMap = L.map( 'UserMap' ).setView( [0, 0], 1 );
 
 //Set market to invisble on first go
-const marker = L.marker( [0,0] ).addTo(UserMap);
+const marker = L.marker( [0,0] ).addTo( UserMap );
 marker.setOpacity(0);
 
 const attribution = '&copy; <a href="https://www.openstreetmap.org/copyright"OpenStreetMap</a> contributors';
@@ -32,7 +31,7 @@ async function displayData(lat, long, weather, aq)
 	const latitude = lat;
 	const longitude = long;
 
-	const not_def = 'No data available';
+	let not_def = 'No data available';
 
 	//Set latitude and longtitude of marker
 	marker.setLatLng( [latitude, longitude] );
@@ -68,18 +67,21 @@ async function displayData(lat, long, weather, aq)
 	document.getElementById( 'longitude' ).textContent = long.toFixed(2);
 
 	//Set weather data to span elements in the page
-	document.getElementById( 'summary' ).textContent = weather.currently.summary;
-	document.getElementById( 'temperature' ).textContent = weather.currently.temperature;
+	document.getElementById( 'summary' ).textContent = weather.summary;
+	document.getElementById( 'temperature' ).textContent = weather.temperature;
 
 	//Set air quality to span elements in the page
-	try{
+	if( aq.reading != 'N/A')
+	{
 		document.getElementById( 'aq_particulate_matter' ).textContent = aq.parameter;
 		document.getElementById( 'aq_value' ).textContent = aq.value;
 		document.getElementById( 'aq_units' ).textContent = aq.unit;
 		document.getElementById( 'aq_date' ).textContent = Date( aq.lastUpdated ).toLocaleString();
-	} catch( error ) {
+	}
+	else
+	{
 		document.getElementById( 'aq_particulate_matter' ).textContent = not_def;
-		document.getElementById( 'aq_value' ).textContent = ot_def;
+		document.getElementById( 'aq_value' ).textContent = not_def;
 		document.getElementById( 'aq_units' ).textContent = not_def;
 		document.getElementById( 'aq_date' ).textContent = not_def;
 	}
@@ -177,14 +179,28 @@ button.addEventListener( 'click', async event =>
 
 			//Get weather data for lat and long
 			const api_url = `weather/${lat}, ${long}`;
-			const weather_response = await fetch(api_url);
-			const json = await weather_response.json();
+			const weather_response = await fetch( api_url );
+			const json = await weather_response.json( );
 
-			console.log(json);
+
+			//Set weather and air quality to variables
+			const weather = json.weather.currently;
+			var air_quality;
+
+			//If air quality for that region does not exist
+			try {
+				air_quality = json.air_quality.results[0].measurements[0];
+			}catch(error)
+			{
+				console.log(error);
+				air_quality = {reading: 'N/A'};
+			}
+
+			console.log(air_quality);
 
 			//Call function to map user location onto map
 			//As well as write weather information
-			displayData(lat, long, json.weather, json.air_quality.results[0].measurements[0] );
+			displayData(lat, long, weather, air_quality );
 
 			//After text content of the DOM elements is set
 			//give them opacity
@@ -195,7 +211,7 @@ button.addEventListener( 'click', async event =>
 			setAllMargin( 'normal' );
 
 			//Post data to the server
-			const data = { lat, long };
+			const data = { lat, long, weather, air_quality };
 
 			//Creates settings for how to post data to server
 			const options = {
@@ -210,9 +226,9 @@ button.addEventListener( 'click', async event =>
 			//Also recieve as data for incoming info from the server
 			const response = await fetch( '/api', options );
 
-			const json_data = await response.json();
+			const json_data = await response.json( );
 
-			console.log(json_data);
+			console.log( json_data );
 
 		});
 	}

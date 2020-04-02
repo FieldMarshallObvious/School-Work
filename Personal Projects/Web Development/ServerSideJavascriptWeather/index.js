@@ -53,7 +53,7 @@ app.get( '/weather/:latlong', async ( request, response ) =>
 	console.log(lat,long);
 
 	//Get weather for current posistion using dark sky API
-	const weahter_url = `https://api.darksky.net/forecast/8f3f1bd51c4adb287b601101338e044f/${lat},${long}`;
+	const weahter_url = `https://api.darksky.net/forecast/8f3f1bd51c4adb287b601101338e044f/${lat},${long}/?units=si`;
 	const weather_response = await fetch(weahter_url);
 	const weather_data = await weather_response.json();
 
