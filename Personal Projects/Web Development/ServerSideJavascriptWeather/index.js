@@ -18,7 +18,7 @@ const app = express( );
 const port = process.env.PORT || 3000;
 
 //Tell the web application to listen for request at port 3000
-app.listen( port, ( ) => console.log( 'listening at 3000' ) );
+app.listen( port, ( ) => console.log( 'listening at ${port}' ) );
 
 //Use express to serve static items
 app.use( express.static( 'public' ) );
