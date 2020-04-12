@@ -27,6 +27,11 @@ IntList::IntList(const IntList &List)
     //(*head) = List;
 }
 
+IntList::~IntList()
+{
+    
+}
+
 void IntList::appendNode(int val)
 {
     //Variable delcarations
@@ -36,27 +41,39 @@ void IntList::appendNode(int val)
     //Create new node
     newNode = new IntList;
     
-    //(*newNode).head->value = val;
+    ( *newNode ).head->value = val;
     
     if ( !head )
     {
-        head = (*newNode).head;
+        head = ( *newNode ).head;
     }
     
     else
     {
         (*nodePtr).head = head;
         
-        while ( (*nodePtr).head->next )
+        while ( ( *nodePtr ).head->next )
         {
-
+            (*nodePtr).head = ( *nodePtr ).head->next;
         }
+        
+        (*nodePtr).head->next = ( *newNode ).head;
     }
 }
 
 void IntList::removeByVal(int val)
 {
+    //Variable declarations
+    ListNode *nodePtr;
+    ListNode *previousNode;
     
+    if ( !head )
+        return;
+    
+    if( (*head)->value == val )
+    {
+        
+    }
 }
 
 void IntList::displayList()
