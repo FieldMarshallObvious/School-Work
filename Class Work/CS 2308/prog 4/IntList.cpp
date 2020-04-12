@@ -64,15 +64,31 @@ void IntList::appendNode(int val)
 void IntList::removeByVal(int val)
 {
     //Variable declarations
-    ListNode *nodePtr;
-    ListNode *previousNode;
+    IntList *nodePtr;
+    IntList *previousNode;
     
     if ( !head )
         return;
     
-    if( (*head)->value == val )
+    if( head->value == val )
     {
+        (*nodePtr).head = head->next;
         
+        delete head;
+        
+        head = (*nodePtr).head;
+    }
+    
+    else
+    {
+        (*nodePtr).head = head;
+        
+        while ((*nodePtr).head != NULL && (*nodePtr).head.value != num)
+        {
+            (*previousNode).head = (*nodePtr).head;
+            
+            (*nodePtr).head = (*nodePtr).head.next;
+        }
     }
 }
 
