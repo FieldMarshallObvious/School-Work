@@ -1,0 +1,24 @@
+## A sample makefile
+CC = g++
+PROG = testItemList
+HDRS = ItemListClass.h ItemListTests.h
+SRCS = ItemListMethods.cpp ItemListTests.cpp
+## This incantation says that the object files
+## have the same name as the .cpp files, but with .o
+OBJS = $(SRCS:.cpp=.o)
+## This is the first rule (the default)
+## Build the program from the .o's
+$(PROG) : $(OBJS)
+$(CC) $(OBJS) -o $(PROG)
+## Rules for the source files -- these do not have
+## second build rule lines, so they will use the
+## default build rule to compile X.c to make X.o
+main.o : test.cpp
+ItemLists.o : IntList.cpp IntList.h
+## Remove all the intermediate files
+clean :
+rm -rf $(PROG) $(OBJS)
+## Run program
+testRun :
+./$(PROG)
+

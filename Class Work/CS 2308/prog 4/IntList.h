@@ -31,7 +31,6 @@ public:
    void insertByPos(int val, int pos);
    void removeByPos(int pos);
    int search(int val);
-   void setValue(int val);
 };
 
 #endif /* INTLIST_H_ */

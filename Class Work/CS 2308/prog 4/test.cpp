@@ -2,8 +2,11 @@
 // of the member functions implemented in the IntList class
 
 #include <iostream>
-#include "IntList.h"
+#include <cstdlib>
+
 using namespace std;
+
+#include "IntList.h"
 
 int main()
 {

@@ -16,45 +16,45 @@ using namespace std;
 
 IntList::IntList()
 {
-    //Create struct
-    ListNode node;
+
+    (*head).value = -1;
     
-    //Initialize value to a number
-    node.value = -1;
-    
-    //Initialize pointer to an empty value
-    node.next = NULL;
-    
-    //Assign head to struct
-    this->head = &node;
+    (*head).next = NULL;
 }
 
 IntList::IntList(const IntList &List)
 {
-    //Create struct
-    ListNode node;
-    
-    node.next = &List;
+    //(*head) = List;
 }
 
 void IntList::appendNode(int val)
 {
     //Variable delcarations
-    ListNode *newNode;
-    ListNode *nodePtr;
+    IntList *newNode;
+    IntList *nodePtr;
     
     //Create new node
-    newNode = new ListNode;
-
+    newNode = new IntList;
     
+    //(*newNode).head->value = val;
+    
+    if ( !head )
+    {
+        head = (*newNode).head;
+    }
+    
+    else
+    {
+        (*nodePtr).head = head;
+        
+        while ( (*nodePtr).head->next )
+        {
+
+        }
+    }
 }
 
 void IntList::removeByVal(int val)
-{
-    
-}
-
-void IntList::displayList()
 {
     
 }
@@ -78,4 +78,3 @@ int IntList::search(int val)
 {
     return 0;
 }
-
