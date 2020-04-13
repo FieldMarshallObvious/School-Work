@@ -12,9 +12,11 @@ int main()
 {
    // Create an instance of IntList
    IntList list;
-
+    
+    cout << "appending" << endl;
    // Build the list
    list.appendNode(2);  // Append 2 to the list
+    cout << "append 2" << endl;
    list.appendNode(4);  // Append 4 to the list
    list.appendNode(6);  // Append 6 to the list
    list.appendNode(8);  // Append 8 to the list

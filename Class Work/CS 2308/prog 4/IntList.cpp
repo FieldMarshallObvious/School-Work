@@ -24,24 +24,32 @@ IntList::IntList()
 
 IntList::IntList(const IntList &List)
 {
-    //(*head) = List;
+    head->next = List.head;
 }
 
 IntList::~IntList()
 {
-    
+    delete head;
+    head = NULL;
 }
 
 void IntList::appendNode(int val)
 {
+    cout << "In the function" << endl;
     //Variable delcarations
     IntList *newNode;
     IntList *nodePtr;
     
+    cout << "Things created" << endl;
+    
     //Create new node
-    newNode = new IntList;
+    newNode = new IntList();
+    
+    cout << "Node init'd" << endl;
     
     ( *newNode ).head->value = val;
+    
+    cout << "value assigned" << endl;
     
     if ( !head )
     {
@@ -50,18 +58,18 @@ void IntList::appendNode(int val)
     
     else
     {
-        (*nodePtr).head = head;
+        ( *nodePtr ).head = head;
         
         while ( ( *nodePtr ).head->next )
         {
-            (*nodePtr).head = ( *nodePtr ).head->next;
+            ( *nodePtr ).head = ( *nodePtr ).head->next;
         }
         
-        (*nodePtr).head->next = ( *newNode ).head;
+        ( *nodePtr ).head->next = ( *newNode ).head;
     }
 }
 
-void IntList::removeByVal(int val)
+void IntList::removeByVal( int val )
 {
     //Variable declarations
     IntList *nodePtr;
@@ -72,7 +80,7 @@ void IntList::removeByVal(int val)
     
     if( head->value == val )
     {
-        (*nodePtr).head = head->next;
+        ( *nodePtr ).head = head->next;
         
         delete head;
         
@@ -83,18 +91,34 @@ void IntList::removeByVal(int val)
     {
         (*nodePtr).head = head;
         
-        while ((*nodePtr).head != NULL && (*nodePtr).head.value != num)
+        while ( ( *nodePtr ).head != NULL && ( *nodePtr ).head->value != val )
         {
-            (*previousNode).head = (*nodePtr).head;
+            ( *previousNode ).head = ( *nodePtr ).head;
             
-            (*nodePtr).head = (*nodePtr).head.next;
+            (*nodePtr).head = (*nodePtr).head->next;
         }
     }
 }
 
 void IntList::displayList()
 {
+    //Variable declarations
+    IntList *nodePtr;
     
+    if( !head )
+        return;
+    else
+    {
+        ( *nodePtr ).head = head;
+        while ( ( *nodePtr ).head != NULL )
+        {
+            cout << ( *nodePtr ).head->value;
+            
+            if( ( *nodePtr ).head->next != NULL )
+                cout << " -> ";
+        }
+        cout << endl;
+    }
 }
 
 void IntList::insertByPos(int val, int pos)
