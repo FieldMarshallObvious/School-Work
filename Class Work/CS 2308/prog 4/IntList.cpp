@@ -27,13 +27,13 @@ IntList::IntList(const IntList &List)
     head->next = List.head;
 }
 
-IntList::~IntList()
+IntList::~IntList( )
 {
     delete head;
     head = NULL;
 }
 
-void IntList::appendNode(int val)
+void IntList::appendNode( int val )
 {
     cout << "In the function" << endl;
     //Variable delcarations
