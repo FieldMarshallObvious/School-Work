@@ -20,7 +20,7 @@ IntList::IntList( )
     ListNode *newNode = new ListNode;
     
     //Assign pointer to new struct
-    head = newNode;
+    head = newNode; 
     
     //Assign values of new struct
     head->value = -1;
