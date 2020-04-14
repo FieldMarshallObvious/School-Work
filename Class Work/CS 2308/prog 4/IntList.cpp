@@ -20,7 +20,7 @@ IntList::IntList( )
     ListNode *newNode = new ListNode;
     
     //Assign pointer to new struct
-    head = newNode; 
+    head = newNode;
     
     //Assign values of new struct
     head->value = -1;
@@ -39,8 +39,28 @@ IntList::IntList( const IntList &List )
 
 IntList::~IntList( )
 {
-    delete head;
-    head = NULL;
+    //Variable declarations
+    IntList *nodePtr = new IntList();
+    IntList *nextNode = new IntList();
+    
+    //Set the nodePtr to the begging of the list
+    ( *nodePtr ).head = head;
+    
+    //Step through the list until the current node
+    //is null
+    while( nodePtr != NULL )
+    {
+        //Save next node posistion
+        ( *nextNode ).head = ( *nodePtr ).head->next;
+        
+        //delete current node
+        delete nodePtr;
+        
+        nodePtr = new IntList();
+        
+        //Posistion nodePtr to the next node in the list.
+        ( *nodePtr ).head = ( *nextNode ).head;
+    }
 }
 
 void IntList::appendNode( int val )
@@ -49,12 +69,14 @@ void IntList::appendNode( int val )
     IntList *newNode;
     IntList *nodePtr;
     
-    //Create new node
+    //Create new nodes
     newNode = new IntList();
+    nodePtr = new IntList();
     
+    //Set the new node to the inputted value
     ( *newNode ).head->value = val;
     
-    if ( head == NULL )
+    if ( head == NULL || (head->value == -1 && head->next == NULL) )
     {
         head = ( *newNode ).head;
     }
@@ -75,30 +97,65 @@ void IntList::appendNode( int val )
 void IntList::removeByVal( int val )
 {
     //Variable declarations
-    IntList *nodePtr;
-    IntList *previousNode;
+    IntList *nodePtr = new IntList();
+    IntList *previousNode = new IntList();
     
+    //If there is no head initliazed return
     if ( !head )
         return;
     
+    //If the head is value the function was
+    //looking for delete
     if( head->value == val )
     {
+        //Acquire the next node
         ( *nodePtr ).head = head->next;
         
         delete head;
         
+        //Set the head to the next node
         head = ( *nodePtr ).head;
     }
     
     else
     {
-        (*nodePtr).head = head;
+        //Set the current node to the begging of the list
+        ( *nodePtr ).head = head;
         
+        //While the current node is not NULL, and it is
+        //not equal to the value iterate through the list
         while ( ( *nodePtr ).head != NULL && ( *nodePtr ).head->value != val )
         {
+            //Set the previous node to the current node
             ( *previousNode ).head = ( *nodePtr ).head;
             
+            //Set the current node to the next node
             ( *nodePtr ).head = ( *nodePtr ).head->next;
+        }
+        
+        //If the current node is not at the end of
+        //the list
+        if( ( * nodePtr ).head != NULL)
+        {
+            //Set the previous node next to the node after
+            //the current node
+            ( *previousNode ).head->next = ( *nodePtr ).head->next;
+
+            //Delete the current node
+            delete ( *nodePtr ).head;
+            
+            //Set the current node equal to null
+            nodePtr = NULL;
+        }
+        //If the current node is at the end of
+        //the list
+        else
+        {
+            //Delete the previous node
+            delete ( *previousNode ).head;
+            
+            //set the previous node to null
+            previousNode = NULL;
         }
     }
 }
@@ -106,20 +163,33 @@ void IntList::removeByVal( int val )
 void IntList::displayList()
 {
     //Variable declarations
-    IntList *nodePtr;
+    IntList *nodePtr = new IntList();
     
+    //If there is no head intiliazed return
     if( !head )
         return;
+    
     else
     {
+        //Set the nodePtr to the begging of the list
         ( *nodePtr ).head = head;
+        
+        //While the current node is not set to NULL
         while ( ( *nodePtr ).head != NULL )
         {
+            //Cout the current Node's value
             cout << ( *nodePtr ).head->value;
             
+            //If the this is not the last item in the
+            //list print a ->
             if( ( *nodePtr ).head->next != NULL )
                 cout << " -> ";
+            
+            //Set the current node to the next node
+            ( *nodePtr ).head = ( *nodePtr ).head->next;
         }
+        
+        //After the looped incremebt by a line
         cout << endl;
     }
 }
