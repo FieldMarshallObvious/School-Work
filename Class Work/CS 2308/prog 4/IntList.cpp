@@ -39,27 +39,10 @@ IntList::IntList( const IntList &List )
 
 IntList::~IntList( )
 {
-    //Variable declarations
-    IntList *nodePtr = new IntList();
-    IntList *nextNode = new IntList();
-    
-    //Set the nodePtr to the begging of the list
-    ( *nodePtr ).head = head;
-    
-    //Step through the list until the current node
-    //is null
-    while( nodePtr != NULL )
+    if( head != NULL )
     {
-        //Save next node posistion
-        ( *nextNode ).head = ( *nodePtr ).head->next;
-        
-        //delete current node
-        delete nodePtr;
-        
-        nodePtr = new IntList();
-        
-        //Posistion nodePtr to the next node in the list.
-        ( *nodePtr ).head = ( *nextNode ).head;
+        delete head;
+        head = NULL;
     }
 }
 
@@ -196,7 +179,53 @@ void IntList::displayList()
 
 void IntList::insertByPos( int val, int pos )
 {
+    //Variable delcarations
+    IntList *newNode;
+    IntList *nodePtr;
+    IntList *previousNode;
+    int cntr = 0;
     
+    //Create new nodes
+    newNode = new IntList();
+    nodePtr = new IntList();
+    previousNode = new IntList();
+    
+    //Set previous node to NULL
+    ( *previousNode ).head = NULL;
+    
+    //Store newNode with the inputted value
+    ( *newNode ).head->value = val;
+    
+    if ( !head )
+    {
+        head = ( *newNode ).head;
+        ( *newNode ).head->next = NULL;
+    }
+    else
+    {
+        ( *nodePtr ).head = head;
+        
+        ( *previousNode ).head = NULL;
+        
+        while ( ( *nodePtr ).head != NULL && cntr < (pos - 1) )
+        {
+            ( *previousNode ).head = ( *nodePtr ).head;
+            ( *nodePtr ).head = ( *nodePtr ).head->next;
+            cntr++;
+        }
+        
+        if ( ( *previousNode ).head == NULL )
+        {
+            head = ( *newNode ).head;
+            ( *newNode ).head->next = ( *nodePtr ).head;
+        }
+        
+        else
+        {
+            ( *previousNode ).head->next = ( *newNode ).head;
+            ( *newNode ).head->next = ( *nodePtr ).head;
+        }
+    }
 }
 
 void IntList::removeByPos( int pos )
