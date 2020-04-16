@@ -230,6 +230,76 @@ void IntList::insertByPos( int val, int pos )
 
 void IntList::removeByPos( int pos )
 {
+    //Variable declarations
+    IntList *nodePtr;
+    IntList *previousNode;
+    int cntr = 0;
+    
+    //Create new nodes
+    nodePtr = new IntList();
+    previousNode = new IntList();
+    
+    if ( !head )
+    {
+        ( *nodePtr ).head = head->next;
+        delete head;
+        head = ( *nodePtr ).head;
+    }
+    
+    else
+    {
+        ( *nodePtr ).head = head;
+        
+        while ( ( *nodePtr ).head != NULL && cntr <  ( pos - 1 ) )
+        {
+            //Set the previous node to the current node
+            ( *previousNode ).head = ( *nodePtr ).head;
+            
+            //Set the current node to the next node
+            ( *nodePtr ).head = ( *nodePtr ).head->next;
+            cntr++;
+        }
+        
+        if( (* nodePtr).head == head )
+        {
+            head = ( *nodePtr ).head->next;
+            delete ( *nodePtr ).head;
+            
+            nodePtr = NULL;
+            return;
+            
+        }
+        
+        //If the current node is not at the end of
+        //the list
+        if( ( * nodePtr ).head != NULL && cntr == ( pos - 1 ) )
+        {
+            //Set the previous node next to the node after
+            //the current node
+            ( *previousNode ).head = ( *nodePtr ).head->next;
+            
+            //Delete the current node
+            delete ( *nodePtr ).head;
+            
+            //Set the current node equal to null
+            nodePtr = NULL;
+        }
+        //If the current node is at the end of
+        //the list
+        else if ( ( * nodePtr ).head == NULL && cntr == ( pos - 1 ) )
+        {
+            //Delete the previous node
+            delete ( *previousNode ).head;
+            
+            //set the previous node to null
+            previousNode = NULL;
+        }
+        
+        else
+        {
+            return;
+        }
+    }
     
 }
 
