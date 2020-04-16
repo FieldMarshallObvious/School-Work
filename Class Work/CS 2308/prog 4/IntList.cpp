@@ -305,5 +305,38 @@ void IntList::removeByPos( int pos )
 
 int IntList::search( int val )
 {
-    return 0;
+    //Variable declarations
+    IntList *nodePtr = new IntList();
+    int cntr = 0;
+    bool found = false;
+    
+    //If there is no head intiliazed return
+    if( !head )
+        return -1;
+    
+    else
+    {
+        //Set the nodePtr to the begging of the list
+        ( *nodePtr ).head = head;
+        
+        //While the current node is not set to NULL
+        while ( ( *nodePtr ).head != NULL && ( *nodePtr ).head->value != val )
+        {
+            //Set the current node to the next node
+            ( *nodePtr ).head = ( *nodePtr ).head->next;
+            
+            cntr++;
+            if ( ( *nodePtr ).head != NULL && ( *nodePtr ).head->value == val )
+            {
+                found = true;
+            }
+        }
+        
+        if ( found != true )
+        {
+            cntr = -1;
+        }
+    }
+    
+    return cntr;
 }
