@@ -39,10 +39,36 @@ IntList::IntList( const IntList &List )
 
 IntList::~IntList( )
 {
-    if( head != NULL )
+    cout << "in destructer" << endl;
+    IntList *nodePtr = new IntList();
+    IntList *nextNode = new IntList();
+    
+    cout << (head != NULL) << endl;
+    
+    if ( head != NULL )
     {
-        delete head;
-        head = NULL;
+        ( *nodePtr ).head = head;
+        cout << "Assign head " << endl;
+        
+        while ( ( *nodePtr ).head != NULL )
+        {
+            cout << "in while loop" << endl;
+            cout << "the null status of the next node is " << (( *nodePtr ).head->next == NULL ) << endl;
+            ( *nextNode ).head = ( *nodePtr ).head->next;
+            
+            cout << "set next node " << endl;
+            
+            delete ( *nodePtr ).head;
+            
+            ( *nodePtr ).head = ( *nextNode ).head;
+        }
+        
+    }
+    
+    else
+    {
+        delete ( *nodePtr ).head;
+        delete ( *nextNode ).head;
     }
 }
 
