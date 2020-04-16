@@ -1,9 +1,20 @@
-//
-//  IntList.cpp
-//  
-//
-//  Created by Noah del Angel on 4/11/20.
-//
+
+/*=====================================================================
+ Program:
+ Author: Noah del Angel
+ Class: CS 2308
+ Instructor: Zilliang Zong
+ Date: 4/20/20
+ Description:
+ Input:
+ Output:
+ Compilation instructions:
+ Usage:
+ Modifications:
+ Date Comment: 4/16/20
+ ----------------------------------------------------
+ ======================================================================*/
+
 #include <cstdlib>
 #include <iostream>
 
@@ -14,6 +25,11 @@ using namespace std;
 //Global Variables
 
 
+/*=====================================================================
+ Function: Constructor
+ Description: Initiliazes values for each object
+ Parameters:
+ ======================================================================*/
 IntList::IntList( )
 {
     //Initialize new struct object
@@ -28,15 +44,57 @@ IntList::IntList( )
     head->next = NULL;
 }
 
+/*=====================================================================
+ Function: Copy Constructor
+ Description: Assigns values of the new object to the old one
+ Parameters: IntList & List
+ ======================================================================*/
 IntList::IntList( const IntList &List )
 {
+    //Varaible declarations
+    IntList *nodePtr = new IntList();
+    IntList *nodePtrOther = new IntList();
     ListNode *newNode = new ListNode;
     
-    newNode = List.head;
-    
+    //Assign pointer to new struct
     head = newNode;
+    
+    //Assign values of new struct
+    head->value = -1;
+    
+    head->next = NULL;
+    
+    //Assign nodePtr's to the begging
+    //of their respective lists
+    ( *nodePtr ).head = head;
+    ( *nodePtrOther ).head = List.head;
+    
+    while ( ( *nodePtrOther ).head != NULL )
+    {
+        //Assign current node to node
+        //from the other list
+        ( *nodePtr ).head->value = ( *nodePtrOther ).head->value;
+        
+        
+        //If this is the end of the list
+        if (( *nodePtrOther ).head->next != NULL )
+            //Create a new next node
+            ( *nodePtr ).head->next = ( new IntList )->head;
+        
+        //Move nodes to their next value
+        ( *nodePtr ).head = ( *nodePtr ).head->next;
+        
+        ( *nodePtrOther ).head = ( *nodePtrOther ).head->next;
+    }
+    
 }
 
+/*=====================================================================
+ Function: Destructor
+ Description: Deletes and sets all used pointers to NULL. To clean
+              memory of all used addresses.
+ Parameters:
+ ======================================================================*/
 IntList::~IntList( )
 {
     cout << "in destructer" << endl;
@@ -72,6 +130,12 @@ IntList::~IntList( )
     }
 }
 
+/*=====================================================================
+ Function: appendNode
+ Description: Adds a new node, with the given value, to the end of the
+              linked list.
+ Parameters: int val
+ ======================================================================*/
 void IntList::appendNode( int val )
 {
     //Variable delcarations
@@ -103,6 +167,12 @@ void IntList::appendNode( int val )
     }
 }
 
+/*=====================================================================
+ Function: removeByval
+ Description: Removes the item in the list that matches the passed
+              value.
+ Parameters: int val
+ ======================================================================*/
 void IntList::removeByVal( int val )
 {
     //Variable declarations
@@ -142,6 +212,22 @@ void IntList::removeByVal( int val )
             ( *nodePtr ).head = ( *nodePtr ).head->next;
         }
         
+        //If the current node is the head of
+        //the list
+        if( (* nodePtr).head == head )
+        {
+            //set the head equal to the next item
+            head = ( *nodePtr ).head->next;
+            
+            //delete the first item
+            delete ( *nodePtr ).head;
+            
+            //Set the old pointer to NULL
+            nodePtr = NULL;
+            
+            return;
+        }
+        
         //If the current node is not at the end of
         //the list
         if( ( * nodePtr ).head != NULL)
@@ -169,6 +255,12 @@ void IntList::removeByVal( int val )
     }
 }
 
+/*=====================================================================
+ Function: displayList
+ Description: Displays all nodes in the list. Between each non-NULL
+              node the function writes '->'.
+ Parameters:
+ ======================================================================*/
 void IntList::displayList()
 {
     //Variable declarations
@@ -203,6 +295,12 @@ void IntList::displayList()
     }
 }
 
+/*=====================================================================
+ Function: insertByPos
+ Description: Creates a new node, with the passed value, in the posistion
+              passed to the function.
+ Parameters: int val, int pos
+ ======================================================================*/
 void IntList::insertByPos( int val, int pos )
 {
     //Variable delcarations
@@ -254,6 +352,11 @@ void IntList::insertByPos( int val, int pos )
     }
 }
 
+/*=====================================================================
+ Function: removeByPos
+ Description: Removes a node from the passed posistion.
+ Parameters: int pos
+ ======================================================================*/
 void IntList::removeByPos( int pos )
 {
     //Variable declarations
@@ -329,6 +432,12 @@ void IntList::removeByPos( int pos )
     
 }
 
+/*=====================================================================
+ Function: search
+ Description: Finds the first node that contains the passed value. Then
+              the function returns the posistion of that value.
+ Parameters: int val
+ ======================================================================*/
 int IntList::search( int val )
 {
     //Variable declarations
