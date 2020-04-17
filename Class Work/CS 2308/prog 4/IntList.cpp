@@ -22,9 +22,6 @@
 
 using namespace std;
 
-//Global Variables
-
-
 /*=====================================================================
  Function: Constructor
  Description: Initiliazes values for each object
@@ -52,7 +49,7 @@ IntList::IntList( )
 IntList::IntList( const IntList &List )
 {
     //Varaible declarations
-    IntList *nodePtr = new IntList ();
+    IntList *nodePtr = new IntList ( );
     IntList *nodePtrOther = new IntList( );
     ListNode *newNode = new ListNode;
     
@@ -98,8 +95,8 @@ IntList::IntList( const IntList &List )
 IntList::~IntList( )
 {
     //Variable declarations
-    IntList *nodePtr = new IntList();
-    IntList *nextNode = new IntList();
+    IntList *nodePtr = new IntList( );
+    IntList *nextNode = new IntList( );
     
     //If the head does exist walk through it's list
     //and remove it
@@ -147,13 +144,13 @@ void IntList::appendNode( int val )
     IntList *nodePtr;
     
     //Create new nodes
-    newNode = new IntList();
-    nodePtr = new IntList();
+    newNode = new IntList( );
+    nodePtr = new IntList( );
     
     //Set the new node to the inputted value
     ( *newNode ).head->value = val;
     
-    if ( head == NULL || (head->value == -1 && head->next == NULL) )
+    if ( head == NULL || ( head->value == -1 && head->next == NULL ) )
     {
         head = ( *newNode ).head;
     }
@@ -180,8 +177,8 @@ void IntList::appendNode( int val )
 void IntList::removeByVal( int val )
 {
     //Variable declarations
-    IntList *nodePtr = new IntList();
-    IntList *previousNode = new IntList();
+    IntList *nodePtr = new IntList( );
+    IntList *previousNode = new IntList( );
     
     //If there is no head initliazed return
     if ( !head )
@@ -218,7 +215,7 @@ void IntList::removeByVal( int val )
         
         //If the current node is the head of
         //the list
-        if( (* nodePtr).head == head )
+        if( ( * nodePtr ).head == head )
         {
             //set the head equal to the next item
             head = ( *nodePtr ).head->next;
@@ -265,10 +262,10 @@ void IntList::removeByVal( int val )
               node the function writes '->'.
  Parameters:
  ======================================================================*/
-void IntList::displayList()
+void IntList::displayList( )
 {
     //Variable declarations
-    IntList *nodePtr = new IntList();
+    IntList *nodePtr = new IntList( );
     
     //If there is no head intiliazed return
     if( !head )
@@ -314,9 +311,9 @@ void IntList::insertByPos( int val, int pos )
     int cntr = 0;
     
     //Create new nodes
-    newNode = new IntList();
-    nodePtr = new IntList();
-    previousNode = new IntList();
+    newNode = new IntList( );
+    nodePtr = new IntList( );
+    previousNode = new IntList( );
     
     //Set previous node to NULL
     ( *previousNode ).head = NULL;
@@ -382,8 +379,8 @@ void IntList::removeByPos( int pos )
     int cntr = 0;
     
     //Create new nodes
-    nodePtr = new IntList();
-    previousNode = new IntList();
+    nodePtr = new IntList( );
+    previousNode = new IntList( );
     
     //If head is not intialized
     if ( !head )
@@ -464,7 +461,7 @@ void IntList::removeByPos( int pos )
 int IntList::search( int val )
 {
     //Variable declarations
-    IntList *nodePtr = new IntList();
+    IntList *nodePtr = new IntList( );
     int cntr = 0;
     bool found = false;
     
