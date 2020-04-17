@@ -97,25 +97,36 @@ IntList::IntList( const IntList &List )
  ======================================================================*/
 IntList::~IntList( )
 {
+    //Variable declarations
     IntList *nodePtr = new IntList();
     IntList *nextNode = new IntList();
-        
+    
+    //If the head does exist walk through it's list
+    //and remove it
     if ( head != NULL )
     {
+        //set the node to the begging
+        //of the list
         ( *nodePtr ).head = head;
         
+        //While the current node is not set to
+        //NULL
         while ( ( *nodePtr ).head != NULL )
         {
+            //Perserve the next node
             ( *nextNode ).head = ( *nodePtr ).head->next;
             
-            
+            //Delete the current node
             delete ( *nodePtr ).head;
             
+            //Set the current node to the perserved next
             ( *nodePtr ).head = ( *nextNode ).head;
         }
         
     }
     
+    //If head does not exist remove
+    //the newly created nodePtr's
     else
     {
         delete ( *nodePtr ).head;
@@ -313,17 +324,28 @@ void IntList::insertByPos( int val, int pos )
     //Store newNode with the inputted value
     ( *newNode ).head->value = val;
     
+    //If the head is not initialzed
     if ( !head )
     {
+        //Set the head equal to the
+        //new node
         head = ( *newNode ).head;
+        
+        //Set the head next to NULL
         ( *newNode ).head->next = NULL;
     }
+    
     else
     {
+        //Set the nodePtr to the the begging
+        //of the list
         ( *nodePtr ).head = head;
         
+        //set the previous node to NULL
         ( *previousNode ).head = NULL;
         
+        //While the current node is not NULL, and
+        //the counter is less than the passed posistion
         while ( ( *nodePtr ).head != NULL && cntr < (pos - 1) )
         {
             ( *previousNode ).head = ( *nodePtr ).head;
@@ -331,12 +353,14 @@ void IntList::insertByPos( int val, int pos )
             cntr++;
         }
         
+        //If the previousNode head is NULL
         if ( ( *previousNode ).head == NULL )
         {
             head = ( *newNode ).head;
             ( *newNode ).head->next = ( *nodePtr ).head;
         }
         
+        //If the previous node is not NULL
         else
         {
             ( *previousNode ).head->next = ( *newNode ).head;
@@ -361,6 +385,7 @@ void IntList::removeByPos( int pos )
     nodePtr = new IntList();
     previousNode = new IntList();
     
+    //If head is not intialized
     if ( !head )
     {
         ( *nodePtr ).head = head->next;
@@ -370,8 +395,12 @@ void IntList::removeByPos( int pos )
     
     else
     {
+        //Set the nodePtr to the begging of the list
         ( *nodePtr ).head = head;
         
+        //Iterate through the list while the head is
+        //not NULL, and the counter is less that
+        //passed posistion
         while ( ( *nodePtr ).head != NULL && cntr <  ( pos - 1 ) )
         {
             //Set the previous node to the current node
@@ -382,6 +411,7 @@ void IntList::removeByPos( int pos )
             cntr++;
         }
         
+        //If the current node is at the begging of the list
         if( (* nodePtr).head == head )
         {
             head = ( *nodePtr ).head->next;
