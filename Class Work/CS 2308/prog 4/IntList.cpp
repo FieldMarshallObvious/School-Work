@@ -1,15 +1,18 @@
 
 /*=====================================================================
- Program:
+ Program: IntList.cpp
  Author: Noah del Angel
  Class: CS 2308
  Instructor: Zilliang Zong
  Date: 4/20/20
- Description:
+ Description: A program that creates a linked list of integers
  Input:
- Output:
- Compilation instructions:
- Usage:
+ Output: (to the console)
+         2 -> 4 -> 6 -> 8 -> 10
+ Compilation instructions: These compilation instructions assume you are running this
+                           program on a linux machine. Enter the command `make` into
+                           the console. Then enter ./a.out. A list of these e
+ Usage: 
  Modifications:
  Date Comment: 4/16/20
  ----------------------------------------------------
