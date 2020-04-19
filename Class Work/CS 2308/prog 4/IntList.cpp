@@ -77,7 +77,7 @@ IntList::IntList( const IntList &List )
         
         
         //If this is the end of the list
-        if (( *nodePtrOther ).head->next != NULL )
+        if ( ( *nodePtrOther ).head->next != NULL )
             //Create a new next node
             ( *nodePtr ).head->next = ( new IntList )->head;
         
@@ -234,7 +234,7 @@ void IntList::removeByVal( int val )
         
         //If the current node is not at the end of
         //the list
-        if( ( * nodePtr ).head != NULL)
+        if( ( * nodePtr ).head != NULL )
         {
             //Set the previous node next to the node after
             //the current node
