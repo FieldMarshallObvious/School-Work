@@ -122,6 +122,7 @@
  | + appendToList(value : int) : bool
  |
  | + removeCurrentItem() : bool
+ | + removeValue( value : int ) : void
  | + clearList() : void
  |
  | + search(value : int) : bool
@@ -132,6 +133,8 @@
  |
  | + getListLength() const : int
  | + getMaxSize() const : int
+ |
+ | + readFile() : void
  |
  | + isEmpty() : bool
  |
@@ -178,6 +181,7 @@ class ItemList
 		bool appendToList(int value);  // nextAvailable if currentItem is NULL
 
 		bool removeCurrentItem();     // false if current is NULL
+        void removeValue(int value);
 		void clearList( ); // "removes" all list items (resets all pointers)
 
 		bool search(int value); // finds first listItem containing value
@@ -190,6 +194,8 @@ class ItemList
         /*Accessor methods */
 		int getListLength() const;    // number of currently assigned listItems
 		int getMaxSize() const { return maxSize; }
+    
+        void readFile();
 
 		bool isEmpty() const {return (topItem == NULL); }
 

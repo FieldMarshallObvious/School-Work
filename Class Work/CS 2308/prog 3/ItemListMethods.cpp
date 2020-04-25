@@ -296,6 +296,24 @@ bool ItemList::removeCurrentItem()
 	return itWorked;
 } // removeCurrentItem()
 
+/*
+    removeValue( value : int ) : void
+    find the first litem intem containg the passed value
+    removes the found value from the list
+    ensures that the link between nodes is not broken
+ 
+ 
+ changes:   listItem
+            nextAvailable
+            currentItem
+ 
+ returns:
+ */
+void ItemList::removeValue(int value)
+{
+    
+} // removeValue(value)
+
 
 /*
 	search(value : int) : bool
