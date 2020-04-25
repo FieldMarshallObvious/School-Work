@@ -199,10 +199,10 @@ class ItemList
 
 		bool isEmpty() const {return (topItem == NULL); }
 
-        	bool atTop()    const {return (currentItem == topItem); }
+        bool atTop()    const {return (currentItem == topItem); }
 		bool atBottom() const {return (currentItem == (nextAvailable - 1)); }
 
-        	int getCurrentValue() const {return *currentItem; }
+        int getCurrentValue() const {return *currentItem; }
 		
 		void displayAll() const;		// displays all listItems in order
 

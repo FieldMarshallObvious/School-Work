@@ -14,6 +14,7 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <fstream>
 
 #include "ItemListClass.h"
 
@@ -161,8 +162,9 @@ bool ItemList::insertBeforeCurrentItem(int value)
 	        *currentItem = value;
 	
 	        itWorked = true;
-    	}
-    	else if ( (nextAvailable - listItem) < maxSize ) // there is space available
+    	
+    }
+    else if ( (nextAvailable - listItem) < maxSize ) // there is space available
 	{
 	        // move all values starting with currentItem "down"
 	        for (item = nextAvailable; item > currentItem; --item)
@@ -177,7 +179,7 @@ bool ItemList::insertBeforeCurrentItem(int value)
 	else
 	{
         	itWorked = false;
-    	}
+    }
 	return itWorked;
 } // insertBeforeCurrentItem(value)
 
@@ -223,8 +225,8 @@ bool ItemList::appendToList(int value)
 	        *currentItem = value;
 	
 	        itWorked = true;
-    	}
-    	else if ( (nextAvailable - listItem) < maxSize ) // there is space available
+    }
+    else if ( (nextAvailable - listItem) < maxSize ) // there is space available
 	{
 	        currentItem = nextAvailable;
 	        ++nextAvailable;
@@ -291,7 +293,7 @@ bool ItemList::removeCurrentItem()
 	else
 	{
         	itWorked = false;
-    	}
+    }
 
 	return itWorked;
 } // removeCurrentItem()
@@ -491,6 +493,37 @@ int ItemList::getListLength() const
     }
 	return listLength;
 } // getListLength()
+
+/*
+ readFile() : void
+ Adds integers from numbers.txt, until the end
+ of the file has been reached or the maxsize of
+ the array has been reached.
+ 
+ calls:        showlistItem()
+ 
+ changes:    none
+ 
+ returns:    the value of the last node in the list
+ */
+void ItemList::readFile()
+{
+    //Variable declarations
+    ifstream inputFile;
+    int cntr = 0;
+    int input;
+    
+    //Open new file
+    inputFile.open("numbers.txt");
+    
+    //While not at the end of the file and
+    //the max size of the array has not been surpassed
+    while( ( !inputFile.eof() ) && ( cntr < ItemList::maxSize ) )
+    {
+        inputFile >> input;
+        appendToList( input );
+    }
+}
 
 
 /*
