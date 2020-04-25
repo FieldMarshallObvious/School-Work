@@ -11,7 +11,7 @@
          2 -> 4 -> 6 -> 8 -> 10
  Compilation instructions: These compilation instructions assume you are running this
                            program on a linux machine. Enter the command `make` into
-                           the console. Then enter ./a.out. A list of these e
+                           the console. Then enter ./a.out.
  Usage: 
  Modifications:
  Date Comment: 4/16/20
@@ -302,7 +302,8 @@ void IntList::displayList( )
 /*=====================================================================
  Function: insertByPos
  Description: Creates a new node, with the passed value, in the posistion
-              passed to the function.
+              passed to the function. If the posistion cannot be found
+              remove
  Parameters: int val, int pos
  ======================================================================*/
 void IntList::insertByPos( int val, int pos )
