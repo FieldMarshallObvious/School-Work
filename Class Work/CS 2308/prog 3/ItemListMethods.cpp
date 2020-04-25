@@ -40,10 +40,10 @@ using namespace std;
 		currentItem
 		maxSize
 */
-ItemList::ItemList(int arraySize = 10)
+ItemList::ItemList(int arraySize )
 {
-    	// dynamically allocate the list array
-    	listItem = new int[arraySize];
+    // dynamically allocate the list array
+    listItem = new int[arraySize];
 	maxSize = arraySize;
 	// be sure to note that listItem[0] is undefined at this point
 
@@ -303,14 +303,37 @@ bool ItemList::removeCurrentItem()
     ensures that the link between nodes is not broken
  
  
- changes:   listItem
-            nextAvailable
+ changes:   nextAvailable
             currentItem
  
- returns:
+ returns: true if item was removed
+          false if the item was not removed
  */
-void ItemList::removeValue(int value)
+bool ItemList::removeValue(int value)
 {
+    //Variable declarations
+    bool itWorked = false;
+    int* item = topItem;
+    int* nextItem = nextAvailable;
+    
+    //Look for the item that is wished to be removed
+    for( int i = 0; (i < maxSize ) && ( ( *item ) != value ); i++)
+    {
+        item++;
+        nextItem++;
+    }
+    //If the item is found remove it
+    if( ( *item ) == value )
+    {
+        delete( item );
+        
+        item = nextItem;
+        
+        //Set the boolean value to true
+        itWorked = true;
+    }
+        
+    return itWorked;
     
 } // removeValue(value)
 

@@ -1,5 +1,5 @@
 a.out: ItemListTests.o ItemListMethods.o
-	g++ test.o IntList.o	
+	g++ ItemListTests.o ItemListMethods.o	
 
 main.o: ItemListTests.o IntList.h
 	g++ -c ItemListTests.o
