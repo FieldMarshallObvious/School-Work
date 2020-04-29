@@ -42,12 +42,11 @@ int main ( )
     que.enqueue(4);
     que.enqueue(5);
     
+    que.dequeue(poppedval);
     for ( ; poppedval != -1; que.dequeue(poppedval) )
     {
         cntr ++;
-        cout << "The dequeued value is s" << poppedval << endl;
-        if( cntr >= 5 )
-            break;
+        cout << "The dequeued value is " << poppedval << endl;
     }
     return 0;
 }

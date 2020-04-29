@@ -80,19 +80,19 @@ void Dynque<T>::enqueue( T num )
         rear = newNode;
     }
     
+    numItems++;
+    
 }
 
 template<class T>
 void Dynque<T>::dequeue( T & num )
 {
-    cout << "dequeue is called "<< endl;
     //Variable delcarations
     QueueNode *temp;
     
     if( isEmpty() )
     {
-        cout << "The queue is empty. " << endl;
-        return;
+        num = -1;
     }
     
     else
@@ -106,7 +106,6 @@ void Dynque<T>::dequeue( T & num )
         delete temp;
         
         numItems--;
-        cout << num << endl;
     }
 }
 
