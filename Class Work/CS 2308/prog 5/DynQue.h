@@ -1,4 +1,3 @@
-
 /*=====================================================================
  Program: Prog 5
  Author: Noah del Angel
@@ -13,9 +12,13 @@
               que is empty
  Input:
  Output:
- Compilation instructions:
+ Compilation instructions: If the header file is not being compiled
+                           alongside a C++ file, then it can be
+                           compiled with the following code:
+                            g++ Dynque.h
+ 
  Usage:      The following is an example use case for an integer Dynque
-             Dynque<int> newQue;
+             Dynque<int> newque;
              int value;
              newQue.enqueue( 3 );
              newQue.dequeue( value );
@@ -35,46 +38,51 @@ template<class T>
 class Dynque
 {
     private:
-        struct QueueNode
+        struct QueueNode //Node
         {
             T value;
             QueueNode *next;
 
         };
     
-    QueueNode *front;
-    QueueNode *rear;
-    int numItems;
+    QueueNode *front; //pointer to front of the que
+    QueueNode *rear; //pointer to the last node of the que
+    int numItems;   //total number of items in the que
     
     public:
+    //Constructor
     Dynque();
+    
+    //Destructor
     ~Dynque();
+    
+    //Stack operations
     void enqueue(T);
     void dequeue(T &);
+    
+    //Determine if the stack is empty
     bool isEmpty();
     
 };
 
-/*=====================================================================
- Function: Dynque
- Description: Defualt constructor for the Dynque class
- Parameters:
- ======================================================================*/
+//**************************************************
+// Defualt constructor for the Dynque class        *
+//**************************************************
 template<class T>
 Dynque<T>::Dynque( )
 {
-
+    //initialize the node pointers with NULL
+    //values
     front = NULL;
     rear = NULL;
-
+    
+    //Start the list with zero items
     numItems = 0;
 }
 
-/*=====================================================================
- Function: ~Dynque
- Description: Destructor for the Dynque class
- Parameters:
- ======================================================================*/
+//**************************************************
+// Destructor for the Dynque class                 *
+//**************************************************
 template<class T>
 Dynque<T>::~Dynque()
 {
@@ -88,11 +96,9 @@ Dynque<T>::~Dynque()
     }
 }
 
-/*=====================================================================
- Function: enqueue
- Description: Adds an inputted item into the rear of the que
- Parameters: T num
- ======================================================================*/
+//**************************************************
+// Adds an passed value to the rear of the que.    *
+//**************************************************
 template<class T>
 void Dynque<T>::enqueue( T num )
 {
@@ -100,10 +106,12 @@ void Dynque<T>::enqueue( T num )
     //Variable declarations
     QueueNode *newNode = new QueueNode;
     
-    
+    //Give the new node values
     newNode->value = num;
     newNode->next = NULL;
     
+    //If the que is empty assign the
+    //front and rear node to the newNode.
     if ( isEmpty() )
     {
         front = newNode;
@@ -111,26 +119,29 @@ void Dynque<T>::enqueue( T num )
     }
     else
     {
+        //Set the rear next to the new node
         rear->next = newNode;
+        //Set the rear to the new Node
         rear = newNode;
     }
     
+    //Increase the number of items
     numItems++;
     
 }
 
-/*=====================================================================
- Function: dequeue
- Description: Removes an item from the front of the que, and returns
-              that item to the passed variable.
- Parameters: T & num
- ======================================================================*/
+//**************************************************
+// Removes an item from the front of the que, and  *
+// returns that item to the item passed by         *
+// refrence.                                       *
+//**************************************************
 template<class T>
 void Dynque<T>::dequeue( T & num )
 {
     //Variable delcarations
     QueueNode *temp;
     
+    //If the que is already empty inform the user
     if( isEmpty() )
     {
         cout << "The que is empty" << endl;
@@ -138,30 +149,38 @@ void Dynque<T>::dequeue( T & num )
     
     else
     {
-        
+        //Set the passed variable to value of the
+        //top node
         num = front->value;
+        
+        //Assign the temp node to the front
         temp = front;
         
-        front= front->next;
+        //Set the temp node to the next value
+        front = front->next;
         
+        //Delete the old top value
         delete temp;
         
+        //Decrease the number of items
         numItems--;
     }
 }
 
-/*=====================================================================
- Function: isEmpty
- Description: Determines whether the que has an items or not. If the que
-              has items the functions returns false. If the que does not
-              have items it returns true
- Parameters:
- ======================================================================*/
+//**************************************************
+// Determines whether the que has an items or not. *
+// If the que has items the functions returns      *
+// false. If the que does not have items it        *
+// returns true.                                   *
+//**************************************************
 template<class T>
 bool Dynque<T>::isEmpty( )
 {
+    //Variable declarations
     bool output = true;
     
+    //If the number of items is greater than zero
+    //the que is not empty.
     if ( numItems > 0 )
         output = false;
     

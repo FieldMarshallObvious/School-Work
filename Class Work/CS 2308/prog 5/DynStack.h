@@ -1,9 +1,33 @@
-//
-//  DynStack.hpp
-//  
-//
-//  Created by Noah del Angel on 4/26/20.
-//
+/*=====================================================================
+ Program: Prog 5
+ Author: Noah del Angel
+ Class: CS 2308
+ Instructor: Zilliang Zong
+ Date: 5/1/20
+ Description: This portion of the program implements the Dynamic Stack,
+              using pointers. This class has this ability to push an
+              item to the stack. The class also contains functionality
+              to pop the top item from the stack, and return it to the
+              passed value. The class can determine if the stack is
+              empty.
+ Input:
+ Output:
+ Compilation instructions: If the header file is not being compiled
+                           alongside a C++ file, then it can be
+                           compiled with the following code:
+                           g++ DynStack.h
+ 
+ Usage: The following is an example use case for an integer Dynque
+        DynStack<int> newStack;
+        int value;
+        newStack.push( 3 );
+        newStack.pop( value );
+        if( newStack.isEmpty( ) ) { cout << "It's empty" << endl ; }
+ Modifications:
+ Date Comment: 29/4/20
+ ----------------------------------------------------
+ ======================================================================*/
+
 #ifndef DYNSTACK_H
 #define DYNSTACK_H
 #include<iostream>

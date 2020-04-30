@@ -1,20 +1,41 @@
-//
-//  file_filter.cpp
-//  
-//
-//  Created by Noah del Angel on 4/29/20.
-//
-
+/*=====================================================================
+ Program: Prog 5
+ Author: Noah del Angel
+ Class: CS 2308
+ Instructor: Zilliang Zong
+ Date: 5/1/20
+ Description: This portion of the program uses the Dynque class to
+              take input from the input.txt file, and convert all
+              the chars to upper case. The program then outputs it
+             all to output_filter.txt
+ Input: input.txt
+ Output: output_filter.txt
+ Compilation instructions: This program requires the compilation of the
+                           header file Dynque.h to run. One method of
+                           compiling is listed below:
+                           g++ file_filter.cpp Dynque.h
+ Usage:
+ Modifications:
+ Date Comment: 29/4/20
+ ----------------------------------------------------
+ ======================================================================*/
 
 #include <cstdlib>
 #include <cctype>
 #include <cstring>
 #include <fstream>
-#include <string>
-#include "DynQue.h"
+#include "Dynque.h"
 
 using namespace std;
 
+/*=====================================================================
+ Function: main
+ Description: Creates a Dynque object, and enqueues chars from the input
+              file to the que. Then dequeus that information. After
+              converting those chars to upper case, they are written
+              to the output file. 
+ Parameters:
+ ======================================================================*/
 int main ( )
 {
     //Variable declarations
@@ -53,8 +74,6 @@ int main ( )
         //Get chars from file without skipping white space
         inputFile >> std::noskipws >> input;
         
-        cout << input << endl;
-        
         que.enqueue( input );
         
         //Reset the input string
@@ -69,10 +88,6 @@ int main ( )
     {
         //Get word from stack
         que.dequeue(output);
-        
-        cout << "the output is " << output << endl;
-        
-        cout << toupper(output) << endl;
         
         output = toupper(output);
         

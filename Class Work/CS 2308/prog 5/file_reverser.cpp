@@ -1,9 +1,24 @@
-//
-//  file_reverser.cpp
-//  
-//
-//  Created by Noah del Angel on 4/29/20.
-//
+/*=====================================================================
+ Program: Prog 5
+ Author: Noah del Angel
+ Class: CS 2308
+ Instructor: Zilliang Zong
+ Date: 5/1/20
+ Description: This portion of the program uses the Dynque class to
+              take input from the input.txt file, and reverses the
+              order of all the chars. The program then outputs it
+              all to output_reverse.txt
+ Input: input.txt
+ Output: output_reverse.txt
+ Compilation instructions: This program requires the compilation of the
+                           header file Dynque.h to run. One method of
+                           compiling is listed below:
+                           g++ file_reverser.cpp DynStack.h
+ Usage:
+ Modifications:
+ Date Comment: 29/4/20
+ ----------------------------------------------------
+ ======================================================================*/
 
 #include <iostream>
 #include <cstdlib>
@@ -12,6 +27,14 @@
 
 using namespace std;
 
+
+/*=====================================================================
+ Function: main
+ Description: Creates a DynStack object, and pushes chars from the input
+              file to the stack. Then pops that information, and writes
+              it to the output file.
+ Parameters:
+ ======================================================================*/
 int main ( )
 {
     //Variable declarations
@@ -49,7 +72,7 @@ int main ( )
     {
         //Get string from file
         inputFile >> std::noskipws >> input;
-                
+        
         stack.push( input );
         
         //Reset the input string
