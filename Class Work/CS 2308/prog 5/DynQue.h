@@ -1,9 +1,29 @@
-//
-//  DynQue.h
-//  
-//
-//  Created by Noah del Angel on 4/28/20.
-//
+
+/*=====================================================================
+ Program: Prog 5
+ Author: Noah del Angel
+ Class: CS 2308
+ Instructor: Zilliang Zong
+ Date: 5/1/20
+ Description: This portion of the program implements the Dynamic Que,
+              using pointers. This class has the ability to enqueue an
+              item to the que. It has the ability to dequeue the top
+              item from the program, and return it to the passed var.
+              The class also the funtionality to determine if the
+              que is empty
+ Input:
+ Output:
+ Compilation instructions:
+ Usage:      The following is an example use case for an integer Dynque
+             Dynque<int> newQue;
+             int value;
+             newQue.enqueue( 3 );
+             newQue.dequeue( value );
+             if( newQue.isEmpty( ) ) { cout << "It's empty" << endl ; }
+ Modifications:
+ Date Comment: 29/4/20
+ ----------------------------------------------------
+ ======================================================================*/
 
 #ifndef DynQue_h
 #define DynQue_h
@@ -35,6 +55,11 @@ class Dynque
     
 };
 
+/*=====================================================================
+ Function: Dynque
+ Description: Defualt constructor for the Dynque class
+ Parameters:
+ ======================================================================*/
 template<class T>
 Dynque<T>::Dynque( )
 {
@@ -45,6 +70,11 @@ Dynque<T>::Dynque( )
     numItems = 0;
 }
 
+/*=====================================================================
+ Function: ~Dynque
+ Description: Destructor for the Dynque class
+ Parameters:
+ ======================================================================*/
 template<class T>
 Dynque<T>::~Dynque()
 {
@@ -58,6 +88,11 @@ Dynque<T>::~Dynque()
     }
 }
 
+/*=====================================================================
+ Function: enqueue
+ Description: Adds an inputted item into the rear of the que
+ Parameters: T num
+ ======================================================================*/
 template<class T>
 void Dynque<T>::enqueue( T num )
 {
@@ -84,6 +119,12 @@ void Dynque<T>::enqueue( T num )
     
 }
 
+/*=====================================================================
+ Function: dequeue
+ Description: Removes an item from the front of the que, and returns
+              that item to the passed variable.
+ Parameters: T & num
+ ======================================================================*/
 template<class T>
 void Dynque<T>::dequeue( T & num )
 {
@@ -92,7 +133,7 @@ void Dynque<T>::dequeue( T & num )
     
     if( isEmpty() )
     {
-        num = -1;
+        cout << "The que is empty" << endl;
     }
     
     else
@@ -109,8 +150,15 @@ void Dynque<T>::dequeue( T & num )
     }
 }
 
+/*=====================================================================
+ Function: isEmpty
+ Description: Determines whether the que has an items or not. If the que
+              has items the functions returns false. If the que does not
+              have items it returns true
+ Parameters:
+ ======================================================================*/
 template<class T>
-bool Dynque<T>::isEmpty()
+bool Dynque<T>::isEmpty( )
 {
     bool output = true;
     
