@@ -1,32 +1,4 @@
-/*=====================================================================
- Program: Prog 5
- Author: Noah del Angel
- Class: CS 2308
- Instructor: Zilliang Zong
- Date: 5/1/20
- Description: This portion of the program implements the Dynamic Que,
-              using pointers. This class has the ability to enqueue an
-              item to the que. It has the ability to dequeue the top
-              item from the program, and return it to the passed var.
-              The class also the funtionality to determine if the
-              que is empty
- Input:
- Output:
- Compilation instructions: If the header file is not being compiled
-                           alongside a C++ file, then it can be
-                           compiled with the following code:
-                            g++ Dynque.h
- 
- Usage:      The following is an example use case for an integer Dynque
-             Dynque<int> newque;
-             int value;
-             newQue.enqueue( 3 );
-             newQue.dequeue( value );
-             if( newQue.isEmpty( ) ) { cout << "It's empty" << endl ; }
- Modifications:
- Date Comment: 29/4/20
- ----------------------------------------------------
- ======================================================================*/
+// A template class for holding a que
 
 #ifndef DynQue_h
 #define DynQue_h
