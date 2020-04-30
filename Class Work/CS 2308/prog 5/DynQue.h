@@ -28,11 +28,11 @@ class Dynque
     //Destructor
     ~Dynque();
     
-    //Stack operations
+    //Que operations
     void enqueue(T);
     void dequeue(T &);
     
-    //Determine if the stack is empty
+    //Determine if the que is empty
     bool isEmpty();
     
 };

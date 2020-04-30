@@ -10,22 +10,33 @@ template <class T>
 class DynStack
 {
     private:
-        struct StackNode
+        struct StackNode //Node
         {
             T value;
             StackNode *next;
             
         };
-        StackNode *top;
+        StackNode *top; //pointer to the top of the
+                        //stack
     
     public:
+        //Constructor
         DynStack();
+    
+        //Destructor
         ~DynStack();
+    
+        //Stack operations
         void push(T);
         void pop(T &);
+    
+    //Determine if the sack is empty
         bool isEmpty();
 };
 
+//**************************************************
+// Defualt constructor for the DynStack class      *
+//**************************************************
 template <class T>
 DynStack<T>::DynStack( )
 {
@@ -37,6 +48,9 @@ DynStack<T>::DynStack( )
     top->next = NULL;
 }
 
+//**************************************************
+// Defualt destructor for the DynStack class       *
+//**************************************************
 template <class T>
 DynStack<T>::~DynStack( )
 {
@@ -63,6 +77,9 @@ DynStack<T>::~DynStack( )
     nextNode = NULL;
 }
 
+//**************************************************
+// Adds the passed value to the top of the stack   *
+//**************************************************
 template <class T>
 void DynStack<T>::push ( T input )
 {
@@ -87,6 +104,10 @@ void DynStack<T>::push ( T input )
     }
 }
 
+//**************************************************
+// Removes item from the top of the stack, and     *
+// returns it to the value passed by reference.    *
+//**************************************************
 template <class T>
 void DynStack<T>::pop ( T &num )
 {
@@ -118,6 +139,12 @@ void DynStack<T>::pop ( T &num )
     }
 }
 
+//**************************************************
+// Determines whether the stack has an items or    *
+// not. If the stack has items the functions       *
+// returns false. If the que does not have items   *
+// it returns true.                                *
+//**************************************************
 template <class T>
 bool DynStack<T>::isEmpty( )
 {
@@ -126,8 +153,7 @@ bool DynStack<T>::isEmpty( )
     
     //If the top exist and does not match the
     //initialization condition
-    if ( ! top && ( top->value != -500 && top->next !=
-                   NULL ) )
+    if ( ! top )
         empty = true;
     
     return empty;
