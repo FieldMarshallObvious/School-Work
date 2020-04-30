@@ -8,6 +8,6 @@ all: test.out
 test.out: main.o
 	$(CXX) -o $@ $+
 
-main.o: test.cpp 
+main.o: file_filter.cpp 
 	$(CXX) -c -o $@ $<
 

@@ -49,7 +49,7 @@ template<class T>
 Dynque<T>::~Dynque()
 {
     //Variable declarations
-    int value;
+    T value;
     
     //While their are items in the que
     while( !( isEmpty( ) ) )

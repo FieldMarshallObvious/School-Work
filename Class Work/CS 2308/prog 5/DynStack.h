@@ -79,8 +79,7 @@ void DynStack<T>::push ( T input )
     
     //If the top exists and does not match the
     //initialization condition
-    if ( ! top && ( top->value != -1 && top->next !=
-                   NULL ) )
+    if ( ! top )
     {
         top = newNode;
     }
@@ -101,8 +100,7 @@ void DynStack<T>::pop ( T &num )
     
     //If the top exist and does not match the
     //initialization condition
-    if ( ! top && ( top->value != -500 && top->next !=
-                   NULL ) )
+    if ( ! top  )
     {
         cout << "There are no items to pop" << endl;
         num = -1;
