@@ -113,6 +113,8 @@
  |----------------------------
  | - showlistItem(item : int*) const : void
  |
+ | - binarySearch( value : int ) : void
+ |
  | + ItemList(arraySize : int)
  | + ~ItemList()
  |
@@ -120,6 +122,9 @@
  |
  | + insertBeforeCurrentItem(value : int) : bool
  | + appendToList(value : int) : bool
+ |
+ | + selectionSort() : void
+ | + binarySearch( value : int ) : int
  |
  | + removeCurrentItem() : bool
  | + removeValue( value : int ) : bool
@@ -134,7 +139,7 @@
  | + getListLength() const : int
  | + getMaxSize() const : int
  |
- | + readFile() : void
+ | + readFile( input_file : string ) : void
  |
  | + isEmpty() : bool
  |
@@ -151,6 +156,7 @@
 */
 #include <cstdlib>
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -166,6 +172,8 @@ class ItemList
 		int* nextAvailable;   // index of listItem after the last assigned item
 		int* currentItem;     // everything is done in relation to this item
 		int maxSize;          // set to size of listItem array in Constructor
+    
+        void bubbleSort(); // Orders the array from lowest to largests
 		
 	public:
 		
@@ -179,6 +187,9 @@ class ItemList
 
 		bool insertBeforeCurrentItem(int value);  // topItem if currentItem is NULL
 		bool appendToList(int value);  // nextAvailable if currentItem is NULL
+    
+        void selectionSort();
+        int binarySearch();
 
 		bool removeCurrentItem();     // false if current is NULL
         bool removeValue(int value);
@@ -186,23 +197,23 @@ class ItemList
 
 		bool search(int value); // finds first listItem containing value
 
-		bool moveToNextItem();
-		bool moveToPreviousItem();
-		bool moveToTopItem();
-		bool moveToBottomItem();
+		bool moveToNextItem(); // moves current item to the next item
+		bool moveToPreviousItem(); // moves current item to the previous item
+		bool moveToTopItem(); // moves current item to top item
+		bool moveToBottomItem(); // moves current item to tail item
 
         /*Accessor methods */
 		int getListLength() const;    // number of currently assigned listItems
-		int getMaxSize() const { return maxSize; }
+		int getMaxSize() const { return maxSize; } //Gets max size of the array
     
-        void readFile();
+        void readFile( char* input_file ); //reads numbers from a file
 
-		bool isEmpty() const {return (topItem == NULL); }
+		bool isEmpty() const {return (topItem == NULL); } //determines if the array is empty
 
-        bool atTop()    const {return (currentItem == topItem); }
-		bool atBottom() const {return (currentItem == (nextAvailable - 1)); }
+        bool atTop()    const {return (currentItem == topItem); } //returns if at top
+		bool atBottom() const {return (currentItem == (nextAvailable - 1)); } //returns if at bottom
 
-        int getCurrentValue() const {return *currentItem; }
+        int getCurrentValue() const {return *currentItem; } // returns the value of the current item
 		
 		void displayAll() const;		// displays all listItems in order
 

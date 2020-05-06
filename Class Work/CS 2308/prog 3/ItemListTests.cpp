@@ -22,13 +22,14 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    	int myListSize;
+    int myListSize;
     
-    	system("clear");    // clear the screen. This works in Linux.
+    system("clear");    // clear the screen. This works in Linux.
     
-    	cout << "Please enter a maximum list size, ";
-    	cout << "(and don't make me process any devious values): ";
-    	cin >> myListSize;
+    
+    cout << "Please enter a maximum list size, ";
+    cout << "(and don't make me process any devious values): ";
+    cin >> myListSize;
     
 	ItemList list(myListSize);
 
@@ -36,6 +37,7 @@ int main(int argc, char *argv[])
 	cout << endl;
 
 #ifdef TEST_APPEND
+    cout << "THE TEST APPEND FUNCTION IS CALLED" << endl;
 	testAppend(list);
 	list.displayAll();
 	testRemove(list);
@@ -46,6 +48,7 @@ int main(int argc, char *argv[])
 	list.displayAll();
 #endif
 #ifdef TEST_INSERT
+    cout << "THE TEST INSERT FUNCTION IS CALLED" << endl;
 	testInsert(list);
 	list.displayAll();
 	testRemove(list);
@@ -56,6 +59,7 @@ int main(int argc, char *argv[])
 	list.displayAll();
 #endif
 #ifdef TEST_READ_FILE
+    cout << "THE READ FILE FUNCTION IS CALLED" << endl;
 	testReadFile(list);
 	list.displayAll();
 	testRemove(list);
@@ -66,6 +70,7 @@ int main(int argc, char *argv[])
 	list.displayAll();
 #endif
 #ifdef TEST_INSERT_VAL
+    cout << "THE INSERT VAL FUNCTION IS CALLED" << endl;
 	testInsertVal(list);
 	list.displayAll();
 	testRemove(list);
@@ -76,6 +81,7 @@ int main(int argc, char *argv[])
 	list.displayAll();
 #endif
 #ifdef TEST_REMOVE_VAL
+    cout << "THE REMOVE VAL FUNCTION IS CALLED" << endl;
 	testInsertVal(list);
 	list.displayAll();
 	testRemoveVal(list);
@@ -166,6 +172,16 @@ void testInsert(ItemList &list)
 */
 void testReadFile(ItemList &list)
 {
+    cout << "Testing readReadFile(v): " << endl;
+    
+    char inputFile[] = "numbers.txt";
+    
+    cout << "Array size before reading information: " << list.getListLength() << endl;
+    
+    list.readFile( inputFile );
+    
+    cout << "Array size after reading information: " << list.getListLength() << endl;
+    
 } // testReadFile()
 
 /*
@@ -278,10 +294,9 @@ void testRemoveVal(ItemList &list)
 	{
 		searchValue = maxListSize - i;
 		success = false;
-		if ( list.search(searchValue) )
-		{
-            		success = list.removeCurrentItem();
-        	}
+        
+        success = list.removeValue( searchValue );
+        
 		if (success)
 		{
 			cout << "Remove " << searchValue;

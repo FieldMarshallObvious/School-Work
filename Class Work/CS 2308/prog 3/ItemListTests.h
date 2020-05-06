@@ -7,9 +7,9 @@
 // #define DEBUG
 #define TEST_APPEND
 #define TEST_INSERT
-//#define TEST_READ_FILE
+#define TEST_READ_FILE
 #define TEST_INSERT_VAL
-//#define TEST_REMOVE_VAL
+#define TEST_REMOVE_VAL
 
 const int MAX_LIST_SIZE = 17;
 

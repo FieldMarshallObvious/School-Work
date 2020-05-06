@@ -1,8 +1,8 @@
-a.out: ItemListTests.o ItemListMethods.o
-	g++ ItemListTests.o ItemListMethods.o	
+a.out: ItemListMethods.o ItemListTests.o 
+	g++ ItemListMethods.o ItemListTests.o
 
-main.o: ItemListTests.o IntList.h
-	g++ -c ItemListTests.o
-
-ItemListMethdos.o: ItemListMethods.cpp ItemListTest.h
+main.o: ItemListMethods.cpp ItemListClass.h
 	g++ -c ItemListMethods.cpp
+
+ItemListTests.o: ItemListTests.cpp ItemListTests.h
+	g++ -c ItemListTests.cpp ItemListTests.h

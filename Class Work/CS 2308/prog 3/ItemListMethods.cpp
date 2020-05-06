@@ -241,6 +241,52 @@ bool ItemList::appendToList(int value)
 	return itWorked;
 } // appendToList(int value)
 
+/*
+    selectionSort() : void
+ 
+ 
+    Steps are:
+    1.
+ 
+    parameters:  none
+ 
+    calls:        none
+ 
+    changes:    listItem
+ 
+    returns:
+ */
+void ItemList::selectionSort()
+{
+    int minValue;
+    
+    int* currentItem;
+    int* checkerItem;
+    
+    currentItem = topItem;
+    
+    for( int indexouter = 0; indexouter < ( maxSize - 1); indexouter++ )
+    {
+        minValue = ( *currentItem );
+        
+        checkerItem = topItem;
+        for( int indexinner = 0; indexinner < maxSize; indexinner++ )
+        {
+            
+            if ( ( *checkerItem )< minValue)
+            {
+                minValue = ( * checkerItem );
+            }
+            
+            checkerItem++;
+        }
+        
+        ( *checkerItem ) = minValue;
+        ( *currentItem ) = minValue;
+        
+        currentItem++;
+    }
+}
 
 /*
 	removeCurrentItem() : bool
@@ -264,10 +310,10 @@ bool ItemList::appendToList(int value)
 */
 bool ItemList::removeCurrentItem()
 {
-    	bool itWorked = false;	// safest default is remove failed
-    	int* item = currentItem;
+    bool itWorked = false;	// safest default is remove failed
+    int* item = currentItem;
 
-    	if ( !isEmpty() ) // the list has at least 1 listItem
+    if ( !isEmpty() ) // the list has at least 1 listItem
 	{
 	        // we "remove" by simply overwriting the values
 	        for (item = currentItem; item < nextAvailable; ++item)
@@ -304,19 +350,28 @@ bool ItemList::removeCurrentItem()
     removes the found value from the list
     ensures that the link between nodes is not broken
  
+    Steps are:
+        1. find the value of the index of the posistion
+            a. Once the index has been found stop iterating
+               through the list
+        2. Preform remove operation on the current item
+            a. move all values starting with the current item "up"
+            b. move the next available address "up"
  
- changes:   nextAvailable
-            currentItem
  
- returns: true if item was removed
-          false if the item was not removed
+    changes:   nextAvailable
+               currentItem
+ 
+    returns: true if item was removed
+             false if the item was not removed
  */
 bool ItemList::removeValue(int value)
 {
     //Variable declarations
     bool itWorked = false;
-    int* item = topItem;
-    int* nextItem = nextAvailable;
+    int* item = &listItem[0];
+    int* nextItem = item++;
+    int* temp = new int;
     
     //Look for the item that is wished to be removed
     for( int i = 0; (i < maxSize ) && ( ( *item ) != value ); i++)
@@ -324,16 +379,36 @@ bool ItemList::removeValue(int value)
         item++;
         nextItem++;
     }
+    
+    
     //If the item is found remove it
-    if( ( *item ) == value )
+    if( ( *item ) == value && item != NULL)
     {
-        delete( item );
         
-        item = nextItem;
+        // we "remove" by simply overwriting the values
+        for ( ; item < nextAvailable; ++item)
+        {
+            *item = *(item + 1);
+        }
+        itWorked = true;
         
+        // we "remove" the last item by simply ignoring it
+        --nextAvailable;
+        if (currentItem >= nextAvailable)
+        {
+            currentItem = nextAvailable - 1;
+        }
+        
+        // however, we now must check whether we have erased the whole list
+        if (nextAvailable <= topItem) // "<=" test is for safety
+        {
+            topItem = NULL;
+            currentItem = NULL;
+        }
         //Set the boolean value to true
         itWorked = true;
     }
+
         
     return itWorked;
     
@@ -506,7 +581,7 @@ int ItemList::getListLength() const
  
  returns:    the value of the last node in the list
  */
-void ItemList::readFile()
+void ItemList::readFile(char* input_file)
 {
     //Variable declarations
     ifstream inputFile;
@@ -514,7 +589,12 @@ void ItemList::readFile()
     int input;
     
     //Open new file
-    inputFile.open("numbers.txt");
+    inputFile.open( input_file );
+    if( !inputFile )
+    {
+        cout << "FAILED TO OPEN INPUT FILE" << endl;
+        return;
+    }
     
     //While not at the end of the file and
     //the max size of the array has not been surpassed
@@ -523,6 +603,8 @@ void ItemList::readFile()
         inputFile >> input;
         appendToList( input );
     }
+    
+    inputFile.close();
 }
 
 
