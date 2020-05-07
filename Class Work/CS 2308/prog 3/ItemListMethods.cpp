@@ -22,6 +22,72 @@
 
 using namespace std;
 
+/***************  Private  Methods ********************/
+/*
+    bubbleSort() : void
+    Sorts the list by swaping neighbors until the
+    listed is order from least to greatest
+ 
+    Steps are:
+    1. Set variables
+        a. currentItem to the top
+        b. nextAvailable to currentItem + 1
+        c. counter to 0
+        d. temp to new
+        d. swap to false
+    3. If the current item is more than the next swap
+    4. Set swap to true
+    5. Increment the following
+        a. currentItem
+        b. nextAvailable
+        c. counter
+    6. Repeat steps 3 and 4 until nextAvailable == NULL or
+       counter = maxSize - 1
+    7. Repeat step 1 until swap is false
+ 
+    parameters:  none
+ 
+    calls: none
+ 
+    changes: listItem
+ 
+    returns: none
+ */
+void ItemList::bubbleSort()
+{
+    //Variable declarations
+    bool swap = true;
+    int* currentItem;
+    int* nextAvailable;
+    int* temp = new int;
+    int counter = 0;
+    
+    //While there has been at least one swap
+    while( swap == true )
+    {
+        //reset values
+        swap = false;
+        currentItem = topItem;
+        nextAvailable = currentItem + 1;
+        counter = 0;
+        
+        //While the next value is not null
+        //and the it has not reached the of the list
+        while( nextAvailable != NULL && counter < maxSize - 1)
+        {
+            if( ( *currentItem ) > ( *nextAvailable ) )
+            {
+                ( *temp ) = ( *currentItem );
+                ( *currentItem ) = ( *nextAvailable );
+                ( *nextAvailable ) = ( *temp );
+                swap = true;
+            }
+            currentItem++;
+            nextAvailable++;
+            counter++;
+        }
+    }
+}
 
 /***************  Public  Methods ********************/
 
@@ -242,62 +308,25 @@ bool ItemList::appendToList(int value)
 } // appendToList(int value)
 
 /*
-    bubbleSort() : void
- 
- 
-    Steps are:
-    1.
- 
-    parameters:  none
- 
-    calls: none
- 
-    changes: listItem
- 
-    returns: none
- */
-void ItemList::bubbleSort()
-{
-    
-    bool swap = true;
-    int* currentItem;
-    int* nextAvailable;
-    int* temp = new int;
-    
-    int counter = 0;
-    while( swap == true )
-    {
-        swap = false;
-        currentItem = topItem;
-        nextAvailable = currentItem + 1;
-        while( nextAvailable != NULL && counter < maxSize - 1)
-        {
-            if( ( *currentItem ) > ( *nextAvailable ) )
-            {
-                ( *temp ) = ( *currentItem );
-                ( *currentItem ) = ( *nextAvailable );
-                ( *nextAvailable ) = ( *temp );
-                swap = true;
-            }
-            currentItem++;
-            nextAvailable++;
-            counter++;
-        }
-    }
-}
-
-/*
     selectionSort() : void
     Orders the list from smallest to lowest, via the selection
     sort method.
  
     Steps are:
-    1. Set the lowest item to the current index
-    2. Search the array for a smaller item than the lowest item
-    3. If a smaller item is found set the smallest item to that item
-    4. Swap the smallest value with the current index
-    5. Increase the index of the current item
-    6. Return to step 1
+    1. Set the following variables
+        a. minValue to currentItem
+        b. checkerItem to currentItem + 1
+    2. If the checker item is less than the min value
+       change the min value to the checkerItem item
+    3. Increment the checkerItem
+    4. Repeat steps 2-3 until the for loop has reached then
+       end of the list
+    5. Set the following variables to preform a swap
+        a. temp to minValue
+        b. minValue to currentItem
+        c. currentItem to temp
+    6. Return to step 1 until the for loop has reached the
+       array size - 1
  
     parameters: none
  
@@ -349,7 +378,35 @@ void ItemList::selectionSort()
         currentItem++;
     }
 }
-
+/*
+    binarySearch( search : int ) : int
+    Finds the index of the item passed to the function
+    by splitting the array in half, until the item is found
+ 
+    Steps are:
+    1. Call the bubble sort function
+    2. set the following values
+        a. first to 0
+        b. last to maxSize - 1
+    3. Set the middle to (first + last) / 2
+    4. If the middle item is equal to the search value
+       skip to step XXX. Also set found to true
+    5. If the middle item is less than the search value
+       set the first to middle + 1
+    6. If the middle item is more than the search value
+       set the last to middle - 1
+    7. Return to step 3 until found is true or first is
+       no longer less than or equal to last
+    8. Return the middle value
+ 
+    parameters: int search
+ 
+    calls: bubbleSort()
+ 
+    changes: none
+ 
+    returns: item
+ */
 int ItemList::binarySearch( int search )
 {
     bool found = false;
