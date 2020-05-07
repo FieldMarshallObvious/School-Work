@@ -37,7 +37,6 @@ int main(int argc, char *argv[])
 	cout << endl;
 
 #ifdef TEST_APPEND
-    cout << "THE TEST APPEND FUNCTION IS CALLED" << endl;
 	testAppend(list);
 	list.displayAll();
 	testRemove(list);
@@ -48,7 +47,6 @@ int main(int argc, char *argv[])
 	list.displayAll();
 #endif
 #ifdef TEST_INSERT
-    cout << "THE TEST INSERT FUNCTION IS CALLED" << endl;
 	testInsert(list);
 	list.displayAll();
 	testRemove(list);
@@ -59,7 +57,6 @@ int main(int argc, char *argv[])
 	list.displayAll();
 #endif
 #ifdef TEST_READ_FILE
-    cout << "THE READ FILE FUNCTION IS CALLED" << endl;
 	testReadFile(list);
 	list.displayAll();
 	testRemove(list);
@@ -70,7 +67,6 @@ int main(int argc, char *argv[])
 	list.displayAll();
 #endif
 #ifdef TEST_INSERT_VAL
-    cout << "THE INSERT VAL FUNCTION IS CALLED" << endl;
 	testInsertVal(list);
 	list.displayAll();
 	testRemove(list);
@@ -81,15 +77,17 @@ int main(int argc, char *argv[])
 	list.displayAll();
 #endif
 #ifdef TEST_REMOVE_VAL
-    cout << "THE REMOVE VAL FUNCTION IS CALLED" << endl;
 	testInsertVal(list);
 	list.displayAll();
-	testRemoveVal(list);
+    testRemoveVal(list);
 	list.displayAll();
 	testAppend(list);
 	list.displayAll();
 	testRemoveVal(list);
 	list.displayAll();
+#endif
+#ifdef TEST_SORT_FILE
+    testSortFile(list);
 #endif
 	
     cout << endl;
@@ -180,7 +178,7 @@ void testReadFile(ItemList &list)
     
     list.readFile( inputFile );
     
-    cout << "Array size after reading information: " << list.getListLength() << endl;
+    cout << "Array size after reading information:  " << list.getListLength() << endl;
     
 } // testReadFile()
 
@@ -339,3 +337,59 @@ void testBehead(ItemList &list)
         }
 	} // while (i < maxListSize)
 } // testBehead()
+
+/*
+    testSortFile()
+    tests the ItemList method that sorts the list
+ */
+void testSortFile(ItemList &list)
+{
+    int maxListSize;
+    
+    cout << "Testing selectionSort(): " << endl;
+    
+    maxListSize = list.getMaxSize();
+    
+    //Append values to list
+    for( int i = maxListSize; i > 0; i-- )
+    {
+        //Append values in descending order to the list
+        list.appendToList( i );
+    }
+    
+    list.displayAll();
+    
+    //Sort array using selection sort method
+    list.selectionSort();
+    
+    list.displayAll();
+    
+    cout << endl
+         << "Testing binarySearch(x): " << endl;
+    //Find items through binary search
+    for( int i = 0; i < maxListSize; i++ )
+    {
+        cout << "Finding the index of: " << i << endl;
+        cout << "The index is: " << list.binarySearch( i ) << endl;
+    }
+    
+    //reset value to check private bubble sort function
+    list.clearList();
+    
+    //Add new items in a incorrect order
+    for( int i = maxListSize; i > 0; i-- )
+    {
+        //Append values in descending order to the list
+        list.appendToList( i );
+    }
+    
+    cout << endl
+         << "Testing binarySearch(x): " << endl;
+    //Attempt just binary search
+    for( int i = 0; i < maxListSize; i++ )
+    {
+        cout << "Finding the index of: " << i << endl;
+        cout << "The index is: " << list.binarySearch( i ) << endl;
+    }
+    
+}

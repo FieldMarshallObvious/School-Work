@@ -241,17 +241,36 @@ bool ItemList::appendToList(int value)
 	return itWorked;
 } // appendToList(int value)
 
+/*
+    bubbleSort() : void
+ 
+ 
+    Steps are:
+    1.
+ 
+    parameters:  none
+ 
+    calls: none
+ 
+    changes: listItem
+ 
+    returns: none
+ */
 void ItemList::bubbleSort()
 {
+    
     bool swap = true;
     int* currentItem;
     int* nextAvailable;
-    int* temp;
-    while( swap == true)
+    int* temp = new int;
+    
+    int counter = 0;
+    while( swap == true )
     {
+        swap = false;
         currentItem = topItem;
-        nextAvailable = currentItem++;
-        while( nextAvailable != NULL)
+        nextAvailable = currentItem + 1;
+        while( nextAvailable != NULL && counter < maxSize - 1)
         {
             if( ( *currentItem ) > ( *nextAvailable ) )
             {
@@ -260,6 +279,9 @@ void ItemList::bubbleSort()
                 ( *nextAvailable ) = ( *temp );
                 swap = true;
             }
+            currentItem++;
+            nextAvailable++;
+            counter++;
         }
     }
 }
@@ -277,42 +299,53 @@ void ItemList::bubbleSort()
     5. Increase the index of the current item
     6. Return to step 1
  
-    parameters:  none
+    parameters: none
  
-    calls:        none
+    calls: none
  
-    changes:    listItem
+    changes: listItem
  
-    returns:
+    returns: none
  */
 void ItemList::selectionSort()
 {
-    int minValue;
-    
+    //Variable declarations
+    int* minValue;
     int* currentItem;
     int* checkerItem;
+    int* temp = new int;
     
+    //Set the current item to the top
     currentItem = topItem;
     
+    //Iterate through the array to order the list
     for( int indexouter = 0; indexouter < ( maxSize - 1); indexouter++ )
     {
-        minValue = ( *currentItem );
+        //Set the min value and the checker item
+        minValue = currentItem;
         
-        checkerItem = topItem;
-        for( int indexinner = 0; indexinner < maxSize; indexinner++ )
+        checkerItem = currentItem + 1;
+        
+        for( int indexinner = indexouter + 1 ; indexinner < maxSize; indexinner++ )
         {
-            
-            if ( ( *checkerItem )< minValue)
+
+            //If the item is less than the min value
+            if ( ( *checkerItem ) < ( *minValue ) )
             {
-                minValue = ( * checkerItem );
+                //Set the min value to the current item
+                minValue = checkerItem;
             }
             
+            //Increment the checker item
             checkerItem++;
         }
         
-        ( *checkerItem ) = minValue;
-        ( *currentItem ) = minValue;
+        //Swap the min value with the current item
+        ( *temp ) = ( *minValue );
+        ( *minValue ) = ( *currentItem );
+        ( *currentItem ) = ( *temp );
         
+        //Increment the current item
         currentItem++;
     }
 }
@@ -328,6 +361,7 @@ int ItemList::binarySearch( int search )
     first = 0;
     last = (maxSize - 1);
     
+    //Sort the array
     this->bubbleSort();
     
     while ( (found == false) && first <= last )
@@ -341,15 +375,18 @@ int ItemList::binarySearch( int search )
         
         else if( search >= ( listItem[middle] ) )
         {
-            last = middle - 1;
+            first = middle + 1;
         }
         
         else if ( search <= ( listItem[middle] ) )
         {
-            first = middle + 1;
+            last = middle - 1;
         }
         
     }
+    
+    if ( found == false )
+        middle = -1;
     
     return middle;
 }
@@ -435,9 +472,15 @@ bool ItemList::removeValue(int value)
 {
     //Variable declarations
     bool itWorked = false;
-    int* item = &listItem[0];
-    int* nextItem = item++;
+    int* item;
+    int* nextItem;
     int* temp = new int;
+    
+    if( topItem != NULL)
+    {
+        item = topItem;
+        nextItem = item + 1;
+    }
     
     //Look for the item that is wished to be removed
     for( int i = 0; (i < maxSize ) && ( ( *item ) != value ); i++)
@@ -456,7 +499,6 @@ bool ItemList::removeValue(int value)
         {
             *item = *(item + 1);
         }
-        itWorked = true;
         
         // we "remove" the last item by simply ignoring it
         --nextAvailable;
@@ -471,6 +513,7 @@ bool ItemList::removeValue(int value)
             topItem = NULL;
             currentItem = NULL;
         }
+        
         //Set the boolean value to true
         itWorked = true;
     }
@@ -687,7 +730,7 @@ void ItemList::readFile(char* input_file)
 void ItemList::displayAll() const
 {
     int* index;
-
+    
     if ( !isEmpty() )
     {
     	for (index = topItem; index < nextAvailable; index++)

@@ -10,6 +10,7 @@
 #define TEST_READ_FILE
 #define TEST_INSERT_VAL
 #define TEST_REMOVE_VAL
+#define TEST_SORT_FILE
 
 const int MAX_LIST_SIZE = 17;
 
@@ -20,5 +21,6 @@ void testInsertVal(ItemList &);
 void testRemove(ItemList &);
 void testBehead(ItemList &);
 void testRemoveVal(ItemList &);
+void testSortFile(ItemList &);
 
 #endif
