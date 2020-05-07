@@ -241,12 +241,41 @@ bool ItemList::appendToList(int value)
 	return itWorked;
 } // appendToList(int value)
 
+void ItemList::bubbleSort()
+{
+    bool swap = true;
+    int* currentItem;
+    int* nextAvailable;
+    int* temp;
+    while( swap == true)
+    {
+        currentItem = topItem;
+        nextAvailable = currentItem++;
+        while( nextAvailable != NULL)
+        {
+            if( ( *currentItem ) > ( *nextAvailable ) )
+            {
+                ( *temp ) = ( *currentItem );
+                ( *currentItem ) = ( *nextAvailable );
+                ( *nextAvailable ) = ( *temp );
+                swap = true;
+            }
+        }
+    }
+}
+
 /*
     selectionSort() : void
- 
+    Orders the list from smallest to lowest, via the selection
+    sort method.
  
     Steps are:
-    1.
+    1. Set the lowest item to the current index
+    2. Search the array for a smaller item than the lowest item
+    3. If a smaller item is found set the smallest item to that item
+    4. Swap the smallest value with the current index
+    5. Increase the index of the current item
+    6. Return to step 1
  
     parameters:  none
  
@@ -286,6 +315,43 @@ void ItemList::selectionSort()
         
         currentItem++;
     }
+}
+
+int ItemList::binarySearch( int search )
+{
+    bool found = false;
+    int first,
+        last,
+        middle;
+    
+    
+    first = 0;
+    last = (maxSize - 1);
+    
+    this->bubbleSort();
+    
+    while ( (found == false) && first <= last )
+    {
+        middle = ( first + last )/2;
+        
+        if( search == ( listItem[middle] ) )
+        {
+            found = true;
+        }
+        
+        else if( search >= ( listItem[middle] ) )
+        {
+            last = middle - 1;
+        }
+        
+        else if ( search <= ( listItem[middle] ) )
+        {
+            first = middle + 1;
+        }
+        
+    }
+    
+    return middle;
 }
 
 /*

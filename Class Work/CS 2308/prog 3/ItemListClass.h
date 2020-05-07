@@ -189,7 +189,7 @@ class ItemList
 		bool appendToList(int value);  // nextAvailable if currentItem is NULL
     
         void selectionSort();
-        int binarySearch();
+        int binarySearch( int search );
 
 		bool removeCurrentItem();     // false if current is NULL
         bool removeValue(int value);
