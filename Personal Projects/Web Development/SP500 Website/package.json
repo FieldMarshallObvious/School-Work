@@ -1,0 +1,21 @@
+{
+  "name": "sp500-website",
+  "version": "1.0.0",
+  "description": "This website determines hte conservative of the index as a whole",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "SP500",
+    "stocks",
+    "conseravtive",
+    "ratios"
+  ],
+  "author": "Noah del Angel",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4"
+  }
+}
