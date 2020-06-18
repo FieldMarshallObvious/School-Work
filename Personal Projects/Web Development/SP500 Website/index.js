@@ -4,6 +4,9 @@ const express = require ( 'express' );
 //Import dotenv into app
 require('dotenv').config();
 
+//Import node fetch function
+const serverfetch = require( 'node-fetch' );
+
 //Import NEDB database
 const Datastore = require( `nedb` );
 
@@ -52,7 +55,7 @@ app.use((req, res, next) => {
 });
 
 //Returns API data from database
-app.get( '/index_key_ratios/:equity', aync(request, response) => 
+app.get( '/index_key_ratios/:equity', async(request, response) => 
 {
 	const index = request.params.index;
 	findInfo(database, index).then((results) => 
