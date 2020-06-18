@@ -7,6 +7,8 @@ require('dotenv').config();
 //Import NEDB database
 const Datastore = require( `nedb` );
 
+//Import API_interface
+const API_interface = require('./API_interface.js');
 
 //Setup library to var app
 const app = express( );
@@ -125,6 +127,8 @@ async function updateDataInDatabase()
 
 	//Get SP500 data
 	output = await API_interface.returnSP500( curdate, quandlApiKey, serverfetch );
+
+	console.log( 'SP500: ', output );
 
 	//Send all acquired data to the database
 	database.insert( output );
