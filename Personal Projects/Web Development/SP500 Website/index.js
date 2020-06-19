@@ -7,6 +7,12 @@ require('dotenv').config();
 //Import node fetch function
 const serverfetch = require( 'node-fetch' );
 
+//Import color module
+const colorModule = require('./colorIterator');
+
+//Import radial guage module
+const radialGuage = require('./radialgaugelocation');
+
 //Import NEDB database
 const Datastore = require( `nedb` );
 
@@ -57,13 +63,32 @@ app.use((req, res, next) => {
 //Returns API data from database
 app.get( '/index_key_ratios/:equity', async(request, response) => 
 {
-	const index = request.params.index;
-	findInfo(database, index).then((results) => 
+	const equity = request.params.equity;
+	findInfo(database, equity).then((results) => 
 	{
-		console.log(index, ": ", results.shiller_pe);
+		console.log(equity, ": ", results.shiller_pe);
 		response.json([results.pe], [results.shiller_pe], [results.dividend_yield]);
 	});
 });
+
+//Returns hex code color of guage based on posistion
+app.get( '/guage_color/:minmaxmiddle', async(request, response) =>
+{
+	//Variable delcarations
+	const minmaxmiddle = request.params.minmaxmiddle.split(',');
+
+	const min = minmaxmiddle[0];
+
+	const max = minmaxmiddle[1];
+
+	const middle = minmaxmiddle[2];
+
+	let color = colorModule.determineGuageColor(min, max, middle);
+
+	response.json(color);
+});
+
+
 //Callback function for database search
 function readDatabase(err)
 {
@@ -72,7 +97,7 @@ function readDatabase(err)
 
 //Finds the index of desired information based on ID's
 //Then returns the information in that index
-function findInfo( database, indexInput)
+function findInfo( database, indexInput )
 {
 	var output;
 	database.find({}, (err, data) => {
@@ -124,12 +149,18 @@ async function updateDataInDatabase()
 
 	var newest_available_date;
 
+	var radialGaugePosistion;
+
 	//Clear data from last update
 	database.remove({}, { multi: true }, function (err, numRemoved){});
 
-
 	//Get SP500 data
 	output = await API_interface.returnSP500( curdate, quandlApiKey, serverfetch );
+
+	radialGaugePosistion = radialGuage.determineGaugeLocation( output.index_pe, 15.76, output.shiller_pe, 16.71, output.dividend_yield, 4.32 );
+
+	//add radial guage posistion to output object
+	output.radial_pos = radialGaugePosistion;
 
 	console.log( 'SP500: ', output );
 

@@ -1,1 +1,40 @@
-/* main css tile */
+/* Background Texture */
+body {
+	background-color: #8a008a;
+	background-image: url(/styles/cream-dust/png) repeat 0 0;
+}
+
+/* Fonts */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Overpass', sans-serif;
+}
+
+/* Common Elements */
+h1, h2, h3 { 
+    text-shadow: 1px 1px 1px #ccc;
+}
+
+.displayCase {
+	text-align: center;
+	margin: 3em;
+	padding: 10px;
+	box-shadow: 0 0 0.15em 0.15em #ccc;
+}
+
+/* Unique elements */
+#mainHeader {
+	margin-top: 1em;
+	margin-left: 4em;
+	margin-right: 4em;
+}
+#SP500Underline
+{
+	height: 3px;
+	text-align: center;
+	border-width: 0;
+	padding: 0;
+	margin-top: -1em;
+	margin-left: 2em;
+	margin-right: -2em;
+	background-color: black;
+}
