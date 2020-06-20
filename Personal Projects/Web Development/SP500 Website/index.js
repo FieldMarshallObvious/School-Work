@@ -51,12 +51,12 @@ updateDataInDatabase();
 
 //Resolve CORS issues
 app.use((req, res, next) => {
-  	res.setHeader("Access-Control-Allow-Origin", "*");
+  	res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
   	res.setHeader(
     	"Access-Control-Allow-Methods",
     	"OPTIONS, GET, POST, PUT, PATCH, DELETE" // what matters here is that OPTIONS is present
   	);
-  	res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+	res.setHeader("Access-Control-Allow-Headers", "Authorization, Cache-Control, Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
   	next();
 });
 
