@@ -21,6 +21,11 @@ h1, h2, h3 {
 	box-shadow: 0 0 0.15em 0.15em #ccc;
 }
 
+.LinearGuages {
+	margin-top: -6em;
+	margin-bottom: -6em;
+}
+
 /* Unique elements */
 #mainHeader {
 	margin-top: 1em;

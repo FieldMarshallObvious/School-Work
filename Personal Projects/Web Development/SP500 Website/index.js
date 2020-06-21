@@ -79,8 +79,7 @@ app.get( '/index_key_ratios/:equity', async(request, response) =>
 	const equity = request.params.equity;
 	findInfo(database, equity).then((results) => 
 	{
-		console.log(equity, ": ", results.shiller_pe);
-		response.json([results.pe], [results.shiller_pe], [results.dividend_yield]);
+		response.json(results);
 	});
 });
 
@@ -128,6 +127,7 @@ function findInfo( database, indexInput )
 				break;
 			}
 		}
+		return output;
 	});
 
 	return new Promise( resolve => 

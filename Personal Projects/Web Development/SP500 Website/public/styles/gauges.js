@@ -16,7 +16,6 @@ async function createGraph()
     console.log(serverRes);
    	curData = await serverRes.json();
 
-   	console.log(curData);
    	//Get PE color
    	color = await getColor(curData.index_pe, 0, 60);
 
