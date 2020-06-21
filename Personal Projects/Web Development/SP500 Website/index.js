@@ -16,6 +16,9 @@ const radialGuage = require('./radialgaugelocation');
 //Import NEDB database
 const Datastore = require( `nedb` );
 
+//Import CORS library
+const cors = require('cors');
+
 //Import API_interface
 const API_interface = require('./API_interface.js');
 
@@ -46,18 +49,28 @@ database.loadDatabase();
 //Get quandlAPIkey from enviroment
 const quandlApiKey = process.env.API_KEY_QUANDL;
 
+//Set CORS origin
+const corsOptions = {
+	origin: 'http://localhost:3000/'
+}
+
 //Update the database
 updateDataInDatabase();
 
 //Resolve CORS issues
 app.use((req, res, next) => {
-  	res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
-  	res.setHeader(
+  	res.header("Access-Control-Origin", req.headers.origin);
+  	res.header(
     	"Access-Control-Allow-Methods",
     	"OPTIONS, GET, POST, PUT, PATCH, DELETE" // what matters here is that OPTIONS is present
   	);
-	res.setHeader("Access-Control-Allow-Headers", "Authorization, Cache-Control, Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+  	res.header("Access-Control-Allow-Headers", "Authorization, Cache-Control, Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
   	next();
+});
+
+//Catch CORS errors
+app.get('/without-cors', ( request, response, next ) => {
+	response.json({ msg: 'A CORS issue has occured!' });
 });
 
 //Returns API data from database

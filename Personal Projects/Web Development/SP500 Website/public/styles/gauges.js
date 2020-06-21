@@ -9,11 +9,14 @@ async function createGraph()
     var color;
     const curdate = getcurDate();
 
+    console.log('creating graph');
+
     //Get data from server then convert it to json
     const serverRes = await fetch(`index_key_ratios/SP500`);
+    console.log(serverRes);
    	curData = await serverRes.json();
 
-
+   	console.log(curData);
    	//Get PE color
    	color = await getColor(curData.index_pe, 0, 60);
 
