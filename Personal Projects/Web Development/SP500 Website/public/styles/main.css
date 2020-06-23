@@ -22,8 +22,16 @@ h1, h2, h3 {
 }
 
 .LinearGuages {
-	margin-top: -6em;
-	margin-bottom: -6em;
+  	margin-top: -5em;
+  	margin-bottom: -20em;
+}
+
+.RadialGuages {
+	width: 50%;
+	padding: 0;
+	margin-left: 9em;
+	margin-top: -5em;
+	margin-bottom: 10em;
 }
 
 /* Unique elements */
@@ -38,8 +46,17 @@ h1, h2, h3 {
 	text-align: center;
 	border-width: 0;
 	padding: 0;
+	opacity: 0.5;
 	margin-top: -1em;
 	margin-left: 2em;
 	margin-right: -2em;
-	background-color: black;
+}
+
+#StrengthofEquity
+{
+	margin-top: -10em;
+	border: 1px solid;
+	width: 25%;
+	box-shadow: 0 0 0.05em 0.05em #ccc;
+
 }

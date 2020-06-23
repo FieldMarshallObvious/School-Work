@@ -9,11 +9,9 @@ async function createGraph()
     var color;
     const curdate = getcurDate();
 
-    console.log('creating graph');
 
     //Get data from server then convert it to json
     const serverRes = await fetch(`index_key_ratios/SP500`);
-    console.log(serverRes);
    	curData = await serverRes.json();
 
    	//Get PE color
@@ -46,6 +44,24 @@ async function createGraph()
    	//Create RadialGraph
    	var SP500Radial = await radialGuage( curData.radial_pos, color);
    	SP500Radial.appendTo('#SP500Radial');
+
+
+   	//Change the color the index underline
+   	document.getElementById("SP500Underline").style.backgroundColor = `${color}`;
+
+
+   	//Change value of index text box
+
+
+
+   	//Change the text of the strength box
+   	var strengthInfo = textStrength( curData.radial_pos, 50 );
+
+   	document.getElementById("StrengthofEquity").innerText = String.fromCodePoint(strengthInfo[0]) + " " +strengthInfo[1];
+
+   	//Change color of strength box border
+   	 document.getElementById("StrengthofEquity").style.borderColor = `${color}`; 
+
 }
 
 async function getColor(curVal, min, max)
@@ -170,4 +186,23 @@ function radialGuage( curVal, color )
     });
 
     return gauge;
+}
+
+function textStrength( curVal, threshold )
+{
+	//If the value is less than the threshold return
+	//a thumbs up
+	if( curVal < threshold )
+		return ["0x1F44D", "Strong"];
+
+	//If the value is the same as the threshold return
+	//a grimmacing tace
+	else if( curVal == threshold )
+		return ["0x1F62C", "Moderate"];
+
+	//If the value is more than the threshold return
+	//a thumbs down
+	else
+		return ["0x1F44E", "Weak"];
+
 }
