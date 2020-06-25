@@ -108,13 +108,19 @@ module.exports = {
 	//Gets the most recent price data from bloomberg
 	returnPrice: async function( APIKey, serverfetch, unirest )
 	{
-		var output;
+		//Variable declarations
+		var output,
+			curData;
+
+		//Begin request to server
 		var req = unirest("GET", "https://bloomberg-market-and-financial-news.p.rapidapi.com/market/get-compact");
 
+		//Query for this equity
 		req.query({
 			"id": "SPX%3AIND"
 		});
 
+		//Set these headers for queries
 		req.headers({
 			"x-rapidapi-host": "bloomberg-market-and-financial-news.p.rapidapi.com",
 			"x-rapidapi-key": `${APIKey}`,
@@ -122,11 +128,31 @@ module.exports = {
 		});
 
 
+		//Get the data from the server
 		req.end(function (res) {
-			console.log(res);
-			output = res.result.SPXIND.last
+			curData = res.body.result["SPX:IND"].last;
 		});
 
+		return new Promise( (resolve, reject) => 
+		{
+			setTimeout(() => {
+				//Set data if it has not been acquired all ready
+				output = curData;
+
+				setTimeout(() => {
+					//Check to see if the data has been acquired
+					if ( output != undefined )
+					{
+						resolve(output);
+					}
+					else 
+					{
+						console.log("Data was not acquired");
+					}
+
+				}, 5000);
+			}, 15000, output, curData);
+		});
 
 	}
 }

@@ -20,7 +20,7 @@ const Datastore = require( `nedb` );
 const cors = require('cors');
 
 //Import unirest library
-const unirest = require('unirest');
+const unirest = require( 'unirest' );
 
 //Import API_interface
 const API_interface = require('./API_interface.js');
@@ -51,6 +51,9 @@ database.loadDatabase();
 
 //Get quandlAPIkey from enviroment
 const quandlApiKey = process.env.API_KEY_QUANDL;
+
+//Get bloombergAPIkey from enviroment
+const bloombergAPIkey = process.env.API_KEY_BLOOM;
 
 //Set CORS origin
 const corsOptions = {
@@ -182,4 +185,10 @@ async function updateDataInDatabase()
 
 	//Send all acquired data to the database
 	database.insert( output );
+
+	API_interface.returnPrice( bloombergAPIkey, serverfetch, unirest ).then((results) => 
+	{
+		console.log("Current Price of the index", results);
+	});
+
 }
