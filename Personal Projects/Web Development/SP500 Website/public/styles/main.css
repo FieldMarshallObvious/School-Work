@@ -22,16 +22,15 @@ h1, h2, h3 {
 }
 
 .LinearGuages {
-  	margin-top: -5em;
+  	margin-top: -9em;
   	margin-bottom: -20em;
 }
 
 .RadialGuages {
 	width: 50%;
 	padding: 0;
-	margin-left: 9em;
-	margin-top: -5em;
-	margin-bottom: 10em;
+	margin-top: -10em;
+	margin-bottom: 12em;
 }
 
 /* Unique elements */
@@ -40,6 +39,7 @@ h1, h2, h3 {
 	margin-left: 4em;
 	margin-right: 4em;
 }
+
 #SP500Underline
 {
 	height: 3px;
@@ -52,9 +52,15 @@ h1, h2, h3 {
 	margin-right: -2em;
 }
 
+#SP500LinearPD {
+	margin-bottom: -14em;
+}
+
 #StrengthofEquity
 {
 	margin-top: -10em;
+	margin-bottom: 2em;
+	font-size: 25px;
 	border: 1px solid;
 	width: 25%;
 	box-shadow: 0 0 0.05em 0.05em #ccc;

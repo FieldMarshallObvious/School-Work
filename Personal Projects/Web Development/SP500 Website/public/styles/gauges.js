@@ -7,6 +7,9 @@ async function createGraph()
   	//Variable declarations
     var curData;
     var color;
+    var content = ['<div id="title" style="width:300px;"><p style="font-size:18px;color:black;float:left;margin-left:2px;' + 'margin-top:16em;">P/E Ratio:</p></div>', 
+    			   '<div id="title" style="width:300px;"><p style="font-size:18px;color:black;float:left;margin-left:2px;' + 'margin-top:16em;">Dividend Yield:</p></div>',
+    			   '<div id="title" style="width:300px;"><p style="font-size:18px;color:black;float:left;margin-left:2px;' + 'margin-top:16em;">Shiller P/E Ratio:</p></div>'];
     const curdate = getcurDate();
 
 
@@ -18,15 +21,15 @@ async function createGraph()
    	color = await getColor(curData.index_pe, 0, 60);
 
    	//Create PE graph
-   	var SP500PE = await linearGauge( curData.index_pe, color );
+   	var SP500PE = await linearGauge( curData.index_pe, color, content[0]);
    	SP500PE.appendTo('#SP500LinearPE');
 
 
    	//Get PD color
-   	color = await getColor(curData.dividend_yield, 0, 60);
+   	color = await getColor(curData.dividend_yield, 60, 0);
 
    	//Create PD graph
-   	var SP500PD = await linearGauge( curData.dividend_yield, color );
+   	var SP500PD = await linearGauge( curData.dividend_yield, color, content[1] );
    	SP500PD.appendTo('#SP500LinearPD');
 
 
@@ -34,7 +37,7 @@ async function createGraph()
    	color = await getColor(curData.shiller_pe, 0, 60);
 
    	//Create SHPE graph
-   	var SP500SHPE = await linearGauge( curData.shiller_pe, color );
+   	var SP500SHPE = await linearGauge( curData.shiller_pe, color, content[2] );
    	SP500SHPE.appendTo('#SP500LinearShiller');
 
 
@@ -97,7 +100,7 @@ function getcurDate()
 }
 
 //Function creates linear gauge
-function linearGauge( curVal, color ) 
+function linearGauge( curVal, color, indicator ) 
 {
 	var gauge = new ej.lineargauge.LinearGauge({
         orientation: 'Horizontal',
@@ -140,7 +143,7 @@ function linearGauge( curVal, color )
           ]
         }],
         annotations: [{
-                content: '<div id="title" style="width:300px;"><p style="font-size:18px;color:black;float:left;margin-left:2px;' + 'margin-top:16em;">P/E Ratio:</p></div>',
+                content: indicator,
                 axisIndex: 0,
                 axisValue: 0,
                 x: 150,

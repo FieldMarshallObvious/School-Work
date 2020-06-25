@@ -103,5 +103,30 @@ module.exports = {
 		};
 
 		return output;
+	},
+
+	//Gets the most recent price data from bloomberg
+	returnPrice: async function( APIKey, serverfetch, unirest )
+	{
+		var output;
+		var req = unirest("GET", "https://bloomberg-market-and-financial-news.p.rapidapi.com/market/get-compact");
+
+		req.query({
+			"id": "SPX%3AIND"
+		});
+
+		req.headers({
+			"x-rapidapi-host": "bloomberg-market-and-financial-news.p.rapidapi.com",
+			"x-rapidapi-key": `${APIKey}`,
+			"useQueryString": true
+		});
+
+
+		req.end(function (res) {
+			console.log(res);
+			output = res.result.SPXIND.last
+		});
+
+
 	}
 }

@@ -19,6 +19,9 @@ const Datastore = require( `nedb` );
 //Import CORS library
 const cors = require('cors');
 
+//Import unirest library
+const unirest = require('unirest');
+
 //Import API_interface
 const API_interface = require('./API_interface.js');
 
