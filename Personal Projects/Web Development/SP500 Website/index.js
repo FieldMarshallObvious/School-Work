@@ -55,6 +55,13 @@ const quandlApiKey = process.env.API_KEY_QUANDL;
 //Get bloombergAPIkey from enviroment
 const bloombergAPIkey = process.env.API_KEY_BLOOM;
 
+//Set variable to keep track of last timestamp
+var lastTimeStamp;
+
+//Set timer variables
+var thirtyminutes =  30 * 60000;
+var oneday = 1440 * 60000;
+
 //Set CORS origin
 const corsOptions = {
 	origin: 'http://localhost:3000/'
@@ -62,6 +69,14 @@ const corsOptions = {
 
 //Update the database
 updateDataInDatabase();
+updateEquityPrice();
+
+//Update equity price every 30 minutes
+setInterval(updateEquityPrice, thirtyminutes);
+
+//Update Shiller Data every day
+setInterval(updateDataInDatabase, oneday);
+
 
 //Resolve CORS issues
 app.use((req, res, next) => {
@@ -89,6 +104,14 @@ app.get( '/index_key_ratios/:equity', async(request, response) =>
 	});
 });
 
+//Returns current price of index
+app.get( '/cur_index_price', async(request, response) =>
+{
+	findInfo(database, timestamp).then((results) => 
+	{
+		response.json(results.price);
+	});
+});
 //Returns hex code color of guage based on posistion
 app.get( '/guage_color/:minmaxmiddle', async(request, response) =>
 {
@@ -106,18 +129,19 @@ app.get( '/guage_color/:minmaxmiddle', async(request, response) =>
 	response.json(color);
 });
 
-
-//Callback function for database search
-function readDatabase(err)
+//Function clears database
+function clearDB()
 {
-	console.log(err);
+	//Clear database
+	db.remove({}, { multi: true }, function (err, numRemoved) {});
 }
 
 //Finds the index of desired information based on ID's
 //Then returns the information in that index
 function findInfo( database, indexInput )
 {
-	var output;
+	var output,
+		i;
 	database.find({}, (err, data) => {
 		if (err)
 		{
@@ -125,8 +149,12 @@ function findInfo( database, indexInput )
 			return;
 		}
 
-		for( var i = 0; i < data.length; i++ )
+		for( i = 0; i <= data.length; i++ )
 		{
+			console.log('Input index: ', indexInput );
+			console.log('Current Index: ', data[i].index );
+			console.log('Current location ', i);
+			console.log('Data length', data.length);
 			if(data[i].index == indexInput)
 			{
 				output = data[i];
@@ -148,27 +176,42 @@ function findInfo( database, indexInput )
 	});
 }
 
-//Function clears database
-function clearDB()
+function getTimestamp()
 {
-	//Clear database
-	db.remove({}, { multi: true }, function (err, numRemoved) {});
+	//Get current date to convert to 
+	//Unix time
+	var date = new Date,
+		year = date.getFullYear(),
+		month = (date.getMonth() + 1),
+		day = date.getDate(),
+		hour = date.getHours(),
+		minute = date.getMinutes(),
+		second = date.getSeconds();
+
+	//Convert time to unix time and return after conversion
+	var datum = new Date(Date.UTC(year,month-1,day,hour,minute,second));
+ 	return datum.getTime()/1000;
+
+	}
+
+//Callback function for database search
+function readDatabase(err)
+{
+	console.log(err);
 }
 
 //Updates the data inside the database
 async function updateDataInDatabase()
 {
+	//Variable declarations
+	var radialGaugePosistion;
+
 	//Get current date
 	var date = new Date,
 		year = date.getFullYear(),
 		month = (date.getMonth() + 1),
 		day = date.getDate();
-
 	var curdate = [year, month, day].join('-');
-
-	var newest_available_date;
-
-	var radialGaugePosistion;
 
 	//Clear data from last update
 	database.remove({}, { multi: true }, function (err, numRemoved){});
@@ -185,10 +228,26 @@ async function updateDataInDatabase()
 
 	//Send all acquired data to the database
 	database.insert( output );
+}
+
+//Updates the price of the equity
+async function updateEquityPrice()
+{
+	//Variable declarations
+	var output;
 
 	API_interface.returnPrice( bloombergAPIkey, serverfetch, unirest ).then((results) => 
 	{
-		console.log("Current Price of the index", results);
-	});
+		console.log("Current Price of the index: ", results);
+		
+		//Get timestamp
+		timestamp = getTimestamp();
 
+		output = {
+			price: results,
+			index: timestamp
+		};
+
+		database.insert( output );
+	});
 }

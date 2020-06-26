@@ -53,8 +53,11 @@ async function createGraph()
    	document.getElementById("SP500Underline").style.backgroundColor = `${color}`;
 
 
-   	//Change value of index text box
+   	//Change value of index price
+   	const curPriceRes = await fetch(`cur_index_price`);
+   	curPrice = await curPriceRes.json();
 
+   	document.getElementById("SP500Price").innerText = "$" + curPrice;
 
 
    	//Change the text of the strength box

@@ -47,9 +47,9 @@ h1, h2, h3 {
 	border-width: 0;
 	padding: 0;
 	opacity: 0.5;
-	margin-top: -1em;
-	margin-left: 2em;
-	margin-right: -2em;
+	margin-top: 0em;
+	margin-left: -2em;
+	margin-right: 1em;
 }
 
 #SP500LinearPD {
