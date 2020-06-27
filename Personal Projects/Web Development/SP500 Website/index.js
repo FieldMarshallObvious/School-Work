@@ -126,7 +126,7 @@ app.get( '/last_index_price_comparisson/:curPrice', async(request,response) =>
 	//Determine of the last price relative to the cur price
 	if( curPrice > lastPrice )
 		output = 1;
-	else if( curPrice = lastPrice )
+	else if( curPrice == lastPrice )
 		output = 0;
 	else
 		output = -1;
