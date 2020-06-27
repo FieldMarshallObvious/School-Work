@@ -25,16 +25,16 @@ async function updateIndexPrice()
 
    	//Set div color based on last index price
    	if( curComp == 1 )
-   		document.getElementById("SP500Price").backgroundColor = "#00ff00";
+   		document.getElementById("SP500Price").style.backgroundColor = "#00ff00";
    	else if( curComp == 0 )
-   		document.getElementById("SP500Price").backgroundColor = "#ffff00";
+   		document.getElementById("SP500Price").style.backgroundColor = "#ffff00";
    	else
-   		document.getElementById("SP500Price").backgroundColor = "ff0000";
+   		document.getElementById("SP500Price").style.backgroundColor = "ff0000";
    	
    	//Return the element to original color after one second
    	setTimeout(function() 
    	{
-   		document.getElementById("SP500Price").backgroundColor = originalColor;
+   		document.getElementById("SP500Price").style.backgroundColor = originalColor;
    	}, 1000);
 }
 
