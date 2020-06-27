@@ -275,7 +275,7 @@ async function updateEquityPrice()
 			database.insert( output );
 		});
 	}
-	/*else
+	else
 	{
 		console.log('Market is closed for the day');
 		console.log('NOT CHECKING CURRENT PRICE');
