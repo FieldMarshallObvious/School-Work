@@ -57,6 +57,7 @@ const bloombergAPIkey = process.env.API_KEY_BLOOM;
 
 //Set variable to keep track of last timestamp
 var lastTimeStamp;
+var lastPrice;
 
 //Set timer variables
 var thirtyminutes =  30 * 60000;
@@ -109,13 +110,33 @@ app.get( '/cur_index_price', async(request, response) =>
 {
 	findInfo(database, timestamp).then((results) => 
 	{
+		//Log the last price 
+		lastPrice = results.price;
 		response.json(results.price);
 	});
+});
+
+app.get( '/last_index_price_comparisson/:curPrice', async(request,response) =>
+{
+	//Variable declarations
+	var output; 
+
+	const curPrice = request.params.curPrice;
+
+	//Determine of the last price relative to the cur price
+	if( curPrice > lastPrice )
+		output = 1;
+	else if( curPrice = lastPrice )
+		output = 0;
+	else
+		output = -1;
+
+	response.json(output);
 });
 //Returns hex code color of guage based on posistion
 app.get( '/guage_color/:minmaxmiddle', async(request, response) =>
 {
-	//Variable delcarations
+	//Variable declarations
 	const minmaxmiddle = request.params.minmaxmiddle.split(',');
 
 	const min = minmaxmiddle[0];
@@ -151,10 +172,6 @@ function findInfo( database, indexInput )
 
 		for( i = 0; i <= data.length; i++ )
 		{
-			console.log('Input index: ', indexInput );
-			console.log('Current Index: ', data[i].index );
-			console.log('Current location ', i);
-			console.log('Data length', data.length);
 			if(data[i].index == indexInput)
 			{
 				output = data[i];
@@ -236,18 +253,31 @@ async function updateEquityPrice()
 	//Variable declarations
 	var output;
 
-	API_interface.returnPrice( bloombergAPIkey, serverfetch, unirest ).then((results) => 
+	//Get current hour
+	var date = new Date,
+		hour = date.getHours(),
+		minute = date.getMinutes();
+
+	if( !(hour >= 15 && minute >= 30) )
 	{
-		console.log("Current Price of the index: ", results);
-		
-		//Get timestamp
-		timestamp = getTimestamp();
+		API_interface.returnPrice( bloombergAPIkey, serverfetch, unirest ).then((results) => 
+		{
+			console.log("Current Price of the index: ", results);
+			
+			//Get timestamp
+			timestamp = getTimestamp();
 
-		output = {
-			price: results,
-			index: timestamp
-		};
+			output = {
+				price: results,
+				index: timestamp
+			};
 
-		database.insert( output );
-	});
+			database.insert( output );
+		});
+	}
+	/*else
+	{
+		console.log('Market is closed for the day');
+		console.log('NOT CHECKING CURRENT PRICE');
+	}
 }

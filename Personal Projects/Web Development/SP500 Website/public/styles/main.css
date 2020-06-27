@@ -40,6 +40,12 @@ h1, h2, h3 {
 	margin-right: 4em;
 }
 
+#SP500Price {
+	margin-top: 0.15em;
+	margin-left: 0.25em;
+	font-weight: bolder;
+}
+
 #SP500Underline
 {
 	height: 3px;
@@ -48,8 +54,8 @@ h1, h2, h3 {
 	padding: 0;
 	opacity: 0.5;
 	margin-top: 0em;
-	margin-left: -2em;
-	margin-right: 1em;
+	margin-left: 3.5em;
+	margin-right: 2.5em;
 }
 
 #SP500LinearPD {

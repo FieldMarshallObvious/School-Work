@@ -1,7 +1,44 @@
 ej.base.enableRipple(window.ripple)
 
+//Global variable
+var thirtyminutes =  30 * 60000;
+
 createGraph();
 
+setInterval(updateIndexPrice, thirtyminutes);
+
+//Gets the new price and changes colors based
+//on new price relative to old price
+async function updateIndexPrice()
+{
+	//Variable declarations
+	var originalColor = getComputedStyle(document.getElementById("SP500Price")).backgroundColor;
+	
+	const curPriceRes = await fetch(`cur_index_price`);
+   	curPrice = await curPriceRes.json();
+
+   	document.getElementById("SP500Price").innerText = "$" + curPrice;
+
+   	//Get curPrice relative to last price
+   	const curCompRes = await fetch(`last_index_price_comparisson/${curPrice}`);
+   	curComp = await curCompRes.json();
+
+   	//Set div color based on last index price
+   	if( curComp == 1 )
+   		document.getElementById("SP500Price").backgroundColor = "#00ff00";
+   	else if( curComp == 0 )
+   		document.getElementById("SP500Price").backgroundColor = "#ffff00";
+   	else
+   		document.getElementById("SP500Price").backgroundColor = "ff0000";
+   	
+   	//Return the element to original color after one second
+   	setTimeout(function() 
+   	{
+   		document.getElementById("SP500Price").backgroundColor = originalColor;
+   	}, 1000);
+}
+
+//This function draws all the gauges and graphs on the index page
 async function createGraph()
 {
   	//Variable declarations
@@ -54,10 +91,7 @@ async function createGraph()
 
 
    	//Change value of index price
-   	const curPriceRes = await fetch(`cur_index_price`);
-   	curPrice = await curPriceRes.json();
-
-   	document.getElementById("SP500Price").innerText = "$" + curPrice;
+	updateIndexPrice()
 
 
    	//Change the text of the strength box
@@ -70,6 +104,8 @@ async function createGraph()
 
 }
 
+//This function gets the color of the particular item
+//Then returns the hexcode of that color
 async function getColor(curVal, min, max)
 {
     //Get data from server
