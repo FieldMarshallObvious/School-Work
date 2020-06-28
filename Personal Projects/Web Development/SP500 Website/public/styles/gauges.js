@@ -13,7 +13,9 @@ async function updateIndexPrice()
 {
 	//Variable declarations
 	var originalColor = getComputedStyle(document.getElementById("SP500Price")).backgroundColor;
-	
+	var opacity = 0.7,
+		r,g,b;
+
 	const curPriceRes = await fetch(`cur_index_price`);
    	curPrice = await curPriceRes.json();
 
@@ -25,16 +27,34 @@ async function updateIndexPrice()
 
    	//Set div color based on last index price
    	if( curComp == 1 )
-   		document.getElementById("SP500Price").style.backgroundColor = "#00ff00";
-   	else if( curComp == 0 )
-   		document.getElementById("SP500Price").style.backgroundColor = "#ffff00";
-   	else
-   		document.getElementById("SP500Price").style.backgroundColor = "ff0000";
-   	
-   	//Return the element to original color after one second
-   	setTimeout(function() 
    	{
-   		document.getElementById("SP500Price").style.backgroundColor = originalColor;
+   		r = 0;
+   		g = 255;
+   		b = 0;
+   	}
+   	else if( curComp == 0 )
+   	{
+   		r = 255;
+   		g = 247;
+   		b = 0;
+   	}
+   	else
+   	{
+   		r = 255;
+   		g = 0;
+   		b = 0;
+   	}
+   	document.getElementById("SP500PriceContainer").style.backgroundColor = `rgba(${r},${g},${b},${opacity})`;
+
+   	//Return the element to original color after one second
+   	setTimeout(async function() 
+   	{
+   		while( opacity != 0 )
+   		{
+   			opacity-=0.1;
+   			await sleep(50);
+   			document.getElementById("SP500PriceContainer").style.backgroundColor = `rgba(${r},${g},${b},${opacity})`;
+   		}
    	}, 1000);
 }
 
@@ -228,6 +248,11 @@ function radialGuage( curVal, color )
     });
 
     return gauge;
+}
+
+//Has the client wat for several seconds
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function textStrength( curVal, threshold )
