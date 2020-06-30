@@ -255,10 +255,11 @@ async function updateEquityPrice()
 
 	//Get current hour
 	var date = new Date,
+		day = date.getDay(),
 		hour = date.getHours(),
 		minute = date.getMinutes();
 
-	if( !(hour >= 15 && minute >= 30) )
+	if( (!(hour >= 15 && minute >= 30) && day != 0 && day != 6) || typeof timestamp == "undefined" )
 	{
 		API_interface.returnPrice( bloombergAPIkey, serverfetch, unirest ).then((results) => 
 		{
@@ -277,21 +278,7 @@ async function updateEquityPrice()
 	}
 	else
 	{
-		//console.log('Market is closed for the day');
-		//console.log('NOT CHECKING CURRENT PRICE');
-				API_interface.returnPrice( bloombergAPIkey, serverfetch, unirest ).then((results) => 
-		{
-			console.log("Current Price of the index: ", results);
-			
-			//Get timestamp
-			timestamp = getTimestamp();
-
-			output = {
-				price: results,
-				index: timestamp
-			};
-
-			database.insert( output );
-		});
+		console.log('Market is closed for the day');
+		console.log('NOT CHECKING CURRENT PRICE');
 	}
 }
