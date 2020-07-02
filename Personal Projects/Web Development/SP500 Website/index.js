@@ -57,10 +57,10 @@ const bloombergAPIkey = process.env.API_KEY_BLOOM;
 
 //Set variable to keep track of last timestamp
 var lastTimeStamp;
-var lastPrice;
+var price = [];
 
 //Set timer variables
-var thirtyminutes =  30 * 60000;
+var thirtyminutes =  1 * 60000;
 var oneday = 1440 * 60000;
 
 //Set CORS origin
@@ -110,8 +110,11 @@ app.get( '/cur_index_price', async(request, response) =>
 {
 	findInfo(database, timestamp).then((results) => 
 	{
-		//Log the last price 
-		lastPrice = results.price;
+
+		//Push the cur price to the array
+		price.push(results.price);
+
+
 		response.json(results.price);
 	});
 });
@@ -119,12 +122,12 @@ app.get( '/cur_index_price', async(request, response) =>
 app.get( '/last_index_price_comparisson/:curPrice', async(request,response) =>
 {
 	//Variable declarations
-	var output; 
+	var output;
 
 	const curPrice = request.params.curPrice;
 
 	//Determine of the last price relative to the cur price
-	if( curPrice > lastPrice )
+	if( curPrice > price[ (price.length - 1) ] )
 		output = 1;
 	else if( curPrice == lastPrice )
 		output = 0;
