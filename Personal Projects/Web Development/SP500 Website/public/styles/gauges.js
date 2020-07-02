@@ -1,7 +1,7 @@
 ej.base.enableRipple(window.ripple)
 
 //Global variable
-var thirtyminutes =  15 * 60000;
+var thirtyminutes =  5 * 60000;
 
 createGraph();
 

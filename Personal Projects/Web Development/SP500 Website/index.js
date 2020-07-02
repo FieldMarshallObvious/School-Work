@@ -60,7 +60,7 @@ var lastTimeStamp;
 var price = [];
 
 //Set timer variables
-var thirtyminutes =  1 * 60000;
+var thirtyminutes =  5 * 60000;
 var oneday = 1440 * 60000;
 
 //Set CORS origin
@@ -111,8 +111,10 @@ app.get( '/cur_index_price', async(request, response) =>
 	findInfo(database, timestamp).then((results) => 
 	{
 
-		//Push the cur price to the array
-		price.push(results.price);
+		//If the price has not already been logged
+		//push the cur price to the array
+		if( results.price != price[price.length - 1] )
+			price.push(results.price);
 
 
 		response.json(results.price);
@@ -122,14 +124,24 @@ app.get( '/cur_index_price', async(request, response) =>
 app.get( '/last_index_price_comparisson/:curPrice', async(request,response) =>
 {
 	//Variable declarations
-	var output;
+	var output,
+		delta;
 
 	const curPrice = request.params.curPrice;
 
+	if( price.length > 1 )
+		delta = 2;
+	else
+		delta = 1;
+
+	console.log('The array is', price);
+	console.log('CurPrice is: ', curPrice);
+	console.log('Last Price is: ', price[ (price.length - delta) ]);
+
 	//Determine of the last price relative to the cur price
-	if( curPrice > price[ (price.length - 1) ] )
+	if( curPrice > price[ (price.length - delta) ] )
 		output = 1;
-	else if( curPrice == lastPrice )
+	else if( curPrice == price[ (price.length - delta) ] )
 		output = 0;
 	else
 		output = -1;
@@ -262,6 +274,8 @@ async function updateEquityPrice()
 		hour = date.getHours(),
 		minute = date.getMinutes();
 
+	//Get new data only if market is open or if timestamp 
+	//is undefined
 	if( (!(hour >= 15 && minute >= 30) && day != 0 && day != 6) || typeof timestamp == "undefined" )
 	{
 		API_interface.returnPrice( bloombergAPIkey, serverfetch, unirest ).then((results) => 
