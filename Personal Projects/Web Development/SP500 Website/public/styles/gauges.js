@@ -16,7 +16,7 @@ async function updateIndexPrice()
 	var opacity = 0.7,
 		r,g,b;
 
-	const curPriceRes = await fetch(`cur_index_price`);
+	  const curPriceRes = await fetch(`cur_index_price`);
    	curPrice = await curPriceRes.json();
 
    	document.getElementById("SP500Price").innerText = "$" + curPrice;
