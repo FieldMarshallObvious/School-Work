@@ -71,6 +71,7 @@ const corsOptions = {
 //Update the database
 updateDataInDatabase();
 updateEquityPrice();
+updatePriceData();
 
 //Update equity price every 30 minutes
 setInterval(updateEquityPrice, thirtyminutes);
@@ -165,6 +166,16 @@ app.get( '/guage_color/:minmaxmiddle', async(request, response) =>
 	response.json(color);
 });
 
+//Returns historical price for index
+app.get( '/historicalData/:equity', async(request, response) =>
+{
+	const equity = request.params.equity;
+	findInfo(database, equity).then((results) => 
+	{
+		response.json(results);
+	});
+});
+
 //Function clears database
 function clearDB()
 {
@@ -185,7 +196,7 @@ function findInfo( database, indexInput )
 			return;
 		}
 
-		for( i = 0; i <= data.length; i++ )
+		for( i = 0; i < data.length; i++ )
 		{
 			if(data[i].index == indexInput)
 			{
@@ -196,7 +207,7 @@ function findInfo( database, indexInput )
 		return output;
 	});
 
-	return new Promise( resolve => 
+	return new Promise( (resolve, reject) => 
 	{
 		setTimeout(() => {
 			if( output != undefined )
@@ -224,7 +235,7 @@ function getTimestamp()
 	var datum = new Date(Date.UTC(year,month-1,day,hour,minute,second));
  	return datum.getTime()/1000;
 
-	}
+}
 
 //Callback function for database search
 function readDatabase(err)
@@ -299,3 +310,45 @@ async function updateEquityPrice()
 		console.log('NOT CHECKING CURRENT PRICE');
 	}
 }
+
+//Updates the price chart of the equity
+async function updatePriceData()
+{
+	//Variable declarations
+	var output,
+		data = [],
+		curJSON;
+
+	API_interface.returnHistorical( bloombergAPIkey, serverfetch, unirest ).then((results) => 
+	{
+		results.forEach( element => {
+
+			//Get date from current item
+			var date = new Date( element.time * 1000 );
+
+			var year = date.getFullYear(),
+				month = ( date.getMonth() + 1 ),
+				day = date.getDate();
+
+
+			var formattedTimeStamp = year + "-" + month + "-" + day;
+
+			curJSON = {
+				x: formattedTimeStamp,
+				close: element.close
+			};
+
+			data.push(curJSON);
+		});
+
+		output = {
+			priceHistory: data,
+			index: `SP500Historical`
+		};
+
+		database.insert(output);
+
+		console.log("Pushed data");
+	});
+}
+

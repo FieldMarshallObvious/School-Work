@@ -147,6 +147,59 @@ module.exports = {
 					}
 					else 
 					{
+						reject("Data was not acquired");
+					}
+
+				}, 5000);
+			}, 15000, output, curData);
+		});
+
+	},
+
+	returnHistorical: async function( APIKey, serverfetch, unirest )
+	{
+		//Variable declarations
+		var output,
+			curData;
+
+		//Begin request to server
+		var req = unirest("GET", "https://bloomberg-market-and-financial-news.p.rapidapi.com/market/get-chart");
+
+		//Query the server for this data
+		req.query({
+			"interval": "y1",
+			"id": "SPX%3AIND"
+		});
+
+		//Set request headers
+		req.headers({
+			"x-rapidapi-host": "bloomberg-market-and-financial-news.p.rapidapi.com",
+			"x-rapidapi-key": "bf2c8e4fcbmsh2620a1fd376e7cep18edc4jsna1ee5f8379d2",
+			"useQueryString": true
+		});
+
+		//Deal with responding data
+		req.end(function (res) {
+			//Convert raw data response to json
+			var jsonRes = JSON.parse(res.raw_body);
+
+			curData = jsonRes.result["SPX:IND"].ticks;
+		});
+
+		return new Promise( (resolve, reject) => 
+		{
+			setTimeout(() => {
+				//Set data if it has not been acquired all ready
+				output = curData;
+
+				setTimeout(() => {
+					//Check to see if the data has been acquired
+					if ( output != undefined )
+					{
+						resolve(output);
+					}
+					else 
+					{
 						console.log("Data was not acquired");
 					}
 
