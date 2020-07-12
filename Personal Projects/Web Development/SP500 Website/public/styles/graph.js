@@ -74,14 +74,19 @@ async function draw()
         });
         stockChart.appendTo('#HistoricalPrices');
     };
+
+    console.log("After here");
     
     //draw object 
     var SP500;
-    var ajax = new ej.base.Ajax(`${data}`, 'GET', true);
+    var ajax = new ej.base.Ajax(`historicalData/SP500Historical`, 'GET', true);
+    console.log("The ajax is ", ajax);
     ajax.send().then();
     ajax.onSuccess = function (data) {
-        SP500 = JSON.parse(data);
+        console.log("In ajax sunction");
+        SP500 = JSON.parse(data).priceHistory;
         console.log(SP500);
+        console.log('Price history is ', JSON.parse(data).priceHistory);
         SP500.map(function (data) {
             data.x = new Date(data.x);
         });
