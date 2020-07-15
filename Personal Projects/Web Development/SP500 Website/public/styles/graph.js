@@ -2,43 +2,9 @@ ej.base.enableRipple(window.ripple)
 
 draw();
 
-async function getData( url ){
-    var output;
-    const historicalData = await fetch(url);
-    var data =  await historicalData.json();
-
-    console.log("The data from the server is ", data.priceHistory);
-    return new Promise( (resolve, reject) => 
-    {
-        setTimeout(() => {
-            //Set data if it has not been acquired all ready
-            output = data;
-
-            //Check to see if the data has been acquired
-            if ( output != undefined )
-            {
-                resolve(output);
-            }
-            else 
-            {
-                reject("Data was not acquired");
-            }
-        }, 500, output, data);
-    });
- }
-
 async function draw()
 {
-    console.log("In function");
-    var data;
-    getData(`historicalData/SP500Historical`).then((results) =>
-    {
-
-    data = results.priceHistory;
-    
-    console.log("data is ", data);
     //Create graph object
-    console.log("get here");
     renderSplineStockChart = function (SP500) {
         var stockChart = new ej.charts.StockChart({
             primaryXAxis: { valueType: 'DateTime', majorGridLines: { width: 0 }, crosshairTooltip: { enable: true } },
@@ -49,7 +15,7 @@ async function draw()
             chartArea: { border: { width: 0 } },
             series: [
                 {
-                    dataSource: SP500, xName: 'x', yName: 'high', type: 'Spline'
+                    dataSource: SP500, xName: 'x', yName: 'close', type: 'Spline'
                 }
             ],
             seriesType : [],
@@ -75,23 +41,16 @@ async function draw()
         stockChart.appendTo('#HistoricalPrices');
     };
 
-    console.log("After here");
     
     //draw object 
     var SP500;
     var ajax = new ej.base.Ajax(`historicalData/SP500Historical`, 'GET', true);
-    console.log("The ajax is ", ajax);
     ajax.send().then();
     ajax.onSuccess = function (data) {
-        console.log("In ajax sunction");
         SP500 = JSON.parse(data).priceHistory;
-        console.log(SP500);
-        console.log('Price history is ', JSON.parse(data).priceHistory);
         SP500.map(function (data) {
             data.x = new Date(data.x);
         });
         renderSplineStockChart(SP500);
     };
-
-    });
 }
