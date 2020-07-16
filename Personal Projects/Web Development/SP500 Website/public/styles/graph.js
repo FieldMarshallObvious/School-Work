@@ -5,8 +5,9 @@ draw();
 async function draw()
 {
     //Create graph object
-    renderSplineStockChart = function (SP500) {
+    renderSplineStockChart = function (SP500Y) {
         var stockChart = new ej.charts.StockChart({
+            enablePeriodSelector: false,
             primaryXAxis: { valueType: 'DateTime', majorGridLines: { width: 0 }, crosshairTooltip: { enable: true } },
             primaryYAxis: {
                 lineStyle: { color: 'transparent' },
@@ -15,14 +16,17 @@ async function draw()
             chartArea: { border: { width: 0 } },
             series: [
                 {
-                    dataSource: SP500, xName: 'x', yName: 'close', type: 'Spline'
+                    dataSource: SP500Y, xName: 'x', yName: 'close', type: 'Spline',
                 }
             ],
             seriesType : [],
             indicatorType : [],
             title: 'S&P 500 Stock Price',
             titleStyle: { fontWeight: '500', color: '#424242' },
-            tooltip: { enable: true },
+            tooltip: { enable: true,             
+                    header: 'Closing Price',
+                    format: '<b>${point.x} : ${point.y}</b>' 
+            },
             crosshair: { enable: true },
             load: function (args) {
                 var selectedTheme = location.hash.split('/')[1];
@@ -34,7 +38,7 @@ async function draw()
                 if  (args.text.split('<br/>')[4]) {
                     var target = parseFloat(args.text.split('<br/>')[4].split('<b>')[1].split('</b>')[0]);
                     var value = (target / 100000000).toFixed(1) + 'B';
-                    args.text = args.text.replace(args.text.split('<br/>')[4].split('<b>')[1].split('</b>')[0], value);
+                    args.text = args.text.replace(args.text.split('<br/>')[4].split('<b>')[1].split('</b>')[0]);
                 }
             },
         });

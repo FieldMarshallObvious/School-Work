@@ -176,6 +176,20 @@ app.get( '/historicalData/:equity', async(request, response) =>
 	});
 });
 
+//Convert UNIX timestamp to human date
+function convertTime(UNIXTime)
+{
+	//Convert data passed to function
+	var date = new Date( UNIXTime * 1000 );
+
+	var year = date.getFullYear( ),
+		month = ( date.getMonth( ) + 1 ),
+		day = date.getDate( );
+
+
+	return (year + "-" + month + "-" + day);
+}
+
 //Function clears database
 function clearDB()
 {
@@ -319,19 +333,12 @@ async function updatePriceData()
 		data = [],
 		curJSON;
 
-	API_interface.returnHistorical( bloombergAPIkey, serverfetch, unirest ).then((results) => 
+	API_interface.returnHistorical( bloombergAPIkey, serverfetch, unirest, "y1" ).then((results) => 
 	{
 		results.forEach( element => {
 
 			//Get date from current item
-			var date = new Date( element.time * 1000 );
-
-			var year = date.getFullYear(),
-				month = ( date.getMonth() + 1 ),
-				day = date.getDate();
-
-
-			var formattedTimeStamp = year + "-" + month + "-" + day;
+			var formattedTimeStamp = convertTime( element.time );
 
 			curJSON = {
 				x: formattedTimeStamp,

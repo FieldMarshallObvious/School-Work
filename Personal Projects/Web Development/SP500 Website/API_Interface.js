@@ -156,7 +156,7 @@ module.exports = {
 
 	},
 
-	returnHistorical: async function( APIKey, serverfetch, unirest )
+	returnHistorical: async function( APIKey, serverfetch, unirest, interval )
 	{
 		//Variable declarations
 		var output,
@@ -167,7 +167,7 @@ module.exports = {
 
 		//Query the server for this data
 		req.query({
-			"interval": "y1",
+			"interval": `${interval}`,
 			"id": "SPX%3AIND"
 		});
 
