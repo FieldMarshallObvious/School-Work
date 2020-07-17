@@ -26,6 +26,20 @@ h1, h2, h3 {
   	margin-bottom: -20em;
 }
 
+.parallax {
+  /* The image used */
+  background-color: blue;
+
+  /* Set a specific height */
+  min-height: 100px; 
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .RadialGuages {
 	width: 50%;
 	padding: 0;
