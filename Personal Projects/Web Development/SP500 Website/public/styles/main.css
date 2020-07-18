@@ -2,6 +2,10 @@
 body {
 	background-color: #8a008a;
 	background-image: url(/styles/cream-dust/png) repeat 0 0;
+	height: 100vh;
+  	width: 100vw;
+  	 margin: 0;
+  	padding: 0;
 }
 
 /* Fonts */
@@ -27,11 +31,13 @@ h1, h2, h3 {
 }
 
 .parallax {
+
   /* The image used */
-  background-color: blue;
+  background-image: url("https://www.htmlcsscolor.com/preview/gallery/2196F3.png");
 
   /* Set a specific height */
-  min-height: 100px; 
+   height: 100%;
+  width: 100%;
 
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
@@ -48,6 +54,15 @@ h1, h2, h3 {
 }
 
 /* Unique elements */
+#mainTitle {
+	background: white; 
+	width: 25%; 
+	height: 25%;
+}
+
+#mainTitle h1 {
+	margin-top: 0.25em;
+}
 #mainHeader {
 	margin-top: 1em;
 	margin-left: 4em;
