@@ -107,12 +107,12 @@ class Particle
 
 			if( mouse.y < this.y && this.y < canvas.height - this.size * 10 )
 			{
-				this.y +=5;
+				this.y +=10;
 			}
 
 			if ( mouse.y > this.y && this.y > this.size * 10)
 			{
-				this.y -=5;
+				this.y -=10;
 			}
 		}
 
@@ -131,7 +131,7 @@ function init()
 {
 	//Variable declarations
 	particlesArray = [];
-	let numberOfParticles  = ( canvas.height * canvas.width ) / 9000;
+	let numberOfParticles  = ( canvas.height * canvas.width ) / 10000;
 	let size, x, y, directionX, directionY, color;
 
 	//Create particles for each item in the array

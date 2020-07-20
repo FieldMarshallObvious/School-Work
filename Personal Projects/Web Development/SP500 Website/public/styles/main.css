@@ -57,27 +57,35 @@ h1, h2, h3 {
 /* Unique elements */
 #mainTitle {
 	background: white; 
-	width: 50%; 
-	height: 15%;
+	width: 32%; 
+	height: 10%;
     position: relative;
   	top: 40%;
   	-webkit-transform: translateY(-50%);
   	-ms-transform: translateY(-50%);
   	transform: translateY(-50%);
+    overflow: hidden;
+
+  	
+  	/* Create the parallax scrolling effect */
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
  }
 
  #mainTitle div {
  	overflow: hidden; 
  	white-space: nowrap; 
  	margin-top: -1em;
+    position: fixed;
  }
 
 #mainTitle div h1 {
 	position: relative;
 	top: 50%;
-  	-webkit-transform: translateY(-50%);
-  	-ms-transform: translateY(-50%);
-  	transform: translateY(-50%);
+	margin-top: 0.5em;
+	right: 5%;
 }
 
 #mainGraphic {
@@ -87,10 +95,8 @@ h1, h2, h3 {
 	height: 100%;
 	width: 100%;
 	  /* Create the parallax scrolling effect */
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+    overflow: hidden;
+    position: fixed;
 }
 
 #mainHeader {
@@ -137,4 +143,22 @@ h1, h2, h3 {
 	width: 25%;
 	box-shadow: 0 0 0.05em 0.05em #ccc;
 
+}
+
+#logo
+{
+	width: 25%;
+	margin: 0;
+	top: 33%;
+	right: 5%;
+	border: 2px solid #ccc;
+	border-radius: 10px; 
+}
+
+#logo img 
+{
+	position: relative;
+	right: 10%;
+	width: 120%;
+	height: auto;
 }
