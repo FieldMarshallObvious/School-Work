@@ -50,7 +50,8 @@ class Particle
 		//Variable declarations
 		let dx,
 			dy,
-			distance;
+			distance,
+			delta = 5;
 		//Check if particle is still within canvas
 		//If the particle is not within the canvas
 		//Move the particle
@@ -69,50 +70,33 @@ class Particle
 		dy = mouse.y - this.y;
 		distance = Math.sqrt( dx*dx + dy*dy );
 
-
-		if( distance == mouse.radius + this.size + 20 )
-		{
-			if( mouse.x < this.x && this.x < canvas.width - this.size * 10 )
-			{
-				this.x+=10;
-			}
-
-			if( mouse.x > this.y && this.x >this.size * 10 )
-			{
-				this.x-=10;
-			}
-			if( mouse.y < this.y && this.y < canvas.height - this.size * 10 )
-			{
-				this.y+=10;
-			}
-
-			if( mouse.y > this.y && this.y >this.size * 10 )
-			{
-				this.y-=10;
-			}
-
-		}
-
 		if( distance < mouse.radius + this.size )
 		{
 			if( mouse.x < this.x && this.x < canvas.width - this.size * 10 )
 			{
-				this.x +=10;
+				this.x += delta;
+				this.directionX = -this.directionX;
+
 			}
 
 			if ( mouse.x > this.x && this.x > this.size * 10)
 			{
-				this.x -=10;
+				this.x -= delta;
+				this.directionX = -this.directionX;
+
 			}
 
 			if( mouse.y < this.y && this.y < canvas.height - this.size * 10 )
 			{
-				this.y +=10;
+				this.y += delta;
+				this.directionY = -this.directionY;
+
 			}
 
 			if ( mouse.y > this.y && this.y > this.size * 10)
 			{
-				this.y -=10;
+				this.y -= delta;
+				this.directionY = -this.directionY;
 			}
 		}
 
