@@ -21,21 +21,14 @@ function checkPosition() {
     var positionFromTop = elements[i].getBoundingClientRect().top;
 
     var appearTrue = positionFromTop - (windowHeight - windowHeight*0.16) <= 0;
-    var disappearTrue = positionFromTop*0.2 + windowHeight >= windowHeight*0.11 + windowHeight && elementClass.slice(elementClass.search('appearance'), elementClass.length) == 'appearance';
+    var disappearTrue = positionFromTop*0.2 + windowHeight >= windowHeight*0.11 + windowHeight;
 
-    console.log(positionFromTop);
-    console.log("posistion from top", positionFromTop + (positionFromTop * 0.2));
-    console.log("Top windowHeight is ", windowHeight*0.15 - windowHeight);
-    console.log("The sum is ", positionFromTop*0.2 + windowHeight);
-    console.log("Is ready to be removed ", disappearTrue);
-    console.log("The classname is, ",  elementClass.slice(elementClass.search('appearance'), elementClass.length));
-
-    if ( appearTrue ) {
+    if ( appearTrue && !( disappearTrue ) ) {
       element.classList.add('appearance');
       element.classList.remove('untouched');
     }
 
-    if ( disappearTrue )
+    if ( disappearTrue && elementClass.slice(elementClass.search('appearance'), elementClass.length) == 'appearance' )
     {
       console.log("Disappearing");
       element.classList.remove('appearance');
