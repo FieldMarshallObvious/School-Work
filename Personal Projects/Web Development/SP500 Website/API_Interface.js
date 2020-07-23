@@ -129,8 +129,8 @@ module.exports = {
 
 
 		//Get the data from the server
-		req.end(function (res) {
-			curData = res.body.result["SPX:IND"].last;
+		req.end(async function (res) {
+			curData = await res.body.result["SPX:IND"].last;
 		});
 
 		return new Promise( (resolve, reject) => 
@@ -179,11 +179,11 @@ module.exports = {
 		});
 
 		//Deal with responding data
-		req.end(function (res) {
+		req.end( async function (res) {
 			//Convert raw data response to json
-			var jsonRes = JSON.parse(res.raw_body);
+			var jsonRes = await JSON.parse(res.raw_body);
 
-			curData = jsonRes.result["SPX:IND"].ticks;
+			curData = await jsonRes.result["SPX:IND"].ticks;
 		});
 
 		return new Promise( (resolve, reject) => 
