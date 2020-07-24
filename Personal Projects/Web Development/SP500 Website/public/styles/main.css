@@ -82,7 +82,7 @@ h1, h2, h3 {
 }
 
 .SecondaryDisplayCase div {
-	font-size: 15px;
+	font-size: 25px;
 	position: relative;
 	top: 30%;
 
@@ -101,15 +101,15 @@ h1, h2, h3 {
 	background: white; 
 	width: 32%; 
 	height: 10%;
-    position: relative;
-  	top: 50%;
-  	-webkit-transform: translateY(-50%);
-  	-ms-transform: translateY(-50%);
-  	transform: translateY(-50%);
-    overflow: hidden;
+  position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+  overflow: hidden;
 
   	
-  	/* Create the parallax scrolling effect */
+  /* Create the parallax scrolling effect */
 	background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -120,12 +120,12 @@ h1, h2, h3 {
  	overflow: hidden; 
  	white-space: nowrap; 
  	margin-top: -1em;
-    position: fixed;
+  position: fixed;
  }
 
 #mainTitle div h1 {
 	position: relative;
-	top: 50%;
+	top: 52%;
 	margin-top: 0.5em;
 	right: 5%;
 }
