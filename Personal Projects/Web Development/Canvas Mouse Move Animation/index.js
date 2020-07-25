@@ -74,16 +74,14 @@ class Particle
 		if( mouse.x == undefined && mouse.y == undefined )
 		{
 			console.log(mouse.autopilotAngle);
-			let newX = mouse.radius * canvas.width/200 * Math.sin(mouse.autopilotAngle) * (Math.PI/180);
-			autopilotAngle * (Math.PI/180);
+			let newX = mouse.radius * canvas.width/200 * Math.sin(mouse.autopilotAngle * (Math.PI/180));
 
-			let newY = mouse.radius * canvas.height/200 * Math.cos(mouse.autopilotAngle) * (Math.PI/180);
-			autopilotAngle * (Math.PI/360);
+			let newY = mouse.radius * canvas.height/200 * Math.cos(mouse.autopilotAngle * (Math.PI/180));
 
 			mouse.x = newX + canvas.width/2;
 			mouse.y = newY + canvas.height/2;
 		}
-		mouse.autopilotAngle += 0.05;
+		mouse.autopilotAngle += 0.07;
 	}
 }
 
