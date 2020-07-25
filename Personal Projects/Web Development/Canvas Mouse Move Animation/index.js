@@ -10,7 +10,7 @@ ctx.textBaseline = 'middle';
 let lettersArray = ['L', 'A', 'B', 'O', 'R', 'A', 'T', 'O', 'R', 'Y'];
 let hue = 0;
 let particles = [];
-let numberofParticles = (canvas.width * canvas.height ) / 5000;
+let numberofParticles = (canvas.width * canvas.height ) / 7000;
 
 const mouse = {
 	x: 0,
@@ -164,7 +164,7 @@ function animate( )
 	handleOverlap();
 
 	//Increment hue
-	hue+=2;
+	hue+=5.5;
 
 	//Implement recursion
 	requestAnimationFrame(animate);
@@ -179,3 +179,15 @@ let autopilot = setInterval(function() {
 	mouse.x = undefined;
 	mouse.y = undefined;
 }, 40);
+
+canvas.addEventListener('mouseleave', function() {
+	autopilot  = setInterval(function() {
+	mouse.x = undefined;
+	mouse.y = undefined;
+}, 40);
+});
+
+cavnas.addEventListener('mouseenter', function(){
+	clearInterval(autopilot);
+	autopilot = undefined;
+});
