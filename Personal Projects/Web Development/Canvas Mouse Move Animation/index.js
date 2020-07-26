@@ -1,6 +1,7 @@
+// variables
 //Get canvas and drawin tools
-const canvas = document.getElementById('canvas1');
-const ctx = canvas.getContext('2d');
+const canvas = document.getElementById("canvas1");
+const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
@@ -9,18 +10,17 @@ ctx.textBaseline = 'middle';
 //Variable declarations
 let lettersArray = ['C', 'O', 'O', 'L'];
 let hue = 0;
+
 let particles = [];
-let numberofParticles = (canvas.width * canvas.height ) / 5000;
+let numberOfParticles = (canvas.width * canvas.height ) / 5000;let radius = window.innerWidth/5;
 
-console.log("number of particles", numberofParticles);
-
+// handle mouse
 const mouse = {
 	x: 0,
 	y: 0,
-	radius: 20,
+	radius: 60,
 	autopilotAngle: 0,
-}
-
+};
 //Every time the mouse moves
 //grab the x and of the new 
 //posistion
@@ -31,8 +31,7 @@ window.addEventListener('mousemove', function(e){
 
 //This class creates the
 //particle object
-class Particle 
-{
+class Particle {
 	constructor( x, y, radius )
 	{
 		this.x = x;
@@ -41,6 +40,7 @@ class Particle
 		this.color = 'hsl(' + hue + ', 100%, 50%)';
 		this.text = lettersArray[Math.floor( Math.random( ) * lettersArray.length )];
 	}
+
 
 	//This method draws the 
 	//object circle
@@ -68,56 +68,46 @@ class Particle
 		ctx.fillText(this.text, this.x - this.radius/2.7, this.y);
 	}
 
-	//This function moves moves the trail
+    //This function moves moves the trail
 	//if the mouse stops providing
 	//input
 	autoMove() 
 	{
+        // autopilot when mouse leaves canvas
 		if( mouse.x == undefined && mouse.y == undefined )
 		{
-			let newX = mouse.radius * canvas.width/50 * Math.cos(mouse.autopilotAngle * (Math.PI/180));
+			let newX = mouse.radius * canvas.width/150 * Math.cos(mouse.autopilotAngle * (Math.PI/180));
 
-			let newY = mouse.radius * canvas.height/50 * Math.sin(mouse.autopilotAngle * (Math.PI/90));
+			let newY = mouse.radius * canvas.height/150 * Math.sin(mouse.autopilotAngle * (Math.PI/90));
 
 			mouse.x = newX + canvas.width/2;
 			mouse.y = newY + canvas.height/2;
 		}
 		mouse.autopilotAngle += 0.01;
-	}
+    }
 }
 
-//This function 
-//initializes all particles,
-//determined by number of particles
-//Also prevent particles from 
-//overlapping
-function handleOverlap()
-{
+function handleOverlap(){
 	//Variable declarations
 	let overlapping = false;
 	let protection = 500;
 	let counter = 0;
 
 	//Create random posistion around mouse for particle
-	while( particles.length < numberofParticles && counter < protection )
+	while( particles.length < numberOfParticles && counter < protection )
 	{
 		let randomAngle = Math.random() * 2 * Math.PI;
-
-		let randomRadius = mouse.radius * Math.random();
-
+		let randomRadius = Math.random() * mouse.radius;
 		let particle = {
-			x: mouse.x + randomRadius + Math.cos(randomAngle),
-			y: mouse.y + randomRadius + Math.sin(randomAngle),
+			x: mouse.x + randomRadius * Math.cos(randomAngle),
+			y: mouse.y + randomRadius * Math.sin(randomAngle),
 			radius: Math.floor(Math.random() * 30) + 10,
 		};
-
 		overlapping = false;
-
 		//Check for particles that collide
 		for( let i = 0; i < particles.length; i++ )
 		{
 			let previousParticle = particles[i];
-
 			let dx = particle.x - previousParticle.x;
 			let dy = particle.y - previousParticle.y;
 			let distance = Math.sqrt( dx * dx + dy * dy);
@@ -129,24 +119,21 @@ function handleOverlap()
 			}
 
 		}
-
 		//If there is no overlap, add the paritcle
 		//to the array
 		if( !overlapping )
 		{
 			particles.unshift(new Particle(particle.x, particle.y, particle.radius));
 		}
-
 		counter++;
 	}
-
 }
 
-//This function creates animation
-//loop
-function animate(  )
-{
+function animate(){
 	ctx.clearRect( 0, 0, canvas.width, canvas.height );
+
+	console.log("number of particles ", numberOfParticles);
+	console.log("particles length is ", particles.length);
 	
 	//For each particle in the array draw it	
 	for( let i = 0; i < particles.length; i++ )
@@ -157,7 +144,7 @@ function animate(  )
 
 	handleOverlap();
 	//Remove old particles
-	if ( particles.length >= numberofParticles )
+	if ( particles.length >= Math.floor(numberOfParticles) )
 	{
 		for( let i = 0; i < 3; i++ )
 		{
@@ -171,14 +158,13 @@ function animate(  )
 	//Implement recursion
 	requestAnimationFrame(animate);
 }
-
 animate();
 
 window.addEventListener("resize", function(){
     particles = [];
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    numberofParticles =  (canvas.width * canvas.height ) / 5000;
+     numberOfParticles = 100;
     ctx.textBaseline = "middle";
     radius = window.innerWidth/5;
     handleOverlap();
