@@ -181,6 +181,14 @@ h1, h2, h3 {
 	margin-bottom: -14em;
 }
 
+#HistoricalPrices {
+  margin-left: -1em;
+}
+
+#HistoricalPricesContainer {
+  margin-left: 0.25em;
+}
+
 #StrengthofEquity
 {
 	margin-top: -10em;
@@ -347,15 +355,17 @@ h1, h2, h3 {
 {
   body {
     overflow-y: scroll;
+    height: 100vh;
+
   }
 
-  .SecondaryDisplayCase {
+.SecondaryDisplayCase {
     float: none;
     width: 200%;
     height: 99%;
   }
 
-  .SecondaryDisplayCase h2 {
+.SecondaryDisplayCase h2 {
     top: 5%;
   }
 
@@ -393,6 +403,14 @@ h1, h2, h3 {
     height: auto;
     width: 110%;
 
+  }
+
+  #HistoricalPrices {
+    margin: 0;
+  }
+
+  #HistoricalPricesContainer {
+    margin-left: 3em;
   }
 
 }
