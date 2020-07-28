@@ -8,9 +8,10 @@ body {
 	background-color: #8a008a;
 	background-image: url(/styles/cream-dust/png) repeat 0 0;
 	height: 100vh;
-  	width: 100vw;
-  	margin: 0;
-  	padding: 0;
+	width: 100vw;
+	margin: 0;
+	padding: 0;
+  overflow-x: hidden;
 }
 
 /* Fonts */
@@ -28,6 +29,8 @@ h1, h2, h3 {
 	animation: fadeIn ease var(--fade-in-time);
 	-webkit-animation: fadeIn ease var(--fade-in-time);
 	animation-fill-mode: forwards;
+  -webkit-transform: translateZ(0);
+  will-change: transform;
 }
 
 .displayCase {
@@ -94,6 +97,7 @@ h1, h2, h3 {
 	animation: fadeOut ease var(--fade-in-time);
 	-webkit-animation: fadeOut ease var(--fade-in-time);
 	animation-fill-mode: forwards;
+    will-change: transform;
 
 }
 
@@ -316,4 +320,79 @@ h1, h2, h3 {
     opacity:0;
     margin-top: var(--move-up-start-pos);
   }
+}
+
+/* specific size stylizations */
+@media (min-width: 1070px)
+{
+  #mainTitle
+  {
+    height: ;
+  } 
+
+  #mainTitle div h1 {
+    position: relative;
+    top: 52%;
+    margin-top: 1em;
+    right: 5%;
+  }
+
+  #logo  {
+    top: 25%;
+    right: 14%;
+  }
+}
+
+@media (max-width: 812px)
+{
+  body {
+    overflow-y: scroll;
+  }
+
+  .SecondaryDisplayCase {
+    float: none;
+    width: 200%;
+    height: 99%;
+  }
+
+  .SecondaryDisplayCase h2 {
+    top: 5%;
+  }
+
+.SecondaryDisplayCase div {
+    font-size: 20px;
+
+    top: 5%;
+  }
+
+  #mainHeader {
+    float: none;
+    width: 100%;
+    margin-right: 0.25em;
+    margin-left: 0.20em;
+
+  }
+  
+  #mainTitle {
+    height: 13%;
+  }
+
+  #mainTitle div h1
+  {
+    visibility: hidden;
+  }
+  #logo  {
+    top: 18%;
+    left: 3%;
+    overflow: visible;
+    width: 95%;
+    height: 95%;
+    border: none;
+  }
+  #logo img {
+    height: auto;
+    width: 110%;
+
+  }
+
 }

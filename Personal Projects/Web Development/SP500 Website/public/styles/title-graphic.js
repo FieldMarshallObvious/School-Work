@@ -115,7 +115,7 @@ function init()
 {
 	//Variable declarations
 	particlesArray = [];
-	let numberOfParticles  = ( canvas.height * canvas.width ) / 10000;
+	let numberOfParticles  = ( canvas.height * canvas.width ) / 15000;
 	let size, x, y, directionX, directionY, color;
 
 	//Create particles for each item in the array
