@@ -10,7 +10,7 @@ class Vector2{
         Vector2( const Vector2& oldVect );
         Vector2& operator=( const Vector2& oldVect );
 
-        ~Vector2( );
+        virtual ~Vector2( );
 
         float length( ) const;
         static void add( const Vector2& left, const Vector2& right, Vector2& dest );
