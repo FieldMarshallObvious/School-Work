@@ -41,13 +41,13 @@ void Vector2::subtract( const Vector2& left, const Vector2& right, Vector2& dest
 
 void Vector2::multiply( const Vector2& left, const Vector2& right, Vector2& dest )
 {
-    dest.x = left.x + right.x;
-    dest.y = left.y + right.y;   
+    dest.x = left.x * right.x;
+    dest.y = left.y * right.y;   
 }
 
 float Vector2::dotProduct( const Vector2& left, const Vector2& right )
 {
-    return left.x * right.x + left.y + right.y;
+    return left.x * right.x + left.y * right.y;
 }
 
 float Vector2::angle( const Vector2& left, const Vector2& right )
