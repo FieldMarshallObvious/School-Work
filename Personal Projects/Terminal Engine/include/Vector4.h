@@ -16,7 +16,8 @@ class Vector4{
         static void add( const Vector4& left, const Vector4& right, Vector4& dest );
         static void subtract( const Vector4& left, const Vector4& right, Vector4& dest );
         static void multiply(  const Vector4& left, const Vector4& right, Vector4& dest );
-        static void crossProduct( const Vector4& a, const Vector4& b, Vector4& dest );
+        static void lerp(  const Vector4& a, const Vector4& b, float t, Vector4& dest );
+
 
         static float dotProduct( const Vector4& a, const Vector4& b );
         static float distance( const Vector4& a, const Vector4& b );

@@ -45,6 +45,12 @@ void Vector2::multiply( const Vector2& left, const Vector2& right, Vector2& dest
     dest.y = left.y * right.y;   
 }
 
+void Vector2::lerp(  const Vector2& a, const Vector2& b, float t, Vector2& dest )
+{
+    dest.x = a.x + ( ( b.x - a.x ) * t );
+    dest.y = a.y + ( ( b.y - a.y ) * t );
+}
+
 float Vector2::dotProduct( const Vector2& left, const Vector2& right )
 {
     return left.x * right.x + left.y * right.y;

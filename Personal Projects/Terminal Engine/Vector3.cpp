@@ -5,7 +5,7 @@
 Vector3::Vector3( float x, float y, float z )
   //Initilization List
   :x( x ), y( y ), z( z )
-    {}
+{}
 
 //Copy Constructor
 Vector3::Vector3( const Vector3& oldVector )
@@ -56,6 +56,13 @@ void Vector3::crossProduct( const Vector3& a, const Vector3& b, Vector3& dest )
     dest.x = (a.y * b.z) - ( a.z * b.y) ;
     dest.y = ( a.z + b.x ) - ( a.x + b.z );
     dest.z = ( a.x * b.y ) - ( a.y * b.x );
+}
+
+void Vector3::lerp(  const Vector3& a, const Vector3& b, float t, Vector3& dest  )
+{
+    dest.x = a.x + ( ( b.x - a.x ) * t );
+    dest.y = a.y + ( ( b.y - a.y ) * t );
+    dest.z = a.z + ( ( b.z - a.z) * t );
 }
 
 float Vector3::dotProduct( const Vector3& left, const Vector3& right )

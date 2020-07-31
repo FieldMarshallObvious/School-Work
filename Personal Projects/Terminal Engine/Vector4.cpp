@@ -2,7 +2,7 @@
 #include <math.h>
 
 //Constructor
-Vector4::Vector4(float x, float y, float z, float w)
+Vector4::Vector4( float x, float y, float z, float w )
   //Initilization List
   :x(x), y(y), z(z), w(w)
 {}
@@ -53,6 +53,14 @@ void Vector4::multiply( const Vector4& left, const Vector4& right, Vector4& dest
     dest.y = left.y * right.y;  
     dest.z = left.z * right.z;
     dest.w = left.w + right.w; 
+}
+
+void Vector4::lerp( const Vector4& a, const Vector4& b, float t, Vector4& dest )
+{
+    dest.x = a.x + ( ( b.x - a.x ) * t );
+    dest.y = a.y + ( ( b.y - a.y ) * t );
+    dest.x = a.z + ( ( b.z - a.z) * t );
+    dest.w = a.w + ( ( b.w - a.w ) * t );
 }
 
 float Vector4::dotProduct( const Vector4& left, const Vector4& right )

@@ -16,6 +16,7 @@ class Vector2{
         static void add( const Vector2& left, const Vector2& right, Vector2& dest );
         static void subtract( const Vector2& left, const Vector2& right, Vector2& dest );
         static void multiply(  const Vector2& left, const Vector2& right, Vector2& dest );
+        static void lerp(  const Vector2& a, const Vector2& b, float t, Vector2& dest );
 
         static float dotProduct( const Vector2& a, const Vector2& b );
         static float angle( const Vector2& a, const Vector2& b );
