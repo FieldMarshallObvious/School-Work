@@ -63,6 +63,40 @@ void Vector4::lerp( const Vector4& a, const Vector4& b, float t, Vector4& dest )
     dest.w = a.w + ( ( b.w - a.w ) * t );
 }
 
+Vector4& Vector4::operator+=(const Vector4& right)
+{
+    Vector4::add( *this, right, *this );
+
+    return *this;
+}
+Vector4& Vector4::operator-=(const Vector4& right)
+{
+    Vector4::subtract( *this, right, *this );
+
+    return *this;
+}
+
+Vector4 Vector4::operator+(const Vector4& right)
+{
+    Vector4 output;
+    Vector4::add( *this, right, output );
+
+    return output;
+}
+Vector4 Vector4::operator-(const Vector4& right)
+{
+    Vector4 output;
+    Vector4::subtract( *this, right, output );
+
+    return output;
+}
+float Vector4::operator*(const Vector4& b)
+{
+    float output = dotProduct( *this, b );
+
+    return output;
+}
+
 float Vector4::dotProduct( const Vector4& left, const Vector4& right )
 {
     return left.x * right.x + left.y * right.y + left.z * right.z + left.w * right.w;

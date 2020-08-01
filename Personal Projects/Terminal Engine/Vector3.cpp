@@ -65,6 +65,55 @@ void Vector3::lerp(  const Vector3& a, const Vector3& b, float t, Vector3& dest 
     dest.z = a.z + ( ( b.z - a.z) * t );
 }
 
+
+Vector3& Vector3::operator%=(const Vector3& right){
+    Vector3::crossProduct(*this, right, *this);
+   
+   return *this;
+}
+
+Vector3& Vector3::operator+=(const Vector3& right)
+{
+    Vector3::add( *this, right, *this );
+
+    return *this;
+}
+Vector3& Vector3::operator-=(const Vector3& right)
+{
+    Vector3::subtract( *this, right, *this );
+
+    return *this;
+}
+
+
+Vector3 Vector3::operator+(const Vector3& right)
+{
+    Vector3 output;
+    Vector3::add( *this, right, output );
+
+    return output;
+}
+Vector3 Vector3::operator-(const Vector3& right)
+{
+    Vector3 output;
+    Vector3::subtract( *this, right, output );
+
+    return output;
+}
+Vector3 Vector3::operator%(const Vector3& right)
+{
+    Vector3 output;
+    Vector3::crossProduct( *this, right, output );
+
+    return output;
+}
+float Vector3::operator*(const Vector3& b)
+{
+    float output = Vector3::dotProduct( *this, b );
+
+    return output; 
+}
+
 float Vector3::dotProduct( const Vector3& left, const Vector3& right )
 {
     return left.x * right.x + left.y * right.y + left.z * right.z;

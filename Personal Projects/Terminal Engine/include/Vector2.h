@@ -22,6 +22,12 @@ class Vector2{
         static float angle( const Vector2& a, const Vector2& b );
         static float distance( const Vector2& a, const Vector2& b );
         static Vector2 getNormalized(const Vector2& v);
+		
+        Vector2& operator+=(const Vector2& right);
+		Vector2& operator-=(const Vector2& right);
+		Vector2 operator+(const Vector2& right);
+		Vector2 operator-(const Vector2& right);
+		float operator*(const Vector2& b);
 
         void scale(float s);
         void normalize();

@@ -51,6 +51,38 @@ void Vector2::lerp(  const Vector2& a, const Vector2& b, float t, Vector2& dest 
     dest.y = a.y + ( ( b.y - a.y ) * t );
 }
 
+Vector2& Vector2::operator+=(const Vector2& right)
+{
+    Vector2::add(*this, right, *this);
+    return *this;
+}
+Vector2& Vector2::operator-=(const Vector2& right)
+{
+    Vector2::subtract( *this, right, *this );
+    return *this;
+}
+
+Vector2 Vector2::operator+(const Vector2& right)
+{
+    Vector2 output;
+    Vector2::add( *this, right, output );
+
+    return output;
+}
+Vector2 Vector2::operator-(const Vector2& right)
+{
+    Vector2 output;
+    Vector2::subtract( *this, right, output );
+
+    return output;
+}
+float Vector2::operator*(const Vector2& b)
+{
+    float output = Vector2::dotProduct( *this, b );
+
+    return output;
+}
+
 float Vector2::dotProduct( const Vector2& left, const Vector2& right )
 {
     return left.x * right.x + left.y * right.y;

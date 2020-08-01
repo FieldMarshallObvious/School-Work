@@ -18,6 +18,14 @@ class Vector3{
         static void multiply(  const Vector3& left, const Vector3& right, Vector3& dest );
         static void crossProduct( const Vector3& a, const Vector3& b, Vector3& dest );
         static void lerp(  const Vector3& a, const Vector3& b, float t, Vector3& dest );
+		
+        Vector3& operator%=(const Vector3& right);
+        Vector3& operator+=(const Vector3& right);
+		Vector3& operator-=(const Vector3& right);
+		Vector3 operator+(const Vector3& right);
+		Vector3 operator-(const Vector3& right);
+		Vector3 operator%(const Vector3& right);
+		float operator*(const Vector3& b);
 
         static float dotProduct( const Vector3& a, const Vector3& b );
         static float angle( const Vector3& a, const Vector3& b );

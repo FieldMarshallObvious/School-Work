@@ -18,7 +18,12 @@ class Vector4{
         static void multiply(  const Vector4& left, const Vector4& right, Vector4& dest );
         static void lerp(  const Vector4& a, const Vector4& b, float t, Vector4& dest );
 
-
+		Vector4& operator+=(const Vector4& right);
+		Vector4& operator-=(const Vector4& right);
+		Vector4 operator+(const Vector4& right);
+		Vector4 operator-(const Vector4& right);
+		float operator*(const Vector4& b);
+        
         static float dotProduct( const Vector4& a, const Vector4& b );
         static float distance( const Vector4& a, const Vector4& b );
         static Vector4 getNormalized(const Vector4& v);
