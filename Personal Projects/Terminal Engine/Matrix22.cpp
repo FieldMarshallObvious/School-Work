@@ -11,16 +11,6 @@ Matrix22::Matrix22(const Matrix22& oldMatrix)
      m10(oldMatrix.m10), m11(oldMatrix.m11)
 {}
 
-Matrix22& Matrix22::operator=(const Matrix22& m)
-{
-    this->m00 = m.m00;
-    this->m01 = m.m01;
-    this->m10 = m.m10;
-    this->m11 = m.m11;
-
-    return *this; 
-}
-
 Matrix22::~Matrix22(){}
 
 void Matrix22::add(const Matrix22& left, const Matrix22& right, Matrix22& dest){
@@ -57,6 +47,54 @@ void Matrix22::transform(const Matrix22& left, const Vector2& right, Vector2& de
     dest.setX(x);
     dest.setY(y);
 }
+
+Matrix22& Matrix22::operator+=(const Matrix22& right)
+{
+    Matrix22::add(*this, right, *this);
+    return *this;
+}
+Matrix22& Matrix22::operator-=(const Matrix22& right)
+{
+    Matrix22::subtract(*this, right, *this);
+    return *this;
+}
+Matrix22& Matrix22::operator*=(const Matrix22& right)
+{
+    Matrix22::multiply(*this, right, *this);
+    return *this;
+}
+
+
+Matrix22 Matrix22::operator+(const Matrix22& right)
+{
+    Matrix22 output;
+    Matrix22::add(*this, right, output);
+
+    return output;
+}
+Matrix22 Matrix22::operator-(const Matrix22& right)
+{
+    Matrix22 output;
+    Matrix22::subtract( *this, right, output );
+    
+    return output;
+}
+Matrix22 Matrix22::operator*(const Matrix22& right)
+{
+    Matrix22 output; 
+    Matrix22::multiply( *this, right, output );
+
+    return output;
+}
+
+Vector2 Matrix22::operator*(const Vector2& vec)
+{
+    Vector2 output; 
+    Matrix22::transform( *this, vec, output );
+
+    return output;
+}
+
 
 void Matrix22::setIdentity()
 {

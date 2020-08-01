@@ -97,6 +97,52 @@ void Matrix33::transform(const Matrix33& left, const Vector3& right, Vector3& de
     dest.setZ(z);
 }
 
+Matrix33& Matrix33::operator+=(const Matrix33& right)
+{
+    Matrix33::add(*this, right, *this);
+    return *this;
+}
+Matrix33& Matrix33::operator-=(const Matrix33& right)
+{
+    Matrix33::subtract(*this, right, *this);
+    return *this;
+}
+Matrix33& Matrix33::operator*=(const Matrix33& right)
+{
+    Matrix33::multiply(*this, right, *this);
+    return *this;
+}
+
+
+Matrix33 Matrix33::operator+(const Matrix33& right)
+{
+    Matrix33 output;
+    Matrix33::add(*this, right, output);
+
+    return output;
+}
+Matrix33 Matrix33::operator-(const Matrix33& right)
+{
+    Matrix33 output;
+    Matrix33::subtract( *this, right, output );
+    
+    return output;
+}
+Matrix33 Matrix33::operator*(const Matrix33& right)
+{
+    Matrix33 output; 
+    Matrix33::multiply( *this, right, output );
+
+    return output;
+}
+Vector3 Matrix33::operator*(const Vector3& vec)
+{
+    Vector3 output; 
+    Matrix33::transform( *this, vec, output );
+
+    return output;
+}
+
 void Matrix33::setIdentity(){
 	m00 = 1;
 	m01 = 0;

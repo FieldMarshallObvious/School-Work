@@ -9,6 +9,11 @@
         "ios": "cpp",
         "istream": "cpp",
         "ostream": "cpp",
-        "streambuf": "cpp"
+        "streambuf": "cpp",
+        "__bit_reference": "cpp",
+        "atomic": "cpp",
+        "chrono": "cpp",
+        "complex": "cpp",
+        "iterator": "cpp"
     }
 }

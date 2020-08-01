@@ -142,6 +142,52 @@ void Matrix44::transform( const Matrix44& left, const Vector4& right, Vector4& d
     dest.setW(w);
 }
 
+Matrix44& Matrix44::operator+=(const Matrix44& right)
+{
+    Matrix44::add(*this, right, *this);
+    return *this;
+}
+Matrix44& Matrix44::operator-=(const Matrix44& right)
+{
+    Matrix44::subtract(*this, right, *this);
+    return *this;
+}
+Matrix44& Matrix44::operator*=(const Matrix44& right)
+{
+    Matrix44::multiply(*this, right, *this);
+    return *this;
+}
+
+
+Matrix44 Matrix44::operator+(const Matrix44& right)
+{
+    Matrix44 output;
+    Matrix44::add(*this, right, output);
+
+    return output;
+}
+Matrix44 Matrix44::operator-(const Matrix44& right)
+{
+    Matrix44 output;
+    Matrix44::subtract( *this, right, output );
+    
+    return output;
+}
+Matrix44 Matrix44::operator*(const Matrix44& right)
+{
+    Matrix44 output; 
+    Matrix44::multiply( *this, right, output );
+
+    return output;
+}
+Vector4 Matrix44::operator*(const Vector4& vec)
+{
+    Vector4 output; 
+    Matrix44::transform( *this, vec, output );
+
+    return output;
+}
+
 void Matrix44::setIdentity()
 {
 	m00 = 1;

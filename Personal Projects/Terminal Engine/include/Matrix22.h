@@ -15,6 +15,14 @@ class Matrix22{
         static void subtract(const Matrix22& left, const Matrix22& right, Matrix22& dest);
         static void multiply(const Matrix22& left, const Matrix22& right, Matrix22& dest);
         static void transform(const Matrix22& left, const Vector2& right, Vector2& dest);
+    
+        Matrix22& operator+=(const Matrix22& right);
+        Matrix22& operator-=(const Matrix22& right);
+        Matrix22& operator*=(const Matrix22& right);
+        Matrix22 operator+(const Matrix22& right);
+        Matrix22 operator-(const Matrix22& right);
+        Matrix22 operator*(const Matrix22& right);
+        Vector2 operator*(const Vector2& vec);
 
         void setIdentity();
         void setZero();
