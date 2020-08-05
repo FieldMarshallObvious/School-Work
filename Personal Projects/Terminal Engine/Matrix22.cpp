@@ -96,30 +96,36 @@ Vector2 Matrix22::operator*(const Vector2& vec)
 }
 
 
-void Matrix22::setIdentity()
+Matrix22& Matrix22::setIdentity()
 {
     m00 = 1;
     m11 = 1;
     m01 = 0;
     m10 = 0;
+
+    return *this;
 }
 
-void Matrix22::setZero()
+Matrix22& Matrix22::setZero()
 {
     m00 = 0;
     m11 = 0;
     m01 = 0;
     m10 = 0;
+
+    return *this;
 }
 
-void Matrix22::transpose() 
+Matrix22& Matrix22::transpose() 
 {
     float temp = m01;
     m01 = m10;
     m10 = temp;
+
+    return *this;
 }
 
-void Matrix22::invert()
+Matrix22& Matrix22::invert()
 {
     float determinant = getDeterminant();
 
@@ -137,14 +143,18 @@ void Matrix22::invert()
         this->m10 = t10;
         this->m01 = t01;
     }
+
+    return *this;
 }
 
-void Matrix22::negate() 
+Matrix22& Matrix22::negate() 
 {
     m00 = -m00;
     m01 = -m01;
     m10 = -m10;
     m11 = -m11;
+
+    return *this;
 }
 
 float Matrix22::getDeterminant() const

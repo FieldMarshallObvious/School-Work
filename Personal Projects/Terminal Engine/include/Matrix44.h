@@ -25,16 +25,16 @@ class Matrix44{
         Matrix44 operator*(const Matrix44& right);
         Vector4 operator*(const Vector4& vec);
 
-        void setIdentity(); 
-        void setZero();
-        void transpose();
-        void invert();
-        void negate();
-		void print() const;
+        Matrix44& setIdentity(); 
+        Matrix44& setZero();
+        Matrix44& transpose();
+        Matrix44& invert();
+        Matrix44& negate();
+		Matrix44& print() const;
     
-        void scale(const Vector3& scale);
-        void rotate(const Vector3& eulerAxis, float angle);
-        void translate(const Vector3& translation);
+        Matrix44& scale(const Vector3& scale);
+        Matrix44& rotate(const Vector3& eulerAxis, float angle);
+        Matrix44& translate(const Vector3& translation);
 
         float getDeterminant() const;
     

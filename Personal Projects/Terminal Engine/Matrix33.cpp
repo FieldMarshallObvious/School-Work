@@ -143,7 +143,7 @@ Vector3 Matrix33::operator*(const Vector3& vec)
     return output;
 }
 
-void Matrix33::setIdentity(){
+Matrix33& Matrix33::setIdentity(){
 	m00 = 1;
 	m01 = 0;
 	m02 = 0;
@@ -155,9 +155,11 @@ void Matrix33::setIdentity(){
 	m20 = 0;
 	m21 = 0;
 	m22 = 1;
+
+    return *this;
 }
 
-void Matrix33::setZero()
+Matrix33& Matrix33::setZero()
 {
 	m00 = 0;
 	m01 = 0;
@@ -170,9 +172,11 @@ void Matrix33::setZero()
 	m20 = 0;
 	m21 = 0;
 	m22 = 0;
+
+    return *this;
 }
 
-void Matrix33::transpose(){
+Matrix33& Matrix33::transpose(){
     float m00 = this->m00;
     float m01 = this->m10;
     float m02 = this->m20;
@@ -192,9 +196,11 @@ void Matrix33::transpose(){
     this->m20 = m20;
     this->m21 = m21;
     this->m22 = m22;
+
+    return *this;
 }
 
-void Matrix33::invert()
+Matrix33& Matrix33::invert()
 {
     float determinant = getDeterminant();
 
@@ -222,9 +228,11 @@ void Matrix33::invert()
         this->m12 = t21*determinant_inv;
         this->m21 = t12*determinant_inv;
     }
+
+    return *this;
 }
 
-void Matrix33::negate(){
+Matrix33& Matrix33::negate(){
     this->m00 = -this->m00;
     this->m01 = -this->m01;
     this->m02 = -this->m02;
@@ -234,6 +242,8 @@ void Matrix33::negate(){
     this->m20 = -this->m20;
     this->m21 = -this->m22;
     this->m22 = -this->m21;
+
+    return *this;
 }
 
 float Matrix33::getDeterminant() const{

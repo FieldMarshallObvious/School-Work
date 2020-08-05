@@ -43,13 +43,6 @@ void Vector3::subtract( const Vector3& left, const Vector3& right, Vector3& dest
 
 }
 
-void Vector3::multiply( const Vector3& left, const Vector3& right, Vector3& dest )
-{
-    dest.x = left.x * right.x;
-    dest.y = left.y * right.y;   
-    dest.z = left.z * right.z;
-
-}
 
 void Vector3::crossProduct( const Vector3& a, const Vector3& b, Vector3& dest )
 {
@@ -144,18 +137,22 @@ Vector3 Vector3::getNormalized( const Vector3& input )
     return ret;
 }
 
-void Vector3::scale( float s )
+Vector3& Vector3::scale( float s )
 {
-    x += s;
-    y += s;
-    z += s;
+    x *= s;
+    y *= s;
+    z *= s;
+
+    return *this;
 }
 
-void Vector3::normalize( )
+Vector3& Vector3::normalize( )
 {
     float mag = length( ); 
 
     x /= mag;
     y /= mag;
     z /= mag;
+
+    return *this;
 }

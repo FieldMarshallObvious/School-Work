@@ -24,11 +24,11 @@ class Matrix22{
         Matrix22 operator*(const Matrix22& right);
         Vector2 operator*(const Vector2& vec);
 
-        void setIdentity();
-        void setZero();
-        void transpose();
-        void invert();
-        void negate();
+        Matrix22& setIdentity();
+        Matrix22& setZero();
+        Matrix22& transpose();
+        Matrix22& invert();
+        Matrix22& negate();
         void print() const;
 
         float getDeterminant() const;

@@ -1,6 +1,8 @@
 #include "Matrix44.h"
 #include "Vector3.h"
 #include "Vector4.h"
+#include "defs.h"
+
 #include <math.h>
 
 #define DET33(t00, t01, t02, t10, t11, t12, t20, t21, t22) (((t00) * ((t11) * (t22) - (t12) * (t21))) + ((t01) * ((t12) * (t20) - (t10) * (t22))) + ((t02) * ((t10) * (t21) - (t11) * (t20))))
@@ -188,7 +190,7 @@ Vector4 Matrix44::operator*(const Vector4& vec)
     return output;
 }
 
-void Matrix44::setIdentity()
+Matrix44& Matrix44::setIdentity()
 {
 	m00 = 1;
 	m01 = 0;
@@ -209,9 +211,11 @@ void Matrix44::setIdentity()
     m31 = 0;
     m32 = 0;
     m33 = 1;
+
+    return *this;
 }
 
-void Matrix44::setZero()
+Matrix44& Matrix44::setZero()
 {
 	m00 = 0;
 	m01 = 0;
@@ -232,9 +236,11 @@ void Matrix44::setZero()
     m31 = 0;
     m32 = 0;
     m33 = 0;
+
+    return *this;
 }
 
-void Matrix44::transpose()
+Matrix44& Matrix44::transpose()
 {
     float m00 = this->m00;
     float m01 = this->m10;
@@ -268,10 +274,12 @@ void Matrix44::transpose()
     this->m30 = m30;
     this->m31 = m31;
     this->m32 = m32;
-    this->m33 = m33;   
+    this->m33 = m33;
+
+    return *this;   
 }
 
-void Matrix44::invert()
+Matrix44& Matrix44::invert()
 {
     float determinant = getDeterminant();
 
@@ -315,9 +323,11 @@ void Matrix44::invert()
         m32 = t23*determinant_inv;
         m23 = t32*determinant_inv;
     }
+
+    return *this;
 }
 
-void Matrix44::negate()
+Matrix44& Matrix44::negate()
 {
     this->m00 = -this->m00;
     this->m01 = -this->m01;
@@ -338,9 +348,11 @@ void Matrix44::negate()
     this->m31 = -this->m31;
     this->m32 = -this->m32;
     this->m33 = -this->m33;
+
+    return *this;
 }
 
-void Matrix44::scale( const Vector3& scale )
+Matrix44& Matrix44::scale( const Vector3& scale )
 {
     this->m00 = this->m00 * scale.getX();
     this->m01 = this->m01 * scale.getX();
@@ -356,11 +368,14 @@ void Matrix44::scale( const Vector3& scale )
     this->m21 = this->m21 * scale.getZ();
     this->m22 = this->m22 * scale.getZ();
     this->m23 = this->m23 * scale.getZ();
+
+    return *this;
 }
 
-void Matrix44::rotate(const Vector3& eulerAxis, float angle){
+Matrix44& Matrix44::rotate(const Vector3& eulerAxis, float angle){
     float c = (float) cos(angle);
     float s = (float) sin(angle);
+    
     float oneminusc = 1.0f - c;
     float xy = eulerAxis.getX()*eulerAxis.getY();
     float yz = eulerAxis.getY()*eulerAxis.getZ();
@@ -400,14 +415,18 @@ void Matrix44::rotate(const Vector3& eulerAxis, float angle){
     this->m11 = t11;
     this->m12 = t12;
     this->m13 = t13;
+
+    return *this;
 }
 
-void Matrix44::translate( const Vector3& translation )
+Matrix44& Matrix44::translate( const Vector3& translation )
 {
     this->m30 += this->m00 * translation.getX() + this->m10 * translation.getY() + this->m20 * translation.getZ();
     this->m31 += this->m01 * translation.getX() + this->m11 * translation.getY() + this->m20 * translation.getZ();
     this->m32 +=  this->m02 * translation.getX() + this->m12 * translation.getY() + this->m20 * translation.getZ();
     this->m33 +=  this->m03 * translation.getX() + this->m13 * translation.getY() + this->m20 * translation.getZ();
+
+    return *this;
 }
 
 float Matrix44::getDeterminant() const 

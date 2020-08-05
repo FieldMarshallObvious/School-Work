@@ -15,7 +15,6 @@ class Vector3{
         float length( ) const;
         static void add( const Vector3& left, const Vector3& right, Vector3& dest );
         static void subtract( const Vector3& left, const Vector3& right, Vector3& dest );
-        static void multiply(  const Vector3& left, const Vector3& right, Vector3& dest );
         static void crossProduct( const Vector3& a, const Vector3& b, Vector3& dest );
         static void lerp(  const Vector3& a, const Vector3& b, float t, Vector3& dest );
 		
@@ -32,8 +31,8 @@ class Vector3{
         static float distance( const Vector3& a, const Vector3& b );
         static Vector3 getNormalized(const Vector3& v);
 
-        void scale(float s);
-        void normalize();
+        Vector3& scale(float s);
+        Vector3&  normalize();
         
         inline float getX() const {return this->x;}
         inline float getY() const {return this->y;}

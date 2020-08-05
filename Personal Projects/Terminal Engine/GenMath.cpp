@@ -14,4 +14,4 @@ float GenMath::toRadians( float degrees )
 float GenMath::toDegress( float radians )
 {
     return( 180.0f / PI ) * radians;
-}
+} 

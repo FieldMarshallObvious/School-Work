@@ -24,12 +24,13 @@ class Matrix33{
         Matrix33 operator*(const Matrix33& right);
         Vector3 operator*(const Vector3& vec);
         
-        void setIdentity();
-        void setZero();
-    
-        void transpose();
-        void invert();
-        void negate();
+
+        Matrix33& setIdentity();
+        Matrix33& setZero();
+        Matrix33& transpose();
+        Matrix33& invert();
+        Matrix33& negate();
+        
 		void print() const;
     
         float getDeterminant() const;
