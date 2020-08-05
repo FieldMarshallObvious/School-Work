@@ -49,8 +49,8 @@ void Rasterizer::rasterizeTriangle( const Vector2& v1, const Vector2& v2, const 
     minX = MAX(0, MIN(v1.getX(), MIN(v2.getX(), v3.getX())));
     minY = MAX(0, MIN(v1.getY(), MIN(v2.getY(), v3.getY())));
 
-    maxX = MIN(fb->width, MAX(v1.getX(), MAX(v2.getX(), v3.getX())) + 1);
-    maxY = MIN(fb->height, MAX(v1.getY(), MAX(v2.getY(), v3.getY())) + 1);
+    maxX = MIN(fb->getWidth(), MAX(v1.getX(), MAX(v2.getX(), v3.getX())) + 1);
+    maxY = MIN(fb->getHeight(), MAX(v1.getY(), MAX(v2.getY(), v3.getY())) + 1);
 
     for( int j = minY; j < maxY; j++ )
     {
@@ -58,11 +58,11 @@ void Rasterizer::rasterizeTriangle( const Vector2& v1, const Vector2& v2, const 
         {
             if( isPointInTriangle(i, j, v1, v2, v3) )
             {
-                mvprintw( j, i, "#");
+                fb->setPixel( i, j, '#', 0);
             }
             else
             {
-                mvprintw( j, i, "." );
+                fb->setPixel( i, j, '.', 0);
             }
             
         }

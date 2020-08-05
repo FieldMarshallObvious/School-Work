@@ -121,16 +121,18 @@ Vector4 Vector4::getNormalized( const Vector4& input )
     return ret;
 }
 
-void Vector4::scale( float s )
+Vector4& Vector4::scale( float s )
 {
     x += s;
     y += s;
     z += s;
     w += s;
 
+    return *this;
+
 }
 
-void Vector4::normalize( )
+Vector4& Vector4::normalize( )
 {
     float mag = length( ); 
 
@@ -138,4 +140,6 @@ void Vector4::normalize( )
     y /= mag;
     z /= mag;
     w /= mag;
+
+    return *this;
 }

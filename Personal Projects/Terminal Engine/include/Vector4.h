@@ -28,8 +28,8 @@ class Vector4{
         static float distance( const Vector4& a, const Vector4& b );
         static Vector4 getNormalized(const Vector4& v);
 
-        void scale(float s);
-        void normalize();
+        Vector4& scale(float s);
+        Vector4& normalize();
         
         inline float getX() const {return this->x;}
         inline float getY() const {return this->y;}
