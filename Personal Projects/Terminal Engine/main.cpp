@@ -23,11 +23,11 @@ int main(void) {
 
     Matrix44 transformation;
     transformation.scale(Vector3(5, 1, 1));
-    transformation.rotate(Vector3(0, 0, 0), GenMath::toRadians(20));
+    transformation.rotate(Vector3(0, 0, 1), GenMath::toRadians(400));
 
-    Vector4 v1(10, 10, 1, 1);
-    Vector4 v2(20, 10, 1, 1);
-    Vector4 v3(15, 20, 1, 1);
+    Vector4 v1(10, -5, 1, 1);
+    Vector4 v2(5, 15, 1, 1);
+    Vector4 v3(50, 10, 1, 1);
 
     v1 = transformation * v1;
     v2 = transformation * v2;

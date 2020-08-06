@@ -6,7 +6,6 @@
 #include <math.h>
 
 #define DET33(t00, t01, t02, t10, t11, t12, t20, t21, t22) (((t00) * ((t11) * (t22) - (t12) * (t21))) + ((t01) * ((t12) * (t20) - (t10) * (t22))) + ((t02) * ((t10) * (t21) - (t11) * (t20))))
-
 Matrix44::Matrix44()
     :m00(1), m01(0), m02(0), m03(0),
      m10(0), m11(1), m12(0), m13(0),
@@ -48,7 +47,7 @@ Matrix44& Matrix44::operator=(const Matrix44& m)
     return *this; 
 }
 
-void Matrix44::add( const Matrix44& left, const Matrix44& right, Matrix44& dest )
+Matrix44& Matrix44::add( const Matrix44& left, const Matrix44& right, Matrix44& dest )
 {
     dest.m00 = left.m00 + right.m00;
     dest.m01 = left.m01 + right.m01;
@@ -69,9 +68,11 @@ void Matrix44::add( const Matrix44& left, const Matrix44& right, Matrix44& dest 
     dest.m31 = left.m31 + right.m31;
     dest.m32 = left.m32 + right.m32;
     dest.m33 = left.m33 + right.m33;
+
+    return dest;
 }
 
-void Matrix44::subtract( const Matrix44& left, const Matrix44& right, Matrix44& dest ) 
+Matrix44& Matrix44::subtract( const Matrix44& left, const Matrix44& right, Matrix44& dest ) 
 {
     dest.m00 = left.m00 - right.m00;
     dest.m01 = left.m01 - right.m01;
@@ -92,9 +93,11 @@ void Matrix44::subtract( const Matrix44& left, const Matrix44& right, Matrix44& 
     dest.m31 = left.m31 - right.m31;
     dest.m32 = left.m32 - right.m32;
     dest.m33 = left.m33 - right.m33;
+
+    return dest;
 } 
 
-void Matrix44::multiply( const Matrix44& left, const Matrix44& right, Matrix44& dest )
+Matrix44& Matrix44::multiply( const Matrix44& left, const Matrix44& right, Matrix44& dest )
 {
     float m00 = left.m00 * right.m00 + left.m10 * right.m01 + left.m20 * right.m02 + left.m30 * right.m03;
     float m01 = left.m01 * right.m00 + left.m11 * right.m01 + left.m21 * right.m02 + left.m31 * right.m03;
@@ -129,9 +132,11 @@ void Matrix44::multiply( const Matrix44& left, const Matrix44& right, Matrix44& 
     dest.m31 = m31;
     dest.m32 = m32;
     dest.m33 = m33;
+
+    return dest;
 }
 
-void Matrix44::transform( const Matrix44& left, const Vector4& right, Vector4& dest )
+Vector4& Matrix44::transform( const Matrix44& left, const Vector4& right, Vector4& dest )
 {
     float x = left.m00 * right.getX() + left.m10 * right.getY() + left.m20 * right.getZ();
     float y = left.m01 * right.getX() + left.m11 * right.getY() + left.m21 * right.getZ();
@@ -142,6 +147,8 @@ void Matrix44::transform( const Matrix44& left, const Vector4& right, Vector4& d
     dest.setY(y);
     dest.setZ(z);
     dest.setW(w);
+
+    return dest;
 }
 
 Matrix44& Matrix44::operator+=(const Matrix44& right)

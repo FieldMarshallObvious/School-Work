@@ -12,10 +12,10 @@ class Matrix44{
     
         virtual ~Matrix44();
 
-        static void add(const Matrix44& left, const Matrix44& right, Matrix44& dest);
-        static void subtract(const Matrix44& left, const Matrix44& right, Matrix44& dest);
-        static void multiply(const Matrix44& left, const Matrix44& right, Matrix44& dest);
-        static void transform(const Matrix44& left, const Vector4& right, Vector4& dest);
+        static Matrix44& add(const Matrix44& left, const Matrix44& right, Matrix44& dest);
+        static Matrix44& subtract(const Matrix44& left, const Matrix44& right, Matrix44& dest);
+        static Matrix44& multiply(const Matrix44& left, const Matrix44& right, Matrix44& dest);
+        static Vector4& transform(const Matrix44& left, const Vector4& right, Vector4& dest);
 
         Matrix44& operator+=(const Matrix44& right);
         Matrix44& operator-=(const Matrix44& right);
