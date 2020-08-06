@@ -1,4 +1,3 @@
-
 #include "Rasterizer.h"
 
 #include "defs.h"
@@ -41,10 +40,17 @@ Rasterizer::~Rasterizer()
     delete fb;
 }
 
-void Rasterizer::rasterizeTriangle( const Vector2& v1, const Vector2& v2, const Vector2& v3 )
+void Rasterizer::rasterizeTriangle( const Vector2& vv1, const Vector2& vv2, const Vector2& vv3 )
 {
     int minX,maxX;
     int minY, maxY;
+
+    int halfWidth = fb->getWidth() / 2,
+        halfHeight = fb->getHeight() / 2;
+
+    Vector2 v1 = Vector2( vv1.getX() * halfWidth + halfWidth, -vv1.getY() * halfHeight + halfHeight );
+    Vector2 v2 = Vector2( vv2.getX() * halfWidth + halfWidth, -vv2.getY() * halfHeight + halfHeight );
+    Vector2 v3 = Vector2( vv3.getX() * halfWidth + halfWidth, -vv3.getY() * halfHeight + halfHeight );
 
     minX = MAX(0, MIN(v1.getX(), MIN(v2.getX(), v3.getX())));
     minY = MAX(0, MIN(v1.getY(), MIN(v2.getY(), v3.getY())));
@@ -62,7 +68,7 @@ void Rasterizer::rasterizeTriangle( const Vector2& v1, const Vector2& v2, const 
             }
             else
             {
-                fb->setPixel( i, j, '.', 0);
+                fb->setPixel( i, j, ' ', 0);
             }
             
         }
