@@ -7,6 +7,7 @@
 #include "Matrix44.h"
 
 #include <math.h>
+#include <thread>
 
 inline static bool isPointInTriangle( int ptX, int ptY, const Vector2& v1, const Vector2& v2, const Vector2& v3)
 {
@@ -30,20 +31,23 @@ inline static bool isPointInTriangle( int ptX, int ptY, const Vector2& v1, const
 }
 
 Rasterizer::Rasterizer( int width, int height )
- :fb(nullptr)
+ :pFrame(nullptr), rFrame(nullptr), currentBuffer(0), renderCallback(nullptr)
 {
     initializerFramebuffer( width, height );
 }
 
 Rasterizer::~Rasterizer()
 {
-    delete fb;
+    delete frameBuffers[0];
+    delete frameBuffers[1];
 }
 
 void Rasterizer::rasterizeTriangle( const Vector2& vv1, const Vector2& vv2, const Vector2& vv3 )
 {
     int minX,maxX;
     int minY, maxY;
+
+    Framebuffer* fb = rFrame;
 
     int halfWidth = fb->getWidth() / 2,
         halfHeight = fb->getHeight() / 2;
@@ -73,12 +77,25 @@ void Rasterizer::rasterizeTriangle( const Vector2& vv1, const Vector2& vv2, cons
             
         }
     }
-
 }
+
+void Rasterizer::presentFrame(int x, int y)
+{ 
+    if(renderCallback !=nullptr)
+    {
+        std::thread renderThread(renderCallback);
+        pFrame->print(x,y);
+
+        renderThread.join();
+    }
+}
+
 
 void Rasterizer::initializerFramebuffer( int width, int height )
 {
-    fb = new Framebuffer( width, height );
+    frameBuffers[0] = new Framebuffer( width, height );
+    frameBuffers[1] = new Framebuffer( width, height );
+    swapBuffers();
 }
 
 

@@ -3,7 +3,7 @@
 
 #define PI 3.141592653f
 
-#define WH (LINES)
+#define HH (LINES)
 #define WW (COLS)
 
 #define MAX(a, b) (((a)>(b))? (a) : (b))

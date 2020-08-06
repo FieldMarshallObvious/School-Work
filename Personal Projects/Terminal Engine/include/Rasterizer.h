@@ -12,7 +12,13 @@ class Matrix44;
 class Rasterizer
 {
     private:
-        Framebuffer* fb;
+        Framebuffer* pFrame;
+        Framebuffer* rFrame;
+        Framebuffer* frameBuffers[2];
+        int currentBuffer;
+
+        bool(*renderCallback)();
+
         void initializerFramebuffer( int width, int height );
         
     public:
@@ -20,10 +26,19 @@ class Rasterizer
         ~Rasterizer();
 
         void rasterizeTriangle( const Vector2& v1, const Vector2& v2, const Vector2& v3 );
-
-        inline Framebuffer* getFrameBuffer() const {return fb;};
-        inline void presentFrame(int x, int y){ fb->print(x,y);}
-        inline void clearFrame(){fb->clear(0);}
+        void presentFrame(int x, int y);
+        
+        inline void clearFrame(){rFrame->clear(0);}
+        inline void swapBuffers()
+        {
+            currentBuffer ^= 1;
+            pFrame = frameBuffers[currentBuffer];
+            rFrame = frameBuffers[currentBuffer ^ 1];
+        }
+        inline void setRenderCB(bool(*rendercb)())
+        {
+            renderCallback = rendercb;
+        }
 };
 
 #endif

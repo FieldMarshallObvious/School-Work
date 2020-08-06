@@ -5,7 +5,7 @@ CFLAGS=-I$(IDIR)
 ODIR=obj
 LDIR =../lib
 
-LIBS=-lm -lncurses
+LIBS=-lm -lncurses -lpthread
 
 _DEPS=defs.h Vector2.h Vector3.h Vector4.h Matrix22.h Matrix33.h Matrix44.h Quaternion.h GenMath.h Rasterizer.h Framebuffer.h
 DEPS=$(patsubst %,$(IDIR)/%,$(_DEPS))
