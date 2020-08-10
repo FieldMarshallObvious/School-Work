@@ -25,9 +25,9 @@ class Vector2{
 		
         Vector2& operator+=(const Vector2& right);
 		Vector2& operator-=(const Vector2& right);
-		Vector2 operator+(const Vector2& right);
-		Vector2 operator-(const Vector2& right);
-		float operator*(const Vector2& b);
+		Vector2 operator+(const Vector2& right) const;
+		Vector2 operator-(const Vector2& right) const;
+		float operator*(const Vector2& b) const;
 
         void scale(float s);
         void normalize();

@@ -138,10 +138,10 @@ Matrix44& Matrix44::multiply( const Matrix44& left, const Matrix44& right, Matri
 
 Vector4& Matrix44::transform( const Matrix44& left, const Vector4& right, Vector4& dest )
 {
-    float x = left.m00 * right.getX() + left.m10 * right.getY() + left.m20 * right.getZ();
-    float y = left.m01 * right.getX() + left.m11 * right.getY() + left.m21 * right.getZ();
-    float z = left.m02 * right.getX() + left.m12 * right.getY() + left.m22 * right.getZ();
-    float w = left.m03 * right.getX() + left.m13 * right.getY() + left.m23 * right.getW();
+    float x = left.m00 * right.getX() + left.m10 * right.getY() + left.m20 * right.getZ() + left.m30 * right.getW();
+    float y = left.m01 * right.getX() + left.m11 * right.getY() + left.m21 * right.getZ() + left.m31 * right.getW();
+    float z = left.m02 * right.getX() + left.m12 * right.getY() + left.m22 * right.getZ() + left.m32 * right.getW();
+    float w = left.m03 * right.getX() + left.m13 * right.getY() + left.m23 * right.getZ() + left.m33 * right.getW();
 
     dest.setX(x);
     dest.setY(y);
@@ -168,28 +168,28 @@ Matrix44& Matrix44::operator*=(const Matrix44& right)
 }
 
 
-Matrix44 Matrix44::operator+(const Matrix44& right)
+Matrix44 Matrix44::operator+(const Matrix44& right) const
 {
     Matrix44 output;
     Matrix44::add(*this, right, output);
 
     return output;
 }
-Matrix44 Matrix44::operator-(const Matrix44& right)
+Matrix44 Matrix44::operator-(const Matrix44& right) const
 {
     Matrix44 output;
     Matrix44::subtract( *this, right, output );
     
     return output;
 }
-Matrix44 Matrix44::operator*(const Matrix44& right)
+Matrix44 Matrix44::operator*(const Matrix44& right) const
 {
     Matrix44 output; 
     Matrix44::multiply( *this, right, output );
 
     return output;
 }
-Vector4 Matrix44::operator*(const Vector4& vec)
+Vector4 Matrix44::operator*(const Vector4& vec) const
 {
     Vector4 output; 
     Matrix44::transform( *this, vec, output );
@@ -382,7 +382,6 @@ Matrix44& Matrix44::scale( const Vector3& scale )
 Matrix44& Matrix44::rotate(const Vector3& eulerAxis, float angle){
     float c = (float) cos(angle);
     float s = (float) sin(angle);
-    
     float oneminusc = 1.0f - c;
     float xy = eulerAxis.getX()*eulerAxis.getY();
     float yz = eulerAxis.getY()*eulerAxis.getZ();
@@ -426,12 +425,13 @@ Matrix44& Matrix44::rotate(const Vector3& eulerAxis, float angle){
     return *this;
 }
 
+
 Matrix44& Matrix44::translate( const Vector3& translation )
 {
     this->m30 += this->m00 * translation.getX() + this->m10 * translation.getY() + this->m20 * translation.getZ();
-    this->m31 += this->m01 * translation.getX() + this->m11 * translation.getY() + this->m20 * translation.getZ();
-    this->m32 +=  this->m02 * translation.getX() + this->m12 * translation.getY() + this->m20 * translation.getZ();
-    this->m33 +=  this->m03 * translation.getX() + this->m13 * translation.getY() + this->m20 * translation.getZ();
+    this->m31 += this->m01 * translation.getX() + this->m11 * translation.getY() + this->m21 * translation.getZ();
+    this->m32 +=  this->m02 * translation.getX() + this->m12 * translation.getY() + this->m22 * translation.getZ();
+    this->m33 +=  this->m03 * translation.getX() + this->m13 * translation.getY() + this->m23 * translation.getZ();
 
     return *this;
 }

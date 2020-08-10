@@ -65,21 +65,21 @@ Matrix22& Matrix22::operator*=(const Matrix22& right)
 }
 
 
-Matrix22 Matrix22::operator+(const Matrix22& right)
+Matrix22 Matrix22::operator+(const Matrix22& right) const
 {
     Matrix22 output;
     Matrix22::add(*this, right, output);
 
     return output;
 }
-Matrix22 Matrix22::operator-(const Matrix22& right)
+Matrix22 Matrix22::operator-(const Matrix22& right) const
 {
     Matrix22 output;
     Matrix22::subtract( *this, right, output );
     
     return output;
 }
-Matrix22 Matrix22::operator*(const Matrix22& right)
+Matrix22 Matrix22::operator*(const Matrix22& right) const
 {
     Matrix22 output; 
     Matrix22::multiply( *this, right, output );
@@ -87,7 +87,7 @@ Matrix22 Matrix22::operator*(const Matrix22& right)
     return output;
 }
 
-Vector2 Matrix22::operator*(const Vector2& vec)
+Vector2 Matrix22::operator*(const Vector2& vec) const
 {
     Vector2 output; 
     Matrix22::transform( *this, vec, output );

@@ -62,21 +62,21 @@ Vector2& Vector2::operator-=(const Vector2& right)
     return *this;
 }
 
-Vector2 Vector2::operator+(const Vector2& right)
+Vector2 Vector2::operator+(const Vector2& right) const
 {
     Vector2 output;
     Vector2::add( *this, right, output );
 
     return output;
 }
-Vector2 Vector2::operator-(const Vector2& right)
+Vector2 Vector2::operator-(const Vector2& right) const
 {
     Vector2 output;
     Vector2::subtract( *this, right, output );
 
     return output;
 }
-float Vector2::operator*(const Vector2& b)
+float Vector2::operator*(const Vector2& b) const
 {
     float output = Vector2::dotProduct( *this, b );
 

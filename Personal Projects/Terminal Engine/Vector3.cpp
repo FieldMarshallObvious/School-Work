@@ -79,28 +79,28 @@ Vector3& Vector3::operator-=(const Vector3& right)
 }
 
 
-Vector3 Vector3::operator+(const Vector3& right)
+Vector3 Vector3::operator+(const Vector3& right) const
 {
     Vector3 output;
     Vector3::add( *this, right, output );
 
     return output;
 }
-Vector3 Vector3::operator-(const Vector3& right)
+Vector3 Vector3::operator-(const Vector3& right) const
 {
     Vector3 output;
     Vector3::subtract( *this, right, output );
 
     return output;
 }
-Vector3 Vector3::operator%(const Vector3& right)
+Vector3 Vector3::operator%(const Vector3& right) const
 {
     Vector3 output;
     Vector3::crossProduct( *this, right, output );
 
     return output;
 }
-float Vector3::operator*(const Vector3& b)
+float Vector3::operator*(const Vector3& b) const
 {
     float output = Vector3::dotProduct( *this, b );
 

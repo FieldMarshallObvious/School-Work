@@ -21,10 +21,10 @@ class Vector3{
         Vector3& operator%=(const Vector3& right);
         Vector3& operator+=(const Vector3& right);
 		Vector3& operator-=(const Vector3& right);
-		Vector3 operator+(const Vector3& right);
-		Vector3 operator-(const Vector3& right);
-		Vector3 operator%(const Vector3& right);
-		float operator*(const Vector3& b);
+		Vector3 operator+(const Vector3& right) const;
+		Vector3 operator-(const Vector3& right) const;
+		Vector3 operator%(const Vector3& right) const;
+		float operator*(const Vector3& b) const;
 
         static float dotProduct( const Vector3& a, const Vector3& b );
         static float angle( const Vector3& a, const Vector3& b );

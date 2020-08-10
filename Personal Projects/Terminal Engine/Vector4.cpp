@@ -76,21 +76,21 @@ Vector4& Vector4::operator-=(const Vector4& right)
     return *this;
 }
 
-Vector4 Vector4::operator+(const Vector4& right)
+Vector4 Vector4::operator+(const Vector4& right) const
 {
     Vector4 output;
     Vector4::add( *this, right, output );
 
     return output;
 }
-Vector4 Vector4::operator-(const Vector4& right)
+Vector4 Vector4::operator-(const Vector4& right) const
 {
     Vector4 output;
     Vector4::subtract( *this, right, output );
 
     return output;
 }
-float Vector4::operator*(const Vector4& b)
+float Vector4::operator*(const Vector4& b) const
 {
     float output = dotProduct( *this, b );
 

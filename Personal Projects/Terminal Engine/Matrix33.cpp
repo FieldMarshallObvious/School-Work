@@ -114,28 +114,28 @@ Matrix33& Matrix33::operator*=(const Matrix33& right)
 }
 
 
-Matrix33 Matrix33::operator+(const Matrix33& right)
+Matrix33 Matrix33::operator+(const Matrix33& right) const
 {
     Matrix33 output;
     Matrix33::add(*this, right, output);
 
     return output;
 }
-Matrix33 Matrix33::operator-(const Matrix33& right)
+Matrix33 Matrix33::operator-(const Matrix33& right) const
 {
     Matrix33 output;
     Matrix33::subtract( *this, right, output );
     
     return output;
 }
-Matrix33 Matrix33::operator*(const Matrix33& right)
+Matrix33 Matrix33::operator*(const Matrix33& right) const
 {
     Matrix33 output; 
     Matrix33::multiply( *this, right, output );
 
     return output;
 }
-Vector3 Matrix33::operator*(const Vector3& vec)
+Vector3 Matrix33::operator*(const Vector3& vec) const
 {
     Vector3 output; 
     Matrix33::transform( *this, vec, output );

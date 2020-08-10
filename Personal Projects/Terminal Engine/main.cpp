@@ -17,13 +17,13 @@ Vector4 v1(-1, 1, 0, 1);
 Vector4 v2(1, 1, 0, 1);
 Vector4 v3(0, -1, 0, 1);
 
-Vector4 transformVertex( Vector4& vertex,  Matrix44& MVPMatrix){
+Vector4 transformVertex( const Vector4& vertex, const  Matrix44& MVPMatrix){
     Vector4 f;
 
     f = MVPMatrix * vertex;
     f.setX( f.getX() / f.getW() );
-    f.setY(  f.getX() / f.getW() );
-    f.setZ( f.getZ() / f.getW());
+    f.setY( f.getY() / f.getW() );
+    f.setZ( f.getZ() / f.getW() );
 
     return f;
 }
@@ -40,7 +40,7 @@ bool renderCB(){
     angle += .001f;
 
     transformation.translate(Vector3(0, 0, -2));
-    transformation.rotate(Vector3(0, 1, 1), angle);
+    transformation.rotate(Vector3(0, 1, 0), angle);
     finalMatrix = PVMatrix * transformation;
 
     Vector4 fv1 = transformVertex(v1, finalMatrix);
