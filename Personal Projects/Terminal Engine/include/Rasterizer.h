@@ -2,6 +2,7 @@
 #define INCLUDE_RASTERIZER_H
 
 #include "Framebuffer.h"
+#include <thread>
 
 
 class Vector2;
@@ -15,11 +16,14 @@ class Rasterizer
         Framebuffer* pFrame;
         Framebuffer* rFrame;
         Framebuffer* frameBuffers[2];
+
+        //std::thread renderThread;
+
         int currentBuffer;
 
         bool(*renderCallback)();
 
-        void initializerFramebuffer( int width, int height );
+        void initializeFramebuffer( int width, int height );
         
     public:
         Rasterizer( int width, int height );
