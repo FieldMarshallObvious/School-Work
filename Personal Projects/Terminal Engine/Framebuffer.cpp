@@ -42,13 +42,18 @@ void Framebuffer::setPixel( int x, int y, colorbuffer_t pixelcolor, depthbuffer_
 
 void Framebuffer::print( int offsetX, int offsetY )
 {
+    init_pair(3, COLOR_RED, COLOR_BLACK);
+    init_pair(4, COLOR_GREEN, COLOR_BLACK);
+    init_pair(0, COLOR_BLACK, COLOR_BLACK);
+    
     for(int i = offsetX; i < width; i++){
         for(int j = offsetY; j < height; j++){
             int index = (width * j) + i;
 
-            //if(!colorbuffer[index]) continue;
+            if(!colorbuffer[index]) continue;
 
             int color = (char)(colorbuffer[index] >> 8);
+            
             attron(COLOR_PAIR(color));
 
             mvprintw(j, i, "%c", (char)colorbuffer[index]);

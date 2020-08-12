@@ -29,7 +29,7 @@ class Rasterizer
         Rasterizer( int width, int height );
         ~Rasterizer();
 
-        void rasterizeTriangle( const Vector2& v1, const Vector2& v2, const Vector2& v3 );
+        void rasterizeTriangle( const Vector2& vv1, const Vector2& vv2, const Vector2& vv3, const Vector2& vv4, const Vector2& vv5, const Vector2& vv6, int colorPair, int colorPair2, int z1, int z2  );
         void presentFrame(int x, int y);
         
         inline void clearFrame(){rFrame->clear(0);}
