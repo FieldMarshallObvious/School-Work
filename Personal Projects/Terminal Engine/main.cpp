@@ -18,8 +18,8 @@ Vector4 v2(1, 1, 0, 1);
 Vector4 v3(0, -1, 0, 1);
 
 Vector4 v4(-1, 1, 1, 0);
-Vector4 v5(1, 1, 1, 0);
-Vector4 v6(0, -1, 1, 0);
+Vector4 v5(1, 1, 0, 1);
+Vector4 v6(0, -1, 0, 1);
 
 Vector4 transformVertex( const Vector4& vertex, const  Matrix44& MVPMatrix){
     Vector4 f;
@@ -62,6 +62,8 @@ bool renderCB(){
                                   Vector2(fv4.getX(), fv4.getY()), 
                                   Vector2(fv5.getX(), fv5.getY()), 
                                   Vector2(fv6.getX(), fv6.getY()), 1200, 1000, 2, -1);
+
+    transformation.translate(Vector3(5, 0, -1));
 
     rasterizer->rasterizeTriangle(Vector2(fv4.getX(), fv4.getY()), 
                                   Vector2(fv5.getX(), fv5.getY()), 
