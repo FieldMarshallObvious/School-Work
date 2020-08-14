@@ -7,6 +7,9 @@ canvas.height = window.innerHeight;
 
 //Variable declarations
 let particleArray = [];
+let adjustX = 30;
+let adjustY = -12;
+
 
 //Handle mouse interactions
 const mouse = {
@@ -26,7 +29,7 @@ ctx.font = '30px Verdana';
 ctx.fillText('A', 0, 40);
 
 //Get pixel data for the area within this square
-const data = ctx.getImageData(0, 0, 100, 100);
+const textCoordinates = ctx.getImageData(0, 0, 100, 100);
 
 
 //Create class for particles
@@ -39,13 +42,17 @@ class Particle
 		this.size = 3;
 		this.baseX = this.x;
 		this.baseY = this.y;
-		this.desnity = (Math.random() * 30) + 1;
+		this.density = (Math.random() * 40) + 5;
+		this.distance = mouse.radius;
+		this.Red = 255;
+		this.Green = 255;
+		this.Blue = 255;
 	}
 
 	//Draw the circular particle
 	draw()
 	{
-		ctx.fillStyle = 'white';
+		ctx.fillStyle = 'rgba( ' + this.Red + ', ' + this.Green + ', ' + this.Blue + '1)';
 		ctx.beginPath();
 		ctx.arc( this.x, this.y, this.size, 0, Math.PI * 2 );
 		ctx.closePath();
@@ -59,17 +66,48 @@ class Particle
 		let dx = mouse.x - this.x;
 		let dy = mouse.y - this.y;
 		let distance = Math.sqrt(dx * dx + dy * dy);
+		
+		let forceDirectionX = dx / distance;
+		let forceDirectionY = dy / distance;
+		let maxDistance = mouse.radius;
+		let force = ( maxDistance - distance ) / maxDistance;
+		let directionX = force * forceDirectionX * this.density;
+		let directionY = force * forceDirectionY * this.density;
 
-		if( distance < 500 )
+		//If the particle is within the mouse radius
+		//move the particle
+		if( distance < mouse.radius )
 		{
-			this.size = 50;
+			this.x -= directionX * 3;
+			this.y -= directionY * 3;
+
+			calcColor( -1, distance );
 		}
+
+		//if the particle is not within the radius
+		//check if it is still in its original posistion
 		else
 		{
-			this.size = 3
+			if ( this.x != this.baseX )
+			{
+				let dx = this.x - this.baseX;
+				this.x -= dx/10;
+			}
+
+			if( this.y != this.baseY )
+			{
+				let dy = this.y - this.baseY;
+				this.y -= dy/10;
+			}
+
+			calcColor( 1, distance );
 		}
 
+		//Assign distance to mouse
+		this.distance = distance;
+
 	}
+
 }
 
 //Initialize particle array
@@ -78,13 +116,23 @@ function init()
 	//Create particle array
 	particleArray = [];
 
-	for( let i = 0; i < 500; i++)
+	//Place pixels on regions that pass an opacity
+	//test of greater than 50%
+	for ( let y = 0, y2 = textCoordinates.height; y < y2; y++ )
 	{
-		let x = Math.random() * 500;
-		let y = Math.random() * 500;
-		particleArray.push(new Particle(x, y));
+		for(let x = 0, x2 = textCoordinates.width; x < x2; x++ )
+		{
+			if( textCoordinates.data[(y * 4 * textCoordinates.width) +  (x * 4) + 3 ] > 128 )
+			{
+				let positionX = x + adjustX;
+				let positionY = y + adjustY;
+
+				particleArray.push( new Particle(positionX * 20, positionY * 20 ) );
+			}
+		}
 	}
 }
+
 
 //Create animation for handling
 //particle movement
@@ -97,10 +145,74 @@ function animate()
 		particleArray[i].draw();
 		particleArray[i].update();
 	}
-	requestAnimationFrame(animate);
+
+	//connect();
 
 	//implement recursion
 	requestAnimationFrame(animate);
+}
+
+//This function will connect particles
+//with lines if they are close enough
+function connect()
+{
+	//Variable declarations
+	let dx;
+	let dy;
+	let opacityValue = 1;
+	let distanceVal = 100;
+
+	//Compare all particles if they
+	//to see if they are close enough 
+	//to connect lines
+	for( let a = 0; a < particleArray.length; a++ )
+	{
+		for( let b = a; b < particleArray.length; b++ )
+		{
+			//Caculate distance
+			dx = particleArray[a].x - particleArray[b].x;
+			dy = particleArray[a].y - particleArray[b].y;
+
+			let distance = Math.sqrt(dx * dx + dy * dy);
+
+			if( distance < distanceVal )
+			{
+				//Calculate opactiy
+				opacityValue = 1 - ( distance / distanceVal );
+
+				ctx.strokeStyle = 'rgba(255, 255, 255,' + opacityValue + ')';
+				ctx.lineWidth = 2;
+				ctx.beginPath();
+				ctx.moveTo(particleArray[a].x, particleArray[a].y);
+				ctx.lineTo(particleArray[b].x, particleArray[b].y);
+				ctx.stroke();
+			}
+		}
+	}
+}
+
+//Calculate the color of the particle 
+//based on it's distance to the particle
+function calcColor( operation, mouseDistance )
+{
+	//Variable declarations
+	let temp;
+	let conversionRate = 1.5;
+
+	//Change the color of the particle
+	//based on it's distance from the mouse
+	for( let x = 0; x < particleArray.length; x++ )
+	{
+		for( let y = 0; y < particleArray[x].distance; y++ )
+		{
+			temp = operation * ( conversionRate ) + particleArray[x].Blue;
+
+
+			if( temp >= 20 && temp <= 255)
+				particleArray[x].Blue = temp;
+		}
+	}
+
 }
 
 init();
