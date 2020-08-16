@@ -19,7 +19,7 @@ Vector4 v3(0, -1, 0, 1);
 
 Vector4 v4(-1, 1, 1, 0);
 Vector4 v5(1, 1, 0, 1);
-Vector4 v6(0, -1, 0, 1);
+Vector4 v6(-1, 0, 1, 0);
 
 Vector4 transformVertex( const Vector4& vertex, const  Matrix44& MVPMatrix){
     Vector4 f;
@@ -33,9 +33,11 @@ Vector4 transformVertex( const Vector4& vertex, const  Matrix44& MVPMatrix){
 }
 
 bool renderCB(){
-    Matrix44 transformation;
+    Matrix44 transformation,
+             transformation2;
     Matrix44 PVMatrix;
-    Matrix44 finalMatrix;
+    Matrix44 finalMatrix,
+             finalMatrix2;
 
     cam->calculateViewMatrix();
     
@@ -47,13 +49,17 @@ bool renderCB(){
     transformation.rotate(Vector3(0, 1, 0), angle);
     finalMatrix = PVMatrix * transformation;
 
+    transformation2.translate(Vector3(0, 0, -1));
+    transformation2.rotate(Vector3(0, 1, 0), angle);
+    finalMatrix2 = PVMatrix * transformation2;
+
     Vector4 fv1 = transformVertex(v1, finalMatrix);
     Vector4 fv2 = transformVertex(v2, finalMatrix);
     Vector4 fv3 = transformVertex(v3, finalMatrix);
 
-    Vector4 fv4 = transformVertex(v4, finalMatrix);
-    Vector4 fv5 = transformVertex(v5, finalMatrix);
-    Vector4 fv6 = transformVertex(v6, finalMatrix);
+    Vector4 fv4 = transformVertex(v4, finalMatrix2);
+    Vector4 fv5 = transformVertex(v5, finalMatrix2);
+    Vector4 fv6 = transformVertex(v6, finalMatrix2);
 
     rasterizer->clearFrame();
     rasterizer->rasterizeTriangle(Vector2(fv1.getX(), fv1.getY()), 
@@ -63,7 +69,7 @@ bool renderCB(){
                                   Vector2(fv5.getX(), fv5.getY()), 
                                   Vector2(fv6.getX(), fv6.getY()), 1200, 1000, 2, -1);
 
-    transformation.translate(Vector3(5, 0, -1));
+    transformation2.translate(Vector3(5, 0, -1));
 
     rasterizer->rasterizeTriangle(Vector2(fv4.getX(), fv4.getY()), 
                                   Vector2(fv5.getX(), fv5.getY()), 

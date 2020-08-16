@@ -336,25 +336,25 @@ Matrix44& Matrix44::invert()
 
 Matrix44& Matrix44::negate()
 {
-    this->m00 = -this->m00;
-    this->m01 = -this->m01;
-    this->m02 = -this->m02;
-    this->m03 = -this->m03;
+    m00 = -m00;
+    m01 = -m01;
+    m02 = -m02;
+    m03 = -m03;
 
-    this->m10 = -this->m10;
-    this->m11 = -this->m11;
-    this->m12 = -this->m12;
-    this->m13 = -this->m13;
+    m10 = -m10;
+    m11 = -m11;
+    m12 = -m12;
+    m13 = -m13;
 
-    this->m20 = -this->m20;
-    this->m21 = -this->m22;
-    this->m22 = -this->m21;
-    this->m23 = -this->m23;
+    m20 = -m20;
+    m21 = -m21;
+    m22 = -m22;
+    m23 = -m23;
 
-    this->m30 = -this->m30;
-    this->m31 = -this->m31;
-    this->m32 = -this->m32;
-    this->m33 = -this->m33;
+    m30 = -m30;
+    m31 = -m31;
+    m32 = -m32;
+    m33 = -m33;
 
     return *this;
 }

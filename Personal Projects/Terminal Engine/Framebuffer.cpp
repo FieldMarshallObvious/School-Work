@@ -31,7 +31,7 @@ void Framebuffer::clear(int clearColor)
 
 void Framebuffer::setPixel( int x, int y, colorbuffer_t pixelcolor, depthbuffer_t depth )
 {
-    int index = (y * width ) + x;
+    int index = ( y * width ) + x;
 
     if( depth < depthbuffer[index] )
     {
@@ -46,8 +46,8 @@ void Framebuffer::print( int offsetX, int offsetY )
     init_pair(4, COLOR_GREEN, COLOR_BLACK);
     init_pair(0, COLOR_BLACK, COLOR_BLACK);
     
-    for(int i = offsetX; i < width; i++){
-        for(int j = offsetY; j < height; j++){
+    for(int i = 0; i < width; i++){
+        for(int j = 0; j < height; j++){
             int index = (width * j) + i;
 
             if(!colorbuffer[index]) continue;

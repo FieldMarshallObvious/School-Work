@@ -7,6 +7,7 @@
 
 typedef uint8_t depthbuffer_t;
 typedef uint16_t colorbuffer_t;
+typedef uint16_t textchar_t;
 
 
 

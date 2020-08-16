@@ -115,7 +115,6 @@ void Rasterizer::rasterizeTriangle( const Vector2& vv1, const Vector2& vv2, cons
                     fb->setPixel( i, j, colorPair2, 0);
                 else
                     fb->setPixel( i, j, colorPair, 0);
-                
             }
 
             else

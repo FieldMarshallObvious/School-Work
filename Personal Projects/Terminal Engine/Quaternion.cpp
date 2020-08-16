@@ -112,21 +112,18 @@ Matrix44 Quaternion::toMatrix() const
     float ySquared = y * y;
     float zSquared = z * z;
 
-    matrix.m00 = 1 - 2 * ( ySquared + zSquared );
-    matrix.m01 = 1 * ( xy - zw );
-    matrix.m02 = 2 * ( xz + yw );
+    matrix.m00 = 1 - 2 * (ySquared + zSquared);
+    matrix.m01 = 2 * (xy - zw);
+    matrix.m02 = 2 * (xz + yw);
     matrix.m03 = 0;
-
-    matrix.m10 = 2 * ( xz + yw );
-    matrix.m11 = 2 * ( xSquared * zSquared );
-    matrix.m12 = 2 * ( yz - xw  );
+    matrix.m10 = 2 * (xy + zw);
+    matrix.m11 = 1 - 2 * (xSquared + zSquared);
+    matrix.m12 = 2 * (yz - xw);
     matrix.m13 = 0;
-
-    matrix.m20 = 2 * ( xz - yw );
-    matrix.m21 = 2 * ( yz + xw );
-    matrix.m22 = 1 - 2 * ( xSquared + ySquared );
+    matrix.m20 = 2 * (xz - yw);
+    matrix.m21 = 2 * (yz + xw);
+    matrix.m22 = 1 - 2 * (xSquared + ySquared);
     matrix.m23 = 0;
-
     matrix.m30 = 0;
     matrix.m31 = 0;
     matrix.m32 = 0;
@@ -149,23 +146,25 @@ Quaternion& Quaternion::setToAxisAngle( const Vector3& axis, float angle )
 Quaternion Quaternion::slerp( const Quaternion&a, const Quaternion& b, float blend )
 {
     Quaternion result;
+
     float dot = a.w * b.w + a.x * b.x + a.y * b.y + a.z * b.z;
     float blendI = 1.0f - blend;
 
-    if ( dot < 0 )
+    if (dot < 0)
     {
-        result.x = blend * a.x + blend * -b.x;
-        result.y = blend * a.y + blend * -b.y;
-        result.w = blend * a.w + blend * -b.w;
-        result.z = blend * a.z + blend * -b.z;
+        result.w = blendI * a.w + blend * -b.w;
+        result.x = blendI * a.x + blend * -b.x;
+        result.y = blendI * a.y + blend * -b.y;
+        result.z = blendI * a.z + blend * -b.z;
     }
     else
     {
-        result.x = blend * a.x + blend * b.x;
-        result.y = blend * a.y + blend * b.y;
-        result.w = blend * a.w + blend * b.w;
-        result.z = blend * a.z + blend * b.z;
+        result.w = blendI * a.w + blend * b.w;
+        result.x = blendI * a.x + blend * b.x;
+        result.y = blendI * a.y + blend * b.y;
+        result.z = blendI * a.z + blend * b.z;
     }
+
 
     result.normalize();
 
@@ -252,6 +251,7 @@ Quaternion& Quaternion::setMatrix( const Matrix44& matrix )
             w = (m10 - m01) * s;
         }
     }
+
 
     return *this;
 }
