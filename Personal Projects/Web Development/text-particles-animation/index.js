@@ -18,24 +18,13 @@ const mouse = {
 	radius: 150
 };
 
-window.addEventListener('mousemove', function(event){
-	mouse.x = event.x;
-	mouse.y = event.y;
-});
-
-window.addEventListener('mouseout', function(event)
-{
-	mouse.x = null;
-	mouse.y = null;
-});
-
 //Generate text on canvas
 ctx.fillStyle = 'white';
 ctx.font = '30px Verdana';
 ctx.fillText('COOL', 0, 40);
 
 //Get pixel data for the area within this square
-const textCoordinates = ctx.getImageData(0, 0, 150, 150);
+const textCoordinates = ctx.getImageData(0, 0, canvas.height, canvas.width);
 
 
 //Create class for particles
@@ -137,14 +126,6 @@ function init()
 			}
 		}
 	}
-	//particleArray.push( new Particle(20 * 20, 20 * 20 ) );
-	//particleArray.push( new Particle(20 * 25, 20 * 25 ) );
-	//particleArray.push( new Particle(10 * 25, 10 * 25 ) );
-	//particleArray.push( new Particle(20 * 50, 20 * 50 ) );
-
-
-
-
 }
 
 
@@ -242,3 +223,28 @@ function calcColor( particle, operation, mouseDistance )
 
 init();
 animate();
+
+//Handle mouse events
+window.addEventListener('mousemove', function(event){
+	mouse.x = event.x;
+	mouse.y = event.y;
+});
+
+window.addEventListener('mouseout', function()
+{
+	mouse.x = undefined;
+	mouse.y = undefined;
+});
+
+//Handle window resize evernts
+window.addEventListener('resize', function(event)
+{
+	//Reset all items depdent on width and height
+	canvas.width =  window.innerWidth;
+	canvas.height =  window.innerHeight;
+
+	const textCoordinates = ctx.getImageData(0, 0, canvas.height, canvas.width);
+
+	init();
+	animate();
+});
