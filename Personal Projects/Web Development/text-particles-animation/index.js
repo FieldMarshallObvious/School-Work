@@ -29,7 +29,7 @@ ctx.font = '30px Verdana';
 ctx.fillText('COOL', 0, 40);
 
 //Get pixel data for the area within this square
-const textCoordinates = ctx.getImageData(0, 0, 100, 100);
+const textCoordinates = ctx.getImageData(0, 0, 150, 150);
 
 
 //Create class for particles
