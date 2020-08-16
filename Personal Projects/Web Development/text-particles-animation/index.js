@@ -23,6 +23,12 @@ window.addEventListener('mousemove', function(event){
 	mouse.y = event.y;
 });
 
+window.addEventListener('mouseout', function(event)
+{
+	mouse.x = null;
+	mouse.y = null;
+});
+
 //Generate text on canvas
 ctx.fillStyle = 'white';
 ctx.font = '30px Verdana';
@@ -133,6 +139,10 @@ function init()
 	}
 	//particleArray.push( new Particle(20 * 20, 20 * 20 ) );
 	//particleArray.push( new Particle(20 * 25, 20 * 25 ) );
+	//particleArray.push( new Particle(10 * 25, 10 * 25 ) );
+	//particleArray.push( new Particle(20 * 50, 20 * 50 ) );
+
+
 
 
 }
@@ -148,7 +158,6 @@ function animate()
 	{
 		particleArray[i].draw();
 		particleArray[i].update();
-		//console.log("particle blue", particleArray[i].Blue );
 	}
 
 	connect();
