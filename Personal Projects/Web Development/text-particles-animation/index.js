@@ -81,7 +81,7 @@ class Particle
 			this.x -= directionX * 3;
 			this.y -= directionY * 3;
 
-			calcColor( -1, distance );
+			calcColor( this, -1, distance );
 		}
 
 		//if the particle is not within the radius
@@ -100,7 +100,7 @@ class Particle
 				this.y -= dy/10;
 			}
 
-			calcColor( 1, distance );
+			calcColor( this, 1, distance );
 		}
 
 		//Assign distance to mouse
@@ -131,6 +131,10 @@ function init()
 			}
 		}
 	}
+	//particleArray.push( new Particle(20 * 20, 20 * 20 ) );
+	//particleArray.push( new Particle(20 * 25, 20 * 25 ) );
+
+
 }
 
 
@@ -144,9 +148,10 @@ function animate()
 	{
 		particleArray[i].draw();
 		particleArray[i].update();
+		//console.log("particle blue", particleArray[i].Blue );
 	}
 
-	//connect();
+	connect();
 
 	//implement recursion
 	requestAnimationFrame(animate);
@@ -160,7 +165,7 @@ function connect()
 	let dx;
 	let dy;
 	let opacityValue = 1;
-	let distanceVal = 100;
+	let distanceVal = 50;
 
 	//Compare all particles if they
 	//to see if they are close enough 
@@ -180,7 +185,18 @@ function connect()
 				//Calculate opactiy
 				opacityValue = 1 - ( distance / distanceVal );
 
-				ctx.strokeStyle = 'rgba(255, 255, 255,' + opacityValue + ')';
+				//console.log("Particle a distance", particleArray[a].distance);
+				//console.log("Particale b distance",  particleArray[b].distance);
+
+				if( particleArray[a].distance < particleArray[b].distance || particleArray[a].distance == particleArray[b].distance )
+					ctx.strokeStyle = 'rgba('+particleArray[a].Red+',' + particleArray[a].Green+ ','+ particleArray[a].Blue +',' + opacityValue + ')';
+				else if ( particleArray[a].distance < particleArray[b].distance )
+					ctx.strokeStyle = 'rgba('+particleArray[b].Red+',' + particleArray[b].Green+ ','+ particleArray[b].Blue +',' + opacityValue + ')';
+
+
+
+				//console.log(ctx.strokeStyle);
+
 				ctx.lineWidth = 2;
 				ctx.beginPath();
 				ctx.moveTo(particleArray[a].x, particleArray[a].y);
@@ -193,24 +209,21 @@ function connect()
 
 //Calculate the color of the particle 
 //based on it's distance to the particle
-function calcColor( operation, mouseDistance )
+function calcColor( particle, operation, mouseDistance )
 {
 	//Variable declarations
 	let temp;
-	let conversionRate = 1.5;
+	let conversionRate = 100.22;
 
 	//Change the color of the particle
 	//based on it's distance from the mouse
-	for( let x = 0; x < particleArray.length; x++ )
+	for( let y = 0; y < particle.distance; y++ )
 	{
-		for( let y = 0; y < particleArray[x].distance; y++ )
-		{
-			temp = operation * ( conversionRate ) + particleArray[x].Blue;
-
-
-			if( temp >= 20 && temp <= 255)
-				particleArray[x].Blue = temp;
-		}
+		temp = operation * ( conversionRate ) + particle.Blue;
+	}
+	if( temp >= 0 && temp <= 255)
+	{
+		particle.Blue = temp;
 	}
 
 }
