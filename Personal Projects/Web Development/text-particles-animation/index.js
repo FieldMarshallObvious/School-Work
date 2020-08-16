@@ -7,7 +7,7 @@ canvas.height = window.innerHeight;
 
 //Variable declarations
 let particleArray = [];
-let adjustX = 30;
+let adjustX = -5;
 let adjustY = -12;
 
 
@@ -26,7 +26,7 @@ window.addEventListener('mousemove', function(event){
 //Generate text on canvas
 ctx.fillStyle = 'white';
 ctx.font = '30px Verdana';
-ctx.fillText('A', 0, 40);
+ctx.fillText('COOL', 0, 40);
 
 //Get pixel data for the area within this square
 const textCoordinates = ctx.getImageData(0, 0, 100, 100);
@@ -185,17 +185,20 @@ function connect()
 				//Calculate opactiy
 				opacityValue = 1 - ( distance / distanceVal );
 
-				//console.log("Particle a distance", particleArray[a].distance);
-				//console.log("Particale b distance",  particleArray[b].distance);
+				if( particleArray[a].distance < mouse.radius )
+				{	
+					if( particleArray[a].distance < particleArray[b].distance || particleArray[a].distance == particleArray[b].distance )
+						ctx.strokeStyle = 'rgba('+particleArray[a].Red+',' + particleArray[a].Green+ ','+ particleArray[a].Blue +',' + opacityValue + ')';
+					else if ( particleArray[a].distance < particleArray[b].distance )
+						ctx.strokeStyle = 'rgba('+particleArray[b].Red+',' + particleArray[b].Green+ ','+ particleArray[b].Blue +',' + opacityValue + ')';
+				}
 
-				if( particleArray[a].distance < particleArray[b].distance || particleArray[a].distance == particleArray[b].distance )
-					ctx.strokeStyle = 'rgba('+particleArray[a].Red+',' + particleArray[a].Green+ ','+ particleArray[a].Blue +',' + opacityValue + ')';
-				else if ( particleArray[a].distance < particleArray[b].distance )
-					ctx.strokeStyle = 'rgba('+particleArray[b].Red+',' + particleArray[b].Green+ ','+ particleArray[b].Blue +',' + opacityValue + ')';
+				else
+				{
+					ctx.strokeStyle = 'rgba( 255, 255, 255'+ opacityValue + ')';
 
+				}
 
-
-				//console.log(ctx.strokeStyle);
 
 				ctx.lineWidth = 2;
 				ctx.beginPath();
