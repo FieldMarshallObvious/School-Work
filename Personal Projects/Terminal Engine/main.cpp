@@ -9,7 +9,9 @@
 #include "GenMath.h"
 #include "Camera.h"
 
-float angle = 0;
+float angle = 0,
+      xpos = 1,
+      zpos = -2;
 Rasterizer* rasterizer = nullptr;
 Camera* cam = nullptr;
 
@@ -17,9 +19,9 @@ Vector4 v1(-1, 1, 0, 1);
 Vector4 v2(1, 1, 0, 1);
 Vector4 v3(0, -1, 0, 1);
 
-Vector4 v4(-1, 1, 1, 0);
+Vector4 v4(0, -1, 0, 1);
 Vector4 v5(1, 1, 0, 1);
-Vector4 v6(-1, 0, 1, 0);
+Vector4 v6(-1, 1, 0, 1);
 
 Vector4 transformVertex( const Vector4& vertex, const  Matrix44& MVPMatrix){
     Vector4 f;
@@ -43,13 +45,46 @@ bool renderCB(){
     
     PVMatrix = cam->getPVMatrix();
 
-    angle += .001f;
+    if( angle <= 6.28318530718 )
+        angle += .001f;
+    else
+    {
+        xpos = 1;
+        zpos = -2;
+        angle = 0;
+    }
+    
 
-    transformation.translate(Vector3(0, 0, -2));
+    transformation.translate(Vector3(-1, 0, -2));
     transformation.rotate(Vector3(0, 1, 0), angle);
     finalMatrix = PVMatrix * transformation;
 
-    transformation2.translate(Vector3(0, 0, -1));
+    for( int x = 0; x < angle; x++ )
+    {
+        if( angle <= 1.57079632679 )
+        {
+            xpos -= 0.001;
+            zpos -= 0.001;
+        }
+        else if( 1.57079632679 < angle && angle <= 3.14159265359  )
+        {
+            xpos -= 0.001;
+            zpos += 0.001;
+        }
+        else if( 3.14159265359 < angle && angle <= 4.71238898038 )
+        {
+            xpos += 0.001;
+            zpos += 0.001;
+        }
+        else if( 4.71238898038 < angle && angle <= 6.28318530718 )
+        {
+            xpos += 0.001;
+            zpos -= 0.001;
+        }
+
+    }
+
+    transformation2.translate(Vector3(xpos, 0, zpos));
     transformation2.rotate(Vector3(0, 1, 0), angle);
     finalMatrix2 = PVMatrix * transformation2;
 
