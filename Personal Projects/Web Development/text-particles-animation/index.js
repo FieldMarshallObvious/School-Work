@@ -7,7 +7,7 @@ canvas.height = window.innerHeight;
 
 //Variable declarations
 let particleArray = [];
-let adjustX = 30;
+let adjustX = -5;
 let adjustY = -12;
 
 
@@ -18,18 +18,13 @@ const mouse = {
 	radius: 150
 };
 
-window.addEventListener('mousemove', function(event){
-	mouse.x = event.x;
-	mouse.y = event.y;
-});
-
 //Generate text on canvas
 ctx.fillStyle = 'white';
 ctx.font = '30px Verdana';
-ctx.fillText('A', 0, 40);
+ctx.fillText('COOL', 0, 40);
 
 //Get pixel data for the area within this square
-const textCoordinates = ctx.getImageData(0, 0, 100, 100);
+const textCoordinates = ctx.getImageData(0, 0, canvas.height, canvas.width);
 
 
 //Create class for particles
@@ -81,7 +76,7 @@ class Particle
 			this.x -= directionX * 3;
 			this.y -= directionY * 3;
 
-			calcColor( -1, distance );
+			calcColor( this, -1, distance );
 		}
 
 		//if the particle is not within the radius
@@ -100,7 +95,7 @@ class Particle
 				this.y -= dy/10;
 			}
 
-			calcColor( 1, distance );
+			calcColor( this, 1, distance );
 		}
 
 		//Assign distance to mouse
@@ -146,7 +141,7 @@ function animate()
 		particleArray[i].update();
 	}
 
-	//connect();
+	connect();
 
 	//implement recursion
 	requestAnimationFrame(animate);
@@ -160,7 +155,7 @@ function connect()
 	let dx;
 	let dy;
 	let opacityValue = 1;
-	let distanceVal = 100;
+	let distanceVal = 50;
 
 	//Compare all particles if they
 	//to see if they are close enough 
@@ -180,7 +175,21 @@ function connect()
 				//Calculate opactiy
 				opacityValue = 1 - ( distance / distanceVal );
 
-				ctx.strokeStyle = 'rgba(255, 255, 255,' + opacityValue + ')';
+				if( particleArray[a].distance < mouse.radius )
+				{	
+					if( particleArray[a].distance < particleArray[b].distance || particleArray[a].distance == particleArray[b].distance )
+						ctx.strokeStyle = 'rgba('+particleArray[a].Red+',' + particleArray[a].Green+ ','+ particleArray[a].Blue +',' + opacityValue + ')';
+					else if ( particleArray[a].distance < particleArray[b].distance )
+						ctx.strokeStyle = 'rgba('+particleArray[b].Red+',' + particleArray[b].Green+ ','+ particleArray[b].Blue +',' + opacityValue + ')';
+				}
+
+				else
+				{
+					ctx.strokeStyle = 'rgba( 255, 255, 255'+ opacityValue + ')';
+
+				}
+
+
 				ctx.lineWidth = 2;
 				ctx.beginPath();
 				ctx.moveTo(particleArray[a].x, particleArray[a].y);
@@ -193,27 +202,49 @@ function connect()
 
 //Calculate the color of the particle 
 //based on it's distance to the particle
-function calcColor( operation, mouseDistance )
+function calcColor( particle, operation, mouseDistance )
 {
 	//Variable declarations
 	let temp;
-	let conversionRate = 1.5;
+	let conversionRate = 100.22;
 
 	//Change the color of the particle
 	//based on it's distance from the mouse
-	for( let x = 0; x < particleArray.length; x++ )
+	for( let y = 0; y < particle.distance; y++ )
 	{
-		for( let y = 0; y < particleArray[x].distance; y++ )
-		{
-			temp = operation * ( conversionRate ) + particleArray[x].Blue;
-
-
-			if( temp >= 20 && temp <= 255)
-				particleArray[x].Blue = temp;
-		}
+		temp = operation * ( conversionRate ) + particle.Blue;
+	}
+	if( temp >= 0 && temp <= 255)
+	{
+		particle.Blue = temp;
 	}
 
 }
 
 init();
 animate();
+
+//Handle mouse events
+window.addEventListener('mousemove', function(event){
+	mouse.x = event.x;
+	mouse.y = event.y;
+});
+
+window.addEventListener('mouseout', function()
+{
+	mouse.x = undefined;
+	mouse.y = undefined;
+});
+
+//Handle window resize evernts
+window.addEventListener('resize', function(event)
+{
+	//Reset all items depdent on width and height
+	canvas.width =  window.innerWidth;
+	canvas.height =  window.innerHeight;
+
+	const textCoordinates = ctx.getImageData(0, 0, canvas.height, canvas.width);
+
+	init();
+	animate();
+});
