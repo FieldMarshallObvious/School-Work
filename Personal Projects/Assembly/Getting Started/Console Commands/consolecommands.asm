@@ -7,7 +7,7 @@ start:
     push rsi ; align stack before call
     sub rsp, 8 ; align stack before call
 
-    mov rdi, [rsi] ; the argument string to display
+    lea rdi, [rsi] ; the argument string to display
     call _puts ; prints string
 
     add rsp, 8 ; restore %rso ti pre-aligned value
@@ -18,5 +18,4 @@ start:
     dec rdi ; count down
     jnz start ; if not done counting keep going
 
-
-    syscall
+    ret
