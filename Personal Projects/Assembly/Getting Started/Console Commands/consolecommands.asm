@@ -1,8 +1,10 @@
-global start
+global _start
 extern _puts
 section .text
 
-start: 
+_start: 
+    default rel
+
     push rdi ; save registers that puts uses
     push rsi ; align stack before call
     sub rsp, 8 ; align stack before call
@@ -16,6 +18,6 @@ start:
 
     add rsi, 8 ; point to next argument
     dec rdi ; count down
-    jnz start ; if not done counting keep going
+    jnz _start ; if not done counting keep going
 
     ret
