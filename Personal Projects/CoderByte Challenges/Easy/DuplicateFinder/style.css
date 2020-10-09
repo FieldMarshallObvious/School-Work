@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: 1s;
+
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+}
+
+.InputArray {
+    border-radius: 20px;
+    font-size: 150%;
+    text-align: center;
+    margin: 5px;
+}
+
+#topRow {
+    position: relative;
+    top: 30%;
+}
+
+#submitButton {
+    position: relative;
+    top: 35%;
+}
+
+#submitButton button {
+    width: 25%;
+    height: 15%;
+}
+
+#bottomRow {
+    position: relative;
+    top: 40%;
+}
+
+#Output {
+    width: 25%;
+    border-radius: 20px;
+    border: 1px solid black;
+    text-align: center;
+}

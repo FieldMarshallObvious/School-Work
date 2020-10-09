@@ -10,7 +10,7 @@
 #include "Camera.h"
 
 float angle = 0,
-      xpos = 1,
+      xpos = 3,
       zpos = -2;
 Rasterizer* rasterizer = nullptr;
 Camera* cam = nullptr;
@@ -49,37 +49,39 @@ bool renderCB(){
         angle += .001f;
     else
     {
-        xpos = 1;
+        xpos = 2;
         zpos = -2;
         angle = 0;
     }
     
 
-    transformation.translate(Vector3(-1, 0, -2));
+    transformation.translate(Vector3(1, 0, -2));
     transformation.rotate(Vector3(0, 1, 0), angle);
     finalMatrix = PVMatrix * transformation;
 
     for( int x = 0; x < angle; x++ )
     {
+        if( zpos == -3 )
+           break;
         if( angle <= 1.57079632679 )
         {
             xpos -= 0.001;
-            zpos -= 0.001;
+            zpos -= 0.0005;
         }
         else if( 1.57079632679 < angle && angle <= 3.14159265359  )
         {
             xpos -= 0.001;
-            zpos += 0.001;
+            zpos += 0.0005;
         }
         else if( 3.14159265359 < angle && angle <= 4.71238898038 )
         {
             xpos += 0.001;
-            zpos += 0.001;
+            zpos += 0.0005;
         }
         else if( 4.71238898038 < angle && angle <= 6.28318530718 )
         {
             xpos += 0.001;
-            zpos -= 0.001;
+            zpos -= 0.0005;
         }
 
     }
