@@ -1,10 +1,10 @@
 #Ass2ANoahdelAngel.asm
 		.data
-intInputPrmpt: 	.asciiz "Enter a integer: "
-intInputLabel:	.asciiz "The integer is "
-strngInputPrmpt:.asciiz "Enter a string: "
-strngInputLabel:.asciiz "The string is "  
-strngInput: 	.space 50
+intIPrmpt: 	.asciiz "Enter a integer: "
+intILabel:	.asciiz "The integer is "
+strngIPrmpt:	.asciiz "Enter a string: "
+strngILabel:	.asciiz "The string is "  
+strngI: 	.space 51
 
 
 		.text
@@ -13,7 +13,7 @@ strngInput: 	.space 50
 main:
 	#Print int prompt
 	li $v0, 4
-	la $a0, intInputPrmpt
+	la $a0, intIPrmpt
 	syscall
 	
 	#Get input
@@ -28,7 +28,7 @@ main:
 		
 	#Print int message
 	li $v0, 4
-	la $a0, intInputLabel
+	la $a0, intILabel
 	syscall
 	
 	#Print int input
@@ -45,12 +45,12 @@ main:
 	
 	#Print string prompt
 	li $v0, 4
-	la $a0, strngInputPrmpt
+	la $a0, strngIPrmpt
 	syscall
 	
 	#Get input
 	li $v0, 8
-	la $a0, strngInput
+	la $a0, strngI
 	li $a1, 50
 	syscall
 
@@ -62,12 +62,12 @@ main:
 		
 	#Print string prompt
 	li $v0, 4
-	la $a0, strngInputLabel
+	la $a0, strngILabel
 	syscall
 	
 	#Print string input
 	li $v0, 4
-	la $a0, strngInput
+	la $a0, strngI
 	syscall
 	
 	
