@@ -1,4 +1,18 @@
-#Ass2ANoahdelAngel.asm
+#Noah del Angel, CS 2318 - 002, Assignment 2 Part 1 A
+#Problem Description:
+#Prompt the user to enter an integer, read the user's input, and display a
+#   labeled output about the user's input.
+#Prompt the user to enter a string of up to 50 characters long, read the
+#   user's input, and display a labeled output about the user's input.
+#   -String entered MUST be stored in separate storage space (i.e., not
+#      overwriting the storage space used by prompt and label strings)
+#      allocated just enough (no more, no less) to accommodate up to the
+#      maximum number of characters indicated.
+#Prompt the user to enter a character, read the user's input, and display a
+#   labeled output about the user's input
+#Note that it involves a character, NOT a one-charater string. You will get
+#   no credits if you do it using a one-character string even though the
+#   same output is obtained.
 		.data
 intIPrmpt: 	.asciiz "Enter a integer: "
 intILabel:	.asciiz "The integer is "
@@ -52,7 +66,7 @@ main:
 	#Get input
 	li $v0, 8
 	la $a0, strngI
-	li $a1, 50
+	li $a1, 51
 	syscall
 			
 	#Print string label
