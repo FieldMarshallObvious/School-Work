@@ -52,7 +52,7 @@ main:
 		and $a0, $t0, $t2	# $a0 gets "all bits of x with the rightmost 1 cleared"
 		syscall
 		
- 		li $v0, 10               # exit
+ 		li $v0, 10		# exit
 		syscall
 
 ########################## sample test runs ##############################
