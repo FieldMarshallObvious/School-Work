@@ -52,7 +52,7 @@ resultCons:		.asciiz "Conditions after changing the array: "
 			.text
 			.globl main
  main:
- 	#Load array into $a0
+ 	#Load array into $t0
  	la $t0, intArr
  	
  	#Load data to print
@@ -91,9 +91,10 @@ resultCons:		.asciiz "Conditions after changing the array: "
  	
  	sw $t1, 12($t0)
  	sw $t2, 0($t0)
+
  	
- 	#Reload array into $a0
- 	la $a0, intArr
+ 	#Reload array into $t0
+ 	la $t0, intArr
  	
  	#swap 3 and 1
  	lw $t1, 4($t0)
@@ -102,8 +103,8 @@ resultCons:		.asciiz "Conditions after changing the array: "
  	sw $t1, 8($t0)
  	sw $t2, 4($t0)
  	
- 	#Reload array into $a0
- 	la $a0, intArr
+ 	#Reload array into $t0
+ 	la $t0, intArr
  	
   	#Load data to print
 	lw $t1, 0($t0)
