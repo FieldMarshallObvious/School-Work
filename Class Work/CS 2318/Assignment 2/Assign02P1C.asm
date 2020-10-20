@@ -118,17 +118,19 @@ resultCons:		.asciiz "Conditions after changing the array: "
  	syscall
  	
  	li $v0, 1
- 	move $a0, $t1
- 	syscall
- 	
- 	move $a0, $t2
+ 	move $a0, $t4
  	syscall
  	
  	move $a0, $t3
  	syscall
  	
- 	move $a0, $t4
+ 	move $a0, $t2
  	syscall
+ 	
+ 	move $a0, $t1
+ 	syscall
+ 	
+ 
  	
  	
  	
