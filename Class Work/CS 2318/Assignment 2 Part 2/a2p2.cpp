@@ -36,42 +36,42 @@ int main()
                    *endPtr3;
 
                reply = 'y';
-               while (reply != 'n' && reply != 'N')
-               {
+               goto w1Test;
+               begW1:
                   used1 = 0;
                   hopPtr1 = a1;
-                  while (reply != 'n' && reply != 'N')
-                  {
+                  goto w2Test;
+                  begW2: 
                      cout << einStr;
                      cout << (used1 + 1);
                      cout << ':' << ' ';
                      cin >> *hopPtr1;
                      ++used1;
                      ++hopPtr1;
-                     if (used1 < 12)
-                     {
+                     if (used1 >= 12 ) goto else1;
                         cout << emiStr;
                         cin >> reply;
-                     }
-                     else
-                     {
+                        goto endif1;
+                     else1:
                         cout << moStr << 12 << ieStr << endl;
                         reply = 'n';
-                     }
-                  }
+                     endif1:
+                  w2Test: if (reply != 'n' && reply != 'N') goto begW2;
 
                   cout << begA1Str;
-                  if (used1 > 0)
-                  {
+
+                  if (used1 <= 0) goto endif2;
                      hopPtr1 = a1;
                      endPtr1 = a1 + used1;
-                     do
-                     {
+
+                     begDW1:
                         cout << *hopPtr1 << ' ' << ' ';
                         ++hopPtr1;
-                     }
-                     while (hopPtr1 < endPtr1);
-                  }
+
+                     DW1Test: if (hopPtr1 < endPtr1) goto begDW1;
+
+                  endif2:
+
                   cout << endl;
 
                   if (used1 > 0)
@@ -264,7 +264,8 @@ int main()
 
                   cout << dacStr;
                   cin >> reply;
-               }
+               w1Test: if (reply != 'n' && reply != 'N') goto begW1;
+
 
                cout << dlStr << '\n';
                cout << byeStr << '\n';
