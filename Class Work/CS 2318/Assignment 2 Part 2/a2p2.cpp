@@ -74,15 +74,16 @@ int main()
 
                   cout << endl;
 
-                  if (used1 > 0)
-                  {
-                     for (hopPtr1 = a1, endPtr1 = a1 + used1;  // multi-init
-                                           hopPtr1 < endPtr1;  // test
-                                                    ++hopPtr1) // update
-                     {
+                  if (used1 <= 0) goto endif3;
+                     
+                     hopPtr1 = a1,
+                     endPtr1 = a1 + used1;
+                     goto F1Test;
+                        F1Body:
                         target = *hopPtr1;
-                        if (target < 0 || target > 9)
-                        {
+                        if ( target < 0 ) goto bodyIf4;
+                        if ( target <= 9 ) goto endIf4;
+                        bodyIf4:
                            for (hopPtr11 = hopPtr1 + 1;  // multi-init
                                     hopPtr11 < endPtr1;  // test
                                              ++hopPtr11) // update
@@ -92,21 +93,21 @@ int main()
                            --used1;
                            --endPtr1;
                            --hopPtr1;
-                        }
-                     }
+                        endIf4:
+                     ++hopPtr1;
+                     F1Test: if ( hopPtr1 < endPtr1 ) goto F1Body;
 
                      cout << nn09A1Str;
-                     if (used1 > 0)
-                     {
+
+                     if (used1 <= 0) goto endIf5;
                         hopPtr1 = a1;
                         endPtr1 = a1 + used1;
-                        do
-                        {
+                        begDW2:
                            cout << *hopPtr1 << ' ' << ' ';
                            ++hopPtr1;
-                        }
-                        while (hopPtr1 < endPtr1);
-                     }
+                        DW2Test: if (hopPtr1 < endPtr1) goto begDW2;
+                     endIf5:
+                     
                      cout << endl;
 
                      used2 = 0;
@@ -115,8 +116,8 @@ int main()
                      hopPtr2 = a2;
                      hopPtr3 = a3;
                      endPtr1 = a1 + used1;
-                     while (hopPtr1 < endPtr1)
-                     {
+                     goto w3Test;
+                     begW3:
                         intHolder = *hopPtr1;
                         *hopPtr2 = intHolder;
                         ++used2;
@@ -125,141 +126,176 @@ int main()
                         ++used3;
                         ++hopPtr3;
                         ++hopPtr1;
-                     }
+                     w3Test: if (hopPtr1 < endPtr1) goto begW3;
 
                      iter = 0;
-                     do
-                     {
+                     begDW3:
                         ++iter;
                         count = 0;
-                        if (iter == 1)
-                        {
-                           for (hopPtr1 = a1, endPtr1 = a1 + used1;  // multi-init
-                                                 hopPtr1 < endPtr1;  // test
-                                                          ++hopPtr1) // update
-                           {
+                        if (iter != 1) goto else6;
+
+                           hopPtr1 = a1, 
+                           endPtr1 = a1 + used1;
+                           goto F3Test;
+
+                           F3Body:
+
                               target = *hopPtr1;
-                              if (target != 5)
-                              {
+                              if (target == 5) goto else7;
+
                                  ++count;
-                              }
-                              else
-                              {
-                                 if (count != 0)
-                                 {
+                                 goto endif7;
+                              else7: 
+
+                                 if (count == 0) goto endif8;
                                     *(hopPtr1 - count) = *hopPtr1;
-                                 }
-                              }
-                           }
+                                 endif8:
+                                 
+                              endif7:
+                              ++hopPtr1;
+                           F3Test: if ( hopPtr1 < endPtr1 ) goto F3Body;
                            used1 -= count;
-                           if (used1 == 0)
+                           if (used1 != 0) goto endif9;
                            {
                               hopPtr1 = a1;
                               *hopPtr1 = -99;
                               ++used1;
                            }
-                        }
-                        else
-                        {
-                           if (iter == 2)
-                           {
-                              for (hopPtr2 = a2, endPtr2 = a2 + used2;  // multi-init
-                                                    hopPtr2 < endPtr2;  // test
-                                                             ++hopPtr2) // update
-                              {
+                           endif9:
+                        goto endif6;
+
+                        else6:
+
+                           if (iter != 2) goto else10;
+
+                              hopPtr2 = a2, 
+                              endPtr2 = a2 + used2;
+                              goto F4Test;
+                              F4Body:
+
                                  target = *hopPtr2;
-                                 if (target > 4)
-                                 {
+                                 if (target <= 4) goto else11;
                                     ++count;
-                                 }
-                                 else
-                                 {
-                                    if (count != 0)
-                                    {
+                                    goto endif11;
+                           
+                                 else11:
+
+                                    if (count == 0) goto endif12;
+         
                                        *(hopPtr2 - count) = *hopPtr2;
-                                    }
-                                 }
-                              }
+
+                                    endif12:
+
+                                 endif11:
+
+                              ++hopPtr2;
+
+                              F4Test: if ( hopPtr2 < endPtr2 ) goto F4Body;
+
                               used2 -= count;
-                              if (used2 == 0)
-                              {
+
+                              if (used2 != 0) goto endif13;
+                              
                                  hopPtr2 = a2;
                                  *hopPtr2 = -99;
                                  ++used2;
-                              }
-                           }
-                           else
-                           {
-                              for (hopPtr3 = a3, endPtr3 = a3 + used3;  // multi-init
-                                                    hopPtr3 < endPtr3;  // test
-                                                             ++hopPtr3) // update
-                              {
+
+                              endif13:
+                           goto endif10;
+
+                           else10:
+
+                              hopPtr3 = a3, 
+                              endPtr3 = a3 + used3;
+                              goto F5Test;
+
+                              F5Body:
+
                                  target = *hopPtr3;
-                                 if (target < 6)
-                                 {
+
+                                 if (target >= 6) goto else14;
+
                                     ++count;
-                                 }
-                                 else
-                                 {
-                                    if (count != 0)
-                                    {
+                                    goto endif14;
+
+                                 else14:
+                                 
+                                    if (count == 0) goto endif15;
+
                                        *(hopPtr3 - count) = *hopPtr3;
-                                    }
-                                 }
-                              }
+
+                                    endif15:
+
+                                 endif14:
+                              ++hopPtr3;
+                              F5Test: if ( hopPtr3 < endPtr3 ) goto F5Body;
+
                               used3 -= count;
-                              if (used3 == 0)
-                              {
+
+                              if (used3 != 0) goto endif16;
+
                                  hopPtr3 = a3;
                                  *hopPtr3 = -99;
                                  ++used3;
-                              }
-                           }
-                        }
-                     }
-                     while (iter < 3);
-                  }
+
+                              endif16:
+
+                           endif10: 
+                        endif6:
+                     
+                     DW3Test: while (iter < 3) goto begDW3;
+                  endif3:
 
                   cout << procA1Str;
-                  if (used1 > 0)
-                  {
+
+                  if (used1 <= 0) goto endif17;
+
                      hopPtr1 = a1;
                      endPtr1 = a1 + used1;
-                     do
-                     {
+
+                     begDW4:
+
                         cout << *hopPtr1 << ' ' << ' ';
                         ++hopPtr1;
-                     }
-                     while (hopPtr1 < endPtr1);
-                  }
+
+                     testDw4: if (hopPtr1 < endPtr1) goto begDW4;
+
+                  endif17:
+
                   cout << endl;
 
                   cout << procA2Str;
-                  if (used2 > 0)
-                  {
+
+                  if (used2 <= 0) goto endif18;
+
                      hopPtr2 = a2;
                      endPtr2 = a2 + used2;
-                     do
-                     {
+
+                     begDW5:
                         cout << *hopPtr2 << ' ' << ' ';
                         ++hopPtr2;
-                     }
-                     while (hopPtr2 < endPtr2);
-                  }
+
+                     DW5Test: if (hopPtr2 < endPtr2) goto begDW5;
+
+                  endif18:
+
                   cout << endl;
 
                   cout << procA3Str;
-                  if (used3 > 0)
-                  {
+
+                  if (used3 <= 0) goto endif19;
+
                      hopPtr3 = a3;
                      endPtr3 = a3 + used3;
-                     do
-                     {
+
+                     begDW6:
+
                         cout << *hopPtr3 << ' ' << ' ';
                         ++hopPtr3;
-                     }
-                     while (hopPtr3 < endPtr3);
-                  }
+
+                     DW6Test: if (hopPtr3 < endPtr3) goto begDW6;
+
+                  endif19:
                   cout << endl;
 
                   cout << dacStr;
