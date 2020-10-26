@@ -82,14 +82,19 @@ int main()
                         F1Body:
                         target = *hopPtr1;
                         if ( target < 0 ) goto bodyIf4;
+
                         if ( target <= 9 ) goto endIf4;
+
                         bodyIf4:
-                           for (hopPtr11 = hopPtr1 + 1;  // multi-init
-                                    hopPtr11 < endPtr1;  // test
-                                             ++hopPtr11) // update
-                           {
+
+                           hopPtr11 = hopPtr1 + 1;
+                           F2Body:
+            
                               *(hopPtr11 - 1) = *hopPtr11;
-                           }
+                              ++hopPtr11;
+
+                           F2test: if ( hopPtr11 < endPtr1 ) goto F2Body;
+
                            --used1;
                            --endPtr1;
                            --hopPtr1;
