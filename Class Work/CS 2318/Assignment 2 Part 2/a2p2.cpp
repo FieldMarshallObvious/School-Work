@@ -1,7 +1,8 @@
 /*#########################################################################
 # Noah del Angel, CS 2318-002, Assignment 2 Part 2
 ##########################################################################
-# This is an exercise for you to re-write a C++ program (that involves processing
+# This is an exercise for you to re-write a C++ program (that involves
+# processing
 # 1-D arrays using selection and repetition constructs) in a form that will
 # facilitate its translation into MIPS assembly language, namely:
 #  All high-level selection constructs (if, if-else), repetition constructs (for
@@ -21,18 +22,19 @@
 #     correctly-modified-as-required program should produce the same result.
 #  Extra time-saving, tedium-reducing helper if you work in Linux command
 #  (LCLE):
-#  ( Link from CS3358 you may find useful:  C++/C Programming on CS Linux: 
-#  Minimal Survival Guide ) 
+#  ( Link from CS3358 you may find useful:  C++/C Programming on CS Linux:
+#  Minimal Survival Guide )
 #     Extract the files (a2p2test.in, a2p2testBase.out and Makefile) of this
-#     LCLE extra helper file and upload them into the same folder that has the file
+#     LCLE extra helper file and upload them into the same folder that has the
+#     file
 #     (a2p2.cpp) you are working on.
 #     (Note that the helper file does not include a2p2.cpp that's part of this
-#     supplied file above.) 
+#     supplied file above.)
 #     Do make to (re-)compile a2p2.cpp you are working on; if successful,
 #     executable file a2p2 will be created (replacing any earlier version that
 #     may exist).
-#     Do make test to run the test cases specified in a2p2test.in (encompassing 
-#     the minSelectTestCases referred to earlier) using the last successfully 
+#     Do make test to run the test cases specified in a2p2test.in (encompassing
+#     the minSelectTestCases referred to earlier) using the last successfully
 #     executable file a2p2, with the test run outcome captured in a2p2test.out.
 #     Do make diff (or manually do diff a2p2test.out a2p2testBase.out) to see if
 #     there are any differences between the test run outcome from your last
@@ -78,14 +80,14 @@ int main()
 
                reply = 'y';
 
-               goto w1Test;
+               goto WTest1;
                begW1:
 
                   used1 = 0;
                   hopPtr1 = a1;
 
-                  goto w2Test;
-                  begW2: 
+                  goto WTest2;
+                  begW2:
 
                      cout << einStr;
                      cout << (used1 + 1);
@@ -108,7 +110,7 @@ int main()
 
                      endif1:
 
-                  w2Test: if (reply != 'n' && reply != 'N') goto begW2;
+                  WTest2: if (reply != 'n' && reply != 'N') goto begW2;
 
                   cout << begA1Str;
 
@@ -122,20 +124,20 @@ int main()
                         cout << *hopPtr1 << ' ' << ' ';
                         ++hopPtr1;
 
-                     DW1Test: if (hopPtr1 < endPtr1) goto begDW1;
+                     DWTest1: if (hopPtr1 < endPtr1) goto begDW1;
 
                   endif2:
 
                   cout << endl;
 
                   if (used1 <= 0) goto endif3;
-                     
+
                      hopPtr1 = a1,
                      endPtr1 = a1 + used1;
 
-                     goto F1Test;
+                     goto Ftest1;
 
-                        F1Body:
+                        begF1:
                         target = *hopPtr1;
                         if ( target < 0 ) goto bodyIf4;
                         if ( target <= 9 ) goto endIf4;
@@ -143,12 +145,12 @@ int main()
                         bodyIf4:
 
                            hopPtr11 = hopPtr1 + 1;
-                           F2Body:
-            
+                           begF2:
+
                               *(hopPtr11 - 1) = *hopPtr11;
                               ++hopPtr11;
 
-                           F2test: if ( hopPtr11 < endPtr1 ) goto F2Body;
+                           Ftest2: if ( hopPtr11 < endPtr1 ) goto begF2;
 
                            --used1;
                            --endPtr1;
@@ -158,7 +160,7 @@ int main()
 
                      ++hopPtr1;
 
-                     F1Test: if ( hopPtr1 < endPtr1 ) goto F1Body;
+                     Ftest1: if ( hopPtr1 < endPtr1 ) goto begF1;
 
                      cout << nn09A1Str;
 
@@ -171,10 +173,10 @@ int main()
                            cout << *hopPtr1 << ' ' << ' ';
                            ++hopPtr1;
 
-                        DW2Test: if (hopPtr1 < endPtr1) goto begDW2;
+                        DWTest2: if (hopPtr1 < endPtr1) goto begDW2;
 
                      endIf5:
-                     
+
                      cout << endl;
 
                      used2 = 0;
@@ -184,7 +186,7 @@ int main()
                      hopPtr3 = a3;
                      endPtr1 = a1 + used1;
 
-                     goto w3Test;
+                     goto WTest3;
                      begW3:
 
                         intHolder = *hopPtr1;
@@ -196,7 +198,7 @@ int main()
                         ++hopPtr3;
                         ++hopPtr1;
 
-                     w3Test: if (hopPtr1 < endPtr1) goto begW3;
+                     WTest3: if (hopPtr1 < endPtr1) goto begW3;
 
                      iter = 0;
 
@@ -207,11 +209,11 @@ int main()
 
                         if (iter != 1) goto else6;
 
-                           hopPtr1 = a1, 
+                           hopPtr1 = a1,
                            endPtr1 = a1 + used1;
 
-                           goto F3Test;
-                           F3Body:
+                           goto Ftest3;
+                           begF3:
 
                               target = *hopPtr1;
 
@@ -220,19 +222,19 @@ int main()
                                  ++count;
                                  goto endif7;
 
-                              else7: 
+                              else7:
 
                                  if (count == 0) goto endif8;
 
                                     *(hopPtr1 - count) = *hopPtr1;
 
                                  endif8:
-                                 
+
                               endif7:
 
                               ++hopPtr1;
 
-                           F3Test: if ( hopPtr1 < endPtr1 ) goto F3Body;
+                           Ftest3: if ( hopPtr1 < endPtr1 ) goto begF3;
 
                            used1 -= count;
 
@@ -243,17 +245,17 @@ int main()
                               ++used1;
 
                            endif9:
-                       
+
                         goto endif6;
                         else6:
 
                            if (iter != 2) goto else10;
 
-                              hopPtr2 = a2, 
+                              hopPtr2 = a2,
                               endPtr2 = a2 + used2;
 
-                              goto F4Test;
-                              F4Body:
+                              goto Ftest4;
+                              begF4:
 
                                  target = *hopPtr2;
 
@@ -262,11 +264,11 @@ int main()
                                     ++count;
 
                                     goto endif11;
-                           
+
                                  else11:
 
                                     if (count == 0) goto endif12;
-         
+
                                        *(hopPtr2 - count) = *hopPtr2;
 
                                     endif12:
@@ -275,12 +277,12 @@ int main()
 
                               ++hopPtr2;
 
-                              F4Test: if ( hopPtr2 < endPtr2 ) goto F4Body;
+                              Ftest4: if ( hopPtr2 < endPtr2 ) goto begF4;
 
                               used2 -= count;
 
                               if (used2 != 0) goto endif13;
-                              
+
                                  hopPtr2 = a2;
                                  *hopPtr2 = -99;
                                  ++used2;
@@ -290,11 +292,11 @@ int main()
 
                            else10:
 
-                              hopPtr3 = a3, 
+                              hopPtr3 = a3,
                               endPtr3 = a3 + used3;
 
-                              goto F5Test;
-                              F5Body:
+                              goto Ftest5;
+                              begF5:
 
                                  target = *hopPtr3;
 
@@ -304,7 +306,7 @@ int main()
                                     goto endif14;
 
                                  else14:
-                                 
+
                                     if (count == 0) goto endif15;
 
                                        *(hopPtr3 - count) = *hopPtr3;
@@ -315,7 +317,7 @@ int main()
 
                               ++hopPtr3;
 
-                              F5Test: if ( hopPtr3 < endPtr3 ) goto F5Body;
+                              Ftest5: if ( hopPtr3 < endPtr3 ) goto begF5;
 
                               used3 -= count;
 
@@ -330,8 +332,8 @@ int main()
                            endif10:
 
                         endif6:
-                     
-                     DW3Test: while (iter < 3) goto begDW3;
+
+                     DWTest4: while (iter < 3) goto begDW3;
 
                   endif3:
 
@@ -364,7 +366,7 @@ int main()
                         cout << *hopPtr2 << ' ' << ' ';
                         ++hopPtr2;
 
-                     DW5Test: if (hopPtr2 < endPtr2) goto begDW5;
+                     DWTest5: if (hopPtr2 < endPtr2) goto begDW5;
 
                   endif18:
 
@@ -382,7 +384,7 @@ int main()
                         cout << *hopPtr3 << ' ' << ' ';
                         ++hopPtr3;
 
-                     DW6Test: if (hopPtr3 < endPtr3) goto begDW6;
+                     DWTest6: if (hopPtr3 < endPtr3) goto begDW6;
 
                   endif19:
 
@@ -391,7 +393,7 @@ int main()
                   cout << dacStr;
                   cin >> reply;
 
-               w1Test: if (reply != 'n' && reply != 'N') goto begW1;
+               WTest1: if (reply != 'n' && reply != 'N') goto begW1;
 
 
                cout << dlStr << '\n';
