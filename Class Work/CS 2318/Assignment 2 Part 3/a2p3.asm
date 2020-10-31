@@ -13,7 +13,8 @@ a3:		.space 48
 einStr: 	.asciiz "Enter integer #"
 moStr: 		.asciiz "Max of "
 ieStr:		.asciiz " ints entered..."
-begA1St:	.asciiz "Enter more ints? (n or N = no, others = yes) "
+emiStr:		.asciiz "Enter more ints? (n or N = no, others = yes) "
+begA1St:	.asciiz "beginning a1: "
 nn09A1Str:	.asciiz "a1 (noneg09): "
 procA1Str:	.asciiz "processed a1: "
 procA2Str:	.asciiz "          a2: "
@@ -77,7 +78,45 @@ main:
 			sll $t4, $t4, 4 # hopPtr1++
 			addi $t1, $t1, 1 # used1++
 			
-			  
+			# if used1 >= 12
+			li $v0, 12
+			slt $v1, $v0, $t1 # $v1 has used1 > 12 
+			
+			li $v0, 1
+			
+			beq $v1, $v0, else1 # if used 1 > 12
+			beq $v0, $t1, else1 # if used 1 == 12
+				
+				 # cout emiStr
+				 li $v0, 4
+				 la $a0, emiStr
+				 syscall
+				 
+				 # cin reply
+				 li $v0, 8
+				 li $a1, 10
+				 syscall
+				 
+				 move $v0, $t1 #$t1 has reply
+			
+			else1:
+				# cout moStr and 12 and ieStr
+				li $v0, 4
+				la $a0, moStr
+				syscall
+				
+				li $v0, 1
+				li $a0, 12
+				syscall
+				
+				li $v0, 4
+				la $a0, ieStr
+				syscall
+				
+				li $v0, 11
+				li $a0, '\n'
+				syscall
+			endI1:
 			
 			
 			
