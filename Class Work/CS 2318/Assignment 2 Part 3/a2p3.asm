@@ -30,22 +30,22 @@ main:
 	li $t8, 'y' 		# $t8 has reply
 	#While 1 Test
 	WTest1: 
-	li $a0, 'n' 		# $a0 has n
-	beq $a0, $t8, xitW1 	# check if $t8 == n
+		li $a0, 'n' 		# $a0 has n
+		beq $a0, $t8, begW1 	# check if $t8 == n
 	
-	li $a0, 'N' 		# $a0 has N
-	bne  $a0, $t8, begW1 	#  check if $t8 != N
+		li $a0, 'N' 		# $a0 has N
+		bne  $a0, $t8, begW1 	#  check if $t8 != N
 	
 	begW1:
 		li $t1, 0 	# $t1 has used1
 		la $t4, a1 	# $t4 has hopPtr1
 		
 		W2Test:
-		li $a0, 'n'
-		beq $a0, $t8, xitW1 # check if $t8 == n
+			li $a0, 'n'
+			beq $a0, $t8, xitW2 # check if $t8 == n
 		
-		li $a0, 'N'  
-		bne $a0, $t8, begW2 # check if $t8 != N
+			li $a0, 'N'  
+			bne $a0, $t8, begW2 # check if $t8 != N
 		
 		begW2:
 			# cout einStr
@@ -54,10 +54,10 @@ main:
 			syscall
 			
 			# cout used1 + 1
-			addi $t1, $t1, 1 # $t1 has used + 1
+			addi $v1, $t1, 1 # $t1 has used + 1
 			
 			li $v0, 1 
-			move $a0, $t0 
+			move $a0, $v1 
 			syscall
 			
 			# cout ':' and ' '
@@ -80,12 +80,10 @@ main:
 			
 			# if used1 >= 12
 			li $v0, 12
-			slt $v1, $v0, $t1 # $v1 has used1 > 12 
-			
-			li $v0, 1
+			slt $v1, $v0, $t1 # $v1 has used 1 >12 
 			
 			beq $v1, $v0, else1 # if used 1 > 12
-			beq $v0, $t1, else1 # if used 1 == 12
+			bne $v0, $t1, else1 # if used 1 != 12
 				
 				 # cout emiStr
 				 li $v0, 4
@@ -97,7 +95,7 @@ main:
 				 li $a1, 10
 				 syscall
 				 
-				 move $v0, $t1 #$t1 has reply
+				 move $v0, $t8 #$t8 has reply
 			
 			else1:
 				# cout moStr and 12 and ieStr
