@@ -14,7 +14,7 @@ einStr: 	.asciiz "Enter integer #"
 moStr: 		.asciiz "Max of "
 ieStr:		.asciiz " ints entered..."
 emiStr:		.asciiz "Enter more ints? (n or N = no, others = yes) "
-begA1St:	.asciiz "beginning a1: "
+begA1Str:	.asciiz "beginning a1: "
 nn09A1Str:	.asciiz "a1 (noneg09): "
 procA1Str:	.asciiz "processed a1: "
 procA2Str:	.asciiz "          a2: "
@@ -78,11 +78,12 @@ main:
 			sll $t4, $t4, 4 # hopPtr1++
 			addi $t1, $t1, 1 # used1++
 			
-			# if used1 >= 12
+			# if used1 < 12
 			li $v0, 12
 			slt $v1, $v0, $t1 # $v1 has used 1 >12 
 			
-			beq $v1, $v0, else1 # if used 1 > 12
+			li $v0, 1
+			beq $v1, 1, else1 # if used 1 > 12
 			bne $v0, $t1, else1 # if used 1 != 12
 				
 				 # cout emiStr
@@ -116,11 +117,19 @@ main:
 				syscall
 			endI1:
 			
+			li $v0, 4
+			la $a0, begA1Str
+			syscall
 			
+			# if used > 0
+			slt $v1, $t1, $s0 # $v1 has used 1 < 0
+
 			
 		j W2Test
 		
 		xitW2:
+		
+		
 	j WTest1
 	
 	xitW1:
