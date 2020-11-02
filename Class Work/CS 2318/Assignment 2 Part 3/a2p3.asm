@@ -30,22 +30,17 @@ main:
 	li $t8, 'y' 		# $t8 has reply
 	#While 1 Test
 	WTest1: 
-		li $a0, 'n' 		# $a0 has n
-		beq $a0, $t8, begW1 	# check if $t8 == n
+	li $a0, 'n' 		# $a0 has n
+	beq $a0, $t8, begW1 	# check if $t8 == n
 	
-		li $a0, 'N' 		# $a0 has N
-		bne  $a0, $t8, begW1 	#  check if $t8 != N
+	li $a0, 'N' 		# $a0 has N
+	bne  $a0, $t8, begW1 	#  check if $t8 != N
 	
 	begW1:
 		li $t1, 0 	# $t1 has used1
 		la $t4, a1 	# $t4 has hopPtr1
 		
-		W2Test:
-			li $a0, 'n'
-			beq $a0, $t8, xitW2 # check if $t8 == n
-		
-			li $a0, 'N'  
-			bne $a0, $t8, begW2 # check if $t8 != N
+		j W2Test
 		
 		begW2:
 			# cout einStr
@@ -75,16 +70,14 @@ main:
 			
 			move $v0, $t4
 			
-			sll $t4, $t4, 4 # hopPtr1++
+			addi $t4, $t4, 1 # *hopPtr1++
 			addi $t1, $t1, 1 # used1++
 			
 			# if used1 < 12
 			li $v0, 12
-			slt $v1, $v0, $t1 # $v1 has used 1 >12 
-			
-			li $v0, 1
-			beq $v1, 1, else1 # if used 1 > 12
-			bne $v0, $t1, else1 # if used 1 != 12
+
+			bge $t1, $v0, else1 # if used 1 > 12
+			beq $v0, $t1, else1 # if used 1 == 12
 				
 				 # cout emiStr
 				 li $v0, 4
@@ -96,7 +89,9 @@ main:
 				 li $a1, 10
 				 syscall
 				 
-				 move $v0, $t8 #$t8 has reply
+				 move $t8, $v0 #$t8 has reply
+				 
+				 j endI1
 			
 			else1:
 				# cout moStr and 12 and ieStr
@@ -115,20 +110,154 @@ main:
 				li $v0, 11
 				li $a0, '\n'
 				syscall
+				
+				li $t8, 'n'
 			endI1:
 			
+		W2Test:
+		li $a0, 'n'
+		beq $a0, $t8, xitW2 # check if $t8 == n
+		
+		li $a0, 'N'  
+		bne $a0, $t8, begW2 # check if $t8 != N
+		xitW2:
+			
+			#cout begA1sStr
 			li $v0, 4
 			la $a0, begA1Str
 			syscall
 			
 			# if used > 0
 			slt $v1, $t1, $s0 # $v1 has used 1 < 0
-
 			
-		j W2Test
-		
-		xitW2:
-		
+			li $v0, 1
+			blt $t1, $v0, endI2 # if used 1 < 0
+			beq $t1, $s0, endI2  # if used 1 == 0
+				move $t4, $t1 # hopPtr1 = a1
+				
+				la $v0, a1
+				
+				# endPtr1 = a1 + used1
+				sll $v1,$1, 2
+				add $a1, $v0, $v1
+				
+				begDW1:
+					# Cout *hopPtr1 and ' ' and ' '
+					li $v0, 1
+					lw $a0, 0($t4)
+					syscall
+				endDW1:
+				DWTest1:
+				blt $t4, $a1, begDW1
+			
+			endI2:
+			
+			li $v0, 11
+			li $a0, '\n'
+			syscall
+			
+			# if used 1 < = 0
+			bltz $t1, endI3 # if used < 0
+			beq $t1, $s0, endI3 # if used == 0
+				move $t4, $a1 # hopPtr1 = a1
+				
+				j FTest1
+				begF1:
+					
+					lw $t0, 0($t4)  # target = *hopPtr1
+					
+					# if target >= 0 && target <= 9
+					bgez $t0, endI4
+					beq $t0, $s0, endI4
+					
+					li $v0, 9
+					
+					blt $t0, $v0, endI4
+					beq $t0, $v0, endI4
+						
+					# hopPtr11 = hopPtr1 + 1
+					la $v0, a1
+					move $t4, $v0
+					
+						j FTest2
+						begF2:
+							#  *(hopPtr11 - 1) = *hopPtr11
+							lw $v0, 0($t6)
+							sw $t6, -4($t6)
+							
+							#  ++hopPtr11
+							addi $t4, $t4, 4
+						FTest2: 
+						blt $t6, $a1, begF2 # if hopPtr11 < endPtr1 
+						endF2:
+						
+						addi $t1, $t1, -1 # used 1 --
+						addi $a1, $a1, -4 # endPtr1 --
+						addi $t4, $t4, -4 # hopPtr 1 -- 
+					endI4:
+					addi $t4, $t4, 4 # hopPtr 1 ++
+				FTest1:	
+				blt $t4, $a1, begF1 # if hopPtr1 < endPtr1
+				endF1:
+				
+				# cout nn09A1Str
+				li $v0, 4
+				la $a0, nn09A1Str
+				syscall
+				
+				# if used1 <= 0
+				bltz $t1, endI5 # if used1 < 0
+				beq $t1, $s0, endI5 # if used1 == 0
+					
+					la $t1, a1 # hopPtr1 = a1
+					
+					# endPtr1 = a1 + used1
+					la $v0, a1
+					add $v1, $v0, $t1
+					move $a1, $v1
+					
+					begDW2:
+						# cout *hopPtr ' ' ' '
+						li $v0, 1
+						lw $a0, 0($t4)
+						syscall
+						
+						
+						li $v0, 11
+						li $a0, ' '
+						syscall
+						
+						li $a0, ' '
+						syscall
+						
+						# ++hopPtr1
+						addi $t4, $t4, 4
+					endDW2:
+					DWTest2:
+						blt $t4, $a1, begDW2 # if hopPtr1 < endPtr1
+				endI5:
+				
+				li $a0, '\n'
+				syscall
+				
+				li $t2, 0 # used2 = 0
+				li $t3, 0 # used3 = 0
+				
+				la $t4, a1 # hopPtr1 = a1
+				la $t5, a2 # hopPtr2 = a2
+				la $t7, a3 # hopPtr3 = a3
+				
+				 # endPtr1 = a1 + used1
+				 la $v0, a1 
+				 add $v1, $v0, $t1
+				 move $a1, $v1
+				 
+				 
+				j WTest3
+				begW3:
+				
+				WTest3:
+			endI3:
 		
 	j WTest1
 	
