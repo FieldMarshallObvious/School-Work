@@ -218,7 +218,7 @@ main:
 					la $t1, a1 # hopPtr1 = a1
 					
 					# endPtr1 = a1 + used1
-					sll $v1, $1, 2
+					sll $v1, $t1, 2
 					add $a1, $t4, $v1
 					
 					begDW2:
@@ -253,7 +253,7 @@ main:
 				
 				 # endPtr1 = a1 + used1
 				 sll $v0, $t1, 2 
-				 addi $a1, $t4, $t1
+				 add $a1, $t4, $t1
 				
 				 # if ( iter != 1 )
 				 li $v0, 1
@@ -315,7 +315,8 @@ main:
 					 	FTest3:
 						 	blt $t4, $a2, begF3
 					 	
-						 	sub t1, $t1, $t9
+						 	sub $t1, $t1, $t9
+						 endF3:
 					 	
 						 bnez $t1, endI9
 					 		la $t4, a1
@@ -326,12 +327,39 @@ main:
 					 endI9:
 						 j endI6
 					
-					 else6:
-					 	li $v1, 4
+					 elseI6:
+					 	li $v1, 2
+					 	
+					 	# if iter != 2
 					 	bne $t8, $v1, else10
-					 		lw $t5, a2
+					 		la $t5, a2
+							# endPtr2 = a2 + used2
+							sll $v1, $t2, 2
+							add $a2, $t4, $v1
+							
+							j FTest4
+							
+							begF4:
+								lw $t0, 0($t5) # target = *hopPtr2
+								
+								li $v1, 4
+								
+								ble $t0, $v1, else11
+									addi $t9, $t9, 1 # ++ count
+									j endI11
+								else11:
+									beqz $t9, endI12
+										
+									endI12:
+								 endI11: 
+							FTest4:
+									
+									
+						else10:
+						
+						endI10:	
 					 		 	
-					 endi6:
+					 endI6:
 					 	
 					endDW3:
 					DWTest3:
