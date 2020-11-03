@@ -254,85 +254,89 @@ main:
 				 # endPtr1 = a1 + used1
 				 sll $v0, $t1, 2 
 				 addi $a1, $t4, $t1
-
-				 
-				 j FTest3
-				 begF3: 
-					j WTest3
-						begW3:
-							move $v0, $t8	# $v0 has reply temporarly  
-					
-							lw $t8, 0($t4)	# $t8 has intholder
-							sw $t5, 0($t8)	# $ *hopPtr2 = intHolder	
-							addi $t2, $t2, 1 # $t2 has used2 ++
-							addi $t5, $t5, 1 # $t5 has hopPtr2
-							sw $t3, 0($t8) 	# *hopPtr3 = intHolder
-							addi $t3, $t7, 1 	# $t3 has used3 ++
-							addi $t3, $t7, 1 # $t4 has hopPtr1 ++
-					  
-							move $t8, $v0	# $t8 has reply
-						WTest3:
-						blt $t4, $a1, WTest3
-						endW3:
 				
-						move $v0, $t8 # $v0 has reply
-						li $t8, 0 # $t8 has inter
-						begDW3:
-						addi $t8, $t8, 1 # iter ++
-						li $t9, 0 	 # $t9 has count
+				 # if ( iter != 1 )
+				 li $v0, 1
+				 bne $t8, $v0, elseI6
+				 	j FTest3
+				 	begF3: 
+						j WTest3
+							begW3:
+								move $v0, $t8	# $v0 has reply temporarly  
+					
+								lw $t8, 0($t4)	# $t8 has intholder
+								sw $t5, 0($t8)	# $ *hopPtr2 = intHolder	
+								addi $t2, $t2, 1 # $t2 has used2 ++
+								addi $t5, $t5, 1 # $t5 has hopPtr2
+								sw $t3, 0($t8) 	# *hopPtr3 = intHolder
+								addi $t3, $t7, 1 	# $t3 has used3 ++
+								addi $t3, $t7, 1 # $t4 has hopPtr1 ++
+					  
+								move $t8, $v0	# $t8 has reply
+							WTest3:
+							blt $t4, $a1, WTest3
+							endW3:
+				
+							move $v0, $t8 # $v0 has reply
+							li $t8, 0 # $t8 has inter
+							begDW3:
+							addi $t8, $t8, 1 # iter ++
+							li $t9, 0 	 # $t9 has count
 					
 					
-						lw $t0, 0($t4) 
+							lw $t0, 0($t4) 
 					
-						li $v1, 5
+							li $v1, 5
 					
-						# if target == 5
-						beq $t9, $v1, else7
+							# if target == 5
+							beq $t9, $v1, else7
 					
-					 		addi $t9, $t9, 1 # target ++
-					 		j endI7
+					 			addi $t9, $t9, 1 # target ++
+					 			j endI7
 					 
-					 	else7:
+						 	else7:
 					 		
-					 		# if count == 0	
-					 		beqz $t9, endI8
-					 			sll $a0, $t9, 2 # count * 2
+						 		# if count == 0	
+						 		beqz $t9, endI8
+						 			sll $a0, $t9, 2 # count * 2
+									
+									sub $a0, $t4, $a0
+									lw $v1, 0($t4)
+									lw $v1, 0($v1) # load current hopPtr1
+									sw $v1, 0($v1)
 								
-								sub $a0, $t4, $a0
-								lw $v1, 0($t4)
-								lw $v1, 0($v1) # load current hopPtr1
-								sw $v1, 0($v1)
-								
-					 			#sw $v1, $a0($t4) 
-					 		endI8:
-					 	endI7: 
+					 			endI8:
+					 		endI7: 
 					 	
-					 addi $t4, $t4, 4 # hopPtr1++
+					 	addi $t4, $t4, 4 # hopPtr1++
 					 
-					 move $t8, $v0 # $t8 has reply
+						 move $t8, $v0 # $t8 has reply
 					 
-					 FTest3:
-					 	blt $t4, $a2, begF3
+					 	FTest3:
+						 	blt $t4, $a2, begF3
 					 	
-					 	sub t1, $t1, $t9
+						 	sub t1, $t1, $t9
 					 	
-					 	bnez $t1, endI9
+						 bnez $t1, endI9
 					 		la $t4, a1
 					 		li $t4, -99
 					 		
 					 		addi $t1, $t1, 1 # used1++
 					 		
 					 endI9:
-					 	j endI6
+						 j endI6
 					
 					 else6:
-					 	
+					 	li $v1, 4
+					 	bne $t8, $v1, else10
+					 		lw $t5, a2
+					 		 	
 					 endi6:
 					 	
-				endDW3:
-				DWTest3:
-					li $a0, 3
-					blt $t8, $a0, begDW3
+					endDW3:
+					DWTest3:
+						li $a0, 3
+						blt $t8, $a0, begDW3
 				
 			endI3:
 		
