@@ -10,17 +10,17 @@
 a1:		.space 48
 a2:		.space 48
 a3:		.space 48
-einStr: 	.asciiz "Enter integer #"
+einStr: 	.asciiz "\nEnter integer #"
 moStr: 		.asciiz "Max of "
 ieStr:		.asciiz " ints entered..."
 emiStr:		.asciiz "Enter more ints? (n or N = no, others = yes) "
-begA1Str:	.asciiz "beginning a1: "
+begA1Str:	.asciiz "\nbeginning a1: "
 nn09A1Str:	.asciiz "a1 (noneg09): "
 procA1Str:	.asciiz "processed a1: "
 procA2Str:	.asciiz "          a2: "
 procA3Str: 	.asciiz "          a3: "
 dacStr:		.asciiz "Do another case? (n or N = no, others = yes) "
-dlStr:		.asciiz "================================"
+dlStr:		.asciiz "\n================================"
 byeStr:		.asciiz "bye.."
 
 		.text 
@@ -28,13 +28,8 @@ byeStr:		.asciiz "bye.."
 main:
 	
 	li $t8, 'y' 		# $t8 has reply
-	#While 1 Test
-	WTest1: 
-	li $a0, 'n' 		# $a0 has n
-	beq $a0, $t8, begW1 	# check if $t8 == n
 	
-	li $a0, 'N' 		# $a0 has N
-	bne  $a0, $t8, begW1 	#  check if $t8 != N
+	j WTest1
 	
 	begW1:
 		li $t1, 0 	# $t1 has used1
@@ -159,7 +154,7 @@ main:
 			# if used 1 < = 0
 			bltz $t1, endI3 # if used < 0
 			beq $t1, $s0, endI3 # if used == 0
-				move $t4, $a1 # hopPtr1 = a1
+				la $t4, a1 # hopPtr1 = a1
 				
 				j FTest1
 				begF1:
@@ -235,6 +230,7 @@ main:
 					endDW2:
 					DWTest2:
 						blt $t4, $a1, begDW2 # if hopPtr1 < endPtr1
+	
 				endI5:
 				
 				li $a0, '\n'
@@ -252,14 +248,72 @@ main:
 				 add $v1, $v0, $t1
 				 move $a1, $v1
 				 
-				 
-				j WTest3
-				begW3:
+				 j FTest3
+				 begF3: 
+					j WTest3
+						begW3:
+							move $v0, $t8	# $v0 has reply temporarly  
+					
+							lw $t8, 0($t4)	# $t8 has intholder	
+							addi $t2, $t2, 1 # $t2 has used2 ++
+							addi $t5, $t5, 1 # $t5 has hopPtr2
+							move $t3, $t8 	# *hopPtr3 = intHolder
+							addi $t3, $t7, 1 	# $t3 has used3 ++
+							addi $t3, $t7, 1 # $t4 has hopPtr1 ++
+					  
+							move $t8, $v0	# $t8 has reply
+						WTest3:
+						blt $t4, $a1, WTest3
+						endW3:
 				
-				WTest3:
+						move $v0, $t8 # $v0 has reply
+						li $t8, 0 # $t8 has inter
+						begDW3:
+						addi $t8, $t8, 1 # iter ++
+						li $t9, 0 	 # $t9 has count
+					
+					
+						lw $t0, 0($t4) 
+					
+						li $v1, 5
+					
+						# if target == 5
+						beq $t9, $v1, else7
+					
+					 		addi $t9, $t9, 1 # target ++
+					 		j endI7
+					 
+					 	else7:
+					 		
+					 		# if count == 0	
+					 		beqz $t9, endI8
+					 			sll $a0, $t9, 4 # count * 4
+					 			mul $a0, $a0, -1 # convert to negative
+							
+								lw $v1, 0($t4) # load current hopPtr1
+					
+					 			sw $v1, $a0($t4) 
+					 		endI8:
+					 	endI7: 
+					 	
+					 addi $t4, $t4, 4 # hopPtr1++
+					 
+					 FTest3:
+					 	blt $t4, $a2, begF3
+					 	
+				endDW3:
+				DWTest3:
+					li $a0, 3
+					blt $t8, $a0, begDW3
+				
 			endI3:
 		
-	j WTest1
+	WTest1: 
+		li $a0, 'n' 		# $a0 has n
+		beq $a0, $t8, begW1 	# check if $t8 == n
+	
+		li $a0, 'N' 		# $a0 has N
+		bne  $a0, $t8, begW1 	#  check if $t8 != N
 	
 	xitW1:
 	li $v0, 4
