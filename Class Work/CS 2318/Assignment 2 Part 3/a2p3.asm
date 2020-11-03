@@ -55,7 +55,6 @@ main:
 			li $a0, ':'
 			syscall
 			
-			li $v0, 11
 			li $a0, ' '
 			syscall
 			
@@ -63,9 +62,9 @@ main:
 			li $v0, 5
 			syscall
 			
-			move $v0, $t4
+			sw $v0, 0($t4)
 			
-			addi $t4, $t4, 1 # *hopPtr1++
+			addi $t4, $t4, 4 # *hopPtr1++
 			addi $t1, $t1, 1 # used1++
 			
 			# if used1 < 12
@@ -106,9 +105,9 @@ main:
 				li $a0, '\n'
 				syscall
 				
-				li $t8, 'n'
+				li $t8, 'n' # reply = 'n'
 			endI1:
-			
+		endW2:
 		W2Test:
 		li $a0, 'n'
 		beq $a0, $t8, xitW2 # check if $t8 == n
@@ -126,24 +125,31 @@ main:
 			slt $v1, $t1, $s0 # $v1 has used 1 < 0
 			
 			li $v0, 1
-			blt $t1, $v0, endI2 # if used 1 < 0
-			beq $t1, $s0, endI2  # if used 1 == 0
-				move $t4, $t1 # hopPtr1 = a1
+			ble $t1, $0, endI2 # if used 1 <= 0
+			
+				la $t4, a1 # hopPtr1 = a1
 				
-				la $v0, a1
 				
 				# endPtr1 = a1 + used1
-				sll $v1,$1, 2
-				add $a1, $v0, $v1
+				sll $v1, $t1, 2
+				add $a1, $t4, $v1
 				
 				begDW1:
 					# Cout *hopPtr1 and ' ' and ' '
 					li $v0, 1
 					lw $a0, 0($t4)
 					syscall
+					
+					li $v0, 11
+					li $a0, ' '
+					syscall
+					syscall
+					
+					addi $t4, $t4, 4 # ++hopPtr1
 				endDW1:
 				DWTest1:
-				blt $t4, $a1, begDW1
+					# if hopPtr1 < endPtr1
+					blt $t4, $a1, begDW1
 			
 			endI2:
 			
@@ -152,9 +158,12 @@ main:
 			syscall
 			
 			# if used 1 < = 0
-			bltz $t1, endI3 # if used < 0
-			beq $t1, $s0, endI3 # if used == 0
+			ble $t1, $a0, endI3 # if used < 0
 				la $t4, a1 # hopPtr1 = a1
+				
+				# endPtr1 = a1 + used1
+				sll $v1, $v1, 2
+				add $a1, $t4, $v0 
 				
 				j FTest1
 				begF1:
@@ -162,17 +171,17 @@ main:
 					lw $t0, 0($t4)  # target = *hopPtr1
 					
 					# if target >= 0 && target <= 9
-					bgez $t0, endI4
-					beq $t0, $s0, endI4
+					bgez $t0, begI4
+					beq $t0, $s0, begI4
 					
 					li $v0, 9
 					
 					blt $t0, $v0, endI4
 					beq $t0, $v0, endI4
-						
+					begI4:	
+					
 					# hopPtr11 = hopPtr1 + 1
-					la $v0, a1
-					move $t4, $v0
+					addi $t6, $t4, 4 
 					
 						j FTest2
 						begF2:
@@ -181,19 +190,22 @@ main:
 							sw $t6, -4($t6)
 							
 							#  ++hopPtr11
-							addi $t4, $t4, 4
+							addi $t6, $t4, 4
+							endF2:
 						FTest2: 
-						blt $t6, $a1, begF2 # if hopPtr11 < endPtr1 
-						endF2:
+							blt $t6, $a1, begF2 # if hopPtr11 < endPtr1 
+						
 						
 						addi $t1, $t1, -1 # used 1 --
 						addi $a1, $a1, -4 # endPtr1 --
 						addi $t4, $t4, -4 # hopPtr 1 -- 
 					endI4:
-					addi $t4, $t4, 4 # hopPtr 1 ++
+						addi $t4, $t4, 4 # hopPtr 1 ++
+					
+					endF1:
 				FTest1:	
-				blt $t4, $a1, begF1 # if hopPtr1 < endPtr1
-				endF1:
+					blt $t4, $a1, begF1 # if hopPtr1 < endPtr1
+				
 				
 				# cout nn09A1Str
 				li $v0, 4
@@ -201,15 +213,13 @@ main:
 				syscall
 				
 				# if used1 <= 0
-				bltz $t1, endI5 # if used1 < 0
-				beq $t1, $s0, endI5 # if used1 == 0
+				ble $t1,$0, endI5 # if used1 <= 0
 					
 					la $t1, a1 # hopPtr1 = a1
 					
 					# endPtr1 = a1 + used1
-					la $v0, a1
-					add $v1, $v0, $t1
-					move $a1, $v1
+					sll $v1, $1, 2
+					add $a1, $t4, $v1
 					
 					begDW2:
 						# cout *hopPtr ' ' ' '
@@ -221,8 +231,6 @@ main:
 						li $v0, 11
 						li $a0, ' '
 						syscall
-						
-						li $a0, ' '
 						syscall
 						
 						# ++hopPtr1
@@ -244,9 +252,9 @@ main:
 				la $t7, a3 # hopPtr3 = a3
 				
 				 # endPtr1 = a1 + used1
-				 la $v0, a1 
-				 add $v1, $v0, $t1
-				 move $a1, $v1
+				 sll $v0, $t1, 2 
+				 addi $a1, $t4, $t1
+
 				 
 				 j FTest3
 				 begF3: 
@@ -254,10 +262,11 @@ main:
 						begW3:
 							move $v0, $t8	# $v0 has reply temporarly  
 					
-							lw $t8, 0($t4)	# $t8 has intholder	
+							lw $t8, 0($t4)	# $t8 has intholder
+							sw $t5, 0($t8)	# $ *hopPtr2 = intHolder	
 							addi $t2, $t2, 1 # $t2 has used2 ++
 							addi $t5, $t5, 1 # $t5 has hopPtr2
-							move $t3, $t8 	# *hopPtr3 = intHolder
+							sw $t3, 0($t8) 	# *hopPtr3 = intHolder
 							addi $t3, $t7, 1 	# $t3 has used3 ++
 							addi $t3, $t7, 1 # $t4 has hopPtr1 ++
 					  
@@ -287,19 +296,38 @@ main:
 					 		
 					 		# if count == 0	
 					 		beqz $t9, endI8
-					 			sll $a0, $t9, 4 # count * 4
-					 			mul $a0, $a0, -1 # convert to negative
-							
-								lw $v1, 0($t4) # load current hopPtr1
-					
-					 			sw $v1, $a0($t4) 
+					 			sll $a0, $t9, 2 # count * 2
+								
+								sub $a0, $t4, $a0
+								lw $v1, 0($t4)
+								lw $v1, 0($v1) # load current hopPtr1
+								sw $v1, 0($v1)
+								
+					 			#sw $v1, $a0($t4) 
 					 		endI8:
 					 	endI7: 
 					 	
 					 addi $t4, $t4, 4 # hopPtr1++
 					 
+					 move $t8, $v0 # $t8 has reply
+					 
 					 FTest3:
 					 	blt $t4, $a2, begF3
+					 	
+					 	sub t1, $t1, $t9
+					 	
+					 	bnez $t1, endI9
+					 		la $t4, a1
+					 		li $t4, -99
+					 		
+					 		addi $t1, $t1, 1 # used1++
+					 		
+					 endI9:
+					 	j endI6
+					
+					 else6:
+					 	
+					 endi6:
 					 	
 				endDW3:
 				DWTest3:
