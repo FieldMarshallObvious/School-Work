@@ -154,7 +154,7 @@ main:
 			syscall
 
 			# if used1 <= 0
-			ble $t1, $a0, endI3
+			blez $t1, endI3
 				la $t4, a1 # hopPtr1 = a1
 				
 				# endPtr1 = a1 + used1
@@ -429,19 +429,23 @@ main:
 				blez $t1, endI17
 					la $t4, a1 # hopPtr1 = a1
 					# endPtr1 = a1 + used1
-					la $v0, a1
-					sll $v1, $v0, 2
-					add $a1, $t1, $v1
+					sll $v1, $t1, 2
+					add $a1, $t4, $v1
 					
 					begDW4:
 						# cout *hopPtr1 ' ' and ' '
 						li $v0, 1
 						lw $a0, 0($t4)
+						syscall
 						
 						li $v0, 11
 						li $a0, ' '
 						syscall
 						syscall
+						
+						# ++hopPtr1
+						addi $t4, $t4, 4
+						
 					endDW4:
 					DWTest4:
 						blt $t4, $a1, begDW4
