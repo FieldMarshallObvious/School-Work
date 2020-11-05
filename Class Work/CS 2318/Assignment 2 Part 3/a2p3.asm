@@ -67,10 +67,9 @@ main:
 			addi $t4, $t4, 4 # *hopPtr1++
 			addi $t1, $t1, 1 # used1++
 			
-			# if used1 < 12
+			# if used1 => 12
 			li $v0, 12
-
-			bge $t1, $v0, else1 # if used 1 => 12
+			bge $t1, $v0, else1 
 				
 				 # cout emiStr
 				 li $v0, 4
@@ -78,11 +77,10 @@ main:
 				 syscall
 				 
 				 # cin reply
-				 li $v0, 8
-				 li $a1, 10
+				 li $v0, 12
 				 syscall
 				 
-				 move $t8, $v0 #$t8 has reply
+				 move $t8, $v0 #$t8 has reply		 
 				 
 				 j endI1
 			
@@ -114,7 +112,6 @@ main:
 		
 		li $a0, 'N'  
 		bne $a0, $t8, begW2 # check if $t8 != N
-		
 		xitW2:
 			
 			#cout begA1sStr
@@ -122,16 +119,14 @@ main:
 			la $a0, begA1Str
 			syscall
 			
-			# if used > 0
-			slt $v1, $t1, $s0 # $v1 has used 1 < 0
-			
-			li $v0, 1
-			ble $t1, $0, endI2 # if used 1 <= 0
+			# if used1 <= 0
+			blez $t1, endI2 
 			
 				la $t4, a1 # hopPtr1 = a1
 				
 				
 				# endPtr1 = a1 + used1
+				la $t4, a1
 				sll $v1, $t1, 2
 				add $a1, $t4, $v1
 				
@@ -157,13 +152,13 @@ main:
 			li $v0, 11
 			li $a0, '\n'
 			syscall
-			
-			# if used 1 < = 0
-			ble $t1, $a0, endI3 # if used < 0
+
+			# if used1 <= 0
+			ble $t1, $a0, endI3
 				la $t4, a1 # hopPtr1 = a1
 				
 				# endPtr1 = a1 + used1
-				sll $v1, $v1, 2
+				sll $v1, $t1, 2
 				add $a1, $t4, $v0 
 				
 				j FTest1
@@ -172,13 +167,10 @@ main:
 					lw $t0, 0($t4)  # target = *hopPtr1
 					
 					# if target >= 0 && target <= 9
-					bgez $t0, begI4
-					beq $t0, $s0, begI4
-					
+					bgez $t0, endI4
 					li $v0, 9
+					blt $t9, $v0, endI4
 					
-					blt $t0, $v0, endI4
-					beq $t0, $v0, endI4
 					begI4:	
 					
 					# hopPtr11 = hopPtr1 + 1
@@ -191,7 +183,7 @@ main:
 							sw $t6, -4($t6)
 							
 							#  ++hopPtr11
-							addi $t6, $t4, 4
+							addi $t6, $t6, 4
 							endF2:
 						FTest2: 
 							blt $t6, $a1, begF2 # if hopPtr11 < endPtr1 
@@ -216,7 +208,7 @@ main:
 				# if used1 <= 0
 				ble $t1,$0, endI5 # if used1 <= 0
 					
-					la $t1, a1 # hopPtr1 = a1
+					la $t4, a1 # hopPtr1 = a1
 					
 					# endPtr1 = a1 + used1
 					sll $v1, $t1, 2
@@ -276,7 +268,7 @@ main:
 					  
 								move $t8, $v0	# $t8 has reply
 							WTest3:
-							blt $t4, $a1, WTest3
+							blt $t4, $a1, begW3
 							endW3:
 				
 							move $v0, $t8 # $v0 has reply
@@ -442,9 +434,9 @@ main:
 					add $a1, $t1, $v1
 					
 					begDW4:
-						# cout *hopPtr2 ' ' and ' '
+						# cout *hopPtr1 ' ' and ' '
 						li $v0, 1
-						lw $a0, 0($t5)
+						lw $a0, 0($t4)
 						
 						li $v0, 11
 						li $a0, ' '
