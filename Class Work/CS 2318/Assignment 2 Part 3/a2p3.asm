@@ -373,13 +373,12 @@ main:
 								la $t7, a3
 								
 								# endPtr3 = a3 + used3
-								la $v0, a3 
-								sll $v1, $v0, 2
-								add $a3, $t3, $v1
+								sll $v1, $t3, 2
+								add $a3, $t7, $v1
 								
 								j Ftest5
 								begF5:
-									lw $t0, 0($t5)	# targe = *hopPtr3
+									lw $t0, 0($t7)	# target = *hopPtr3
 									
 									# if target >= 6
 									li $a1, 6
@@ -391,9 +390,9 @@ main:
 										# if ( count == 0 )
 										beqz $t9, endI15
 											#*(hopPtr3 - count) = *hopPtr3
-											sub $a1, $t7, $t9
-											lw $v1, 0($t5) # load current hopPtr2
-											sw $v1, 0($a1)				
+											sub $v0, $t7, $t9
+											lw $v1, 0($t7) # load current hopPtr3
+											sw $v1, 0($v0)				
 										endI15:
 									endI14:	
 									addi $t7, $t7, 4 # ++hopPtr3
@@ -478,6 +477,8 @@ main:
 							li $a0, ' '
 							syscall
 							syscall
+							
+							addi $t5, $t5, 4 # *hopPtr2++
 							
 						DWTest5:
 							ble $t5, $a2, begDW5
