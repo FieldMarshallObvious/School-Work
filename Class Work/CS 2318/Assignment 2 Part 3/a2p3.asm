@@ -70,8 +70,7 @@ main:
 			# if used1 < 12
 			li $v0, 12
 
-			bge $t1, $v0, else1 # if used 1 > 12
-			beq $v0, $t1, else1 # if used 1 == 12
+			bge $t1, $v0, else1 # if used 1 => 12
 				
 				 # cout emiStr
 				 li $v0, 4
@@ -109,11 +108,13 @@ main:
 			endI1:
 		endW2:
 		W2Test:
+		
 		li $a0, 'n'
 		beq $a0, $t8, xitW2 # check if $t8 == n
 		
 		li $a0, 'N'  
 		bne $a0, $t8, begW2 # check if $t8 != N
+		
 		xitW2:
 			
 			#cout begA1sStr
@@ -241,6 +242,7 @@ main:
 	
 				endI5:
 				
+				li $v0, 11
 				li $a0, '\n'
 				syscall
 				
@@ -300,6 +302,7 @@ main:
 						 		beqz $t9, endI8
 						 			sll $a0, $t9, 2 # count * 2
 									
+									#*(hopPtr1 - count) = *hopPtr1
 									sub $a0, $t4, $a0
 									lw $v1, 0($t4)
 									lw $v1, 0($v1) # load current hopPtr1
@@ -320,7 +323,7 @@ main:
 					 	
 						 bnez $t1, endI9
 					 		la $t4, a1
-					 		li $t4, -99
+					 		li $t4, -99 # *hopPtr1 = -99
 					 		
 					 		addi $t1, $t1, 1 # used1++
 					 		
@@ -330,12 +333,15 @@ main:
 					 elseI6:
 					 	li $v1, 2
 					 	
+					 	move $a0, $t8 # $a0 has reply
+					 	li $t8, 0 # $t8 has inter
+					 	
 					 	# if iter != 2
 					 	bne $t8, $v1, else10
 					 		la $t5, a2
 							# endPtr2 = a2 + used2
-							sll $v1, $t2, 2
-							add $a2, $t4, $v1
+							sll $v1, $t5, 2
+							add $a2, $t2, $v1
 							
 							j FTest4
 							
@@ -349,24 +355,193 @@ main:
 									j endI11
 								else11:
 									beqz $t9, endI12
-										
+										#*(hopPtr2 - count) = *hopPtr2
+										sub $a1, $t5, $t9
+										lw $a1, 0($t4)
+										lw $v1, 0($t5) # load current hopPtr2
+										sw $v1, 0($a1)
 									endI12:
 								 endI11: 
 							FTest4:
+								blt $t5, $a3, begF4
+							endF4:
+							
+							# used 2 -= count
+							sub $t4, $t4, $t9
+							
+							# if used2 == 0
+							bnez $t9, endI13
+								la $t5, a2 # hopPtr2 = a2
+								li $t5, -99 # *hopPtr2 = -99
+								addi $t2, $t2, 1 # ++used2
+								
+							endI13:
+								j endI10
+							else10:
+								la $t7, a3
+								
+								# endPtr3 = a3 + used3
+								la $v0, a3 
+								sll $v1, $v0, 2
+								add $a3, $t3, $v1
+								
+								j Ftest5
+								begF5:
+									lw $t0, 0($t5)	# targe = *hopPtr3
 									
+									# if target >= 6
+									li $a1, 6
+									bge $t0, $a1, else14
+										addi $t9, $t9, 1 # count ++
+										
+										j endI14
+									else14:
+										# if ( count == 0 )
+										beqz $t9, endI15
+											#*(hopPtr3 - count) = *hopPtr3
+											sub $a1, $t7, $t9
+											lw $v1, 0($t5) # load current hopPtr2
+											sw $v1, 0($a1)				
+										endI15:
+									endI14:	
+									addi $t7, $t7, 4 # ++hopPtr3
 									
-						else10:
-						
+								Ftest5:
+									blt $t7, $a3, begF5
+								endF5:
+									# used3 -= count
+									sub $t9, $t9, $t9
+									
+									# if used3 != 0
+									bnez $t3, endI16
+										la $t7 , a3 # hopPtr3 = a3
+										li $t7, -99 # *hopPtr3 = -99
+										addi $t3, $t3, 1 # ++used
+									endI16:
+							move $t8, $a0 # $t8 has reply
 						endI10:	
-					 		 	
 					 endI6:
 					 	
 					endDW3:
+					
 					DWTest3:
 						li $a0, 3
 						blt $t8, $a0, begDW3
-				
 			endI3:
+				# cout << procA1Str
+				li $v0, 4
+				la $a0, procA1Str
+				syscall
+				
+				# if used <= 0
+				blez $t1, endI17
+					la $t4, a1 # hopPtr1 = a1
+					# endPtr1 = a1 + used1
+					la $v0, a1
+					sll $v1, $v0, 2
+					add $a1, $t1, $v1
+					
+					begDW4:
+						# cout *hopPtr2 ' ' and ' '
+						li $v0, 1
+						lw $a0, 0($t5)
+						
+						li $v0, 11
+						li $a0, ' '
+						syscall
+						syscall
+					endDW4:
+					DWTest4:
+						blt $t4, $a1, begDW4
+					endI17:
+					
+					li $v0, 11
+					li $a0, '\n'
+					syscall
+					
+					li $v0, 8
+					la $a0, procA2Str
+					syscall
+					
+					bltz $t2, endI18
+						# hopPtr3 = a3
+						la $t7, a3
+					
+						# endPtr2 = a2 + used2
+						la $v0, a2 
+						sll $v1, $v0, 2
+						add $a2, $t2, $v1
+						
+						begDW5:
+							# cout *hopPtr2 ' ' ' '
+							li $v1, 1
+							lw $a0, 0($t5)
+							syscall
+							
+							li $v0, 11
+							li $a0, ' '
+							syscall
+							syscall
+							
+						DWTest5:
+							ble $t5, $a2, begDW5
+					endI18:
+					
+					li $v0, 11
+					li $a0, ' '
+					syscall
+					
+					
+					# cout procA3Str
+					li $v0, 8
+					la $a0, procA3Str
+					syscall
+					
+					# if used <= 0
+					bltz $t3, endI19
+						# endPtr3 = a3
+						la $a3, a3
+
+						# endPtr3 = a3 + used3
+						la $v0, a3 
+						sll $v1, $v0, 2
+						add $a3, $t3, $v1
+						
+						begDW6:
+							# cout *hoptr3 ' ' and ' '
+							li $v0, 1
+							lw $a0, 0($t7)
+							syscall
+							
+							li $v0, 11
+							li $a0, ' '
+							syscall
+							syscall	
+							
+							# ++hopPtr3
+							addi $t7, $t7, 4
+						endDw6:
+						DWTest6:
+							ble $t7, $a3, begDW6	
+			
+					endI19:
+					
+					li $v0, 11
+					li $a0, ' '
+					syscall
+					
+					# cout dacStr
+					li $v0, 4
+					la $a0, dacStr
+					syscall
+					
+					# cin reply
+					li $v0, 8
+					li $a1, 10
+				 	syscall
+				 
+				 	move $t8, $v0 #$t8 has reply
+					 		  
 		
 	WTest1: 
 		li $a0, 'n' 		# $a0 has n
