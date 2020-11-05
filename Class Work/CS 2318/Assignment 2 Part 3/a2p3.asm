@@ -256,10 +256,9 @@ main:
 				 	begF3: 
 						j WTest3
 							begW3:
-								move $v0, $t8	# $v0 has reply temporarly  
-					
+				
 								lw $t8, 0($t4)	# $t8 has intholder
-								sw $t5, 0($t8)	# $ *hopPtr2 = intHolder	
+								sw $t5, 0($t8)	# *hopPtr2 = intHolder	
 								addi $t2, $t2, 1 # $t2 has used2 ++
 								addi $t5, $t5, 1 # $t5 has hopPtr2
 								sw $t3, 0($t8) 	# *hopPtr3 = intHolder
@@ -292,13 +291,12 @@ main:
 					 		
 						 		# if count == 0	
 						 		beqz $t9, endI8
-						 			sll $a0, $t9, 2 # count * 2
 									
 									#*(hopPtr1 - count) = *hopPtr1
-									sub $a0, $t4, $a0
-									lw $v1, 0($t4)
-									lw $v1, 0($v1) # load current hopPtr1
-									sw $v1, 0($v1)
+									lw $v0, 0($t4) # load current hopPtr1
+									sll $a0, $t9, 2
+									sub $a0, $t4, $a0 
+									sw $v0, 0($a0)	
 								
 					 			endI8:
 					 		endI7: 
@@ -343,16 +341,16 @@ main:
 								
 								li $v1, 4
 								
-								ble $t0, $v1, else11
+								ble $t0, $v1, elseI11
 									addi $t9, $t9, 1 # ++ count
 									j endI11
-								else11:
+								elseI11:
 									beqz $t9, endI12
 										#*(hopPtr2 - count) = *hopPtr2
-										sub $a1, $t5, $t9
-										lw $a1, 0($t4)
-										lw $v1, 0($t5) # load current hopPtr2
-										sw $v1, 0($a1)
+										lw $v0, 0($t5) # load current hopPtr2
+										sll $a0, $t9, 2
+										sub $a0, $t5, $a0 
+										sw $v0, 0($a0)
 									endI12:
 								 endI11: 
 							FTest4:
@@ -393,9 +391,10 @@ main:
 										# if ( count == 0 )
 										beqz $t9, endI15
 											#*(hopPtr3 - count) = *hopPtr3
-											sub $v0, $t7, $t9
-											lw $v1, 0($t7) # load current hopPtr3
-											sw $v1, 0($v0)				
+											lw $v0, 0($t7) # load current hopPtr2
+											sll $a0, $t9, 2
+											sub $a0, $t7, $a0 
+											sw $v0, 0($a0)			
 										endI15:
 									endI14:	
 									addi $t7, $t7, 4 # ++hopPtr3
