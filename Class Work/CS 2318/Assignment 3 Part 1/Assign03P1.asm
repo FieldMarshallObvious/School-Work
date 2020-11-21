@@ -129,14 +129,19 @@ begFBodyM1:
 					sub $a1, $a0, $t1	# $a1 has valsToDo - 1 
 					sll $a0, $a1, 4 	# $a0 has index of valsToDo - 1
 					add $a1, $sp, $a0
-					sw $v0, 0($a1)
+					sw $v0, 0($a1)		# intArr[valsTodDo - i] = GetOneIntByVal
 ####################(8)####################
 					
 					j endI1
 #         else // i is even
 ElseI1:
 #            GetOneIntByAddr(intArr + valsToDo - i, entIntPrompt);
-
+					addi $a0, $sp, 1	# $a0 has intArr
+					addi $a1, $sp, 29	# $a1 has valsToDo
+					sub $a1, $a1, $t0	# $a1 has valsTod - i
+					add $a0, $a0, $a1 	# $a0 has intArr + valsToDo - i
+					addi $a1, $sp, 66	# $a1 has entIntPrompt
+					jal GetOneIntByAddr
 ####################(7)####################
 					
 endI1:
@@ -144,9 +149,12 @@ endI1:
 FTestM1:
 					bgtz $t1, begFBodyM1 
 #      ShowIntArray(intArr, valsToDo, initLab);
-
-####################(3)####################
+					addi $a0, $sp, 1	# $a0 has intArr
+					addi $a1, $sp, 29	# $a1 jas valsToDo
+					addi $a2, $sp, 99	# $a1 has initLab
 					jal ShowIntArray
+####################(3)####################
+
 					
 #      for (i = 0, j = valsToDo - 1; i < j; ++i, --j)
 ####################(3)####################
