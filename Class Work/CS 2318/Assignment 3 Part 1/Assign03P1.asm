@@ -111,6 +111,12 @@ begWBodyM1:
 ####################(3)####################
 
 #      ValidateInt(&valsToDo, 1, 7, adjMsg);
+					addi $a0, $sp, 29	# $a0 has valsToDo
+					li $a1, 1		# $a1 has 1
+					li $a2, 7		# $a2 has 7
+					addi $a3, $sp, 81		# $a3 has 81
+					
+					jal ValidateInt
 
 ####################(4)####################
 					jal ValidateInt
@@ -161,6 +167,14 @@ FTestM1:
 					j FTestM2
 begFBodyM2:
 #         SwapTwoInts(intArr + i, intArr + j);
+					sll $v1, $t1, 4		# $v1 has i * 4
+					addi $v1, $v1, 1	
+					add $a0, $sp, $v1 	# $a0 has intArr + i
+					
+					sll $v1, $t2, 4		# $v1 has j * 4
+					add $a1, $sp, $v1	# $a1 has intArr + j
+					jal SwapTwoInts
+					
 					
 ####################(5)####################
 					jal SwapTwoInts
@@ -170,11 +184,18 @@ begFBodyM2:
 FTestM2:
 					blt $t1, $t2, begFBodyM2
 #      ShowIntArray(intArr, valsToDo, flipLab);
-
+					addi $a0, $sp, 1	# $a0 has intArr
+					addi $a1, $sp, 29	# $a1 has valsToDo
+					addi $a2, $sp, 46	# flipLab
+					
+					jal ShowIntArray
 ####################(3)####################
 					jal ShowIntArray
 					
 #      GetOneCharByAddr(&reply, dmPrompt);
+					addi $v0, $sp, 1	# $v0 has &reply
+					addi $v1, $sp, 56	# $v1 has dmPrompt
+					jal GetOneCharByAddr	# call GetOneCharbyAddr
 
 ####################(2)####################
 					jal GetOneCharByAddr
