@@ -1,6 +1,6 @@
 ###############################################################################
 # Title: Assign02P3                   Author: Noah del Angel
-# Class: CS 2318-00?, Fall 2020       Submitted: <date>
+# Class: CS 23182138.002, Fall 2020       Submitted: 11/5/2020
 ###############################################################################
 # Program: MIPS tranlation of a given C++ program
 ###############################################################################
@@ -126,7 +126,6 @@ main:
 				
 				
 				# endPtr1 = a1 + used1
-				la $t4, a1
 				sll $v1, $t1, 2
 				add $a1, $t4, $v1
 				
@@ -166,25 +165,27 @@ main:
 					
 					lw $t0, 0($t4)  # target = *hopPtr1
 					
-					# if target >= 0 && target <= 9
-					bgez $t0, endI4
+					# if target < 0 && target <= 9
+					bltz $t0, begI4
 					li $v0, 9
 					ble $t0, $v0, endI4
 					
 					begI4:	
 					
+					
 					# hopPtr11 = hopPtr1 + 1
+					la $t6, a1
 					addi $t6, $t4, 4 
 					
 						j FTest2
 						begF2:
 							#  *(hopPtr11 - 1) = *hopPtr11
 							lw $v0, 0($t6)
-							sw $t6, -4($t6)
+							sw $v0, -4($t6)
 							
 							#  ++hopPtr11
 							addi $t6, $t6, 4
-							endF2:
+						endF2:
 						FTest2: 
 							blt $t6, $a1, begF2 # if hopPtr11 < endPtr1 
 						
@@ -206,7 +207,7 @@ main:
 				syscall
 				
 				# if used1 <= 0
-				ble $t1,$0, endI5 # if used1 <= 0
+				blez $t1, endI5
 					
 					la $t4, a1 # hopPtr1 = a1
 					
@@ -238,85 +239,113 @@ main:
 				li $a0, '\n'
 				syscall
 				
-				li $t2, 0 # used2 = 0
-				li $t3, 0 # used3 = 0
+
+					li $t2, 0 # used2 = 0
+					li $t3, 0 # used3 = 0
 				
-				la $t4, a1 # hopPtr1 = a1
-				la $t5, a2 # hopPtr2 = a2
-				la $t7, a3 # hopPtr3 = a3
+					la $t4, a1 # hopPtr1 = a1
+					la $t5, a2 # hopPtr2 = a2
+					la $t7, a3 # hopPtr3 = a3
 				
-				 # endPtr1 = a1 + used1
-				 sll $v0, $t1, 2 
-				 add $a1, $t4, $t1
-				
+				 	# endPtr1 = a1 + used1
+				 	sll $v0, $t1, 2 
+				 	add $a1, $t4, $v0
+				 	
+				 # goto WTest3
+				 j WTest3
+				 begW3:
+				 	# intHolder = *hopPtr1
+				 	lw $t8, 0($t4)
+				 	# *hopPtr2 = intHolder;
+				 	sw $t8, 0($t5)
+				 	
+				 	# ++used2
+				 	addi $t2, $t2, 1
+				 	
+				 	# ++hopPtr2
+				 	addi $t5, $t5, 4
+				 	
+				 	# *hopPtr3 = intHolder
+				 	sw $t8, 0($t7)
+				 	
+				 	# ++used3
+				 	addi $t3, $t3, 1
+				 	
+				 	# ++hopPtr3
+				 	addi $t7, $t7, 4
+				 	  
+					# ++ hopPtr1
+				 	addi $t4, $t4, 4			 	
+				 endW3:
+				 WTest3:
+				 	blt $t4, $a1, begW3
+				 
+				 # iter = 0
+				 li $t8, 0
+				 begDW3:	
+				 
+				 # ++iter
+				 addi $t8, $t8, 1
+				 
+				 # count = 0
+				 li $9, 0
+				 	 
 				 # if ( iter != 1 )
 				 li $v0, 1
 				 bne $t8, $v0, elseI6
+				 	# hopPtr1 = a1
+				 	la $t4, a1
+				 	
+				 	#endPtr1 = a1 + used1
+				 	sll $v0, $t1, 2
+				 	add $a1, $t4, $v0
+				 	
 				 	j FTest3
-				 	begF3: 
-						j WTest3
-							begW3:
-				
-								lw $t8, 0($t4)	# $t8 has intholder
-								sw $t5, 0($t8)	# *hopPtr2 = intHolder	
-								addi $t2, $t2, 1 # $t2 has used2 ++
-								addi $t5, $t5, 1 # $t5 has hopPtr2
-								sw $t3, 0($t8) 	# *hopPtr3 = intHolder
-								addi $t3, $t7, 1 	# $t3 has used3 ++
-								addi $t3, $t7, 1 # $t4 has hopPtr1 ++
-					  
-								move $t8, $v0	# $t8 has reply
-							WTest3:
-							blt $t4, $a1, begW3
-							endW3:
-				
-							move $v0, $t8 # $v0 has reply
-							li $t8, 0 # $t8 has inter
-							begDW3:
-							addi $t8, $t8, 1 # iter ++
-							li $t9, 0 	 # $t9 has count
-					
-					
-							lw $t0, 0($t4) 
-					
-							li $v1, 5
-					
-							# if target == 5
-							beq $t9, $v1, else7
-					
-					 			addi $t9, $t9, 1 # target ++
-					 			j endI7
-					 
-						 	else7:
-					 		
-						 		# if count == 0	
-						 		beqz $t9, endI8
-									
-									#*(hopPtr1 - count) = *hopPtr1
-									lw $v0, 0($t4) # load current hopPtr1
-									sll $a0, $t9, 2
-									sub $a0, $t4, $a0 
-									sw $v0, 0($a0)	
-								
-					 			endI8:
-					 		endI7: 
-					 	
-					 	addi $t4, $t4, 4 # hopPtr1++
+				 	begF3:
+				 		# target = *hopPtr1
+				 		lw $t0, 0($t4)
+				 		
+				 		# if target == 5
+						li $v1, 5
+						beq $t0, $v1, elseI7
+							# ++count 
+							addi $t9, $t9, 1
+							
+							# goto endI7
+							j endI7
+						
+						elseI7:
+							# if count == 0
+							beqz $t9, endI8
+								#  *(hopPtr1 - count) = *hopPtr1
+								lw $v0, 0($t4) 
+								sll $a0, $t9, 2
+								sub $t4, $t4, $a0
+								sw $v0, 0($t4)
+								add $t4, $t4, $a0
+						
+							endI8:		
+						endI7:
+						# ++hopPtr1
+						addi $t4, $t4, 4
 						
 					 	endF3:
 					 	FTest3:
+					 		# if hopPtr1 < endPtr1
 						 	blt $t4, $a1, begF3
-					 	
+					 		
+					 		# used -= count
 						 	sub $t1, $t1, $t9
 						
-					 	
-						bnez $t1, endI9
-					 		la $t4, a1
+					# if used1 != 0
+					bnez $t1, endI9
+						# hopPtr1 = a1
+					 	la $t4, a1
 					 		
-					 		li $a0, -99
-					 		sw $a0, 0($t4) # *hopPtr1 = -99
+					 	li $a0, -99
+					 	sw $a0, 0($t4) # *hopPtr1 = -99
 					 		
-					 		addi $t1, $t1, 1 # used1++
+					 	addi $t1, $t1, 1 # used1++
 					 		
 					 endI9:
 						 j endI6
@@ -324,15 +353,14 @@ main:
 					 elseI6:
 					 	li $v1, 2
 					 	
-					 	move $a0, $t8 # $a0 has reply
-					 	li $t8, 0 # $t8 has inter
-					 	
 					 	# if iter != 2
 					 	bne $t8, $v1, else10
+					 		# hopPtr = a2
 					 		la $t5, a2
+					 		
 							# endPtr2 = a2 + used2
-							sll $v1, $t5, 2
-							add $a2, $t2, $v1
+							sll $v1, $t2, 2
+							add $a2, $t5, $v1
 							
 							j FTest4
 							
@@ -347,30 +375,37 @@ main:
 								elseI11:
 									beqz $t9, endI12
 										#*(hopPtr2 - count) = *hopPtr2
-										lw $v0, 0($t5) # load current hopPtr2
+										lw $v0, 0($t5) 
 										sll $a0, $t9, 2
-										sub $a0, $t5, $a0 
-										sw $v0, 0($a0)
+										sub $t5, $t5, $a0
+										sw $v0, 0($t5)
+										add $t5, $t5, $a0
+										
 									endI12:
 								 endI11: 
-							FTest4:
-								blt $t5, $a3, begF4
+								 # ++hopPtr2
+								 addi $t5, $t5, 4
 							endF4:
-							
+							FTest4:
+								# if hopPtr < endPtr2
+								blt $t5, $a2, begF4
+								
 							# used 2 -= count
 							sub $t4, $t4, $t9
 							
-							# if used2 == 0
-							bnez $t9, endI13
+							# if used2 != 0
+							bnez $t2, endI13
 								la $t5, a2 # hopPtr2 = a2
 								
 								li $a0, -99
-								sw $t5, 0($a0) # *hopPtr2 = -99
+								sw $a0, 0($t5) # *hopPtr2 = -99
 								addi $t2, $t2, 1 # ++used2
 								
 							endI13:
+								# goto endI10
 								j endI10
 							else10:
+								# hopPtr3 = a3
 								la $t7, a3
 								
 								# endPtr3 = a3 + used3
@@ -391,19 +426,22 @@ main:
 										# if ( count == 0 )
 										beqz $t9, endI15
 											#*(hopPtr3 - count) = *hopPtr3
-											lw $v0, 0($t7) # load current hopPtr2
+											lw $v0, 0($t7) 
 											sll $a0, $t9, 2
-											sub $a0, $t7, $a0 
-											sw $v0, 0($a0)			
+											sub $t5, $t7, $a0
+											sw $v0, 0($t7)
+											add $t7, $t7, $a0			
 										endI15:
 									endI14:	
 									addi $t7, $t7, 4 # ++hopPtr3
-									
-								Ftest5:
-									blt $t7, $a3, begF5
+								
 								endF5:
+								Ftest5:
+									# if hopPtr3 < endPtr3
+									blt $t7, $a3, begF5
+							
 									# used3 -= count
-									sub $t9, $t9, $t9
+									sub $t3, $t9, $t9
 									
 									# if used3 != 0
 									bnez $t3, endI16
@@ -419,6 +457,7 @@ main:
 					endDW3:
 					
 					DWTest3:
+						# if iter < 3
 						li $a0, 3
 						blt $t8, $a0, begDW3
 			endI3:
@@ -427,7 +466,7 @@ main:
 				la $a0, procA1Str
 				syscall
 				
-				# if used <= 0
+				# if used1 <= 0
 				blez $t1, endI17
 					la $t4, a1 # hopPtr1 = a1
 					# endPtr1 = a1 + used1
@@ -461,7 +500,7 @@ main:
 					la $a0, procA2Str
 					syscall
 					
-					bltz $t2, endI18
+					blez $t2, endI18
 						# hopPtr2 = a2
 						la $t5, a2
 					
@@ -496,8 +535,8 @@ main:
 					la $a0, procA3Str
 					syscall
 					
-					# if used <= 0
-					bltz $t3, endI19
+					# if used3 <= 0
+					blez $t3, endI19
 						# endPtr3 = a3
 						la $t7, a3
 
@@ -520,7 +559,8 @@ main:
 							addi $t7, $t7, 4
 						endDw6:
 						DWTest6:
-							ble $t7, $a3, begDW6	
+							# if (hopPtr3 < endPtr3)
+							blt $t7, $a3, begDW6	
 			
 					endI19:
 					
