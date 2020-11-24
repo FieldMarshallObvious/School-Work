@@ -176,17 +176,17 @@ FTestM1:
 					j FTestM2
 begFBodyM2:
 #         SwapTwoInts(intArr + i, intArr + j);
-					sll $v1, $t1, 4		# $v1 has i * 4
-					addi $v1, $v1, 1	
-					add $a0, $sp, $v1 	# $a0 has intArr + i
+					addi $a0, $sp, 1
+					sll $v1, $t1, 2		# $v1 has i * 4	
+					add $a0, $a0, $v1 	# $a0 has intArr + i
 					
-					sll $v1, $t2, 4		# $v1 has j * 4
-					add $a1, $sp, $v1	# $a1 has intArr + j
+					addi $a1, $sp, 1
+					sll $v1, $t2, 2		# $v1 has j * 4
+					add $a1, $a1, $v1	# $a1 has intArr + j
 					jal SwapTwoInts
 					
 					
 ####################(5)####################
-					jal SwapTwoInts
 
 					addi $t1, $t1, 1
 					addi $t2, $t2, -1
@@ -202,7 +202,7 @@ FTestM2:
 
 					
 #      GetOneCharByAddr(&reply, dmPrompt);
-					addi $a0, $sp, 1	# $a0 has &reply
+					addi $a0, $sp, 0	# $a0 has &reply
 					addi $a1, $sp, 56	# $a1 has dmPrompt
 					jal GetOneCharByAddr	# call GetOneCharbyAddr
 
@@ -212,6 +212,8 @@ FTestM2:
 #   while (reply != 'n' && reply != 'N');
 
 ####################(1)####################
+
+					lb $v1, 0($v1)
 					li $t0, 'n'
 					beq $v1, $t0, endWhileM1
 					li $t0, 'N'
@@ -373,7 +375,11 @@ SwapTwoInts:
 #   *intPtr2 = temp;
 
 ####################(4)####################
+					lw $t0, 0($a0)	# $t0 has *intPtr1
+					lw $t1, 0($a1)	# $t1 has *intPtr2
 					
+					sw $t1, 0($a1)	# *intPtr1 has *intPtr2
+					sw $t0, 0($a0)	# *intPtr2 has *intPtr1
 #
 					jr $ra
 
@@ -390,8 +396,17 @@ GetOneCharByAddr:
 #   cin >> *charVarToPutInPtr;
 
 ####################(7)####################
-
-#}
+					move $t0, $a0	# $t0 has charVatToPutinPtr
+					move $a0, $a1
+					
+					li $v0, 4
+					syscall
+					 
+					li $v0, 12
+					syscall
+					
+					sb $v0, 0($t0)	# return the input   		 		
+#}					
 					jr $ra
 
 ################################################################################
