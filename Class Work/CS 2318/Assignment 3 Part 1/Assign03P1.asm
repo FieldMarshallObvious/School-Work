@@ -177,13 +177,13 @@ FTestM1:
 					j FTestM2
 begFBodyM2:
 #         SwapTwoInts(intArr + i, intArr + j);
-					addi $a0, $sp, 1	# $a0 has intArr
+					addi $t0, $sp, 1	# $a0 has intArr
 					sll $v1, $t1, 2		# $v1 has i * 4	
-					add $a0, $a0, $v1 	# $a0 has intArr + i
+					add $a0, $t0, $v1 	# $a0 has intArr + i
 					
-					addi $a1, $sp, 1	# $a1 has intArr
+					#addi $a1, $sp, 1	# $a1 has intArr
 					sll $v1, $t2, 2		# $v1 has j * 4
-					add $a1, $a1, $v1	# $a1 has intArr + j
+					add $a1, $t0, $v1	# $a1 has intArr + j
 					jal SwapTwoInts
 					
 					
@@ -191,6 +191,7 @@ begFBodyM2:
 
 					addi $t1, $t1, 1	# i++
 					addi $t2, $t2, -1	# j--
+
 FTestM2:
 					blt $t1, $t2, begFBodyM2
 #      ShowIntArray(intArr, valsToDo, flipLab);
@@ -214,7 +215,7 @@ FTestM2:
 
 ####################(1)####################
 
-					lb $v1, 0($v1)
+					lb $v1, 0($sp)		# $v1 has &reply
 					li $t0, 'n'
 					beq $v1, $t0, endWhileM1
 					li $t0, 'N'
@@ -376,11 +377,11 @@ SwapTwoInts:
 #   *intPtr2 = temp;
 
 ####################(4)####################
-					lw $t0, 0($a0)	# $t0 has *intPtr1
-					lw $t1, 0($a1)	# $t1 has *intPtr2
+					lw $t3, 0($a0)	# $t0 has *intPtr1
+					lw $t4, 0($a1)	# $t1 has *intPtr2
 					
-					sw $t1, 0($a0)	# *intPtr1 has *intPtr2
-					sw $t0, 0($a1)	# *intPtr2 has *intPtr1
+					sw $t4, 0($a0)	# *intPtr1 has *intPtr2
+					sw $t3, 0($a1)	# *intPtr2 has *intPtr1
 #
 					jr $ra
 
@@ -397,7 +398,7 @@ GetOneCharByAddr:
 #   cin >> *charVarToPutInPtr;
 
 ####################(7)####################
-					move $t3, $a0	# $t0 has charVatToPutinPtr
+					move $t0, $a0	# $t0 has charVatToPutinPtr
 					move $a0, $a1
 					
 					li $v0, 4
