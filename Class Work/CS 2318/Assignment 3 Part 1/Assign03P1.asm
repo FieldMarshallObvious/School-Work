@@ -110,7 +110,7 @@ begWBodyM1:
 					addi $a0, $sp, 33	# $a0 has vtdPrompt
 					jal GetOneIntByVal	# call GetOneIntByVal
 					addi $a0, $sp, 29	# $a0 has valsToDo
-					sw $v0, 0($a0)		# valsToDo = GetONeIntByVal(vtdPrmpt)
+					sw $v0, 0($a0)		# valsToDo = GetOneIntByVal(vtdPrmpt)
 					
 ####################(3)####################
 
@@ -137,18 +137,19 @@ begFBodyM1:
 					addi $a0, $sp, 66	# $a0 has entIntPrompt
 					jal GetOneIntByVal
 					lw $a0, 29($sp)		# $a0 has valsToDo
-					sub $a0, $a0, $t1	# $a1 has valsToDo - i
+					sub $a0, $a0, $t1	# $a0 has valsToDo - i
 					sll $a0, $a0, 2 	# $a0 has index of valsToDo - i
-					add $a0, $sp, $a0
-					sw $v0, 1($a0)		# intArr[valsTodDo - i] = GetOneIntByVal
+					addi $a0, $a0, 1
+					add $a0, $a0, $sp
+					sw $v0, 0($a0)		# intArr[valsTodDo - i] = GetOneIntByVal
 ####################(8)####################
 					
 					j endI1
 #         else // i is even
 ElseI1:
 #            GetOneIntByAddr(intArr + valsToDo - i, entIntPrompt);
-					lw $a0, 1($sp)		# $a0 has intArr
-					addi $v1, $sp, 29	# $a1 has valsToDo
+					addi $a0, $sp, 1	# $a0 has intArr
+					lw $a1, 29($sp)		# $a1 has valsToDo
 					sub $a1, $a1, $t1	# $a1 has valsToDo - i
 					sll $a1, $a1, 2
 					add $a0, $a0, $a1 	# $a0 has intArr + valsToDo - i
@@ -164,23 +165,23 @@ FTestM1:
 #      ShowIntArray(intArr, valsToDo, initLab);
 					addi $a0, $sp, 1	# $a0 has intArr
 					lw $a1, 29($sp)		# $a1 jas valsToDo
-					addi $a2, $sp, 99	# $a1 has initLab
+					addi $a2, $sp, 99	# $a2 has initLab
 					jal ShowIntArray
 ####################(3)####################
 
 					li $t1, 0		# $t1 = 0
 					lw $t2, 29($sp)		# $t2 = ValsToDo
-							
+					addi $t2, $t2, -1	# set j to array size
 #      for (i = 0, j = valsToDo - 1; i < j; ++i, --j)
 ####################(3)####################
 					j FTestM2
 begFBodyM2:
 #         SwapTwoInts(intArr + i, intArr + j);
-					addi $a0, $sp, 1
+					addi $a0, $sp, 1	# $a0 has intArr
 					sll $v1, $t1, 2		# $v1 has i * 4	
 					add $a0, $a0, $v1 	# $a0 has intArr + i
 					
-					addi $a1, $sp, 1
+					addi $a1, $sp, 1	# $a1 has intArr
 					sll $v1, $t2, 2		# $v1 has j * 4
 					add $a1, $a1, $v1	# $a1 has intArr + j
 					jal SwapTwoInts
@@ -188,8 +189,8 @@ begFBodyM2:
 					
 ####################(5)####################
 
-					addi $t1, $t1, 1
-					addi $t2, $t2, -1
+					addi $t1, $t1, 1	# i++
+					addi $t2, $t2, -1	# j--
 FTestM2:
 					blt $t1, $t2, begFBodyM2
 #      ShowIntArray(intArr, valsToDo, flipLab);
@@ -378,8 +379,8 @@ SwapTwoInts:
 					lw $t0, 0($a0)	# $t0 has *intPtr1
 					lw $t1, 0($a1)	# $t1 has *intPtr2
 					
-					sw $t1, 0($a1)	# *intPtr1 has *intPtr2
-					sw $t0, 0($a0)	# *intPtr2 has *intPtr1
+					sw $t1, 0($a0)	# *intPtr1 has *intPtr2
+					sw $t0, 0($a1)	# *intPtr2 has *intPtr1
 #
 					jr $ra
 
@@ -396,7 +397,7 @@ GetOneCharByAddr:
 #   cin >> *charVarToPutInPtr;
 
 ####################(7)####################
-					move $t0, $a0	# $t0 has charVatToPutinPtr
+					move $t3, $a0	# $t0 has charVatToPutinPtr
 					move $a0, $a1
 					
 					li $v0, 4
