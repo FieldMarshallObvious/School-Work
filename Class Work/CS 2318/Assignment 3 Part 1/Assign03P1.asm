@@ -2,7 +2,7 @@
 # Name:    Noah del Angel
 # Class:   CS2318-002 (Assembly Language, Fall 2020)
 # Subject: Assignment 3 Part 1
-# Date:    <turn-in date> 
+# Date:    11/23/20
 ################################################################################
 # MIPS assembly language translation of a given C++ program that, except for the
 # main function, involves "trivial" functions each of which:
@@ -107,19 +107,24 @@ begWBodyM1:
 					li $v0, 11
 					syscall			# '\n' to offset effects of syscall #12 drawback
 #      valsToDo = GetOneIntByVal(vtdPrompt);
-
+					addi $a0, $sp, 33	# $a0 has vtdPrompt
+					jal GetOneIntByVal	# call GetOneIntByVal
+					addi $a0, $sp, 29	# $a0 has valsToDo
+					sw $v0, 0($a0)		# valsToDo = GetONeIntByVal(vtdPrmpt)
+					
 ####################(3)####################
 
 #      ValidateInt(&valsToDo, 1, 7, adjMsg);
 					addi $a0, $sp, 29	# $a0 has valsToDo
 					li $a1, 1		# $a1 has 1
 					li $a2, 7		# $a2 has 7
-					addi $a3, $sp, 81		# $a3 has 81
+					addi $a3, $sp, 81	# $a3 has adjMsg
 					
 					jal ValidateInt
 
 ####################(4)####################
-					jal ValidateInt
+					addi $v1, $sp, 29	# $t1 has valsToDo
+					lw $t1, 0($v1) 
 #      for (i = valsToDo; i > 0; --i)
 
 ####################(1)####################
@@ -131,21 +136,23 @@ begFBodyM1:
 #            intArr[valsToDo - i] = GetOneIntByVal(entIntPrompt);
 					addi $a0, $sp, 66	# $a0 has entIntPrompt
 					jal GetOneIntByVal
-					addi $a0, $sp, 29	# $a0 has valstoDo
-					sub $a1, $a0, $t1	# $a1 has valsToDo - 1 
-					sll $a0, $a1, 4 	# $a0 has index of valsToDo - 1
-					add $a1, $sp, $a0
-					sw $v0, 0($a1)		# intArr[valsTodDo - i] = GetOneIntByVal
+					lw $a0, 29($sp)		# $a0 has valsToDo
+					sub $a0, $a0, $t1	# $a1 has valsToDo - i
+					sll $a0, $a0, 2 	# $a0 has index of valsToDo - i
+					add $a0, $sp, $a0
+					sw $v0, 1($a0)		# intArr[valsTodDo - i] = GetOneIntByVal
 ####################(8)####################
 					
 					j endI1
 #         else // i is even
 ElseI1:
 #            GetOneIntByAddr(intArr + valsToDo - i, entIntPrompt);
-					addi $a0, $sp, 1	# $a0 has intArr
-					addi $a1, $sp, 29	# $a1 has valsToDo
-					sub $a1, $a1, $t0	# $a1 has valsTod - i
+					lw $a0, 1($sp)		# $a0 has intArr
+					addi $v1, $sp, 29	# $a1 has valsToDo
+					sub $a1, $a1, $t1	# $a1 has valsToDo - i
+					sll $a1, $a1, 2
 					add $a0, $a0, $a1 	# $a0 has intArr + valsToDo - i
+					
 					addi $a1, $sp, 66	# $a1 has entIntPrompt
 					jal GetOneIntByAddr
 ####################(7)####################
@@ -156,12 +163,14 @@ FTestM1:
 					bgtz $t1, begFBodyM1 
 #      ShowIntArray(intArr, valsToDo, initLab);
 					addi $a0, $sp, 1	# $a0 has intArr
-					addi $a1, $sp, 29	# $a1 jas valsToDo
+					lw $a1, 29($sp)		# $a1 jas valsToDo
 					addi $a2, $sp, 99	# $a1 has initLab
 					jal ShowIntArray
 ####################(3)####################
 
-					
+					li $t1, 0		# $t1 = 0
+					lw $t2, 29($sp)		# $t2 = ValsToDo
+							
 #      for (i = 0, j = valsToDo - 1; i < j; ++i, --j)
 ####################(3)####################
 					j FTestM2
@@ -185,20 +194,20 @@ FTestM2:
 					blt $t1, $t2, begFBodyM2
 #      ShowIntArray(intArr, valsToDo, flipLab);
 					addi $a0, $sp, 1	# $a0 has intArr
-					addi $a1, $sp, 29	# $a1 has valsToDo
+					lw $a1, 29($sp)		# $a1 has valsToDo
 					addi $a2, $sp, 46	# flipLab
 					
 					jal ShowIntArray
 ####################(3)####################
-					jal ShowIntArray
+
 					
 #      GetOneCharByAddr(&reply, dmPrompt);
-					addi $v0, $sp, 1	# $v0 has &reply
-					addi $v1, $sp, 56	# $v1 has dmPrompt
+					addi $a0, $sp, 1	# $a0 has &reply
+					addi $a1, $sp, 56	# $a1 has dmPrompt
 					jal GetOneCharByAddr	# call GetOneCharbyAddr
 
 ####################(2)####################
-					jal GetOneCharByAddr
+
 #   }
 #   while (reply != 'n' && reply != 'N');
 
