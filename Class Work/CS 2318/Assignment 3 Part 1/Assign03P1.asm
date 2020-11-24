@@ -123,8 +123,8 @@ begWBodyM1:
 					jal ValidateInt
 
 ####################(4)####################
-					addi $v1, $sp, 29	# $t1 has valsToDo
-					lw $t1, 0($v1) 
+					lw $t1, 29($sp)	# $t1 has valsToDo
+					 
 #      for (i = valsToDo; i > 0; --i)
 
 ####################(1)####################
