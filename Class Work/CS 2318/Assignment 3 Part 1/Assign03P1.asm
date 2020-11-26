@@ -2,7 +2,7 @@
 # Name:    Noah del Angel
 # Class:   CS2318-002 (Assembly Language, Fall 2020)
 # Subject: Assignment 3 Part 1
-# Date:    11/23/20
+# Date:    11/24/20
 ################################################################################
 # MIPS assembly language translation of a given C++ program that, except for the
 # main function, involves "trivial" functions each of which:
@@ -370,7 +370,10 @@ SwapTwoInts:
 #################
 # Register Usage:
 #################
-# (fill in where applicable)
+# $a0: First Paramater
+# $a0: Second Paramater
+# $t3: 1st Item
+# $t4: 2nd Item
 #################
 #   int temp = *intPtr1;
 #  *intPtr1 = *intPtr2;
@@ -392,7 +395,9 @@ GetOneCharByAddr:
 #################
 # Register Usage:
 #################
-# (fill in where applicable)
+# $a0: First Paramater
+# $a0: Second Paramater
+# $t0: temp holder
 #################
 #   cout << prompt;
 #   cin >> *charVarToPutInPtr;
