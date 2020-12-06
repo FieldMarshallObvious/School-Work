@@ -3,4 +3,5 @@
 *.out
 *.o
 .env
+*.xlsx
 database.db
