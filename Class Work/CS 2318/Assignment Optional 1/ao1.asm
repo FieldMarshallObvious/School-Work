@@ -73,6 +73,7 @@ begW1:
 #			   CoutCstrNL(dupsMsg);
 				addi $a0, $sp, 31 # a0 has dupMsg
 				jal CoutCstrNL
+				j endif1
 				
 #			}
 #			else
@@ -83,6 +84,7 @@ begW1:
 				jal CoutCstrNL
 
 #			}
+			endif1:
 				
 			
 #			cout << dacStr;
@@ -142,10 +144,10 @@ hasDup:
 			sw $ra, 28($sp)		
 			sw $fp, 24($sp)
 			addiu $fp, $sp, 32	# store new frame pointer
-			sw $a3, 12($sp)		# store $a3 placeholder
-			sw $a2, 8($sp)		# store $a2 placeholder
-			sw $a1, 4($sp)		# 4($sp) has second param
-			sw $a0, 0($sp)		# 0($sp) has first param
+			sw $a3, 12($fp)		# store $a3 placeholder
+			sw $a2, 8($fp)		# store $a2 placeholder
+			sw $a1, 4($fp)		# 4($sp) has second param
+			sw $a0, 0($fp)		# 0($sp) has first param
 #{			
 			# BODY:
 			
@@ -153,7 +155,7 @@ hasDup:
 			lw $t2, 4($sp)		# $t2 has numEle
 #			if (numEle <= 1)
 			li $t3, 1		# $t3 has 1
-			bgt $t2, $t3, else2N
+			bge $t2, $t3, else2N
 #			{
 #			   return 0;
 			   li $v0, 0
@@ -165,8 +167,10 @@ hasDup:
 			
 			addi $a0, $a0, 4	# a0 has arrBegPtr + 1
 			addi $a1, $a1, -1	# a1 has numEle - 1
-			lw $a2, 0($sp)		# a2 has arrBegPtr
+			lw $a2, 0($fp)		# a2 has arrBegPtr
 			jal exists
+			
+			lw $a0 0($fp)		# reload pointer
 			
 			
 #			if ( exists(arrBegPtr + 1, numEle - 1, *arrBegPtr) != 0 )
@@ -179,7 +183,7 @@ hasDup:
 			else3:
 			
 			# call hasDup
-			addi $a0, $t1, 4
+			addi $a0, $a0, 4
 			lw $a1, 4($fp)
 			addi $a1, $a1, -1
 			jal hasDup
@@ -234,17 +238,16 @@ exists:
 			sw $ra, 28($sp)		
 			sw $fp, 24($sp)
 			addiu $fp, $sp, 32	# set new frame pointer
-			sw $a3, 12($sp)
-			sw $a2, 8($sp)		# 8($sp) has the third param
-			sw $a1, 4($sp)		# 4($sp) has the second param
-			sw $a0, 0($sp)		# 0($sp) has the first param
+			sw $a3, 12($fp)
+			sw $a2, 8($fp)		# 8($fp) has the third param
+			sw $a1, 4($fp)		# 4($fp) has the second param
+			sw $a0, 0($fp)		# 0($fp) has the first param
 #{
 			# BODY:
-			lw $t0, 0($sp)		# $t0 has arrBegPtr
-			lw $t1, 4($sp)		# $t1 has numEle
-			lw $t2, 8($sp)		# $t2 has target
+			lw $t0, 0($a0)		# $t0 has arrBegPtr
+			lw $t2, 0($a2)		# $t2 has target
 #			if (numEle <= 0)
-			bgtz $t1, else3N
+			bgtz $a1, else3N
 #			{
 #			   return 0;
 			   li $v0, 0
@@ -263,7 +266,7 @@ exists:
 			else4N:
 			addi $a0, $a0, 4
 			addi $a1, $a1, -1
-			lw $a2, 8($sp)
+			#lw $a2, 8($fp)
 
 #			return exists(arrBegPtr + 1, numEle - 1, target);
 			jal exists
