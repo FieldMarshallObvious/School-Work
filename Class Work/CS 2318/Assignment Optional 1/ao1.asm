@@ -64,23 +64,26 @@ begW1:
 #                       *************************
 #                       ********** (9) **********
 #                       *************************
-#			if ( hasDup(a1, used1) != 0 )
-#			{
-#			   CoutCstrNL(dupsMsg);
-#			}
-#			else
-#			{
-#			   CoutCstrNL(dup0Msg);
-#			}
-			lw $a0, 152($sp) 	# $a0 has a1
+			addi $a0, $sp, 152 	# $a0 has a1
 			lw $a1, 148($sp)	# $a1 has used1
 			jal hasDup
+#			if ( hasDup(a1, used1) != 0 )
 			beqz $v0, else1N
-				lb $a0, 31($sp)	# a0 has dupMsg
+#			{
+#			   CoutCstrNL(dupsMsg);
+				addi $a0, $sp, 31 # a0 has dupMsg
 				jal CoutCstrNL
 				
+#			}
+#			else
 			else1N:
-				lb $a0, 46($sp)	# $a0 has dup0Msg
+#			{
+#			   CoutCstrNL(dup0Msg);
+				addi $a0, $sp, 46 # $a0 has dup0Msg
+				jal CoutCstrNL
+
+#			}
+				
 			
 #			cout << dacStr;
 			addi $a0, $sp, 94
@@ -135,9 +138,12 @@ hasDup:
 #                       ********** (27) **********
 #                       **************************
 			# PROLOG:	
-			addiu $sp, $sp, -16	# create stack
-			sw $ra, 12($sp)		
-			sw $fp, 8($sp)
+			addiu $sp, $sp, -32	# create stack
+			sw $ra, 28($sp)		
+			sw $fp, 24($sp)
+			addiu $fp, $sp, 32	# store new frame pointer
+			sw $a3, 12($sp)		# store $a3 placeholder
+			sw $a2, 8($sp)		# store $a2 placeholder
 			sw $a1, 4($sp)		# 4($sp) has second param
 			sw $a0, 0($sp)		# 0($sp) has first param
 #{			
@@ -147,40 +153,43 @@ hasDup:
 			lw $t2, 4($sp)		# $t2 has numEle
 #			if (numEle <= 1)
 			li $t3, 1		# $t3 has 1
-			ble $t2, $t3, else2N
+			bgt $t2, $t3, else2N
 #			{
 #			   return 0;
 			   li $v0, 0
-			   jr $ra 
+			   j hasDupEpilog 
 #			}
 			else2N:
 			
 			# call exists
 			
-			addi $a0, $t1, 4	# a0 has arrBegPtr + 1
-			addi $a1, $t2, -1	# a1 has numEle - 1
-			move $a3, $t1		# a2 has arrBegPtr
+			addi $a0, $a0, 4	# a0 has arrBegPtr + 1
+			addi $a1, $a1, -1	# a1 has numEle - 1
+			lw $a2, 0($sp)		# a2 has arrBegPtr
 			jal exists
 			
+			
 #			if ( exists(arrBegPtr + 1, numEle - 1, *arrBegPtr) != 0 )
-			bnez $v0, else3
+			beqz $v0, else3
 #			{
 #			   return 1;
 			   li $v0, 1
-			   jr $ra
+			   j hasDupEpilog
 #			}
 			else3:
 			
 			# call hasDup
 			addi $a0, $t1, 4
-			addi $a1, $t2, -1
+			lw $a1, 4($fp)
+			addi $a1, $a1, -1
 			jal hasDup
 #			return hasDup(arrBegPtr + 1, numEle -1);
 #}
 			# EPILOG:
-			lw $fp, 8($sp)
-			lw $ra, 12($sp)
-			addiu $sp, $sp, 16
+			hasDupEpilog:
+			lw $fp, 24($sp)
+			lw $ra, 28($sp)
+			addiu $sp, $sp, 32
 			jr $ra
 #########################################
 # deliberate clobbering of caller-saved
@@ -221,9 +230,11 @@ exists:
 #                       ********** (17) **********
 #                       **************************
 			# PROLOG:					
-			addiu $sp, $sp, 20
-			sw $ra, 16($sp)		
-			sw $fp, 12($sp)
+			addiu $sp, $sp, -32
+			sw $ra, 28($sp)		
+			sw $fp, 24($sp)
+			addiu $fp, $sp, 32	# set new frame pointer
+			sw $a3, 12($sp)
 			sw $a2, 8($sp)		# 8($sp) has the third param
 			sw $a1, 4($sp)		# 4($sp) has the second param
 			sw $a0, 0($sp)		# 0($sp) has the first param
@@ -233,33 +244,35 @@ exists:
 			lw $t1, 4($sp)		# $t1 has numEle
 			lw $t2, 8($sp)		# $t2 has target
 #			if (numEle <= 0)
-			bnez $t1, else3N
+			bgtz $t1, else3N
 #			{
 #			   return 0;
 			   li $v0, 0
-			   jr $ra
+			   j existsEpilog
 #			}
 			else3N:
 			
 #			if (*arrBegPtr == target)
-			beq $t0, $t2, else4N
+			bne $t0, $t2, else4N
 			
 #			{
 #			   return 1;
 			   li $v0, 1
-			   jr $ra
+			   j existsEpilog
 #			}
 			else4N:
-			addi $a0, $t0, 4
-			addi $a1, $t1, -1
-			move $a2, $t2
-			jal exists
+			addi $a0, $a0, 4
+			addi $a1, $a1, -1
+			lw $a2, 8($sp)
+
 #			return exists(arrBegPtr + 1, numEle - 1, target);
+			jal exists
 #}
 			# EPILOG:
-			lw $fp, 12($sp)
-			lw $ra, 16($sp)
-			addiu $sp, $sp, 20
+			existsEpilog:
+			lw $ra, 28($sp)
+			lw $fp, 24($sp)
+			addiu $sp, $sp, 32
 			jr $ra	
 			
 #########################################
