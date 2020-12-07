@@ -1,8 +1,8 @@
 ################################################################################
-# Name:		<your name>
+# Name:		Noah del Angel
 # Class:	CS2318-00?, Fall 2020
 # Subject:	Optional Assignment 1
-# Date:		<turn-in date> 
+# Date:		12/6/20 
 ################################################################################
 #int  hasDup(int a[], int n);
 #int  exists(int a[], int n, int target);
@@ -170,17 +170,17 @@ hasDup:
 			lw $a2, 0($fp)		# a2 has arrBegPtr
 			jal exists
 			
-			lw $a0 0($fp)		# reload pointer
+			lw $a0, 0($fp)		# reload pointer
 			
 			
 #			if ( exists(arrBegPtr + 1, numEle - 1, *arrBegPtr) != 0 )
-			beqz $v0, else3
+			beqz $v0, else3N
 #			{
 #			   return 1;
 			   li $v0, 1
 			   j hasDupEpilog
 #			}
-			else3:
+			else3N:
 			
 			# call hasDup
 			addi $a0, $a0, 4
@@ -247,26 +247,26 @@ exists:
 			lw $t0, 0($a0)		# $t0 has arrBegPtr
 			lw $t2, 0($a2)		# $t2 has target
 #			if (numEle <= 0)
-			bgtz $a1, else3N
+			bgtz $a1, else4N
 #			{
 #			   return 0;
 			   li $v0, 0
 			   j existsEpilog
 #			}
-			else3N:
+			else4N:
 			
 #			if (*arrBegPtr == target)
-			bne $t0, $t2, else4N
+			bne $t0, $t2, else5N
 			
 #			{
 #			   return 1;
 			   li $v0, 1
 			   j existsEpilog
 #			}
-			else4N:
+			else5N:
 			addi $a0, $a0, 4
 			addi $a1, $a1, -1
-			#lw $a2, 8($fp)
+
 
 #			return exists(arrBegPtr + 1, numEle - 1, target);
 			jal exists
