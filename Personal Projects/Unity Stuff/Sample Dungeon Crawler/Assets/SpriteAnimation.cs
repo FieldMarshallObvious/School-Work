@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SpriteAnimation : MonoBehaviour
 {
-    private SpriteRenderer SpriteRenderer;
-    private Sprite[] spriteArray;
+    public SpriteRenderer SpriteRenderer;
+    public Sprite[] spriteArray;
     private Sprite curSprite;
     private int curIndex = 0;
     private float changeTime = 0.05f;
@@ -14,18 +14,16 @@ public class SpriteAnimation : MonoBehaviour
 
 
     // Start is called before the first frame update
-    public SpriteAnimation( Sprite[] inputArray, SpriteRenderer inputSpriteRender )
+    void Start()
     {
-        SpriteRenderer = inputSpriteRender;
-        Debug.Log("Created function");
-        this.GetComponent<SpriteRenderer>().sprite = curSprite;
+        //SpriteRenderer = inputSpriteRender;
+        //this.GetComponent<SpriteRenderer>().sprite = curSprite;
         StartCoroutine("ChangeSprite");
     }
 
     // Update is called once per frame
-    public void UpdateSprite( bool reverse )
+    void Update()
     {
-        Debug.Log("In function");
         this.GetComponent<SpriteRenderer>().sprite = SpriteRenderer.sprite;
     }
 
@@ -33,13 +31,14 @@ public class SpriteAnimation : MonoBehaviour
     {
 
         SpriteRenderer.sprite = spriteArray[curIndex];
-        if (reverse == true)
+        /*if (reverse == true)
             SpriteRenderer.flipX = true; 
         else
             SpriteRenderer.flipX = false;
-
+        */
         if (passed != true)
             curIndex++;
+        
         else
             curIndex--;
         if (curIndex >= spriteArray.Length - 1)

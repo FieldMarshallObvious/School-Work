@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float speed;
-    private SpriteAnimation spriteAnimation;
+    public float speed;
+ /*   private SpriteAnimation spriteAnimation;
     public Sprite[] spriteArray;
-    private SpriteRenderer SpriteRenderer;
+    private SpriteRenderer SpriteRenderer;*/
 
     // Start is called before the first frame update
     void Start()
     {
         speed = 1;
-        spriteAnimation = new SpriteAnimation(spriteArray, SpriteRenderer);
+        //spriteAnimation = new SpriteAnimation(spriteArray, SpriteRenderer);
     }
 
     // Update is called once per frame
@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
         GetComponent<Rigidbody2D>().velocity = new Vector2(horizontal * speed, vertical * speed);
 
-        Debug.Log("Entering function");
-        spriteAnimation.UpdateSprite(false);
+        //Debug.Log("Entering function");
+        //spriteAnimation.UpdateSprite(false);
     }
 }
