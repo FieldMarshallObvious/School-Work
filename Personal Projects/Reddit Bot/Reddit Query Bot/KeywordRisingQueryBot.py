@@ -1,6 +1,7 @@
 import praw
 import requests
 import json
+from nltk.corpus import words
 
 # Get reddit bot and subreddit
 reddit = praw.Reddit('bot2')
@@ -13,7 +14,8 @@ rJson = json.loads(r.text)
 lOfTickers = []
 numofTicks = []
 
-
+# Get a list of all english words
+word_list = words.words()
 
 
 # Search through all the submissions in the rising tab
@@ -32,27 +34,28 @@ for submission in subreddit.rising(limit=24):
 
             for ticker in rJson:
                 if(word == ticker["displaySymbol"]):
-                    found = False
-                    print("FOUND")
-                    # Find the equivalent tickers in the array 
-                    for foundTicker in lOfTickers:
-                        index = index + 1
-                        if(foundTicker == word):   
-                            print(foundTicker)
-                            print(word)                         
-                            print(numofTicks[index])
+                    # Make sure word is not an english word
+                    length = len(words)
+                    for wordItem in length:
+                        EngWord = words[wordItem]
+                        if( EngWord == word ):
+                            continue
+                        else:
+                            found = False
+                            print("FOUND")
+                            # Find the equivalent tickers in the array 
+                            for foundTicker in lOfTickers:
+                                index = index + 1
+                                if(foundTicker == word):   
+                                    numofTicks[index] += 1
+                                    print(numofTicks[index])
+                                    found = True
 
-                            numofTicks[index] += 1
-                            print(numofTicks[index])
-                            found = True
-
-                    # If the ticker has not been found yet append it
-                    if(found == False):
-                        print("appended")
-                        lOfTickers.append(word)
-                        numofTicks.append(1)
-                        print(lOfTickers)
-                        print(numofTicks)
+                                # If the ticker has not been found yet append it
+                                if(found == False):
+                                    lOfTickers.append(word)
+                                    numofTicks.append(1)
+                                    print(lOfTickers)
 
             # Reset word
             word = ""
