@@ -45,6 +45,9 @@ int main()
     // Populate Array
     populateArray( randArray );
 
+    sortArray( randArray );
+
+
     // Display Array and manipulations
     cout << "The size of the array is = 5"<< endl ;
     cout << endl;
@@ -53,8 +56,6 @@ int main()
     printArray(randArray);
 
     displayMathOperations( randArray );
-
-    sortArray( randArray );
 
     cout << "The Smallest is: " << randArray[0][0] << endl;
     cout << "The Largest is: " << randArray[( SIZE - 1 )][( SIZE - 1 )] << endl;
@@ -93,19 +94,49 @@ void displayPrimeNums ( int arr[][SIZE] )
 void sortArray ( int arr[][SIZE] )
 {
     // Variable declarations
-    int curItem,
-        swapItem;
+    int curMaxRow,
+        curMaxCol,
+        numMax,
+        index;
+    cout << "Array before swap" << endl;
+    printArray(arr);
     for( int i = 0; i < 7; i++ )
+    {
         for( int j = 0; j < SIZE; j++ )
         {
-            curItem = arr[i][j];
-            for( int z = 0; z < SIZE - 1; z++ )
-                if( arr[i][j] > arr[i][z] )
+            index++;
+            curMaxCol = i;
+            curMaxRow = j;
+            numMax = arr[i][j];
+
+            for( int z = j+1; z < SIZE; z++ )
+                if( arr[i][z] < numMax )
                 {
-                    arr[i][j] = arr[i][z];
-                    arr[i][z] = curItem;
+                    curMaxRow = i;
+                    curMaxCol = z;
+                    numMax = arr[i][z];
                 }
+
+            for( int z = i + 1; z < 7; z++ )
+                for( int y = 0 ; y < SIZE; y++ )
+                    if( arr[z][y] < numMax )
+                    {
+                        curMaxRow = z;
+                        curMaxCol = y;
+                        numMax = arr[z][y];
+                    }
+            cout << "Array before swap" << endl;
+            printArray(arr);
+            cout << "Swap index" << endl;
+            cout << curMaxRow << " " << curMaxCol << endl;
+            arr[curMaxRow][curMaxCol] = arr[i][j];
+            arr[i][j] = numMax;
+
         }
+    cout << "PRINTING ARR" << endl;
+    printArray(arr);
+    cout << "Iterated: " << index << endl;
+    }
 }
 
 void displayMathOperations ( int arr[][SIZE] )
