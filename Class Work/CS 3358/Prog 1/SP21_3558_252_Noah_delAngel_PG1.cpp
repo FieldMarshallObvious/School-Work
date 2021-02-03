@@ -28,7 +28,7 @@ int main()
     // Required statement
     cout << "This Program is Written by Noah del Angel" << endl;
     cout << endl;
-    cout << "The program uses a 5 by 5 array to store a set of "
+    cout << "The program uses a 7 by 5 array to store a set of "
          << "random numbers into array." << endl;
     cout << "The numbers are between 1 and 100. The program then displays on "
          << "the screen" << endl;
@@ -56,7 +56,7 @@ int main()
     cout << "The 5 of the array is = 5"<< endl ;
     cout << endl;
 
-    cout << "The 5 x 5 array is " << endl;
+    cout << "The 7 x 5 array is " << endl;
 
     printArray(randArray);
 
