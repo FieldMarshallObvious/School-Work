@@ -1,7 +1,7 @@
 // Author: Noah del Angel
 // Due Date: 2/3/2021
 // Assignment Number: 1
-// Spring - 2016   -  CS 33SIZE8   -  2SIZE2
+// Spring - 2016   -  CS 3358   -  252
 // Instructor:  Husain Gholoom
 //
 // Manipulation of two dimensional arrays
@@ -23,24 +23,25 @@ int generateRanNum( );
 
 using namespace std;
 
-// Global vars
-const int SIZE = 5;
-
 int main()
 {
     // Required statement
     cout << "This Program is Written by Noah del Angel" << endl;
     cout << endl;
-    cout << "The program uses a SIZE by SIZE array to store a set of random numbers into array." << endl;
-    cout << "The numbers are between 1 and 100. The program then displays on the screen" << endl;
-    cout << "the numbers, sum, average, smallest, largest, even, odd, and prime of the" << endl;
-    cout << "numbers. Finally, the program will display the array with the numbers are sorted" << endl;
+    cout << "The program uses a 5 by 5 array to store a set of "
+         << "random numbers into array." << endl;
+    cout << "The numbers are between 1 and 100. The program then displays on "
+         << "the screen" << endl;
+    cout << "the numbers, sum, average, smallest, largest, even, odd, and "
+         << "prime of the" << endl;
+    cout << "numbers. Finally, the program will display the array with the "
+         << "numbers are sorted" << endl;
     cout << "from lowest to highest." << endl;
 
     cout << endl;
 
     // Declare vars
-    int randArray[7][SIZE];
+    int randArray[7][5];
 
     // Create seed
     srand(time(NULL));
@@ -52,7 +53,7 @@ int main()
 
 
     // Display Array and manipulations
-    cout << "The size of the array is = 5"<< endl ;
+    cout << "The 5 of the array is = 5"<< endl ;
     cout << endl;
 
     cout << "The 5 x 5 array is " << endl;
@@ -69,7 +70,7 @@ int main()
     cout << endl;
 
     cout << "The Smallest is: " << randArray[0][0] << endl << endl;
-    cout << "The Largest is: " << randArray[6][( SIZE - 1 )] << endl << endl;
+    cout << "The Largest is: " << randArray[6][( 5 - 1 )] << endl << endl;
 
     cout << "Even Numbers are : ";
     displayEvens( randArray );
@@ -95,27 +96,27 @@ int main()
 //**************************************************
 // Populates array with random numbers
 //
-// arr[][SIZE]-input array to function
+// arr[][5]-input array to function
 //**************************************************
-void populateArray( int arr[][SIZE]  )
+void populateArray( int arr[][5]  )
 {
     // Populate each array element with a random num
     for( int i = 0; i < 7; i++ )
-        for( int j = 0; j < SIZE; j++ )
+        for( int j = 0; j < 5; j++ )
             arr[i][j] = generateRanNum();
 }
 
 //**************************************************
 // Prints the passed array
 //
-// arr[][SIZE]-input array to function
+// arr[][5]-input array to function
 //**************************************************
-void printArray( int arr[][SIZE] )
+void printArray( int arr[][5] )
 {
     // Go through each element and print them out
     for( int i = 0; i < 7; i++ )
     {
-        for( int j = 0; j < SIZE; j++ )
+        for( int j = 0; j < 5; j++ )
                 cout << arr[i][j] << "     ";
         // At the end of each row start a new line
         cout << endl;
@@ -125,9 +126,9 @@ void printArray( int arr[][SIZE] )
 //**************************************************
 // Finds and displays prime numbers
 //
-// arr[][SIZE]-input array to function
+// arr[][5]-input array to function
 //**************************************************
-void displayPrimeNums ( int arr[][SIZE] )
+void displayPrimeNums ( int arr[][5] )
 {
     // Variable declarations
     bool isPrime;
@@ -136,7 +137,7 @@ void displayPrimeNums ( int arr[][SIZE] )
     // Iterate through each element in the array
     // To see if it's prime
     for( int i = 0; i < 7; i++ )
-        for( int j = 0; j < SIZE; j++ )
+        for( int j = 0; j < 5; j++ )
         {
             // Reset bool value
             isPrime = true;
@@ -176,9 +177,9 @@ void displayPrimeNums ( int arr[][SIZE] )
 // Sorts the array from least to greatest
 // using selection sort
 //
-// arr[][SIZE]-input array to function
+// arr[][5]-input array to function
 //**************************************************
-void sortArray ( int arr[][SIZE] )
+void sortArray ( int arr[][5] )
 {
     // Variable declarations
     int curMinRow,
@@ -187,7 +188,7 @@ void sortArray ( int arr[][SIZE] )
 
     for( int i = 0; i < 7; i++ )
     {
-        for( int j = 0; j < SIZE; j++ )
+        for( int j = 0; j < 5; j++ )
         {
 
             // Initialize min value
@@ -196,7 +197,7 @@ void sortArray ( int arr[][SIZE] )
             numMin = arr[i][j];
 
             // Find a lower min value in the row
-            for( int z = j+1; z < SIZE; z++ )
+            for( int z = j+1; z < 5; z++ )
                 if( arr[i][z] < numMin )
                 {
                     curMinRow = i;
@@ -206,7 +207,7 @@ void sortArray ( int arr[][SIZE] )
 
             // Check remaining rows for a lower value
             for( int z = i + 1; z < 7; z++ )
-                for( int y = 0 ; y < SIZE; y++ )
+                for( int y = 0 ; y < 5; y++ )
                     if( arr[z][y] < numMin )
                     {
                         curMinRow = z;
@@ -214,9 +215,13 @@ void sortArray ( int arr[][SIZE] )
                         numMin = arr[z][y];
                     }
 
-            // Swap elements with minium
-            arr[curMinRow][curMinCol] = arr[i][j];
-            arr[i][j] = numMin;
+            // Check for duplicates
+            if( numMin != arr[i][j] )
+            {
+                // Swap elements with minium
+                arr[curMinRow][curMinCol] = arr[i][j];
+                arr[i][j] = numMin;
+            }
 
         }
     }
@@ -226,9 +231,9 @@ void sortArray ( int arr[][SIZE] )
 // Performs operations average, sum,
 // and subtraction
 //
-// arr[][SIZE]-input array to function
+// arr[][5]-input array to function
 //**************************************************
-void displayMathOperations ( int arr[][SIZE] )
+void displayMathOperations ( int arr[][5] )
 {
     // Variable declarations
     int sum,
@@ -238,14 +243,14 @@ void displayMathOperations ( int arr[][SIZE] )
     // Output the sum
     cout << "The Sum is : ";
     for( int i = 0; i < 7; i++ )
-        for( int j = 0; j < SIZE; j++ )
+        for( int j = 0; j < 5; j++ )
             sum += arr[i][j];
     cout << sum << endl << endl;
 
     // Output the average
     cout << "The Average is : ";
     for( int i = 0; i < 7; i++ )
-        for( int j = 0; j < SIZE; j++ )
+        for( int j = 0; j < 5; j++ )
         {
             iterations++;
             average+= arr[i][j];
@@ -258,15 +263,15 @@ void displayMathOperations ( int arr[][SIZE] )
 // Finds and displays all even numbers in the
 // array
 //
-// arr[][SIZE]-input array to function
+// arr[][5]-input array to function
 //**************************************************
-void displayEvens ( int arr[][SIZE] )
+void displayEvens ( int arr[][5] )
 {
     // Variable declarations
     string evenNums = "";
 
     for( int i = 0; i < 7; i++ )
-        for( int j = 0; j < SIZE; j++ )
+        for( int j = 0; j < 5; j++ )
         {
             // Check each element to see if it
             // is even
@@ -290,15 +295,15 @@ void displayEvens ( int arr[][SIZE] )
 // Finds and displays all odd numbers in the
 // array
 //
-// arr[][SIZE]-input array to function
+// arr[][5]-input array to function
 //**************************************************
-void displayOdds ( int arr[][SIZE] )
+void displayOdds ( int arr[][5] )
 {
     // Variable declarations
     string oddNums = "";
 
     for( int i = 0; i < 7; i++ )
-        for( int j = 0; j < SIZE; j++ )
+        for( int j = 0; j < 5; j++ )
         {
             // Check each element to see if it
             // is odd
@@ -347,6 +352,6 @@ string removeTail( string input )
 //**************************************************
 int generateRanNum( )
 {
-    int output = (rand() % 101 ) + 1;
+    int output = (rand() % 100 ) + 1;
     return output;
 }
