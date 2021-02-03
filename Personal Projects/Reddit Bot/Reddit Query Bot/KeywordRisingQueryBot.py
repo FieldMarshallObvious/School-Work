@@ -28,7 +28,7 @@ header = ( "Ticker", "Num of Appearances", "upvotes", "Timestamp" )
 
 # Write CSV file
 def writer( master, filename, newHeader ):
-    with open ( filename, "wb") as csv_file:
+    with open ( filename, "W", newline="wb") as csvfile:
         index = 0
 
         file = csv.writer(csvfile)
