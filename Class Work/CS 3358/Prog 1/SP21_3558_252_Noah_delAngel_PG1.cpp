@@ -157,7 +157,6 @@ void displayPrimeNums ( int arr[][5] )
                 // Iterate through all numbers less than
                 // the element to check if it's divisible
                 for( int y = 2; y <= arr[i][j] - 1; y++ )
-
                     if( (arr[i][j] % y) == 0 )
                         isPrime = false;
 
@@ -167,9 +166,7 @@ void displayPrimeNums ( int arr[][5] )
             // If the element is prime
             // then add it to the string
             if( isPrime == true )
-            {
                 output += to_string(arr[i][j]) + ", ";
-            }
         }
 
     // Prune tailing comma's
