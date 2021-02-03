@@ -1,7 +1,7 @@
 // Author: Noah del Angel
 // Due Date: 2/3/2021
 // Assignment Number: 1
-// Spring - 2016   -  CS 3358   -  252
+// Spring - 2021 - CS 3358 - 252
 // Instructor:  Husain Gholoom
 //
 // Manipulation of two dimensional arrays
@@ -87,6 +87,11 @@ int main()
     cout << "The Array after Sort : " << endl;
     printArray(randArray);
 
+    cout << endl;
+
+    cout << "Prepared by : Noah del Angel " << endl;
+    cout << "February 3 , 2021" << endl;
+
     return 0;
 
 
@@ -131,8 +136,8 @@ void printArray( int arr[][5] )
 void displayPrimeNums ( int arr[][5] )
 {
     // Variable declarations
-    bool isPrime;
-    string output = "";
+    bool isPrime;       // bool value to check if prime
+    string output = ""; // string var for output
 
     // Iterate through each element in the array
     // To see if it's prime
@@ -182,9 +187,9 @@ void displayPrimeNums ( int arr[][5] )
 void sortArray ( int arr[][5] )
 {
     // Variable declarations
-    int curMinRow,
-        curMinCol,
-        numMin;
+    int curMinRow,  // Int to keep track of location of min num row
+        curMinCol,  // Int to keep track of location of min num col
+        numMin;     // Keep track of smallest num
 
     for( int i = 0; i < 7; i++ )
     {
@@ -236,9 +241,9 @@ void sortArray ( int arr[][5] )
 void displayMathOperations ( int arr[][5] )
 {
     // Variable declarations
-    int sum,
-        average,
-        iterations = 0;
+    int sum,            // Var for holding sum
+        average,        // Var for holding average
+        iterations = 0; // Var for holding num of iterations
 
     // Output the sum
     cout << "The Sum is : ";
@@ -268,7 +273,7 @@ void displayMathOperations ( int arr[][5] )
 void displayEvens ( int arr[][5] )
 {
     // Variable declarations
-    string evenNums = "";
+    string evenNums = "";   // String for output to be held
 
     for( int i = 0; i < 7; i++ )
         for( int j = 0; j < 5; j++ )
@@ -300,7 +305,7 @@ void displayEvens ( int arr[][5] )
 void displayOdds ( int arr[][5] )
 {
     // Variable declarations
-    string oddNums = "";
+    string oddNums = "";    // String for output to be held
 
     for( int i = 0; i < 7; i++ )
         for( int j = 0; j < 5; j++ )
