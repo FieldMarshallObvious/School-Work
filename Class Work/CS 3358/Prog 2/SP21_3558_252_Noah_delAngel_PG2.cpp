@@ -7,18 +7,22 @@
 // Manipulation of two dimensional arrays
 
 #include <iostream>
-#include<vector>
-
-void menu( char[][7] );
-void printChart( char[][7] );
-void modifySeatingChart( char, char[][7] );
-void initSeatingChart( char[][7] );
+#include <vector>
 
 using namespace std;
 
+
+void menu( vector < vector<char> > & );
+void printChart( vector < vector<char> >  );
+void modifySeatingChart( char row, vector < vector<char> > & );
+void initSeatingChart( vector < vector<char> > & );
+
+
 int main ( )
 {
-    char assignedSeats[13][7];
+    vector<char> initializerRow;
+
+    vector<vector<char> > assignedSeats(0, initializerRow);
 
     cout << "Welcome to My Airline APP." << endl << endl;
     cout << "The purpose of this app is to assign seats for your reservation."
@@ -29,7 +33,7 @@ int main ( )
     cout << "     - Rows 3 and 7 are business class" << endl;
     cout << "     - Rows 8 through 13 are economy class " << endl << endl;
 
-    initSeatingChart( assignedSeats);
+    initSeatingChart( assignedSeats );
     menu(assignedSeats);
 
     cout << "Thanks for using this APP." << endl;
@@ -38,7 +42,13 @@ int main ( )
     return 0;
 }
 
-void menu( char seatingChart[][7] )
+//**************************************************
+// Populates array with random numbers
+//
+// seatingChart - Vector array that holds the seating
+// chart for the Airline APP
+//**************************************************
+void menu( vector<vector<char> > &seatingChart )
 {
     // Variable declarations
     char inputClass,
@@ -55,11 +65,9 @@ void menu( char seatingChart[][7] )
         cout << "     2. Enter F for First class" << endl;
         cout << "     3. Enter B for Business Class" << endl;
         cout << "     4. Enter E for Economy class" << endl;
-        cout << "     5. Enter x to Exit the App.  ";
+        cout << "     5. Enter X to Exit the App.  ";
 
         cin >> inputClass;
-
-        inputClass = toupper(inputClass);
 
         cout << endl;
 
@@ -97,8 +105,6 @@ void menu( char seatingChart[][7] )
 
                 cin >> assignAnotherSeat;
 
-                assignAnotherSeat = toupper(assignAnotherSeat);
-
                 cout << endl;
 
                 // If the user enters yes, break this loop
@@ -133,22 +139,35 @@ void menu( char seatingChart[][7] )
 
 }
 
-void printChart( char seatingChart[][7] )
+//**************************************************
+// Prints the seating chart to the console
+//
+// seatingChart - Vector array that holds the seating
+// chart for the Airline APP
+//**************************************************
+void printChart( vector<vector<char> > seatingChart )
 {
-    for( int i = 0; i < 13; i++ )
+    for( int i = 0; i < 14; i++ )
     {
         cout << "Row " << i + 1;
         if( i < 9 )
             cout << "   ";
         else
             cout << "  ";
-        for( int j = 0; j < 7; j++ )
+        for( int j = 0; j < 5; j++ )
             cout << seatingChart[i][j] << " ";
         cout << endl;
     }
 }
 
-void modifySeatingChart( char row, char seatingChart[][7] )
+//**************************************************
+// Assigns seats to the chart if there are available
+// to 'X'
+//
+// seatingChart - Vector array that holds the seating
+// chart for the Airline APP
+//**************************************************
+void modifySeatingChart( char row, vector<vector<char> > &seatingChart )
 {
     // Variable declarations
     int index, minRow, maxRow, rowNum;
@@ -191,9 +210,6 @@ void modifySeatingChart( char row, char seatingChart[][7] )
         cin >> seatloc;
         cout << endl;
 
-        // Convert seat location char to uppercase
-        seatloc = toupper(seatloc);
-
         // Check if the rowChar is a digit
         if( isdigit( rowChar ) )
         {
@@ -208,18 +224,28 @@ void modifySeatingChart( char row, char seatingChart[][7] )
                     charIndex = 'A';
                     index = 0;
                     while( charIndex != seatloc )
+                    {
                         charIndex++;
                         index++;
+                    }
+                    cout << "Index" << index << endl;
 
-                    // Assign the position in the seating chart to X
-                    seatingChart[rowNum-1][index-1] = 'X';
+                    // Check if the seat is assigned
+                    if( seatingChart[rowNum-1][index-1] != 'X' )
+                    {
+                        // Assign the position in the seating chart to X
+                        seatingChart[rowNum-1][index-1] = 'X';
 
-                    // End loop
-                    foundSeat = true;
+                        // End loop
+                        foundSeat = true;
 
-                    // Display assigned seat
-                    cout << "Seat: Row " << rowChar << " Seat " << seatloc
-                         << " is assigned" << endl;
+                        // Display assigned seat
+                        cout << "Seat: Row " << rowChar << " Seat " << seatloc
+                             << " is assigned" << endl;
+                    }
+
+                    else
+                        cout << "This seat is already assigned" << endl;
 
                 }
 
@@ -232,15 +258,25 @@ void modifySeatingChart( char row, char seatingChart[][7] )
         }
 
         else
-            cout << "Invalid Row Number1" << endl;
+            cout << "Invalid Row Number" << endl;
     }
 
 }
 
-void initSeatingChart( char seatingChart[][7] )
+//**************************************************
+// Resize seating chart to the correct array
+// then initialize all elements to '*'
+//
+// seatingChart - Vector array that holds the seating
+// chart for the Airline APP
+//**************************************************
+void initSeatingChart( vector<vector<char> > &seatingChart )
 {
+    // Resize matrix
+    seatingChart.resize( 14, vector<char>( 5 ) );
+
     for( int i = 0; i < 14; i++ )
-        for( int j = 0; j < 7; j++ )
+        for( int j = 0; j < 5; j++ )
             seatingChart[i][j] = '*';
 }
 
