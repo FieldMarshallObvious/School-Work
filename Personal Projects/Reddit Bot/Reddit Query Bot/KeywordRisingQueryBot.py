@@ -28,15 +28,27 @@ header = ( "Ticker", "Num of Appearances", "upvotes", "Timestamp" )
 
 # Write CSV file
 def writer( master, filename, newHeader ):
-    with open ( filename, "W", newline="wb") as csvfile:
+    with open ( filename, "w" ) as csvfile:
+        temparr=[]
+        word=""
         index = 0
 
-        file = csv.writer(csvfile)
+        file = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
         file.writerow(newHeader)
 
         for item in master:
-            file.writerow(item)
+            print(item)
+            if( index <= 3 ):
+                temparr += item
+            else:
+                file.writerow(item)
+                print(temparr)
+                index = 0
+                word = ""
+            
+            index += 1
 
+    csvfile.close()
 
 # Combines all arrays into one string
 def arrayCombiner( arr1, arr2, arr3, arr4, master ):

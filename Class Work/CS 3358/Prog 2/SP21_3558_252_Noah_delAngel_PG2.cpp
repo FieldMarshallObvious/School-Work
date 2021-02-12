@@ -147,15 +147,16 @@ void menu( vector<vector<char> > &seatingChart )
 //**************************************************
 void printChart( vector<vector<char> > seatingChart )
 {
-    for( int i = 0; i < 14; i++ )
+    cout << "        A   B   C   D   E   F" << endl << endl;
+    for( int i = 0; i < 13; i++ )
     {
         cout << "Row " << i + 1;
         if( i < 9 )
             cout << "   ";
         else
             cout << "  ";
-        for( int j = 0; j < 5; j++ )
-            cout << seatingChart[i][j] << " ";
+        for( int j = 0; j < 6; j++ )
+            cout << seatingChart[i][j] << "   ";
         cout << endl;
     }
 }
@@ -170,10 +171,11 @@ void printChart( vector<vector<char> > seatingChart )
 void modifySeatingChart( char row, vector<vector<char> > &seatingChart )
 {
     // Variable declarations
-    int index, minRow, maxRow, rowNum;
-    bool foundSeat = false;
+    int stindex = 0, index, minRow, maxRow, rowNum;
+    bool foundSeat = false,
+         isInt = true;
     char rowChar, seatloc, charIndex;
-    string possibleRows;
+    string possibleRows, inputRow;
 
     // Determine row
     switch(row)
@@ -204,16 +206,26 @@ void modifySeatingChart( char row, vector<vector<char> > &seatingChart )
     {
         cout << "Enter Row" << possibleRows << "and seat ( A - F ) " << endl;
         cout << "Enter Row ";
-        cin >> rowChar;
+        cin >> inputRow;
 
         cout << "Enter Seat ";
         cin >> seatloc;
         cout << endl;
 
-        // Check if the rowChar is a digit
-        if( isdigit( rowChar ) )
+        // Check each string of inputRow to determine
+        // if it is a digit
+        while( stindex < inputRow.length() )
         {
-            rowNum = (int)rowChar - 48;
+            if( ! isdigit( inputRow[stindex] ) )
+                isInt = false;
+            stindex++;
+
+        }
+
+        // Check if the rowChar is a digit
+        if( isInt )
+        {
+            rowNum = stoi(inputRow);
 
             // Check if is in range
             if( rowNum - 1 >= minRow && rowNum - 1 <= maxRow )
@@ -228,37 +240,40 @@ void modifySeatingChart( char row, vector<vector<char> > &seatingChart )
                         charIndex++;
                         index++;
                     }
-                    cout << "Index" << index << endl;
 
                     // Check if the seat is assigned
-                    if( seatingChart[rowNum-1][index-1] != 'X' )
+                    if( seatingChart[rowNum-1][index] != 'X' )
                     {
                         // Assign the position in the seating chart to X
-                        seatingChart[rowNum-1][index-1] = 'X';
+                        seatingChart[rowNum-1][index] = 'X';
 
                         // End loop
                         foundSeat = true;
 
                         // Display assigned seat
-                        cout << "Seat: Row " << rowChar << " Seat " << seatloc
+                        cout << "Seat: Row " << inputRow << " Seat " << seatloc
                              << " is assigned" << endl;
                     }
 
                     else
-                        cout << "This seat is already assigned" << endl;
+                        cout << "This seat is already assigned" << endl << endl;
 
                 }
 
                 else
-                    cout << "Invalid Seat" << endl;
+                    cout << "Invalid Seat" << endl << endl;
 
             else
-                cout << "Invalid Row Number" << endl;
+                cout << "Invalid Row Number" << endl << endl;
 
         }
 
         else
-            cout << "Invalid Row Number" << endl;
+            cout << "Invalid Row Number" << endl << endl;
+
+        // Reset vars
+        isInt = true;
+        stindex = 0;
     }
 
 }
@@ -273,10 +288,10 @@ void modifySeatingChart( char row, vector<vector<char> > &seatingChart )
 void initSeatingChart( vector<vector<char> > &seatingChart )
 {
     // Resize matrix
-    seatingChart.resize( 14, vector<char>( 5 ) );
+    seatingChart.resize( 13, vector<char>( 6 ) );
 
-    for( int i = 0; i < 14; i++ )
-        for( int j = 0; j < 5; j++ )
+    for( int i = 0; i < 13; i++ )
+        for( int j = 0; j < 6; j++ )
             seatingChart[i][j] = '*';
 }
 
