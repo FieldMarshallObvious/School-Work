@@ -3,6 +3,7 @@ import requests
 import json
 import csv
 import time
+from datetime import datetime
 
 # Get reddit bot and subreddit
 reddit = praw.Reddit('bot2')
@@ -20,31 +21,38 @@ upvotes = []
 timestap = []
 masterArray = []
 
+
+dt_string = ""
+
 # setup csv
 filename = "risingDataTab.csv"
-header = ( "Ticker", "Num of Appearances", "upvotes", "Timestamp" )
+header = ( "Ticker", "Num of Appearances", "upvotes", "Date", "Timestamp" )
 
 # Functions
 
 # Write CSV file
 def writer( master, filename, newHeader ):
-    with open ( filename, "w" ) as csvfile:
+    with open ( filename, "w", newline="" ) as csvfile:
         temparr=[]
         word=""
         index = 0
 
-        file = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
+        file = csv.writer(csvfile, quoting=csv.QUOTE_ALL, delimiter=',')
         file.writerow(newHeader)
 
         for item in master:
-            print(item)
-            if( index <= 3 ):
-                temparr += item
+            print("Item ", item)
+            #print(temparr)
+            print("Index ", index)
+            if( index <= 3):
+                temparr.append(str(item))
+
             else:
-                file.writerow(item)
-                print(temparr)
-                index = 0
-                word = ""
+                temparr.append(str(item))
+                file.writerow(temparr)
+                print("Temp Arr: ", temparr)
+                index = -1
+                temparr = []
             
             index += 1
 
@@ -94,12 +102,17 @@ for submission in subreddit.rising(limit=71):
             for ticker in rJson:
                 if(word == ticker["displaySymbol"]):
                     found = False
-                    print("FOUND")
+
+                    # Get date time
+                    now = datetime.now()
+                    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+
                     # Find the equivalent tickers in the array 
                     for foundTicker in lOfTickers:
                         if(foundTicker == word):     
                             numofTicks[index] += 1
                             upvotes[index] += submission.score
+                            timestap[index] = dt_string
                             found = True
                             break
 
@@ -108,15 +121,18 @@ for submission in subreddit.rising(limit=71):
                         lOfTickers.append(word)
                         numofTicks.append(1)
                         upvotes.append(submission.score)
-                        for i in range(4):
+                        timestap.append(dt_string)
+                        for i in range(5):
                             masterArray.append(0)
                         break
+                    
+
 
                     index = index + 1
             # Reset word and index
             word = ""
-time = upvotes
-arrayCombiner( lOfTickers, numofTicks, upvotes, time, masterArray )
+
+arrayCombiner( lOfTickers, numofTicks, upvotes, timestap, masterArray )
 writer( masterArray, "risingTab.csv", header )
 print(lOfTickers)
 print(numofTicks)

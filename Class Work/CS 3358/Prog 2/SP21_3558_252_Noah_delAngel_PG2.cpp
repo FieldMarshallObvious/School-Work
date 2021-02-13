@@ -4,7 +4,9 @@
 // Spring - 2021 - CS 3358 - 252
 // Instructor:  Husain Gholoom
 //
-// Manipulation of two dimensional arrays
+// Manipulation of 2D vector's
+// to create a airline seating
+// app.
 
 #include <iostream>
 #include <vector>
