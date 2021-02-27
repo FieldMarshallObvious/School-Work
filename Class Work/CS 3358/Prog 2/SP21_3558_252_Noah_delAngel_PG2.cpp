@@ -103,6 +103,7 @@ void menu( vector<vector<char> > &seatingChart )
             // Continue the loop until a valid option has been enterd
             while( endQ == false )
             {
+                cout << endl;
                 cout << "Would you like to Assign another seat? (Y/N) -- ";
 
                 cin >> assignAnotherSeat;
