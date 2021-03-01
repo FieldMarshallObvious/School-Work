@@ -47,7 +47,7 @@ bool CashRegister::recieveCash( int recieveCash, int cost )
         {
             cout << "The amount is not enough. Collect what you deposited."
                  << endl;
-            cout << "*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*";
+            cout << "*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*" << endl << endl;
 
             enoughCash = false;
             return recieveCash;
@@ -115,13 +115,116 @@ int main( )
 void menu( DispenserType inputItems[9], CashRegister &InputRegister )
 {
     // Variable declarations
-    bool continueMenu = true;
+    bool continueMenu = true, correctinput = false;
+    int input, index, cost, deposit;
 
+
+    // Header statement
+    cout << "*** Welcome to Noah del Angel's Vending Machine ***" << endl;
+
+
+    // Run menu until user specifies to exit
     while( continueMenu == true )
     {
+        // Reset values
+        input = 0;
+        index = 0;
+        cost = 0;
+        correctinput = false;
 
+        cout << "Select One of the following" << endl << endl;
+        cout << "     1 for Candy" << endl;
+        cout << "     2 for Chips" << endl;
+        cout << "     3 for Gum" << endl;
+        cout << "     4 for Cookies" << endl;
+        cout << "     9 to exit" << endl;
+        cout << endl;
+
+
+        // Catch non-integer inputs
+        try
+        {
+            cin >> input;
+
+            // if input breaks throw error
+            if( !cin )
+                throw input;
+        }
+        catch(...)
+        {
+            cout << "Invalid selection." << endl << endl;
+
+            // Clear items in the cin
+            cin.clear();
+            cin.ignore(256, '\n');
+        }
+
+        // Determine input
+        switch(input)
+        {
+            case 1:
+                index = 0;
+                break;
+
+            case 2:
+                index = 1;
+                break;
+
+            case 3:
+                index = 2;
+                break;
+
+            case 4:
+                index = 3;
+                break;
+
+            case 9:
+                continueMenu = false;
+                break;
+        }
+
+        if( inputItems[index].returnNumOfItems() == 0 )
+        {
+            cout << "Sorry, this item is sold out." << endl;
+            cout << "*-*-*-*-*-*-*-*-*-*-*-*-*-*-*" << endl;
+        }
+        else
+        {
+            // Determine cost
+            cost = inputItems[index].returnCost();
+
+            cout << "Please deposit " << cost << " cents" << endl;
+
+            while( correctinput == false )
+            {
+                try
+                {
+                    cin >> deposit;
+                    // if input breaks throw error
+                    if( !cin )
+                        throw input;
+
+                    correctinput = true;
+                }
+                catch(...)
+                {
+                    cout << "Please enter an integer" << endl << endl;
+
+                    // Clear items in the cin
+                    cin.clear();
+                    cin.ignore(256, '\n');
+                }
+
+            }
+
+            InputRegister.recieveCash( deposit, cost );
+
+        }
     }
 
+    // Footer statement
+    cout << "*** Thank you for using Noah del Angel's Vending Machine ***"
+         << endl;
 }
 
 void populateMachine( DispenserType inputItems[9] )
