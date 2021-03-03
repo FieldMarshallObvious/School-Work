@@ -27,7 +27,6 @@ using namespace std;
 //      returnCost() - returns the cost of the item
 //      reduceNumOfItems() - reduces the number of available items
 //**************************************************
-
 class DispenserType
 {
     private:
