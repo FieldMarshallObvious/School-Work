@@ -230,7 +230,7 @@ void menu( DispenserType inputItems[3], CashRegister &inputRegister )
             cin >> input;
 
             // if input breaks throw error
-            if( !cin || input > 9 || input < 1 )
+            if( !cin || input > 9 || input > 4   || input < 1 )
                 throw input;
 
             cout << endl;
