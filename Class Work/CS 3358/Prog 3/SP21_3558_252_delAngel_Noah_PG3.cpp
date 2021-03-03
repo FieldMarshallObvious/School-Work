@@ -20,12 +20,12 @@ using namespace std;
 //                   for that item
 //      cost - keeps track of the cost of the item
 // Public Functions:
-//      DispenserType() - default constructor initializes
+//      DispenserType( ) - default constructor initializes
 //                         numOfItems to 3
-//      returnNumOfItems() - returns the number of items for that object
-//      setCost(input) - sets the cost for the item
-//      returnCost() - returns the cost of the item
-//      reduceNumOfItems() - reduces the number of available items
+//      returnNumOfItems( ) - returns the number of items for that object
+//      setCost( input ) - sets the cost for the item
+//      returnCost( ) - returns the cost of the item
+//      reduceNumOfItems( ) - reduces the number of available items
 //**************************************************
 class DispenserType
 {
@@ -33,12 +33,12 @@ class DispenserType
         int numOfItems,
             cost;
     public:
-        DispenserType()
+        DispenserType( )
         {
             numOfItems = 3;
         }
 
-        int returnNumOfItems()
+        int returnNumOfItems( )
         {
             return numOfItems;
         }
@@ -48,12 +48,12 @@ class DispenserType
             cost = input;
         }
 
-        int returnCost()
+        int returnCost( )
         {
             return cost;
         }
 
-        void reduceNumOfItems()
+        void reduceNumOfItems( )
         {
             numOfItems -= 1;
         }
@@ -66,10 +66,10 @@ class DispenserType
 // Private Variables:
 //      cashOnHand - Holds the amount of cash that the register has
 // Public Functions:
-//      CashRegister() - default constructor sets cashOnHand to 500
-//      returnCash() - returns the cashOnHand for the register
-//      receiveCash(int receiveCash, int cost,
-//                  DispenserType &item) - Attempts to receive cash
+//      CashRegister( ) - default constructor sets cashOnHand to 500
+//      returnCash( ) - returns the cashOnHand for the register
+//      receiveCash( int receiveCash, int cost,
+//                  DispenserType &item ) - Attempts to receive cash
 //                  deposited by user. If the user inputs more cash then
 //                  required the function will determine the change and tell
 //                  the user to collect their change. However, if the user
@@ -85,12 +85,12 @@ class CashRegister
     private:
         int cashOnHand;
     public:
-        CashRegister()
+        CashRegister( )
         {
             cashOnHand = 500;
         }
 
-        int returnCash()
+        int returnCash( )
         {
             return cashOnHand;
         }
@@ -170,17 +170,17 @@ bool CashRegister::receiveCash( int receiveCash, int cost, DispenserType &item )
     cout << "Collect your item at the bottom and enjoy." << endl;
 
     // If the cash is more than requested provide change
-    if( (receiveCash + additionalCash ) > cost )
+    if( ( receiveCash + additionalCash ) > cost )
     {
-        delta = (receiveCash + additionalCash) - cost;
+        delta = ( receiveCash + additionalCash ) - cost;
 
         cout << "Collect your change " <<delta << endl;
     }
 
-    // Once all required cash is recieved, add it to
+    // Once all required cash is received, add it to
     // the register. And, reduce the number of items
     cashOnHand += cost;
-    item.reduceNumOfItems();
+    item.reduceNumOfItems( );
 
     cout << "*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*" << endl << endl;
 
@@ -230,12 +230,12 @@ void menu( DispenserType inputItems[3], CashRegister &inputRegister )
             cin >> input;
 
             // if input breaks throw error
-            if( !cin || input > 9 || input < 1)
+            if( !cin || input > 9 || input < 1 )
                 throw input;
 
             cout << endl;
         }
-        catch(...)
+        catch( ... )
         {
             cout << endl;
             cout << "Invalid selection." << endl << endl;
@@ -244,12 +244,12 @@ void menu( DispenserType inputItems[3], CashRegister &inputRegister )
             correctinput = false;
 
             // Clear items in the cin
-            cin.clear();
-            cin.ignore(256, '\n');
+            cin.clear( );
+            cin.ignore( 256, '\n' );
         }
 
         // Determine input
-        switch(input)
+        switch( input )
         {
             case 1:
                 index = 0;
@@ -274,7 +274,7 @@ void menu( DispenserType inputItems[3], CashRegister &inputRegister )
 
         // If the user wishes to continue get money
         // for the item they want
-        if( continueMenu == true && correctinput == true)
+        if( continueMenu == true && correctinput == true )
 
             // If there is still items
             if( inputItems[index].returnNumOfItems() == 0 )
@@ -301,12 +301,12 @@ void menu( DispenserType inputItems[3], CashRegister &inputRegister )
                                                    inputItems[index] );
 
                     }
-                    catch(...)
+                    catch( ... )
                     {
                         cout << endl;
                         // Clear items in the cin
-                        cin.clear();
-                        cin.ignore(256, '\n');
+                        cin.clear( );
+                        cin.ignore( 256, '\n' );
                     }
 
 
@@ -331,17 +331,17 @@ void populateMachine( DispenserType inputItems[3] )
         switch ( i )
         {
         case 0:
-            inputItems[i].setCost(50);
+            inputItems[i].setCost( 50 );
             break;
 
         case 1:
-            inputItems[i].setCost(25);
+            inputItems[i].setCost( 25 );
             break;
         case 2:
-            inputItems[i].setCost(45);
+            inputItems[i].setCost( 45 );
             break;
         case 3:
-            inputItems[i].setCost(60);
+            inputItems[i].setCost( 60 );
             break;
         }
     }
