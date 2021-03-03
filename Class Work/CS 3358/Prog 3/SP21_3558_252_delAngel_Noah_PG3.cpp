@@ -203,6 +203,7 @@ void menu( DispenserType inputItems[3], CashRegister &inputRegister )
 
     // Header statement
     cout << "*** Welcome to Noah del Angel's Vending Machine ***" << endl;
+    cout << endl;
 
 
     // Run menu until user specifies to exit
