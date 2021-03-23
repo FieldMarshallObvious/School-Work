@@ -3,6 +3,7 @@ import requests
 import json
 import csv
 import time
+import os.path
 import sched,time
 from datetime import datetime
 
@@ -21,8 +22,7 @@ numofTicks = []
 upvotes = []
 timestap = []
 masterArray = []
-firstRun = False
-
+print("assigned")
 
 dt_string = ""
 
@@ -37,15 +37,21 @@ header = ( "Ticker", "Num of Appearances", "upvotes", "Date", "Timestamp" )
 
 # Write CSV file
 def writer( master, filename, newHeader ):
-    with open ( filename, "a", newline="" ) as csvfile:
+    printHeader = False
+    if not os.path.isfile(filename):
+            printHeader = True
+    with open ( filename, "a+", newline="" ) as csvfile:
         temparr=[]
         index = 0
-        print("First Run in method", firstRun)
+
+        csv_reader = csv.reader(csvfile, delimiter=',')
 
         file = csv.writer(csvfile, quoting=csv.QUOTE_ALL, delimiter=',')
-        if( firstRun == False ):
+        
+        if(printHeader == True):
+            print("Printing Header")
             file.writerow(newHeader)
-            print("Write")
+
 
         for item in master:
             #print(temparr)
@@ -84,6 +90,7 @@ def arrayCombiner( arr1, arr2, arr3, arr4, master ):
             word = ""
 
 def mainSearch():
+
     # Search through all the submissions in the rising tab
     for submission in subreddit.rising(limit=71):
         Title = str(submission.title)
@@ -137,8 +144,6 @@ def mainSearch():
     print(numofTicks)
     print(upvotes)
 
-    firstRun = True
-    print("First Run: ", firstRun)
 
 
     s.enter(60, 1, mainSearch)
