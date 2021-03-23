@@ -35,26 +35,29 @@ header = ( "Ticker", "Num of Appearances", "upvotes", "Date", "Timestamp" )
 
 # Functions
 
-# Write CSV file
+# Write all data to CSV file
 def writer( master, filename, newHeader ):
     printHeader = False
+
+    # If the file doesn't exist then print headers
     if not os.path.isfile(filename):
             printHeader = True
+    
     with open ( filename, "a+", newline="" ) as csvfile:
         temparr=[]
         index = 0
 
-        csv_reader = csv.reader(csvfile, delimiter=',')
-
         file = csv.writer(csvfile, quoting=csv.QUOTE_ALL, delimiter=',')
         
+        # If there is not file print headers
         if(printHeader == True):
             print("Printing Header")
             file.writerow(newHeader)
 
 
+        # Print each item in the master array
+        # to the csv file
         for item in master:
-            #print(temparr)
             if( index <= 3):
                 temparr.append(str(item))
 
@@ -72,6 +75,8 @@ def writer( master, filename, newHeader ):
 def arrayCombiner( arr1, arr2, arr3, arr4, master ):
     index = 0
     arrString = ""
+
+    # Create a master string of all data
     for item in arr1:
         arrString += str(item) + ","
         arrString += str(arr2[index]) + ","
@@ -79,8 +84,11 @@ def arrayCombiner( arr1, arr2, arr3, arr4, master ):
         arrString += str(arr4[index]) + " "
         index += 1
 
+    # reset data
     index = 0
     word = ""
+
+    # Create an array of individual items
     for char in arrString:
         if( char != " " and char != "," ):
             word += char
@@ -89,6 +97,7 @@ def arrayCombiner( arr1, arr2, arr3, arr4, master ):
             index += 1
             word = ""
 
+# Main function
 def mainSearch():
 
     # Search through all the submissions in the rising tab
@@ -138,16 +147,20 @@ def mainSearch():
                 # Reset word and index
                 word = ""
 
+    # Get data ready to be written
+    # then write
     arrayCombiner( lOfTickers, numofTicks, upvotes, timestap, masterArray )
     writer( masterArray, "risingTab.csv", header )
+
+    # print arrays
     print(lOfTickers)
     print(numofTicks)
     print(upvotes)
 
 
-
+    # Repeat script every 60 seconds
     s.enter(60, 1, mainSearch)
 
-
+# Start schedule
 s.enter(0, 1, mainSearch)
 s.run()
