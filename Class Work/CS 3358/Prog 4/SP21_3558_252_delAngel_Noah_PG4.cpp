@@ -25,8 +25,13 @@ struct node
 //      setData( data ) - Sets the data of the head node
 //      appendData( data ) - Appends node with new data at the end
 //                           of the list
-//      returnCost( ) - returns the cost of the item
-//      reduceNumOfItems( ) - reduces the number of available items
+//      insertData( data, pos ) - Inserts a new node with inputted data
+//                                at the specified position
+//      printList( ) - Prints the entire list
+//      getHead( ) - Returns a pointer to the head node
+//      returnData( pos ) - Returns data of node at inputted position
+//      returnSize( ) - Returns the size of the array as a integer value
+//
 //**************************************************
 template<typename T>
 class LinkedList
@@ -116,7 +121,14 @@ int main()
 
     return 0;
 }
-
+//**************************************************
+// Populates the list with random values, given
+// the inputted size.
+//
+// inputList - Holds the memory location for the
+//             list object.
+// sizeOfList - Holds the intended size of list
+//**************************************************
 template<typename T> void populateArray( LinkedList<T> &inputList,
                                          int sizeOfList )
 {
@@ -129,6 +141,17 @@ template<typename T> void populateArray( LinkedList<T> &inputList,
 
 }
 
+//**************************************************
+// Populates the list with elements from list_1,
+// followed by elements of list_2
+//
+// inputList - Holds the memory location for the
+//             list object.
+// list_1 - Holds the memory location for the
+//          first list
+// list_2 - Hold the memory location for the
+//          second list
+//**************************************************
 template<typename T> void populateArray( LinkedList<T> &inputList,
                                         LinkedList<T> list_1,
                                         LinkedList<T> list_2)
@@ -157,6 +180,17 @@ template<typename T> void populateArray( LinkedList<T> &inputList,
             }
 }
 
+//**************************************************
+// Populates the list with elements from list_1,
+// followed by elements of list_2
+//
+// inputList - Holds the memory location for the
+//             list object.
+// list_1 - Holds the memory location for the
+//          first list
+// list_2 - Hold the memory location for the
+//          second list
+//**************************************************
 template<typename T> LinkedList<T> removeDups( LinkedList<T> inputList )
 {
     // Variable declarations
