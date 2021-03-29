@@ -11,6 +11,23 @@ struct node
     T data;
 };
 
+//**************************************************
+// This class implements a linked list using
+// pointers.
+//
+// Private Variables:
+//      node - Pointer that keeps track of the head of the list
+// Public Functions:
+//      LinkedList( ) - Default constructor that initializes the head
+//                      node of the list
+//      LinkedList( data ) - Constructor that initializes head node
+//                             of the list to the inputted data
+//      setData( data ) - Sets the data of the head node
+//      appendData( data ) - Appends node with new data at the end
+//                           of the list
+//      returnCost( ) - returns the cost of the item
+//      reduceNumOfItems( ) - reduces the number of available items
+//**************************************************
 template<typename T>
 class LinkedList
 {
@@ -18,24 +35,24 @@ class LinkedList
         node<T> *head;
 
     public:
-        LinkedList();
+        LinkedList( );
 
-        LinkedList(T data);
+        LinkedList( T data );
 
-        void setData(T data);
-        void appendData(T data);
-        void insertData(T data, int pos);
-        void removePos(int pos);
-        void printList();
+        void setData( T data );
+        void appendData( T data );
+        void insertData( T data, int pos );
+        void removePos( int pos );
+        void printList( );
 
-        node<T>* getHead()
+        node<T>* getHead( )
         { return head; }
 
-        T returnData(int pos);
-        int returnSize();
+        T returnData( int pos );
+        int returnSize( );
 };
 
-template<typename T> T generateRanNum();
+template<typename T> T generateRanNum( );
 template<typename T> void populateArray( LinkedList<T> &inputList,
                                          int sizeOfList );
 template<typename T> void populateArray( LinkedList<T> &inputList,
@@ -61,6 +78,8 @@ int main()
 
     list_4 = removeDups<char>( list_3 );
 
+    // Output header
+    cout << "Pointer Implementation of Linked List" << endl << endl;
 
     // Output list 1 and 2
     cout << "List 1: ";
@@ -89,6 +108,11 @@ int main()
     cout << "Swapping head and tail..." << endl;
     cout << "New List 4: ";
     list_4.printList();
+
+    // Output footer statement
+    cout << endl;
+    cout << "This LL program is implemented by : " << endl
+         << "Noah del Angel - March 31, 2021" << endl;
 
     return 0;
 }
@@ -270,16 +294,29 @@ template<typename T> void LinkedList<T>::removePos( int pos )
     node<T> *prevPtr = curPtr;
     int index = 0;
 
-    while( curPtr->next != nullptr && index != pos )
+    // Case to remove the head of the list
+    if( pos == 0 )
     {
-        // Iterate to next item
-        prevPtr = curPtr;
+        // Set current pointer to the next pointer
         curPtr = curPtr->next;
-        index++;
-    }
 
-    // Remove curPtr from list
-    prevPtr->next = curPtr->next;
+        // Set new head
+        head->data = curPtr->data;
+        head->next = curPtr->next;
+    }
+    else
+    {
+        while( curPtr->next != nullptr && index != pos )
+        {
+            // Iterate to next item
+            prevPtr = curPtr;
+            curPtr = curPtr->next;
+            index++;
+        }
+
+        // Remove curPtr from list
+        prevPtr->next = curPtr->next;
+    }
 
     // Remove node
     delete curPtr;
