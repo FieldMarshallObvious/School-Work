@@ -27,6 +27,7 @@ struct node
 //                           of the list
 //      insertData( data, pos ) - Inserts a new node with inputted data
 //                                at the specified position
+//      removePos( pos ) - Removes a node at the inputted posistion
 //      printList( ) - Prints the entire list
 //      getHead( ) - Returns a pointer to the head node
 //      returnData( pos ) - Returns data of node at inputted position
@@ -211,6 +212,14 @@ template<typename T> LinkedList<T> removeDups( LinkedList<T> inputList )
     return newList;
 }
 
+//**************************************************
+// Returns the number of occurrences of the inputted
+// data in the inputted list
+//
+// data - Holds the item to search for in the list
+// inputList - Holds the memory location for the
+//             list object.
+//**************************************************
 template<typename T> int numOfOccurrences(T data, LinkedList<T> inputList)
 {
     // Variable declarations
@@ -227,6 +236,13 @@ template<typename T> int numOfOccurrences(T data, LinkedList<T> inputList)
     return numOfOccurrences;
 }
 
+//**************************************************
+// Swaps the head element and the tail element
+// of the inputted list
+//
+// inputList - Holds the memory location for the
+//             list object.
+//**************************************************
 template<typename T> void swapHeadTail( LinkedList<T> &inputList )
 {
     //Variable declarations
@@ -249,6 +265,11 @@ template<typename T> void swapHeadTail( LinkedList<T> &inputList )
     return output;
 }
 
+//**************************************************
+// Default constructor that initializes the head
+// node of the list
+//
+//**************************************************
 template<typename T> LinkedList<T>::LinkedList()
 {
     node<T> *tmp = new node<T>;
@@ -257,6 +278,13 @@ template<typename T> LinkedList<T>::LinkedList()
 
     head = tmp;
 }
+
+//**************************************************
+// Constructor that initializes head node
+// of the list to the inputted data
+//
+// data - Holds the inputted data
+//**************************************************
 template<typename T> LinkedList<T>::LinkedList(T data)
 {
     node<T> *tmp = new node<T>;
@@ -266,11 +294,22 @@ template<typename T> LinkedList<T>::LinkedList(T data)
     head = tmp;
 }
 
+//**************************************************
+// Sets the data of the head node
+//
+// data - Holds the inputted data
+//**************************************************
 template<typename T> void LinkedList<T>::setData(T data)
 {
     head->data = data;
 }
 
+//**************************************************
+// Appends node with new data at the end
+// of the list
+//
+// data - Holds the inputted data
+//**************************************************
 template<typename T> void LinkedList<T>::appendData(T data)
 {
     // Variable declarations
@@ -292,7 +331,14 @@ template<typename T> void LinkedList<T>::appendData(T data)
     curPtr->next = newNode;
 }
 
-
+//**************************************************
+// Appends node with new data at the end
+// of the list
+//
+// data - Holds the inputted data
+// pos - Hold the desired position that data
+//       will be inserted
+//**************************************************
 template<typename T> void LinkedList<T>::insertData( T data, int pos )
 {
     // Variable declarations
@@ -321,6 +367,12 @@ template<typename T> void LinkedList<T>::insertData( T data, int pos )
 
 }
 
+//**************************************************
+// Removes a node at the inputted position
+//
+// pos - Hold the desired position that data
+//       will be inserted
+//**************************************************
 template<typename T> void LinkedList<T>::removePos( int pos )
 {
     // Variable declarations
@@ -358,6 +410,10 @@ template<typename T> void LinkedList<T>::removePos( int pos )
 
 }
 
+//**************************************************
+// Prints the entire list
+//
+//**************************************************
 template<typename T> void LinkedList<T>::printList()
 {
     // Variable declarations
@@ -374,6 +430,12 @@ template<typename T> void LinkedList<T>::printList()
     cout << endl;
 }
 
+//**************************************************
+// Returns data of node at inputted position
+//
+// pos - Hold the desired position that data
+//       will be inserted
+//**************************************************
 template<typename T> T LinkedList<T>::returnData(int pos)
 {
     // Variable declarations
@@ -393,6 +455,10 @@ template<typename T> T LinkedList<T>::returnData(int pos)
     return (curPtr->data);
 }
 
+//**************************************************
+// Returns the size of the array as a integer value
+//
+//**************************************************
 template<typename T> int LinkedList<T>::returnSize()
 {
     // Variable declarations
