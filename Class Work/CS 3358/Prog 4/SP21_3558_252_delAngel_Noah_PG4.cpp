@@ -1,3 +1,11 @@
+// Author: Noah del Angel
+// Due Date: 3/31/2021
+// Assignment Number: 4
+// Spring - 2021 - CS 3358 - 252
+// Instructor:  Husain Gholoom
+//
+// A manipulation of linked
+// lists using pointers
 #include <iostream>
 #include <time.h>
 
@@ -74,11 +82,11 @@ int main()
     LinkedList<char> list_1, list_2, list_3, list_4;
 
     // Create seed
-    srand(time(NULL));
+    srand( time( NULL ) );
 
     // Populate linked lists
-    populateArray<char>( list_1, 15);
-    populateArray<char>( list_2, 15);
+    populateArray<char>( list_1, 15 );
+    populateArray<char>( list_2, 15 );
     populateArray<char>( list_3, list_1, list_2 );
 
 
@@ -101,19 +109,20 @@ int main()
          << endl;
 
     cout << "Number of occurrences of that element: "
-         << numOfOccurrences( list_3.returnData(0), list_3 ) << endl << endl;
+         << numOfOccurrences( list_3.returnData( 0 ), list_3 ) << endl << endl;
+
+    // Output list 4 and size
+    // of the list 4
     cout << "List 4: ";
-    list_4.printList();
-
-
-    cout << "Number of elements in List 4: " << list_4.returnSize() << endl
+    list_4.printList( );
+    cout << "Number of elements in List 4: " << list_4.returnSize( ) << endl
          << endl;
 
     // Swap head and tail of list 4 and print list
-    swapHeadTail(list_4);
+    swapHeadTail( list_4 );
     cout << "Swapping head and tail..." << endl;
     cout << "New List 4: ";
-    list_4.printList();
+    list_4.printList( );
 
     // Output footer statement
     cout << endl;
@@ -159,7 +168,7 @@ template<typename T> void populateArray( LinkedList<T> &inputList,
 //**************************************************
 template<typename T> void populateArray( LinkedList<T> &inputList,
                                         LinkedList<T> list_1,
-                                        LinkedList<T> list_2)
+                                        LinkedList<T> list_2 )
 {
     // Variable declarations
     int sizeOfList = list_1.returnSize( ) + list_2.returnSize( ),
@@ -211,7 +220,7 @@ template<typename T> LinkedList<T> removeDups( LinkedList<T> inputList )
         if( i == 0 )
             newList.setData( inputList.returnData( i ) );
         else
-            newList.appendData( inputList.returnData(i) );
+            newList.appendData( inputList.returnData( i ) );
 
 
         for( int j = 0; j < newList.returnSize() - 1; j++ )
@@ -230,7 +239,7 @@ template<typename T> LinkedList<T> removeDups( LinkedList<T> inputList )
 // inputList - Holds the memory location for the
 //             list object.
 //**************************************************
-template<typename T> int numOfOccurrences(T data, LinkedList<T> inputList)
+template<typename T> int numOfOccurrences(T data, LinkedList<T> inputList )
 {
     // Variable declarations
     int numOfOccurrences = 0;
@@ -256,12 +265,12 @@ template<typename T> int numOfOccurrences(T data, LinkedList<T> inputList)
 template<typename T> void swapHeadTail( LinkedList<T> &inputList )
 {
     //Variable declarations
-    T head = inputList.returnData(0);
-    T tail = inputList.returnData(inputList.returnSize() - 1);
+    T head = inputList.returnData( 0 );
+    T tail = inputList.returnData( inputList.returnSize( ) - 1);
 
-    inputList.setData(tail);
-    inputList.removePos(inputList.returnSize() - 1);
-    inputList.appendData(head);
+    inputList.setData( tail );
+    inputList.removePos( inputList.returnSize( ) - 1);
+    inputList.appendData( head );
 }
 
 //**************************************************
@@ -271,7 +280,7 @@ template<typename T> void swapHeadTail( LinkedList<T> &inputList )
 //**************************************************
  template<typename T> T generateRanNum( )
 {
-    T output = (rand() % 26 ) + 'A';
+    T output = ( rand( ) % 26 ) + 'A';
     return output;
 }
 
@@ -280,7 +289,7 @@ template<typename T> void swapHeadTail( LinkedList<T> &inputList )
 // node of the list
 //
 //**************************************************
-template<typename T> LinkedList<T>::LinkedList()
+template<typename T> LinkedList<T>::LinkedList( )
 {
     node *tmp = new node;
     tmp->data = NULL;
@@ -295,7 +304,7 @@ template<typename T> LinkedList<T>::LinkedList()
 //
 // data - Holds the inputted data
 //**************************************************
-template<typename T> LinkedList<T>::LinkedList(T data)
+template<typename T> LinkedList<T>::LinkedList( T data )
 {
     node *tmp = new node;
     tmp->data = data;
@@ -309,7 +318,7 @@ template<typename T> LinkedList<T>::LinkedList(T data)
 //
 // data - Holds the inputted data
 //**************************************************
-template<typename T> void LinkedList<T>::setData(T data)
+template<typename T> void LinkedList<T>::setData( T data )
 {
     head->data = data;
 }
@@ -320,10 +329,10 @@ template<typename T> void LinkedList<T>::setData(T data)
 //
 // data - Holds the inputted data
 //**************************************************
-template<typename T> void LinkedList<T>::appendData(T data)
+template<typename T> void LinkedList<T>::appendData( T data )
 {
     // Variable declarations
-    node *curPtr = getHead();
+    node *curPtr = getHead( );
     node *newNode = new node;
 
     //Initialize newNode
@@ -352,7 +361,7 @@ template<typename T> void LinkedList<T>::appendData(T data)
 template<typename T> void LinkedList<T>::insertData( T data, int pos )
 {
     // Variable declarations
-    node *curPtr = getHead();
+    node *curPtr = getHead( );
     node *prevPtr = curPtr;
     node *newNode;
     int index = 0;
@@ -424,10 +433,10 @@ template<typename T> void LinkedList<T>::removePos( int pos )
 // Prints the entire list
 //
 //**************************************************
-template<typename T> void LinkedList<T>::printList()
+template<typename T> void LinkedList<T>::printList( )
 {
     // Variable declarations
-    node *curPtr = getHead();
+    node *curPtr = getHead( );
 
     // Print all data in the list
     while( curPtr != nullptr )
@@ -446,10 +455,10 @@ template<typename T> void LinkedList<T>::printList()
 // pos - Hold the desired position that data
 //       will be inserted
 //**************************************************
-template<typename T> T LinkedList<T>::returnData(int pos)
+template<typename T> T LinkedList<T>::returnData( int pos )
 {
     // Variable declarations
-    node *curPtr = getHead();
+    node *curPtr = getHead( );
     int index = 0;
 
     // Iterate to the position
@@ -462,17 +471,17 @@ template<typename T> T LinkedList<T>::returnData(int pos)
 
 
     // return item at position
-    return (curPtr->data);
+    return ( curPtr->data );
 }
 
 //**************************************************
 // Returns the size of the array as a integer value
 //
 //**************************************************
-template<typename T> int LinkedList<T>::returnSize()
+template<typename T> int LinkedList<T>::returnSize( )
 {
     // Variable declarations
-    node *curPtr = getHead();
+    node *curPtr = getHead( );
     int sizeOfList = 0;
 
     // Iterate till it finds the end
