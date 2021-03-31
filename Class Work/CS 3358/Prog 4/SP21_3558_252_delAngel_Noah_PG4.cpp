@@ -4,12 +4,7 @@
 
 using namespace std;
 
-template<typename T>
-struct node
-{
-    node<T>* next;
-    T data;
-};
+
 
 //**************************************************
 // This class implements a linked list using
@@ -38,7 +33,12 @@ template<typename T>
 class LinkedList
 {
     private:
-        node<T> *head;
+        struct node
+        {
+            node* next;
+            T data;
+        };
+        node *head;
 
     public:
         LinkedList( );
@@ -51,7 +51,7 @@ class LinkedList
         void removePos( int pos );
         void printList( );
 
-        node<T>* getHead( )
+        node* getHead( )
         { return head; }
 
         T returnData( int pos );
@@ -134,8 +134,12 @@ template<typename T> void populateArray( LinkedList<T> &inputList,
                                          int sizeOfList )
 {
 
+    // Create a list of the desired size
+    // with random values
     for( int i = 0; i < sizeOfList; i++ )
-        if( i == 0)
+        // If this is the first pass
+        // set the head
+        if( i == 0 )
             inputList.setData( generateRanNum<T>( ) );
         else
             inputList.appendData( generateRanNum<T>( ) );
@@ -162,18 +166,24 @@ template<typename T> void populateArray( LinkedList<T> &inputList,
         index_list1 = 0,
         index_list2 = 0;
 
+    // Iterate through list one and two
+    // to add both of their elements to the inputList
     for( int i = 0; i < sizeOfList; i++)
+        // Set the head on the first pass
         if( i == 0 )
         {
             inputList.setData( list_1.returnData( index_list1 ) );
             index_list1++;
         }
         else
+            // If i is even append the data from list 1
             if( i % 2 == 0 )
             {
                 inputList.appendData( list_1.returnData( index_list1 ) );
                 index_list1++;
             }
+
+            // If i is odd append that data from list 2
             else
             {
                 inputList.appendData( list_2.returnData( index_list2 ) );
@@ -272,7 +282,7 @@ template<typename T> void swapHeadTail( LinkedList<T> &inputList )
 //**************************************************
 template<typename T> LinkedList<T>::LinkedList()
 {
-    node<T> *tmp = new node<T>;
+    node *tmp = new node;
     tmp->data = NULL;
     tmp->next = NULL;
 
@@ -287,7 +297,7 @@ template<typename T> LinkedList<T>::LinkedList()
 //**************************************************
 template<typename T> LinkedList<T>::LinkedList(T data)
 {
-    node<T> *tmp = new node<T>;
+    node *tmp = new node;
     tmp->data = data;
     tmp->next = NULL;
 
@@ -313,8 +323,8 @@ template<typename T> void LinkedList<T>::setData(T data)
 template<typename T> void LinkedList<T>::appendData(T data)
 {
     // Variable declarations
-    node<T> *curPtr = getHead();
-    node<T> *newNode = new node<T>;
+    node *curPtr = getHead();
+    node *newNode = new node;
 
     //Initialize newNode
     newNode->next = nullptr;
@@ -342,9 +352,9 @@ template<typename T> void LinkedList<T>::appendData(T data)
 template<typename T> void LinkedList<T>::insertData( T data, int pos )
 {
     // Variable declarations
-    node<T> *curPtr = getHead();
-    node<T> *prevPtr = curPtr;
-    node<T> *newNode;
+    node *curPtr = getHead();
+    node *prevPtr = curPtr;
+    node *newNode;
     int index = 0;
 
     //Initialize newNode
@@ -376,8 +386,8 @@ template<typename T> void LinkedList<T>::insertData( T data, int pos )
 template<typename T> void LinkedList<T>::removePos( int pos )
 {
     // Variable declarations
-    node<T> *curPtr = getHead();
-    node<T> *prevPtr = curPtr;
+    node *curPtr = getHead();
+    node *prevPtr = curPtr;
     int index = 0;
 
     // Case to remove the head of the list
@@ -417,7 +427,7 @@ template<typename T> void LinkedList<T>::removePos( int pos )
 template<typename T> void LinkedList<T>::printList()
 {
     // Variable declarations
-    node<T> *curPtr = getHead();
+    node *curPtr = getHead();
 
     // Print all data in the list
     while( curPtr != nullptr )
@@ -439,7 +449,7 @@ template<typename T> void LinkedList<T>::printList()
 template<typename T> T LinkedList<T>::returnData(int pos)
 {
     // Variable declarations
-    node<T> *curPtr = getHead();
+    node *curPtr = getHead();
     int index = 0;
 
     // Iterate to the position
@@ -462,7 +472,7 @@ template<typename T> T LinkedList<T>::returnData(int pos)
 template<typename T> int LinkedList<T>::returnSize()
 {
     // Variable declarations
-    node<T> *curPtr = getHead();
+    node *curPtr = getHead();
     int sizeOfList = 0;
 
     // Iterate till it finds the end
