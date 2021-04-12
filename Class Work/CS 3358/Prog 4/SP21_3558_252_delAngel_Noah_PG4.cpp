@@ -30,7 +30,7 @@ using namespace std;
 //                           of the list
 //      insertData( data, pos ) - Inserts a new node with inputted data
 //                                at the specified position
-//      removePos( pos ) - Removes a node at the inputted posistion
+//      removePos( pos ) - Removes a node at the inputted position
 //      printList( ) - Prints the entire list
 //      getHead( ) - Returns a pointer to the head node
 //      returnData( pos ) - Returns data of node at inputted position
