@@ -171,7 +171,7 @@ int main ( )
 
         // Log start time of function
         start = clock( );
-        quickSortMid( tempArr, 0, sizeArr - 2, placeholder );
+        quickSortMid( tempArr, 0, sizeArr - 1, placeholder );
         // Log end time
         finish = clock( );
 
@@ -199,7 +199,7 @@ int main ( )
 
         // Log start time of function
         start = clock( );
-        quickSortStart( tempArr, 0, sizeArr - 2, placeholder );
+        quickSortStart( tempArr, 0, sizeArr - 1, placeholder );
         // Log end time
         finish = clock( );
 
