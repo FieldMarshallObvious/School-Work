@@ -84,13 +84,13 @@ int main ( )
         cout << "Search for  Char " << ( int ) itemToFind << endl << endl;
 
         // Log start time of function
-        start = clock();
+        start = clock( );
         sequentialSearch( originalArr, sizeArr, itemToFind, placeholder );
         // Log end time
         finish = clock( );
 
         // Calculate the clock time
-        duration = double(finish - start);
+        duration = double( finish - start );
 
         // Output block for sequential search
         cout << "Start Time  : " << double( start ) << endl;
@@ -112,7 +112,7 @@ int main ( )
         copyArr( originalArr, tempArr, sizeArr );
 
         // Log start time of function
-        start = clock();
+        start = clock( );
         selectionSort( tempArr, sizeArr, placeholder );
         // Log end time
         finish = clock( );
@@ -147,7 +147,7 @@ int main ( )
         finish = clock( );
 
         // Calculate the clock time
-        duration = double(finish - start);
+        duration = double( finish - start );
 
         // Output block for insertion sort
         cout << "Start Time  : " << double( start ) << endl;
@@ -176,7 +176,7 @@ int main ( )
         finish = clock( );
 
         // Calculate the clock time
-        duration = double(finish - start);
+        duration = double( finish - start );
 
         // Quick sort output block
         cout << "Start Time : " << start << endl;
@@ -184,7 +184,7 @@ int main ( )
         cout << "Actual CPU Clock Time : " << duration << endl;
         cout << "Number of Recursive calls : " << placeholder << endl;
         cout << "Sorted Elements: ";
-        displayArray(tempArr, sizeArr);
+        displayArray( tempArr, sizeArr );
 
         // reset placeholder
         placeholder = 0;
@@ -212,7 +212,7 @@ int main ( )
         cout << "Actual CPU Clock Time : " << duration << endl;
         cout << "Number of Recursive calls : " << placeholder << endl;
         cout << "Sorted Elements: ";
-        displayArray(tempArr, sizeArr);
+        displayArray( tempArr, sizeArr );
 
         // reset placeholder
         placeholder = 0;
@@ -229,7 +229,7 @@ int main ( )
         finish = clock( );
 
         // Calculate the clock time
-        duration = double(finish - start);
+        duration = double( finish - start );
 
         // Quick sort output block
         cout << "Start Time : " << start << endl;
@@ -237,7 +237,7 @@ int main ( )
         cout << "Actual CPU Clock Time : " << duration << endl;
         cout << "Number of Recursive calls : " << placeholder << endl;
         cout << "Sorted Elements: ";
-        displayArray(tempArr, sizeArr);
+        displayArray( tempArr, sizeArr );
 
         // reset placeholder
         placeholder = 0;
@@ -257,7 +257,7 @@ int main ( )
         finish = clock( );
 
         // Calculate the clock time
-        duration = double(finish - start);
+        duration = double( finish - start );
 
         // Output block for insertion sort
         cout << "Start Time  : " << double( start ) << endl;
