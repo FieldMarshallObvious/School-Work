@@ -19,7 +19,6 @@ void sequentialSearch( char inputArr[], int inputSize, char item,
                        int &numOfOccurrences );
 void selectionSort( char inputArr[], int inputSize, int &numOfSwaps );
 void insertionSort( char inputArr[], int inputSize, int &totalComps );
-void runQuickSort( char inputArr[], int inputSize, int givenCase  );
 void quickSortMid( char inputArr[], int left, int right, int &numCalls );
 void quickSortStart( char inputArr[], int left, int right, int &numCalls );
 void quickSortSecondLast( char inputArr[], int left, int right, int &numCalls );
@@ -427,67 +426,6 @@ void insertionSort( char inputArr[], int inputSize, int &totalComps )
         }
         inputArr[j + 1] = minItem;
     }
-
-}
-
-//**************************************************
-// Runs the quick sort program, as well as
-// prints the execution time of the algorithm,
-// and the number of recursive calls
-//
-// inputArr - Holds the array to be populated with
-//            random characters
-// inputSize - Holds the desired size of the array
-// givenCase - Determines which quickSort function
-//             to use
-//**************************************************
-void runQuickSort( char inputArr[], int inputSize, int givenCase )
-{
-    // Variable declarations
-    char tempArr[inputSize];    // Holds temp array
-    double duration;            // Holds the clock time
-                                // of the algorithm
-    time_t start,               // Holds the start time
-                                // of the algorithm
-           finish;              // Holds the finish time
-                                // of the algorithm
-    int numOfRecursiveCalls = 0;// Holds the number of recursive
-                                // calls
-
-    // Set temp array to original array
-    copyArr( inputArr, tempArr, inputSize );
-
-    // Log start time
-    start = clock( );
-
-    // Determine which quickSort function to run
-    switch (givenCase)
-    {
-        case 0:
-            quickSortMid( tempArr, 0, inputSize - 1, numOfRecursiveCalls );
-            break;
-        case 1:
-            quickSortStart( tempArr, 0, inputSize - 1, numOfRecursiveCalls );
-            break;
-        case 3:
-            // In case 3 sort the original array
-            quickSortSecondLast( tempArr, 0, inputSize - 1,
-                                 numOfRecursiveCalls );
-    }
-
-    // Log finish time
-    finish = clock( );
-
-    // Calculate duration
-    duration = double( finish - start );
-
-    // Quick Sort output block
-    cout << "Start Time : " << start << endl;
-    cout << "End Time   : " << finish << endl;
-    cout << "Actual CPU Clock Time : " << duration << endl;
-    cout << "Number of Recursive calls : " << numOfRecursiveCalls << endl;
-    cout << "Sorted Elements: ";
-    displayArray(tempArr, inputSize);
 
 }
 
