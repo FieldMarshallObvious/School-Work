@@ -246,7 +246,7 @@ int main ( )
         // Perform a sequential search for char 80
         // on the sorted array
         cout << endl << endl;
-        cout << "Sequential Search for Char " << ( int ) itemToFind << endl
+        cout << "Sequential Search for Char " << ( int ) itemToFind
              << " After Sort" << endl;
 
         // Log start time of function
