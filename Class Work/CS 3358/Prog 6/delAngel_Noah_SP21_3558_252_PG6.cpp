@@ -15,9 +15,10 @@ using namespace std;
 
 void generateArray( char inputArr[], int inputSize );
 void displayArray( char inputArr[], int inputSize );
-void sequentialSearch( char inputArr[], int inputSize, char item );
-void selectionSort( char inputArr[], int inputSize );
-void insertionSort( char inputArr[], int inputSize );
+void sequentialSearch( char inputArr[], int inputSize, char item,
+                       int &numOfOccurrences );
+void selectionSort( char inputArr[], int inputSize, int &numOfSwaps );
+void insertionSort( char inputArr[], int inputSize, int &totalComps );
 void runQuickSort( char inputArr[], int inputSize, int givenCase  );
 void quickSortMid( char inputArr[], int left, int right, int &numCalls );
 void quickSortStart( char inputArr[], int left, int right, int &numCalls );
@@ -29,9 +30,13 @@ int main ( )
 {
     // Variable declarations
     int sizeArr = 0,      // Holds the size of the array
-        placeholder = 0;  // Placeholder var to satisfy
-                          // parameter requirement
+        placeholder = 0;  // Var that holds various values
+                          // that the functions keep track of
     char itemToFind = 80; // Holds the char to find
+    double duration;            // Holds the duration of the time it
+                                // took to execute the algorithm
+    time_t start,               // Holds the start time of the algorithm
+           finish;              // Holds the finish time of the algorithm
 
     // Header statement
     cout << "Searching / Sorting Benchmark " << endl << endl;
@@ -59,9 +64,14 @@ int main ( )
         // Create array
         char originalArr[sizeArr]; // Holds the original array of random
                                    // chars
+
+        // Create temp array
+        char tempArr[sizeArr];    // Holds the temporary array to
+                                    // be sorted
         // Create seed
         srand( time( NULL ) );
 
+        // populates array with random characters
         generateArray( originalArr, sizeArr );
 
         // Display Starting Array
@@ -73,33 +83,166 @@ int main ( )
         cout << endl << endl;
         cout <<  "Sequential Search" << endl << endl;
         cout << "Search for  Char " << ( int ) itemToFind << endl << endl;
-        sequentialSearch( originalArr, sizeArr, itemToFind );
+
+        // Log start time of function
+        start = clock();
+        sequentialSearch( originalArr, sizeArr, itemToFind, placeholder );
+        // Log end time
+        finish = clock( );
+
+        // Calculate the clock time
+        duration = double(finish - start);
+
+        // Output block for sequential search
+        cout << "Start Time  : " << double( start ) << endl;
+        cout << "End Time    : " << double( finish ) << endl;
+        cout << "Actual CPU Clock time : " << duration << endl;
+        cout << "Total Number of char 80 : " << placeholder << endl;
+        cout << "Array Elements : ";
+        displayArray( originalArr, sizeArr );
+        cout << endl;
+
+        // reset placeholder
+        placeholder = 0;
 
         // Test with selection sort
-
         cout << endl << endl;
         cout << "Selection Sort : " << endl << endl;
-        selectionSort( originalArr, sizeArr );
+
+        // Fill the copy array
+        copyArr( originalArr, tempArr, sizeArr );
+
+        // Log start time of function
+        start = clock();
+        selectionSort( tempArr, sizeArr, placeholder );
+        // Log end time
+        finish = clock( );
+
+        // Calculate the clock time
+        duration = double( finish - start );
+
+        // Output block for selection sort
+        cout << "Start Time  : " << double( start ) << endl;
+        cout << "End Time    : " << double( finish ) << endl;
+        cout << "Actual CPU Clock time : " << duration << endl;
+        cout << "Total Number of Swaps : " << placeholder << endl;
+        cout << "Sorted Elements : ";
+        displayArray( tempArr, sizeArr );
+        cout << endl;
+
+        // reset placeholder
+        placeholder = 0;
+
 
         // Test with insertion sort
         cout << endl << endl;
         cout << "Insertion Sort : " << endl << endl;
-        insertionSort( originalArr, sizeArr );
+
+        // Reset the copy array to the original function
+        copyArr( originalArr, tempArr, sizeArr );
+
+        // Log start time of function
+        start = clock( );
+        insertionSort( tempArr, sizeArr, placeholder );
+        // Log end time
+        finish = clock( );
+
+        // Calculate the clock time
+        duration = double(finish - start);
+
+        // Output block for insertion sort
+        cout << "Start Time  : " << double( start ) << endl;
+        cout << "End Time    : " << double( finish ) << endl;
+        cout << "Actual CPU Clock time : " << duration << endl;
+        cout << "Total Number of Comparisons : " << placeholder << endl;
+        cout << "Sorted Elements: ";
+        displayArray( tempArr, sizeArr );
+        cout << endl;
+
+        // reset placeholder
+        placeholder = 0;
+
 
         // Test with quick sort with various pivot points
         cout << endl << endl;
         cout << "Quick Sort - The middle element as pivot: " << endl << endl;
-        runQuickSort( originalArr, sizeArr, 0 );
+
+        // Reset the copy array to the original function
+        copyArr( originalArr, tempArr, sizeArr );
+
+        // Log start time of function
+        start = clock( );
+        quickSortMid( tempArr, 0, sizeArr - 2, placeholder );
+        // Log end time
+        finish = clock( );
+
+        // Calculate the clock time
+        duration = double(finish - start);
+
+        // Quick sort output block
+        cout << "Start Time : " << start << endl;
+        cout << "End Time   : " << finish << endl;
+        cout << "Actual CPU Clock Time : " << duration << endl;
+        cout << "Number of Recursive calls : " << placeholder << endl;
+        cout << "Sorted Elements: ";
+        displayArray(tempArr, sizeArr);
+
+        // reset placeholder
+        placeholder = 0;
+
 
         cout << endl << endl;
         cout << "Quick Sort - The next to last element as a pivot: " << endl
              << endl;
-        runQuickSort( originalArr, sizeArr, 1 );
+
+        // Reset the copy array to the original function
+        copyArr( originalArr, tempArr, sizeArr );
+
+        // Log start time of function
+        start = clock( );
+        quickSortStart( tempArr, 0, sizeArr - 2, placeholder );
+        // Log end time
+        finish = clock( );
+
+        // Calculate the clock time
+        duration = double(finish - start);
+
+        // Quick sort output block
+        cout << "Start Time : " << start << endl;
+        cout << "End Time   : " << finish << endl;
+        cout << "Actual CPU Clock Time : " << duration << endl;
+        cout << "Number of Recursive calls : " << placeholder << endl;
+        cout << "Sorted Elements: ";
+        displayArray(tempArr, sizeArr);
+
+        // reset placeholder
+        placeholder = 0;
+
 
         cout << endl << endl;
         cout << "Quick Sort - First element as a pivot:  " << endl
              << endl;
-        runQuickSort( originalArr, sizeArr, 3);
+
+        // Log start time of function
+        start = clock( );
+        quickSortSecondLast( tempArr, 0, sizeArr - 1, placeholder );
+        // Log end time
+        finish = clock( );
+
+        // Calculate the clock time
+        duration = double(finish - start);
+
+        // Quick sort output block
+        cout << "Start Time : " << start << endl;
+        cout << "End Time   : " << finish << endl;
+        cout << "Actual CPU Clock Time : " << duration << endl;
+        cout << "Number of Recursive calls : " << placeholder << endl;
+        cout << "Sorted Elements: ";
+        displayArray(tempArr, sizeArr);
+
+        // reset placeholder
+        placeholder = 0;
+
 
         // Perform a sequential search for char 80
         // on the sorted array
@@ -107,11 +250,24 @@ int main ( )
         cout << "Sequential Search for Char " << ( int ) itemToFind << endl
              << " After Sort" << endl;
 
-        // Sort the original array
-        quickSortMid( originalArr, 0, sizeArr - 1, placeholder );
-
+        // Log start time of function
+        start = clock( );
         // Search through the array
-        sequentialSearch( originalArr, sizeArr, itemToFind );
+        sequentialSearch( originalArr, sizeArr, itemToFind, placeholder );
+        // Log end time
+        finish = clock( );
+
+        // Calculate the clock time
+        duration = double(finish - start);
+
+        // Output block for insertion sort
+        cout << "Start Time  : " << double( start ) << endl;
+        cout << "End Time    : " << double( finish ) << endl;
+        cout << "Actual CPU Clock time : " << duration << endl;
+        cout << "Total Number of Comparisons : " << placeholder << endl;
+        cout << "Sorted Elements: ";
+        displayArray( tempArr, sizeArr );
+        cout << endl;
 
         // Footer statement
         cout << endl;
@@ -164,21 +320,16 @@ void displayArray( char inputArr[], int inputSize )
 // inputArr - Holds the array to be populated with
 //            random characters
 // inputSize - Holds the desired size of the array
+// item - Holds the item to find
+// numOfOccurrences - Holds the number of occurrences
+//                     item to find
 //**************************************************
-void sequentialSearch( char inputArr[], int inputSize, char item )
+void sequentialSearch( char inputArr[], int inputSize, char item,
+                       int &numOfOccurrences )
 {
     // Variable declarations
-    int numOfOccurrences = 0;   // Tracks the number of occurrences
-                                // of the inputted char
     bool foundItem = false;     // Keeps track of the whether
                                 // the item was found our not
-    double duration;            // Holds the duration of the time it
-                                // took to execute the algorithm
-    time_t start,               // Holds the start time of the algorithim
-           finish;              // Holds the finish time of the algorithim
-
-    // Log the start time of the function
-    start = clock();
 
     for( int i = 0; i < inputSize; i++ )
     {
@@ -189,100 +340,57 @@ void sequentialSearch( char inputArr[], int inputSize, char item )
         }
     }
 
-    // Log end time
-    finish = clock( );
-
-    // Calculate the clock time
-    duration = double(finish - start);
-
     cout << "Char " << (int)item << " Was";
 
     if( foundItem == true )
         cout << " Not found." << endl;
     else
         cout << " found." << endl;
-
-    cout << "Start Time  : " << double( start ) << endl;
-    cout << "End Time    : " << double( finish ) << endl;
-    cout << "Actual CPU Clock time : " << duration << endl;
-    cout << "Total Number of char 80 : " << numOfOccurrences << endl;
-    cout << "Array Elements : ";
-    displayArray( inputArr, inputSize );
-    cout << endl;
-
 }
 
 //**************************************************
 // Performs a sequential search through the given
 //  array, to find the inputted item. Also
 //  determines the time it took to execute the
-//  function, number of swaps occured,
+//  function, number of swaps occurred,
 //  and displays the array.
 //
 // inputArr - Holds the array to be populated with
 //            random characters
 // inputSize - Holds the desired size of the array
+// numOfSwaps - Tracks the number of swaps made
 //**************************************************
-void selectionSort( char inputArr[], int inputSize )
+void selectionSort( char inputArr[], int inputSize, int &numOfSwaps )
 {
     // Variable declarations
-    char tempArr[inputSize];    // Holds the temporary array to
-                                // be sorted
     int minIndex,               // Holds the min index found
-        minItem,                // Holds the min item found
-        numOfSwaps = 0;         // Tracks the number of swaps
-                                // made
+        minItem;                // Holds the min item found
     char tempValue;             // Holds the temporary value
                                 // to be switched
-    double duration;            // Holds the duration of the time it
-                                // took to execute the algorithm
-    time_t start,               // Holds the start time of the algorithim
-           finish;              // Holds the finish time of the algorithim
-
-    // Create tempArr values
-    copyArr( inputArr, tempArr, inputSize );
-
-    // Log the start time of the function
-    start = clock( );
 
     // Sort array
     for( int i = 0; i < inputSize - 1; i++ )
     {
         minIndex = i;
-        minItem = tempArr[i];
+        minItem = inputArr[i];
         for( int j = i + 1; j < inputSize; j++ )
         {
-            if( tempArr[j] < tempArr[minIndex] )
+            if( inputArr[j] < inputArr[minIndex] )
             {
                 minIndex = j;
-                minItem = tempArr[j];
+                minItem = inputArr[j];
             }
         }
 
-        if( minItem != tempArr[i])
+        if( minItem != inputArr[i])
         {
             numOfSwaps++;
             // Swap items with the
-            tempValue = tempArr[i];
-            tempArr[i] = minItem;
-            tempArr[minIndex] = tempValue;
+            tempValue = inputArr[i];
+            inputArr[i] = minItem;
+            inputArr[minIndex] = tempValue;
         }
     }
-
-    // Log end time
-    finish = clock( );
-
-    // Calculate the clock time
-    duration = double( finish - start );
-
-    cout << "Start Time  : " << double( start ) << endl;
-    cout << "End Time    : " << double( finish ) << endl;
-    cout << "Actual CPU Clock time : " << duration << endl;
-    cout << "Total Number of Swaps : " << numOfSwaps << endl;
-    cout << "Sorted Elements : ";
-    displayArray( tempArr, inputSize );
-    cout << endl;
-
 }
 
 //**************************************************
@@ -294,53 +402,31 @@ void selectionSort( char inputArr[], int inputSize )
 // inputArr - Holds the array to be populated with
 //            random characters
 // inputSize - Holds the desired size of the array
+// totalComps - Holds the number of comparisons that occured
 //**************************************************
-void insertionSort( char inputArr[], int inputSize )
+void insertionSort( char inputArr[], int inputSize, int &totalComps )
 {
     // Variable declarations
-    char tempArr[inputSize];    // Holds temp array
     char minItem;               // Holds the min item found
-    int j,                      // Holds the index for the internal
+    int j;                      // Holds the index for the internal
                                 // while loop
-        totalComps = 0;         // Holds the total number comparisons
-    double duration;            // Holds the duration of the time it
-                                // took to execute the algorithm
-    time_t start,               // Holds the start time of the algorithim
-           finish;              // Holds the finish time of the algorithim
 
-    // Set temp array to original array
-    copyArr( inputArr, tempArr, inputSize );
-
-    // Log the start time of the function
-    start = clock( );
+    // Reset total Comps to zero
+    totalComps = 0;
 
     for( int i = 0; i < inputSize; i++ )
     {
-        minItem = tempArr[i];
+        minItem = inputArr[i];
         j = i - 1;
 
-        while( j >= 0 && tempArr[j] > minItem )
+        while( j >= 0 && inputArr[j] > minItem )
         {
-            tempArr[j + 1] = tempArr[j];
+            inputArr[j + 1] = inputArr[j];
             j--;
             totalComps++;
         }
-        tempArr[j + 1] = minItem;
+        inputArr[j + 1] = minItem;
     }
-
-    // Log end time
-    finish = clock( );
-
-    // Calculate the clock time
-    duration = double(finish - start);
-
-    cout << "Start Time  : " << double( start ) << endl;
-    cout << "End Time    : " << double( finish ) << endl;
-    cout << "Actual CPU Clock time : " << duration << endl;
-    cout << "Total Number of Comparisons : " << totalComps << endl;
-    cout << "Sorted Elements: ";
-    displayArray( tempArr, inputSize );
-    cout << endl;
 
 }
 
