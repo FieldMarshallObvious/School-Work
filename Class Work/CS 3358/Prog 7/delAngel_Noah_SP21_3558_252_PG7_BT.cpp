@@ -177,9 +177,10 @@ void BinarySearchTree::displayLeafValues( int loc )
         cout << array[loc] << endl;
 
 
+    // Move to the right
     displayLeafValues( ( loc * 2) + 1 );
 
-
+    // Move to the left
     displayLeafValues( ( loc * 2) + 2 );
 
 }
@@ -190,19 +191,9 @@ void BinarySearchTree::deleteE1ement( int value )
     int curNode = 0,
         temp,
         minRight;
+
+    // Call function to the delete the desired element
     deleteElement( value, curNode );
-    /*if( value < array[curNode] )
-        array[( curNode * 2 ) + 1] = deleteElement( value, ( curNode * 2 ) + 1 );
-
-    else if ( value > array[curNode] )
-        array[( curNode * 2 ) + 2] = deleteElement( value, ( curNode * 2 ) + 2 );
-
-    else
-    {
-        cout << "entering thing" << endl;
-        array[( curNode * 2 ) + 2] = deleteElement( value, ( curNode * 2 ) + 2);
-
-    }*/
 }
 
 void BinarySearchTree::displayTree( int loc )
@@ -217,9 +208,10 @@ void BinarySearchTree::displayTree( int loc )
         cout << array[loc] << " at index: " << loc << endl;
 
 
+    // Move to the left node
     displayTree( ( loc * 2) + 1 );
 
-
+    // Move to the right node
     displayTree( ( loc * 2) + 2 );
 }
 
@@ -229,16 +221,24 @@ int BinarySearchTree::deleteElement( int value, int loc )
     int temp = 0,
         minRight;
 
-    if( array[loc] != NULL)
+    // If the current item
+    if( array[loc] != NULL )
     {
+        // If the value is less than the current node
+        // move to the left
         if( value < array[loc] )
             array[( loc * 2 ) + 1] = deleteElement( value, ( loc * 2 ) + 1 );
 
+        // If the value is greater than the node
+        // move to the right
         else if ( value > array[loc] )
             array[( loc * 2 ) + 2] = deleteElement( value, ( loc * 2 ) + 2 );
 
         else
         {
+            // If the left child is empty
+            // delete the current node
+            // and return the right node
             if ( array[( loc * 2 ) + 1] == NULL )
             {
                 temp = ( loc * 2 ) + 2;
@@ -247,25 +247,37 @@ int BinarySearchTree::deleteElement( int value, int loc )
                 cout << value << " is deleted" << endl;
                 return array[temp];
             }
+
+            // If the richt child is empty
+            // delete the current node
+            // and return the left node
             else if ( array[( loc * 2 ) + 2] == NULL )
             {
                 temp = ( loc * 2 ) + 1;
                 array[loc] = NULL;
 
+                cout << value << " is deleted" << endl;
                 return array[temp];
             }
 
+            // If a node has two children
+            // get the smallest child
             temp = minElement( array[( loc * 2 ) + 2] );
 
+            // Copy the next inorder item
+            // to this node
             array[loc] = array[temp];
 
+            // Delete the next in order item
             array[( loc * 2 ) + 2] = deleteElement( array[temp], ( loc * 2 ) + 2);
         }
     }
+
+    // If the value to be deleted is not
+    // found then output that
     else
-    {
         cout << value << " is not found" << endl;
-    }
+
     return array[loc];
 }
 
@@ -382,7 +394,7 @@ int main( )
 
     // Display final tree
     cout << "\n\nDisplaying final BST:\n\n";
-    tree.displayTree( 0 );
+    tree.displayTree(0);
 
     cout << "\n\n\nNoah del Angel - April 30 , 2021\n\n";
 }
