@@ -190,11 +190,8 @@ void BinarySearchTree::deleteE1ement( int value )
     int curNode = 0,
         temp,
         minRight;
-
-    cout << "Deleting first call" << endl;
-    cout << "Value: " << value << endl;
-
-    if( value < array[curNode] )
+    deleteElement( value, curNode );
+    /*if( value < array[curNode] )
         array[( curNode * 2 ) + 1] = deleteElement( value, ( curNode * 2 ) + 1 );
 
     else if ( value > array[curNode] )
@@ -202,15 +199,10 @@ void BinarySearchTree::deleteE1ement( int value )
 
     else
     {
-        if ( array[( curNode * 2 ) + 1] == NULL )
-        {
-            cout << "in else if" << endl;
-            temp = array[( curNode * 2 ) + 1];
-            array[curNode] = NULL;
-        }
-
+        cout << "entering thing" << endl;
         array[( curNode * 2 ) + 2] = deleteElement( value, ( curNode * 2 ) + 2);
-    }
+
+    }*/
 }
 
 void BinarySearchTree::displayTree( int loc )
@@ -237,10 +229,8 @@ int BinarySearchTree::deleteElement( int value, int loc )
     int temp = 0,
         minRight;
 
-    cout << "Delete element recursive" << endl;
-    cout << "Value: " << value << endl;
-    cout << "value at location: " << array[loc] << endl;
     if( array[loc] != NULL)
+    {
         if( value < array[loc] )
             array[( loc * 2 ) + 1] = deleteElement( value, ( loc * 2 ) + 1 );
 
@@ -249,34 +239,34 @@ int BinarySearchTree::deleteElement( int value, int loc )
 
         else
         {
-            if( array[( loc * 2 ) + 1] == NULL &&  array[( loc * 2 ) + 2] == NULL )
-                return NULL;
-            else if ( array[( loc * 2 ) + 1] == NULL )
+            if ( array[( loc * 2 ) + 1] == NULL )
             {
-                temp = array[( loc * 2 ) + 2];
+                temp = ( loc * 2 ) + 2;
                 array[loc] = NULL;
-                return temp;
+
+                cout << value << " is deleted" << endl;
+                return array[temp];
             }
             else if ( array[( loc * 2 ) + 2] == NULL )
             {
-                temp = array[( loc * 2 ) + 1];
+                temp = ( loc * 2 ) + 1;
                 array[loc] = NULL;
-                return temp;
+
+                return array[temp];
             }
 
             temp = minElement( array[( loc * 2 ) + 2] );
 
             array[loc] = array[temp];
 
-            cout << array[temp] << endl;
-
             array[( loc * 2 ) + 2] = deleteElement( array[temp], ( loc * 2 ) + 2);
         }
+    }
     else
     {
         cout << value << " is not found" << endl;
     }
-    return loc;
+    return array[loc];
 }
 
 int BinarySearchTree::minElement( int loc )
