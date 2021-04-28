@@ -13,21 +13,23 @@ public:
     void postOrder ( int loc );
     void displayLeafValues( );
     void displayLeafValues( int loc );
+    void treeLeafsCount( int loc, int &sum );
+    void deleteE1ement( int value );
+    void displayTree( int loc );
 
+
+    int minElement( int loc );
     int treeLeafsCount();
+    int deleteElement( int value, int loc );
     int extendSize(int x);
 
     BinarySearchTree(int size) {
-        cout << size << endl;
         int newSize = extendSize(size);
-
-        cout << newSize << endl;
 
         array = new int[newSize];
 
         for(int x = 0; x < size; x++) {
             array[x] = NULL;
-            cout << array[x] << endl;
         }
 
     }
@@ -62,7 +64,7 @@ void BinarySearchTree::insertE1ement(int x) {
 
 void BinarySearchTree::searchE1ement(int x)
 {
-    int currerntIndex = 0;
+    int currentIndex = 0;
     while(true) {
         if(array[currentIndex] == NULL) {
             cout << "Not Found" << endl;
@@ -74,7 +76,7 @@ void BinarySearchTree::searchE1ement(int x)
         } else if (array[currentIndex] < x) {
             currentIndex = (2 * currentIndex + 2);
         } else if (array[currentIndex] > x) {
-            currentIndex = (@ * currentIndex + 1);
+            currentIndex = (2 * currentIndex + 1);
         }
     }
 }
@@ -91,6 +93,8 @@ void BinarySearchTree::preOrder( )
 
     // Move to right node
     preOrder( ( curNode * 2 ) + 2 );
+
+    cout << endl;
 
 }
 
@@ -121,7 +125,7 @@ void BinarySearchTree::postOrder( )
     // Move to the right node
     postOrder( ( curNode * 2 ) + 2 );
 
-    cout << array[curNode] << endl;
+    cout << array[curNode] << endl << endl;
 }
 
 void BinarySearchTree::postOrder ( int loc )
@@ -138,12 +142,199 @@ void BinarySearchTree::postOrder ( int loc )
         cout << array[loc] << endl;
     }
 }
+void BinarySearchTree::displayLeafValues( )
+{
+    // Variable declarations
+    int curNode = 0;
+
+    // If the current location is null, return
+    if( array[curNode] == NULL )
+        return;
+
+    // If neither of the children exist,
+    // then print the node
+    if( array[( ( curNode * 2 ) + 1 )] == NULL &&
+        array[( ( curNode * 2 ) + 2 )] == NULL )
+        cout << array[curNode] << endl;
+
+    // Move to the left node
+    displayLeafValues( ( curNode * 2) + 1 );
+
+    // Move to the right node
+    displayLeafValues( ( curNode * 2) + 2 );
+}
+
+void BinarySearchTree::displayLeafValues( int loc )
+{
+    // If the current location is null, return
+    if( array[loc] == NULL )
+        return;
+
+    // If neither of the children exist,
+    // then print the node
+    if( array[( ( loc * 2 ) + 1 )] == NULL &&
+        array[( ( loc * 2 ) + 2 )] == NULL )
+        cout << array[loc] << endl;
+
+
+    displayLeafValues( ( loc * 2) + 1 );
+
+
+    displayLeafValues( ( loc * 2) + 2 );
+
+}
+
+void BinarySearchTree::deleteE1ement( int value )
+{
+    // Variable declarations
+    int curNode = 0,
+        temp,
+        minRight;
+
+    cout << "Deleting first call" << endl;
+    cout << "Value: " << value << endl;
+
+    if( value < array[curNode] )
+        array[( curNode * 2 ) + 1] = deleteElement( value, ( curNode * 2 ) + 1 );
+
+    else if ( value > array[curNode] )
+        array[( curNode * 2 ) + 2] = deleteElement( value, ( curNode * 2 ) + 2 );
+
+    else
+    {
+        if ( array[( curNode * 2 ) + 1] == NULL )
+        {
+            cout << "in else if" << endl;
+            temp = array[( curNode * 2 ) + 1];
+            array[curNode] = NULL;
+        }
+
+        array[( curNode * 2 ) + 2] = deleteElement( value, ( curNode * 2 ) + 2);
+    }
+}
+
+void BinarySearchTree::displayTree( int loc )
+{
+    // If the current location is null, return
+    if( array[loc] == NULL )
+        return;
+
+    // If neither of the children exist,
+    // then print the node
+    if( array[loc] != NULL )
+        cout << array[loc] << " at index: " << loc << endl;
+
+
+    displayTree( ( loc * 2) + 1 );
+
+
+    displayTree( ( loc * 2) + 2 );
+}
+
+int BinarySearchTree::deleteElement( int value, int loc )
+{
+    // Variable declarations
+    int temp = 0,
+        minRight;
+
+    cout << "Delete element recursive" << endl;
+    cout << "Value: " << value << endl;
+    cout << "value at location: " << array[loc] << endl;
+    if( array[loc] != NULL)
+        if( value < array[loc] )
+            array[( loc * 2 ) + 1] = deleteElement( value, ( loc * 2 ) + 1 );
+
+        else if ( value > array[loc] )
+            array[( loc * 2 ) + 2] = deleteElement( value, ( loc * 2 ) + 2 );
+
+        else
+        {
+            if( array[( loc * 2 ) + 1] == NULL &&  array[( loc * 2 ) + 2] == NULL )
+                return NULL;
+            else if ( array[( loc * 2 ) + 1] == NULL )
+            {
+                temp = array[( loc * 2 ) + 2];
+                array[loc] = NULL;
+                return temp;
+            }
+            else if ( array[( loc * 2 ) + 2] == NULL )
+            {
+                temp = array[( loc * 2 ) + 1];
+                array[loc] = NULL;
+                return temp;
+            }
+
+            temp = minElement( array[( loc * 2 ) + 2] );
+
+            array[loc] = array[temp];
+
+            cout << array[temp] << endl;
+
+            array[( loc * 2 ) + 2] = deleteElement( array[temp], ( loc * 2 ) + 2);
+        }
+    else
+    {
+        cout << value << " is not found" << endl;
+    }
+    return loc;
+}
+
+int BinarySearchTree::minElement( int loc )
+{
+    if( array[loc] == NULL )
+        return loc;
+    else
+        return minElement( ( loc * 2 ) + 1 );
+}
+
+int BinarySearchTree::treeLeafsCount()
+{
+    // Variable declarations
+    int sum = 0,
+        curNode = 0;
+
+        // If the current location is null, return
+    if( array[curNode] == NULL )
+        return sum;
+
+    // If neither of the children exist,
+    // then print the node
+    if( array[( ( curNode * 2 ) + 1 )] == NULL &&
+        array[( ( curNode * 2 ) + 2 )] == NULL )
+        sum++;
+
+    // Move to the left node
+    treeLeafsCount( ( curNode * 2) + 1, sum );
+
+    // Move to the right node
+    treeLeafsCount( ( curNode * 2) + 2, sum );
+
+    return sum;
+}
+
+void BinarySearchTree::treeLeafsCount( int loc, int &sum )
+{
+    // If the current location is null, return
+    if( array[loc] == NULL )
+        return;
+
+    // If neither of the children exist,
+    // then print the node
+    if( array[( ( loc * 2 ) + 1 )] == NULL &&
+        array[( ( loc * 2 ) + 2 )] == NULL )
+        sum++;
+
+
+    treeLeafsCount( ( loc * 2) + 1, sum );
+
+
+    treeLeafsCount( ( loc * 2) + 2, sum );
+}
 
 int BinarySearchTree::extendSize(int x) {
     int value = 0;
     for(int y = 0; y < x + 1; y++) {
         value = (2 * value) + 2;
-        cout << value << endl;
     }
     return value;
 }
@@ -174,9 +365,9 @@ int main( )
     // Post-Order Traversal .
     cout << "Post-Order Traversal of the BST : \n\n";
     tree.postOrder();
-/*
+
     // Counting Number of Leafs .
-    cout << "\n\nNumber of Leafs =   " <<
+    cout << "\n\nNumber of Leafs = " <<
     tree.treeLeafsCount() ;
 
     // Display leaf values of BST
@@ -201,8 +392,7 @@ int main( )
 
     // Display final tree
     cout << "\n\nDisplaying final BST:\n\n";
-
-*/
+    tree.displayTree( 0 );
 
     cout << "\n\n\nNoah del Angel - April 30 , 2021\n\n";
 }
