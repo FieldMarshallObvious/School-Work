@@ -409,7 +409,14 @@ int BinarySearchTree::treeLeafsCount()
 }
 
 //**************************************************
-// Recusrive function to determine 
+// Recusrive function to determine the count
+// of the tree leaves in the BST. By adding
+// to the reference var passed to the
+// function.
+//
+//  loc - Holds the current position in the tree
+//  sum - Holds the reference to the int that
+//        sums the total number of leaves
 //
 // returns the number of leaves in the BST
 //**************************************************
