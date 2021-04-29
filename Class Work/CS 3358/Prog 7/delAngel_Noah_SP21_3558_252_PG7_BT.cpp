@@ -1,12 +1,21 @@
+// Author: Noah del Angel
+// Due Date: 4/29/2021
+// Assignment Number: 7
+// Spring - 2021 - CS 3358 - 252
+// Instructor:  Husain Gholoom
+//
+// Manipulation of binary search
+// trees, using array implentation.
 #include <iostream>
 using namespace std;
 class BinarySearchTree {
 public:
-    int size;
-    int* array;
+    int size;   // Holds the size of the array
+    int* array; // Holds the pointer for the first index
+                // in the array
 
-    void insertE1ement(int x);
-    void searchE1ement(int x);
+    void insertElement(int x);
+    void searchElement(int x);
     void preOrder( );
     void preOrder( int loc );
     void postOrder( );
@@ -14,7 +23,7 @@ public:
     void displayLeafValues( );
     void displayLeafValues( int loc );
     void treeLeafsCount( int loc, int &sum );
-    void deleteE1ement( int value );
+    void insertElement( int value );
     void displayTree( int loc );
 
 
@@ -35,7 +44,13 @@ public:
     }
 };
 
-void BinarySearchTree::insertE1ement(int x) {
+//**************************************************
+// Inserts a node in the binary search with the
+// inputted data
+//
+// x - The data to be inserted
+//**************************************************
+void BinarySearchTree::insertElement(int x) {
     int currentIndex = 0;
     cout << "Adding: " << x;
     while(true) {
@@ -62,7 +77,12 @@ void BinarySearchTree::insertE1ement(int x) {
     }
 }
 
-void BinarySearchTree::searchE1ement(int x)
+//**************************************************
+// Searches the binary tree for inputted data
+//
+// x - Holds the data to be found
+//**************************************************
+void BinarySearchTree::searchElement(int x)
 {
     int currentIndex = 0;
     while(true) {
@@ -81,10 +101,16 @@ void BinarySearchTree::searchE1ement(int x)
     }
 }
 
+//**************************************************
+// Calls recursive function to display the array
+// in pre-order, and also prints the root node
+//
+//**************************************************
 void BinarySearchTree::preOrder( )
 {
     // Variable declarations
-    int curNode = 0;
+    int curNode = 0;    // Startiting posistion
+                        // in the array
 
     cout << array[curNode] << endl;
 
@@ -98,6 +124,12 @@ void BinarySearchTree::preOrder( )
 
 }
 
+//**************************************************
+// Recursive function to display the array in
+// pre order
+//
+// loc - Holds the current position in the tree
+//**************************************************
 void BinarySearchTree::preOrder( int loc )
 {
     // If still in the tree
@@ -114,10 +146,17 @@ void BinarySearchTree::preOrder( int loc )
 
 }
 
+//**************************************************
+// Calls recursive function to display the array
+// in post-order, and also prints the last node
+//
+//**************************************************
 void BinarySearchTree::postOrder( )
 {
     // Variable declarations
-    int curNode = 0;
+    int curNode = 0;    // Startiting posistion
+                        // in the array
+
 
     // Move to the left node
     postOrder( ( curNode * 2) + 1 );
@@ -128,6 +167,12 @@ void BinarySearchTree::postOrder( )
     cout << array[curNode] << endl << endl;
 }
 
+//**************************************************
+// Recursive function to display the array in
+// post order
+//
+// loc - Holds the current position in the tree
+//**************************************************
 void BinarySearchTree::postOrder ( int loc )
 {
     // If there is still nodes
@@ -144,10 +189,18 @@ void BinarySearchTree::postOrder ( int loc )
         cout << array[loc] << endl;
     }
 }
+
+//**************************************************
+// Calls recursive function to display the leaf
+// nodes of the BST. And, also runs checks on
+// root node to determine if there are children
+//
+//**************************************************
 void BinarySearchTree::displayLeafValues( )
 {
     // Variable declarations
-    int curNode = 0;
+    int curNode = 0;    // Startiting posistion
+                        // in the array
 
     // If the current location is null, return
     if( array[curNode] == NULL )
@@ -166,6 +219,12 @@ void BinarySearchTree::displayLeafValues( )
     displayLeafValues( ( curNode * 2) + 2 );
 }
 
+//**************************************************
+// Recursive function to display the leaf values
+// of the array
+//
+// loc - Holds the current position in the tree
+//**************************************************
 void BinarySearchTree::displayLeafValues( int loc )
 {
     // If the current location is null, return
@@ -187,17 +246,29 @@ void BinarySearchTree::displayLeafValues( int loc )
 
 }
 
-void BinarySearchTree::deleteE1ement( int value )
+//**************************************************
+// Calls recursive function to remove the
+// the element with the inputted value from the array
+//
+// value - Holds value to be removed
+//**************************************************
+void BinarySearchTree::deleteElement( int value )
 {
     // Variable declarations
-    int curNode = 0,
-        temp,
-        minRight;
-
+    int curNode = 0;    // Startiting posistion
+                        // in the array
+    
     // Call function to the delete the desired element
     deleteElement( value, curNode );
 }
 
+
+//**************************************************
+// Recursive function to display the BST in
+// in-order
+//
+// loc - Holds the current position in the tree
+//**************************************************
 void BinarySearchTree::displayTree( int loc )
 {
     // If the current location is null, return
@@ -217,6 +288,13 @@ void BinarySearchTree::displayTree( int loc )
     displayTree( ( loc * 2) + 2 );
 }
 
+//**************************************************
+// Recursive function to remove a desired element
+// from the BST, using the min right rule
+//
+// value - Holds value to be removed
+// loc - Holds the current position in the tree
+//**************************************************
 int BinarySearchTree::deleteElement( int value, int loc )
 {
     // Variable declarations
@@ -283,6 +361,13 @@ int BinarySearchTree::deleteElement( int value, int loc )
     return array[loc];
 }
 
+//**************************************************
+// Recursive function to find the minium element
+// from the given posistion
+//
+// loc - Holds the current position in the tree
+// returns the posistion of the minium element
+//**************************************************
 int BinarySearchTree::minElement( int loc )
 {
     if( array[loc] == NULL )
@@ -291,6 +376,13 @@ int BinarySearchTree::minElement( int loc )
         return minElement( ( loc * 2 ) + 1 );
 }
 
+//**************************************************
+// Calls the recursive function to count
+// the tree leaves, and also checks the root
+// to determine if it is a leaf
+//
+// returns the number of leaves in the BST
+//**************************************************
 int BinarySearchTree::treeLeafsCount()
 {
     // Variable declarations
@@ -316,6 +408,11 @@ int BinarySearchTree::treeLeafsCount()
     return sum;
 }
 
+//**************************************************
+// Recusrive function to determine 
+//
+// returns the number of leaves in the BST
+//**************************************************
 void BinarySearchTree::treeLeafsCount( int loc, int &sum )
 {
     // If the current location is null, return
@@ -353,12 +450,12 @@ int main( )
 
     cout << "Inserting Nodes.\n\n";
 
-    tree.insertE1ement(4);
-    tree.insertE1ement(6);
-    tree.insertE1ement(9);
-    tree.insertE1ement(3);
-    tree.insertE1ement(2);
-    tree.insertE1ement(8);
+    tree.insertElement(4);
+    tree.insertElement(6);
+    tree.insertElement(9);
+    tree.insertElement(3);
+    tree.insertElement(2);
+    tree.insertElement(8);
 
     cout << "Building BST is completed.\n\n";
 
@@ -380,11 +477,11 @@ int main( )
 
     // Searching for an element
     cout << "\n\nSearching for 9  in the BST:\n\n";
-    tree.searchE1ement(9);
+    tree.searchElement(9);
 
     // Searching for an element in BST
     cout << "\n\nSearching for 5  in the BST:\n\n";
-    tree.searchE1ement(5);
+    tree.searchElement(5);
 
     // Deleting an element
     cout << "\n\nDeleting 7 from the BST:\n\n";
