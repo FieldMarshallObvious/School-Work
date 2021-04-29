@@ -130,6 +130,8 @@ void BinarySearchTree::postOrder( )
 
 void BinarySearchTree::postOrder ( int loc )
 {
+    // If there is still nodes
+    // order the array
     if( array[loc] != NULL )
     {
         // Move to the left node
@@ -202,14 +204,14 @@ void BinarySearchTree::displayTree( int loc )
     if( array[loc] == NULL )
         return;
 
+    // Move to the left node
+    displayTree( ( loc * 2) + 1 );
+
     // If neither of the children exist,
     // then print the node
     if( array[loc] != NULL )
         cout << array[loc] << " at index: " << loc << endl;
 
-
-    // Move to the left node
-    displayTree( ( loc * 2) + 1 );
 
     // Move to the right node
     displayTree( ( loc * 2) + 2 );
@@ -326,10 +328,10 @@ void BinarySearchTree::treeLeafsCount( int loc, int &sum )
         array[( ( loc * 2 ) + 2 )] == NULL )
         sum++;
 
-
+    // Move to the right
     treeLeafsCount( ( loc * 2) + 1, sum );
 
-
+    //  Move to the left
     treeLeafsCount( ( loc * 2) + 2, sum );
 }
 
