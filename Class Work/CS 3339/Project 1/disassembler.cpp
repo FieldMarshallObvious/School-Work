@@ -1,5 +1,5 @@
 /******************************
- * Submitted by: enter your first and last name and net ID
+ * Submitted by: Noah del Angel nad73
  * CS 3339 - Spring 2021, Texas State University
  * Project 1 Disassembler
  * Copyright 2021, Lee B. Hinkle, all rights reserved
@@ -36,6 +36,7 @@ void disassembleInstr(uint32_t pc, uint32_t instr) {
   int16_t simm;         // signed version of immediate (I-type)
   uint32_t addr;        // jump address offset field (J-type)
 
+  //Obtain specified bit fields from the given instruction
   opcode = instr >> 26;
   rs =  ( instr >> 21 ) & 0x1f;
   rt = ( instr >> 16 ) & 0x1f;
@@ -45,10 +46,6 @@ void disassembleInstr(uint32_t pc, uint32_t instr) {
   uimm = instr & 0x3ffff;
   simm = instr & 0x3ffff;
   addr = instr & 0x3ffffff;
-  
-  //cout << instr << endl;
-  //cout << "Signed immediate non int before conversion " << simm << endl;
-  //cout << "unSigned immediate non int before conversion " << uimm << endl;
 
   // Determine if simm is negative
   if( (simm >> 15) == 1)
@@ -58,20 +55,11 @@ void disassembleInstr(uint32_t pc, uint32_t instr) {
     simm = tempSimm;
   }
 
-  //cout << "Opcode: " << opcode << endl;
-  /*cout << "Rs: " << rs << endl;
-  cout << "Rt: " << rt << endl;
-  cout << "Rd: " << rd << endl;
-  cout << "Shamt: " << shamt << endl;
-  cout << "Funct: " << funct << endl;*/
-  //cout << "Address: " << addr * 4 << endl;
-  /*cout << "Pc = & " << ((pc + 4)) + ((addr * 4) & 0x0000000f) << endl;*/
-  //cout << "Signed immediate non int " << simm << endl;
-  //cout << "Signed immediate " << (int)simm << endl;
-  
+  // Based on the opcode, determine the function and cout  
   cout << hex << setw(8) << pc << ": ";
   switch(opcode) {
     case 0x00:
+      // If the opcode is 0, determine the function based on the funct field and cout
       switch(funct) {
         case 0x00: cout << "sll " << regNames[rd] << ", " << regNames[rs] << ", " << dec << shamt; break;
         case 0x03: cout << "sra " << regNames[rd] << ", " << regNames[rs] << ", "<< shamt; break;
@@ -88,15 +76,15 @@ void disassembleInstr(uint32_t pc, uint32_t instr) {
       }
       break;
     case 0x02: cout << "j " << hex << ((pc + 4) & 0xf0000000) + addr * 4; break;
-    case 0x03: cout << "jal " <<  hex << ((pc + 4) & 0xf0000000) + addr * 4; break; // revisit
-    case 0x04: cout << "beq " << regNames[rs] << ", " <<  regNames[rt] << ", " << hex << (pc + 4 + (simm * 4)); break; break;
-    case 0x05: cout << "bne " <<  regNames[rs] << ", " << regNames[rt] << ", " << hex << (pc + 4 + (simm * 4)); break; // revisit
+    case 0x03: cout << "jal " <<  hex << ((pc + 4) & 0xf0000000) + addr * 4; break; 
+    case 0x04: cout << "beq " << regNames[rs] << ", " <<  regNames[rt] << ", " << hex << (pc + 4 + (simm * 4)); break; 
+    case 0x05: cout << "bne " <<  regNames[rs] << ", " << regNames[rt] << ", " << hex << (pc + 4 + (simm * 4)); break; 
     case 0x09: cout << "addiu " << regNames[rt] << ", " << regNames[rs] << ", " << dec << simm; break; 
     case 0x0C: cout << "andi " << regNames[rt] << ", " << regNames[rs] << ", " << dec << simm; break;
-    case 0x0F: cout << "lui " << regNames[rt] << ", " << dec << simm; break; // revisit
+    case 0x0F: cout << "lui " << regNames[rt] << ", " << dec << simm; break;
     case 0x1a: cout << "trap " << hex << addr; break;
-    case 0x23: cout << "lw " << regNames[rt] << ", "<< dec << simm << "(" << regNames[rs] << ")"; break; // revisit
-    case 0x2B: cout << "sw " << regNames[rt] << ", " << dec << simm << "(" << regNames[rs] << ")"; break;  break; // revisit
+    case 0x23: cout << "lw " << regNames[rt] << ", "<< dec << simm << "(" << regNames[rs] << ")"; break; 
+    case 0x2B: cout << "sw " << regNames[rt] << ", " << dec << simm << "(" << regNames[rs] << ")"; break;
     default: cout << "unimplemented";
   }
   cout << endl;
