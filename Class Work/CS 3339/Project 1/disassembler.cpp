@@ -33,7 +33,7 @@ void disassembleInstr(uint32_t pc, uint32_t instr) {
   uint32_t shamt;       // shift amount (R-type)
   uint32_t funct;       // funct field (R-type)
   uint32_t uimm;        // unsigned version of immediate (I-type)
-  int32_t simm;         // signed version of immediate (I-type)
+  int16_t simm;         // signed version of immediate (I-type)
   uint32_t addr;        // jump address offset field (J-type)
 
   opcode = instr >> 26;
@@ -44,21 +44,18 @@ void disassembleInstr(uint32_t pc, uint32_t instr) {
   funct = instr & 0x3f;
   uimm = instr & 0x3ffff;
   simm = instr & 0x3ffff;
-  addr = instr & 0x0ffff;
+  addr = instr & 0x3ffffff;
   
- // cout << instr << endl;
+  //cout << instr << endl;
   //cout << "Signed immediate non int before conversion " << simm << endl;
   //cout << "unSigned immediate non int before conversion " << uimm << endl;
 
   // Determine if simm is negative
   if( (simm >> 15) == 1)
   {
-    // Convert the 2's compliment back to a normal binary number
     uint32_t tempSimm = ~simm;
-   // cout << "tempSimm " << tempSimm << endl;
     tempSimm += 1;
     simm = tempSimm;
-    //cout << "simm " << simm << endl;
   }
 
   //cout << "Opcode: " << opcode << endl;
@@ -66,9 +63,9 @@ void disassembleInstr(uint32_t pc, uint32_t instr) {
   cout << "Rt: " << rt << endl;
   cout << "Rd: " << rd << endl;
   cout << "Shamt: " << shamt << endl;
-  cout << "Funct: " << funct << endl;
-  cout << "Address: " << addr * 4 << endl;
-  cout << "Pc = & " << ((pc + 4)) + ((addr * 4) & 0x0000000f) << endl;*/
+  cout << "Funct: " << funct << endl;*/
+  //cout << "Address: " << addr * 4 << endl;
+  /*cout << "Pc = & " << ((pc + 4)) + ((addr * 4) & 0x0000000f) << endl;*/
   //cout << "Signed immediate non int " << simm << endl;
   //cout << "Signed immediate " << (int)simm << endl;
   
@@ -77,10 +74,10 @@ void disassembleInstr(uint32_t pc, uint32_t instr) {
     case 0x00:
       switch(funct) {
         case 0x00: cout << "sll " << regNames[rd] << ", " << regNames[rs] << ", " << dec << shamt; break;
-        case 0x03: cout << "sra " << regNames[rd] << ", " << regNames[rt] << ","<< shamt; break;
-        case 0x08: cout << "jr " << addr; break; //revisit
+        case 0x03: cout << "sra " << regNames[rd] << ", " << regNames[rt] << ", "<< shamt; break;
+        case 0x08: cout << "jr " << regNames[rs]; break; //revisit
         case  0x10: cout << "mfhi " << regNames[rd]; break;
-        case 0x12: cout << "mflo" << regNames[rd]; break;
+        case 0x12: cout << "mflo " << regNames[rd]; break;
         case 0x18: cout << "mult " << regNames[rs] << ", " << regNames[rt]; break;
         case 0x1A: cout << "div " << regNames[rs] << ", " << regNames[rt]; break;
         case 0x21: cout << "addu " << regNames[rd] << ", " << regNames[rs] << ", " << regNames[rt]; break;
@@ -92,14 +89,14 @@ void disassembleInstr(uint32_t pc, uint32_t instr) {
       break;
     case 0x02: cout << "j " << hex << ((pc + 4) & 0xf0000000) + addr * 4; break;
     case 0x03: cout << "jal " <<  hex << ((pc + 4) & 0xf0000000) + addr * 4; break; // revisit
-    case 0x04: cout << "beq " << regNames[rs] << ", " <<  regNames[rt] << ", " <<  shamt; break;
+    case 0x04: cout << "beq " << regNames[rs] << ", " <<  regNames[rt] << ", " << hex << (pc + 4 + (simm * 4)); break; break;
     case 0x05: cout << "bne " <<  regNames[rs] << ", " << regNames[rt] << ", " << hex << (pc + 4 + (simm * 4)); break; // revisit
-    case 0x09: cout << "addiu " << regNames[rt] << ", " << regNames[rs] << simm; break; 
-    case 0x0C: cout << "andi " << regNames[rt] << ", " << regNames[rs] << uimm; break;
-    case 0x0F: cout << "lui " << regNames[rt] << ", " << regNames[rt] << uimm; break; // revisit
+    case 0x09: cout << "addiu " << regNames[rt] << ", " << regNames[rs] << ", " << dec << simm; break; 
+    case 0x0C: cout << "andi " << regNames[rt] << ", " << regNames[rs] << ", " << uimm; break;
+    case 0x0F: cout << "lui " << regNames[rt] << ", " << uimm; break; // revisit
     case 0x1a: cout << "trap " << hex << addr; break;
     case 0x23: cout << "lw " << regNames[rt] << ", "<< dec << simm << "(" << regNames[rs] << ")"; break; // revisit
-    case 0x2B: cout << "sw " << regNames[rt] << ", " <<regNames[rs];  break; // revisit
+    case 0x2B: cout << "sw " << regNames[rt] << ", " << dec << simm << "(" << regNames[rs] << ")"; break;  break; // revisit
     default: cout << "unimplemented";
   }
   cout << endl;
