@@ -74,7 +74,7 @@ void disassembleInstr(uint32_t pc, uint32_t instr) {
     case 0x00:
       switch(funct) {
         case 0x00: cout << "sll " << regNames[rd] << ", " << regNames[rs] << ", " << dec << shamt; break;
-        case 0x03: cout << "sra " << regNames[rd] << ", " << regNames[rt] << ", "<< shamt; break;
+        case 0x03: cout << "sra " << regNames[rd] << ", " << regNames[rs] << ", "<< shamt; break;
         case 0x08: cout << "jr " << regNames[rs]; break; //revisit
         case  0x10: cout << "mfhi " << regNames[rd]; break;
         case 0x12: cout << "mflo " << regNames[rd]; break;
@@ -92,8 +92,8 @@ void disassembleInstr(uint32_t pc, uint32_t instr) {
     case 0x04: cout << "beq " << regNames[rs] << ", " <<  regNames[rt] << ", " << hex << (pc + 4 + (simm * 4)); break; break;
     case 0x05: cout << "bne " <<  regNames[rs] << ", " << regNames[rt] << ", " << hex << (pc + 4 + (simm * 4)); break; // revisit
     case 0x09: cout << "addiu " << regNames[rt] << ", " << regNames[rs] << ", " << dec << simm; break; 
-    case 0x0C: cout << "andi " << regNames[rt] << ", " << regNames[rs] << ", " << uimm; break;
-    case 0x0F: cout << "lui " << regNames[rt] << ", " << uimm; break; // revisit
+    case 0x0C: cout << "andi " << regNames[rt] << ", " << regNames[rs] << ", " << dec << simm; break;
+    case 0x0F: cout << "lui " << regNames[rt] << ", " << dec << simm; break; // revisit
     case 0x1a: cout << "trap " << hex << addr; break;
     case 0x23: cout << "lw " << regNames[rt] << ", "<< dec << simm << "(" << regNames[rs] << ")"; break; // revisit
     case 0x2B: cout << "sw " << regNames[rt] << ", " << dec << simm << "(" << regNames[rs] << ")"; break;  break; // revisit

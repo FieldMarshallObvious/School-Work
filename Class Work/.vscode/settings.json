@@ -1,6 +1,8 @@
 {
     "files.associations": {
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "ostream": "cpp",
+        "ios": "cpp"
     },
     "code-runner.customCommand": "echo Hello"
 }
