@@ -1,0 +1,4 @@
+#!/bin/bash
+
+disassembler.cpp -o disassembler -std=c++11;
+./disassembler test2.mips

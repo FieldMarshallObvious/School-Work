@@ -36,25 +36,25 @@ void disassembleInstr(uint32_t pc, uint32_t instr) {
   int32_t simm;         // signed version of immediate (I-type)
   uint32_t addr;        // jump address offset field (J-type)
 
-  cout << instr << endl;
-
   opcode = instr >> 26;
   rs =  ( instr >> 21 ) & 0x1f;
   rt = ( instr >> 16 ) & 0x1f;
   rd = ( instr >> 11 ) & 0x1f;
   shamt = ( instr >> 6 ) & 0x1f;
-  funct = instr & 0x1f;
+  funct = instr & 0x3f;
   uimm = ( instr >> 16 ) & 0x7f;
   simm = ( instr >> 16 ) & 0x7f;
-  addr = ( instr >> 5 ) & 0x7f;
+  addr = instr & 0x1ffffff;
 
-  /*cout << instr << endl;
-  cout << "Opcode: " << opcode << endl;
-  cout << "Rs: " << rs << endl;
+  //cout << instr << endl;
+  //cout << "Opcode: " << opcode << endl;
+  /*cout << "Rs: " << rs << endl;
   cout << "Rt: " << rt << endl;
   cout << "Rd: " << rd << endl;
   cout << "Shamt: " << shamt << endl;
-  cout << "Funct: " << funct << endl;*/
+  cout << "Funct: " << funct << endl;
+  cout << "Address: " << addr * 4 << endl;
+  cout << "Pc = & " << ((pc + 4)) + ((addr * 4) & 0x0000000f) << endl;*/
   
   cout << hex << setw(8) << pc << ": ";
   switch(opcode) {
@@ -75,9 +75,9 @@ void disassembleInstr(uint32_t pc, uint32_t instr) {
       }
       break;
     case 0x02: cout << "j " << hex << ((pc + 4) & 0xf0000000) + addr * 4; break;
-    case 0x03: cout << "jal " << addr; break; // revisit
+    case 0x03: cout << "jal " <<  hex << ((pc + 4) & 0xf0000000) + addr * 4; break; // revisit
     case 0x04: cout << "beq " << regNames[rs] << ", " <<  regNames[rt] << ", " <<  shamt; break;
-    case 0x05: cout << "bne " <<  regNames[rs] << ", " << regNames[rt] << ", " << shamt; break;
+    case 0x05: cout << "bne " <<  regNames[rs] << ", " << regNames[rt] << ", " << ((pc + 4)) + ((addr * 4) & 0x0000000f); break; // revisit
     case 0x09: cout << "addiu " << regNames[rt] << ", " << regNames[rs] << simm; break; 
     case 0x0C: cout << "andi " << regNames[rt] << ", " << regNames[rs] << uimm; break;
     case 0x0F: cout << "lui " << regNames[rt] << ", " << regNames[rt] << uimm; break; // revisit
