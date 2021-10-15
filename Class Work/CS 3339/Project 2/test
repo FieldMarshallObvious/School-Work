@@ -1,0 +1,26 @@
+#!/bin/bash
+echo Testing all!
+make
+./simulator rand.mips > simulator.out
+diff ./rand.out ./simulator.out
+
+./simulator hash.mips > simulator.out
+diff ./hash.out ./simulator.out
+
+./simulator nqueens.mips > simulator.out
+diff ./nqueens.out ./simulator.out
+
+./simulator pqueue.mips > simulator.out
+diff ./pqueue.out ./simulator.out
+
+./simulator prime.mips > simulator.out
+diff ./prime.out ./simulator.out
+
+./simulator qsort.mips > simulator.out
+diff ./qsort.out ./simulator.out
+
+./simulator regslarge.mips > simulator.out
+diff ./regslarge.out ./simulator.out
+
+./simulator sssp.mips > simulator.out
+diff ./sssp.out ./simulator.out
