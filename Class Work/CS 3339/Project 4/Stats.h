@@ -27,6 +27,7 @@ class Stats {
     int taken;
 
     int resultReg[PIPESTAGES];
+    int resultStage[PIPESTAGES];
 
   public:
     Stats();
@@ -35,8 +36,8 @@ class Stats {
 
     void flush(int count);
 
-    void registerSrc(int r);
-    void registerDest(int r);
+    void registerSrc(int r, int needed);
+    void registerDest(int r, int available);
 
     void countMemOp() { memops++; }
     void countBranch() { branches++; }
