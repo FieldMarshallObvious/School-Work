@@ -26,6 +26,12 @@ class Stats {
     int branches;
     int taken;
 
+    int hazardsEXE1;
+    int hazardsEXE2;
+    int hazardsMEM1;
+    int hazardsMEM2;
+    int RAWhazards;
+
     int resultReg[PIPESTAGES];
     int resultStage[PIPESTAGES];
 
@@ -52,6 +58,11 @@ class Stats {
     int getMemOps() { return memops; }
     int getBranches() { return branches; }
     int getTaken() { return taken; }
+    int getHazardsEXE1() {return hazardsEXE1; }
+    int getHazardsEXE2() { return hazardsEXE2; }
+    int getHazardsMEM1() { return hazardsMEM1; }
+    int getHazardsMEM2() { return hazardsMEM2; }
+    int getRAWHazards() { return RAWhazards; }
 
   private:
     void bubble();
