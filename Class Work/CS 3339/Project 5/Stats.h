@@ -21,6 +21,7 @@ class Stats {
     long long cycles;
     int flushes;
     int bubbles;
+    int stalls;
 
     int memops;
     int branches;
@@ -66,6 +67,7 @@ class Stats {
 
   private:
     void bubble();
+    void stall();
 };
 
 #endif

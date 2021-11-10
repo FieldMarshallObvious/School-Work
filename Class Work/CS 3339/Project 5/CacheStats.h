@@ -45,14 +45,35 @@ enum ACCESS_TYPE { LOAD, STORE };
 
 class CacheStats {
   private:
-    /* TODO: you probably want to add some member variables here to represent
-     * the parts of the cache contents you need to model! */
+    // Struct to hold cache attribute at location
+    struct cacheLocationAttr
+    {
+      int modified = 0;
+      int valid = 0;
+      uint32_t tag = -1;
+      uint32_t data = -1;
+    };
 
     int loads;
     int stores;
     int load_misses;
     int store_misses;
     int writebacks;
+
+    // Array to hold all sets and ways
+    cacheLocationAttr cache[SETS][WAYS];
+
+    // Array for way
+    int way[SETS];
+
+    // Array for index
+    int index[SETS] = {000, 
+                       001,
+                       010,
+                       100,
+                       101,
+                       };
+
 
   public:
     CacheStats();
