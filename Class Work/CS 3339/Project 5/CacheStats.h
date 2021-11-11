@@ -51,7 +51,6 @@ class CacheStats {
       int modified = 0;
       int valid = 0;
       uint32_t tag = -1;
-      uint32_t data = -1;
     };
 
     int loads;
@@ -72,7 +71,7 @@ class CacheStats {
                        010,
                        100,
                        101,
-                       };
+                       111};
 
 
   public:

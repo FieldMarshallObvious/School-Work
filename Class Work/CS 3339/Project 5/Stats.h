@@ -43,6 +43,9 @@ class Stats {
 
     void flush(int count);
 
+    void stall();
+
+
     void registerSrc(int r, int needed);
     void registerDest(int r, int available);
 
@@ -67,7 +70,6 @@ class Stats {
 
   private:
     void bubble();
-    void stall();
 };
 
 #endif

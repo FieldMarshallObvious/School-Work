@@ -10,6 +10,7 @@
 #include "ALU.h"
 #include "Debug.h"
 #include "Stats.h"
+#include "CacheStats.h"
 using namespace std;
 
 class CPU {
@@ -50,6 +51,9 @@ class CPU {
 
     // Stats instance
     Stats stats;
+
+    // Cache instance
+    CacheStats cache;
 
   public:
     CPU(uint32_t pc, Memory &iMem, Memory &dMem);
