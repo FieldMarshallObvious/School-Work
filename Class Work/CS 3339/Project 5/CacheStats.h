@@ -66,19 +66,20 @@ class CacheStats {
     int way[SETS];
 
     // Array for index
-    int index[SETS] = {000, 
-                       001,
-                       011,
-                       010,
-                       100,
-                       101,
-                       111};
-
+    uint32_t index[SETS] = { 0, 
+                             1,
+                             2,
+                             3,
+                             4,
+                             5,
+                             6,
+                             7};
 
   public:
     CacheStats();
     int access(uint32_t, ACCESS_TYPE);
     void printFinalStats();
+    void printCache();
 };
 
 #endif
