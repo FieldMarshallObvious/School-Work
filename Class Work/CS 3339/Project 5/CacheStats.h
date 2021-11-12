@@ -68,6 +68,7 @@ class CacheStats {
     // Array for index
     int index[SETS] = {000, 
                        001,
+                       011,
                        010,
                        100,
                        101,

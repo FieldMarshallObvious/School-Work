@@ -67,6 +67,7 @@ class Stats {
     int getHazardsMEM1() { return hazardsMEM1; }
     int getHazardsMEM2() { return hazardsMEM2; }
     int getRAWHazards() { return RAWhazards; }
+    int getStalls() { return stalls; }
 
   private:
     void bubble();
