@@ -1,0 +1,6 @@
+#!/bin/bash
+Echo "Starting pthread dotproduct without mutex lock" > temp.out
+for in in {0..10000}
+do
+	./dp_pthreads >> temp.out
+done
