@@ -9,26 +9,64 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image("logo")
-            
-            Spacer()
-            
-            // Card stack
-            HStack {
-                Spacer()
+        ZStack {
+            Image("background").resizable()
+                               .ignoresSafeArea()
                 
-                Image("card10")
+            VStack {
+                Image("logo")
                 
                 Spacer()
                 
-                Image("card11")
+                // Card stack
+                HStack {
+                    Spacer()
+                    
+                    Image("card10")
+                    
+                    Spacer()
+                    
+                    Image("card11")
+                    
+                    Spacer()
+                }
                 
                 Spacer()
+                
+                Image("dealbutton")
+                
+                Spacer()
+                
+                // Player Scores
+                HStack {
+                    
+                    Spacer()
+                    
+                    // Player
+                    VStack {
+                        Text("Player")
+                            .font(.headline)
+                            .foregroundColor(Color.white)
+                        Text("0")
+                            .font(.largeTitle)
+                            .foregroundColor(Color.white)
+                    }
+                    
+                    Spacer()
+                    
+                    // CPU
+                    VStack {
+                        Text("CPU")
+                            .font(.headline)
+                            .foregroundColor(Color.white)
+                        Text("0")
+                            .font(.largeTitle)
+                            .foregroundColor(Color.white)
+                    }
+                    
+                    Spacer()
+                }
             }
-            
-            Spacer()
-            
         }
         
     }

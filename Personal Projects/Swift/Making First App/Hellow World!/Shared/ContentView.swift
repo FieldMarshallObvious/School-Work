@@ -39,7 +39,7 @@ struct ContentView: View {
         // Note, good practice to start modifiers on new line
         
         // VStack - places elements vertically
-        VStack {
+        /*VStack {
             // Spacer - fill all available empty space within object
             Spacer()
             
@@ -58,7 +58,7 @@ struct ContentView: View {
                 
                 Spacer()
             }
-        }
+        }*/
         
         //HStack - places elements horizontally
         /*HStack {
