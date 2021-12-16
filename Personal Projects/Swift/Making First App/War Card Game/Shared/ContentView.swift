@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var playerCard = "card5"
+    @State private var cpuCard = "card9"
+    @State private var playerScore = 0
+    @State private var cpuScore = 0
+    
     var body: some View {
         ZStack {
             Image("background").resizable()
@@ -22,19 +27,44 @@ struct ContentView: View {
                 HStack {
                     Spacer()
                     
-                    Image("card10")
+                    Image(playerCard)
                     
                     Spacer()
                     
-                    Image("card11")
+                    Image(cpuCard)
                     
                     Spacer()
                 }
                 
                 Spacer()
                 
-                Image("dealbutton")
-                
+                Button(action: {
+                    // Random number generator
+                    // Between 2 and 13
+                    let playerRand = Int.random(in: 2...14)
+                    let cpuRand = Int.random(in: 2...14)
+                    
+                    // Update cards
+                    playerCard = "card" + String(playerRand)
+                    cpuCard = "card" + String(cpuRand)
+                    
+                    
+                    // Update score
+                    
+                    if (playerRand > cpuRand)
+                    {
+                        playerScore += 1
+                    }
+                    else if (playerRand < cpuRand)
+                    {
+                        cpuScore += 1
+                    }
+    
+                    
+                }, label: {
+                    Image("dealbutton")
+                })
+                                
                 Spacer()
                 
                 // Player Scores
@@ -47,7 +77,7 @@ struct ContentView: View {
                         Text("Player")
                             .font(.headline)
                             .foregroundColor(Color.white)
-                        Text("0")
+                        Text(String(playerScore))
                             .font(.largeTitle)
                             .foregroundColor(Color.white)
                     }
@@ -59,7 +89,7 @@ struct ContentView: View {
                         Text("CPU")
                             .font(.headline)
                             .foregroundColor(Color.white)
-                        Text("0")
+                        Text(String(cpuScore))
                             .font(.largeTitle)
                             .foregroundColor(Color.white)
                     }
