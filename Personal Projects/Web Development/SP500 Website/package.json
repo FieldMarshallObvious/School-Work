@@ -50,7 +50,7 @@
     "express": "^4.17.1",
     "fuse.js": "^6.4.0",
     "hasher": "^1.2.0",
-    "marked": "^1.1.0",
+    "marked": "^4.0.10",
     "moment-timezone": "^0.5.31",
     "nedb": "^1.8.0",
     "node-fetch": "^2.6.0",
