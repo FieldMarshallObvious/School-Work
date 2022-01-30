@@ -25,6 +25,7 @@ public class pizzaQueue
 
 }
 
+// Create a queue list of pizza objects 
 class pizzaList 
 {
     // Head and object declarations 
@@ -88,6 +89,7 @@ class pizzaList
         System.out.print("Deliver a pizza with " + thisPizza.ingredients + " to " + thisPizza.address + "\n");
     }
 }
+
 
 class pizza
 {
