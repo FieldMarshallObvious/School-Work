@@ -16,6 +16,7 @@ int main( )
 
     // For loop counters
     int i = 0;
+    int wordCounter = 0;
     
 
     // Continue gathering inputs until EOF or max number of inputs 
@@ -35,10 +36,10 @@ int main( )
     for(i = 0; i < amountInput; i++ )
     {
         if( cityPops[i] >= 10 )
-        {
-            printf("%c%c ",cityNames[i], cityNames[i+1]);
-            printf("%d \n", cityPops[i]); 
+        { 
+            printf("%c%c \n",cityNames[wordCounter], cityNames[wordCounter+1]); 
         }
+        wordCounter+=2;
     }
     return 0;
 }
