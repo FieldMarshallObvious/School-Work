@@ -30,8 +30,6 @@ int main( )
         cityPops[amountInput-1] = popInput;
     } 
 
-    printf("exit scanf \n");
-
     // display all pops that are greater than 10
     for(i = 0; i < amountInput; i++ )
     {
