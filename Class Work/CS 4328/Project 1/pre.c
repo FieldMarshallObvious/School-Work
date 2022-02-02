@@ -9,7 +9,7 @@ int main( )
 
     // Array of inputted values 
     char nameInput[3];
-    int *popInput;
+    int popInput;
 
     // Keep track of the number of inputted cities 
     int amountInput = 0;
@@ -19,16 +19,14 @@ int main( )
     
 
     // Continue gathering inputs until EOF or max number of inputs 
-    while( scanf("%*[^\n] %d", nameInput, &cityPops[i]) != EOF )
+    while( scanf("%s %d", nameInput, &popInput) != EOF )
     {
         // Increment inputs 
         amountInput++;
-        i++;
 
-        printf("processing input: %d \n", amountInput);
         // Place inputs in array 
         strcat(cityNames, nameInput);
-        //cityPops[amountInput-1] = popInput;
+        cityPops[amountInput-1] = popInput;
     } 
 
     printf("exit scanf \n");
@@ -36,9 +34,11 @@ int main( )
     // display all pops that are greater than 10
     for(i = 0; i < amountInput; i++ )
     {
-        printf("City pops: %d \n", cityPops[i]);
         if( cityPops[i] >= 10 )
-            printf("%c %d",cityNames[i], cityPops[i+1]);
+        {
+            printf("%c%c ",cityNames[i], cityNames[i+1]);
+            printf("%d \n", cityPops[i]); 
+        }
     }
     return 0;
 }
