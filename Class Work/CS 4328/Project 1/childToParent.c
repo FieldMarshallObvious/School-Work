@@ -19,6 +19,9 @@ int main ()
     }
     if( pid == 0 )
     {
+        // Close standard output
+        close(1);
+
         // Duplicate the input end of the pipe
         dup(inputPipe[1]);
 
@@ -30,6 +33,9 @@ int main ()
     }
     else
     {
+        // Close stadnard input 
+        close(0);
+        
         // Open up the write end of the pipe
         dup(inputPipe[0]);
 
