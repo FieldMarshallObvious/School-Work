@@ -1,18 +1,18 @@
-argc: 5 
-child - charLocation: 5 
+argc: 4 
+child - charLocation: 4 
 child - oldCharLocation: 0 
+argv[oldCharLocation] ls 
 arrayCommand[j]: ls 
-arrayCommand[j]: -t 
 arrayCommand[j]: -al 
 arrayCommand[j]: (null) 
 arrayCommand[j]: output.txt 
 total 88
--rw-r--r--  1 noahdelangel  staff    657 Mar  7 16:25 output.txt
-drwxr-xr-x  9 noahdelangel  staff    288 Mar  7 16:25 .
--rwxr-xr-x  1 noahdelangel  staff  50088 Mar  7 16:25 lab2
--rw-r--r--  1 noahdelangel  staff    180 Mar  7 16:22 output2.txt
--rw-r--r--  1 noahdelangel  staff   5342 Mar  7 16:20 lab2.c
+drwxr-xr-x  9 noahdelangel  staff    288 Mar  7 17:00 .
 drwxr-xr-x  6 noahdelangel  staff    192 Mar  7 14:18 ..
 drwxr-xr-x  3 noahdelangel  staff     96 Mar  6 12:48 .vscode
--rw-r--r--@ 1 noahdelangel  staff    870 Feb 23 10:41 sketch.txt
+-rwxr-xr-x  1 noahdelangel  staff  50088 Mar  7 17:00 lab2
+-rw-r--r--  1 noahdelangel  staff   5342 Mar  7 17:00 lab2.c
+-rw-r--r--  1 noahdelangel  staff    744 Mar  7 17:01 output.txt
+-rw-r--r--  1 noahdelangel  staff    180 Mar  7 16:22 output2.txt
 -rw-r--r--@ 1 noahdelangel  staff   2322 Feb 23 10:40 proj2.txt
+-rw-r--r--@ 1 noahdelangel  staff    870 Feb 23 10:41 sketch.txt

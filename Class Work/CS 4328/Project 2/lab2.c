@@ -153,12 +153,11 @@ for( int i = 0; i <= pipes; i++)
 
     if( pid > 0 )
     {
-		wait(&status);
 
 		printf("i: %d\n", i);
         
         // Close left pipe
-        if( i >= 0 )
+        if( i > 0 )
         {
             close(left_fd[0]);
             close(left_fd[1]);
@@ -168,23 +167,20 @@ for( int i = 0; i <= pipes; i++)
         left_fd[0] = right_fd[0];
         left_fd[1] = right_fd[1];
 
+		wait(&status);
     }
 
     else
     {
-		printf("child - proccess: %d \n", i);
-
-
 		// If this is the first proccess 
 		// and there is inputRedirection
         if( i == 0 && inputRedirection )
 		{
-			// Close standard input
-			close(0);
-
 			// Open file
 			left_fd[0] = open(argv[charLocation+1], O_RDONLY);
-
+			
+			// Close standard input
+			close(0);
 
 			// Duplicate the input location
 			dup(left_fd[0]);
@@ -203,7 +199,6 @@ for( int i = 0; i <= pipes; i++)
             // If first proccess
             if( i == 0 )
             {
-                printf("First proccess \n");
                 // Close standard output
                 // and attach right pipe
                 close(1);
@@ -216,7 +211,6 @@ for( int i = 0; i <= pipes; i++)
             // If is a middle proccess
             else if ( i < pipes )
             {
-                printf("Middle process \n");
                 // Close standard input & output
                 // and attach left and right pipes
                 
@@ -236,7 +230,6 @@ for( int i = 0; i <= pipes; i++)
             // If is last proccess
             else
             {
-                printf("Last process \n");
                 // Close standard input 
                 // and attach left pipe
                 close(0);
@@ -251,9 +244,6 @@ for( int i = 0; i <= pipes; i++)
 		// If there is output redirection, and is the last process
 		if( i == pipes && outputRedirection )
 		{
-			printf("output redirection \n");
-
-
 			// opening file 
 			right_fd[1] = open(argv[charLocation+1], O_WRONLY|O_CREAT, 0666);
 
@@ -269,12 +259,7 @@ for( int i = 0; i <= pipes; i++)
 			// Move to next 0
 			charLocation = findZeroFromCurrentLocation(charLocation, m, argv);
 		}
-
-		printf("argc: %d \n", (charLocation - oldCharLocation) );
-		printf("child - charLocation: %d \n", charLocation);
-		printf("child - oldCharLocation: %d \n", oldCharLocation);
-		printf("argv[oldCharLocation] %s \n", argv[oldCharLocation]);
-
+		
         char *arrayCommand[charLocation - oldCharLocation];
 
         for( int j = 0; j < charLocation - oldCharLocation; j++ )
