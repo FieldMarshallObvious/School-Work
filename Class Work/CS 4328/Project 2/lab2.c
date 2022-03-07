@@ -207,8 +207,8 @@ for( int i = 0; i <= pipes; i++)
                 // Close standard output
                 // and attach right pipe
                 close(1);
-
                 dup(right_fd[1]); // output end
+
                 close(right_fd[1]);
                 close(right_fd[0]);
             }
@@ -219,8 +219,6 @@ for( int i = 0; i <= pipes; i++)
                 printf("Middle process \n");
                 // Close standard input & output
                 // and attach left and right pipes
-                //close(1);
-                //close(0);
                 
                 close(0);
                 dup(left_fd[0]);
@@ -230,6 +228,7 @@ for( int i = 0; i <= pipes; i++)
 
                 close(1);
                 dup(right_fd[1]);
+
                 close(right_fd[0]);
                 close(right_fd[1]);
             }
@@ -241,8 +240,8 @@ for( int i = 0; i <= pipes; i++)
                 // Close standard input 
                 // and attach left pipe
                 close(0);
-                
                 dup(left_fd[0]); // input end
+
                 close(left_fd[0]);
                 close(left_fd[1]);
             }
@@ -253,11 +252,13 @@ for( int i = 0; i <= pipes; i++)
 		if( i == pipes && outputRedirection )
 		{
 			printf("output redirection \n");
-			// Close standard output 
-			close(1);
+
 
 			// opening file 
 			right_fd[1] = open(argv[charLocation+1], O_WRONLY|O_CREAT, 0666);
+
+			// Close standard output 
+			close(1);
 
 			// Duplicate the output location
 			dup(right_fd[1]);
@@ -272,12 +273,14 @@ for( int i = 0; i <= pipes; i++)
 		printf("argc: %d \n", (charLocation - oldCharLocation) );
 		printf("child - charLocation: %d \n", charLocation);
 		printf("child - oldCharLocation: %d \n", oldCharLocation);
+		printf("argv[oldCharLocation] %s \n", argv[oldCharLocation]);
 
         char *arrayCommand[charLocation - oldCharLocation];
 
-        for( int j = oldCharLocation; j < charLocation - oldCharLocation; j++ )
+        for( int j = 0; j < charLocation - oldCharLocation; j++ )
         {
-            arrayCommand[j] = argv[j];
+
+            arrayCommand[j] = argv[oldCharLocation + j];
 			printf("arrayCommand[j]: %s \n", arrayCommand[j]);
         }
 
