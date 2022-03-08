@@ -11,8 +11,9 @@ int* findZeroFromCurrentLocation( int curLocation, int size, char *argv[] )
 	int charLocation = -1;
 
 	// Find location of 0 in array
-    for( int j = (curLocation + 1); j < size; j++ )
+    for( int j = (curLocation + 1); j <= size; j++ )
     {
+		//printf("cur location: %s\n", argv[j]);
         if( argv[j] == 0 )
         {
             charLocation = j;
@@ -22,6 +23,7 @@ int* findZeroFromCurrentLocation( int curLocation, int size, char *argv[] )
             charLocation = size;
 	}
 
+	//printf("charLocation: %d\n", charLocation);
 	return charLocation;
 }
 
@@ -144,6 +146,13 @@ for( int i = 0; i <= pipes; i++)
 	oldCharLocation = charLocation + 1;
 	charLocation = findZeroFromCurrentLocation(charLocation, m, argv);
 
+	if( i == 1 && inputRedirection )
+	{
+		//printf("save me\n");
+		charLocation = findZeroFromCurrentLocation(charLocation, m, argv);
+		oldCharLocation = charLocation - 1;
+	}
+
 
     if( pid < 0 )
     {
@@ -152,10 +161,7 @@ for( int i = 0; i <= pipes; i++)
     }
 
     if( pid > 0 )
-    {
-
-		printf("i: %d\n", i);
-        
+    {        
         // Close left pipe
         if( i > 0 )
         {
@@ -176,21 +182,19 @@ for( int i = 0; i <= pipes; i++)
 		// and there is inputRedirection
         if( i == 0 && inputRedirection )
 		{
-			// Open file
-			left_fd[0] = open(argv[charLocation+1], O_RDONLY);
-			
-			// Close standard input
+			//printf("input location: %s \n", argv[charLocation+1]);
+
+			int Ifd = open(argv[charLocation+1], O_RDONLY);
+
 			close(0);
-
-			// Duplicate the input location
-			dup(left_fd[0]);
-
-			close(left_fd[0]);
-			close(left_fd[1]);
+			dup(Ifd);
+			close(Ifd);
 
 
 			// Move to next 0
+			//printf("old char location %d\n", charLocation);
 			charLocation = findZeroFromCurrentLocation(charLocation, m, argv);
+			//printf(" new - i - char location %s\n", argv[charLocation+1]);
 		}
 
 		// If there are pipes
@@ -236,7 +240,7 @@ for( int i = 0; i <= pipes; i++)
                 dup(left_fd[0]); // input end
 
                 close(left_fd[0]);
-                close(left_fd[1]);
+                close(left_fd[1]);	
             }
 
 		}
@@ -244,39 +248,37 @@ for( int i = 0; i <= pipes; i++)
 		// If there is output redirection, and is the last process
 		if( i == pipes && outputRedirection )
 		{
-			// opening file 
-			right_fd[1] = open(argv[charLocation+1], O_WRONLY|O_CREAT, 0666);
-
+			//printf("Output redirection \n" );
 			// Close standard output 
+			int Ofd = creat(argv[charLocation+1], 00777);
 			close(1);
-
-			// Duplicate the output location
-			dup(right_fd[1]);
-
-			close(right_fd[0]);
-			close(right_fd[1]);
+			dup(Ofd);
+			close(Ofd);	
 
 			// Move to next 0
 			charLocation = findZeroFromCurrentLocation(charLocation, m, argv);
+			//printf("new - o - char location %s\n", argv[charLocation+1]);
 		}
-		
+
         char *arrayCommand[charLocation - oldCharLocation];
+
+		//printf("oldCharLocation %d\n", oldCharLocation );
+		//printf("charLocation %d \n", charLocation );
 
         for( int j = 0; j < charLocation - oldCharLocation; j++ )
         {
-
             arrayCommand[j] = argv[oldCharLocation + j];
-			printf("arrayCommand[j]: %s \n", arrayCommand[j]);
+			//printf("arrayCommand[%d] %s \n", j, arrayCommand[j]);
         }
 
 		arrayCommand[charLocation - oldCharLocation] = 0;
 
 		execvp(arrayCommand[0], &arrayCommand[0]);
+		//printf("didn't execute \n");
     }
 
 
 }
-printf("we are done here \n");
 wait(&status);
 
 }
