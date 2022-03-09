@@ -1,15 +1,4 @@
-total 184
-drwxr-xr-x  14 noahdelangel  staff    448 Mar  7 20:54 .
-drwxr-xr-x   6 noahdelangel  staff    192 Mar  7 14:18 ..
-drwxr-xr-x   3 noahdelangel  staff     96 Mar  6 12:48 .vscode
--rw-r--r--   1 noahdelangel  staff     17 Mar  7 18:26 input.txt
--rwxr-xr-x   1 noahdelangel  staff  50128 Mar  7 20:54 lab2
--rw-r--r--   1 noahdelangel  staff   5285 Mar  7 20:54 lab2.c
--rwxr-xr-x   1 noahdelangel  staff      0 Mar  7 20:55 output.txt
--rw-r--r--   1 noahdelangel  staff    180 Mar  7 16:22 output2.txt
--rwxrwxrwx   1 noahdelangel  staff  49648 Feb  9 19:01 pre
--rw-r--r--@  1 noahdelangel  staff    934 Feb  2 12:30 pre.c
--rw-r--r--@  1 noahdelangel  staff   2322 Feb 23 10:40 proj2.txt
--rw-r--r--@  1 noahdelangel  staff    870 Feb 23 10:41 sketch.txt
--rwxr-xr-x   1 noahdelangel  staff  49648 Feb  9 19:31 sort
--rw-r--r--   1 noahdelangel  staff   1338 Feb  2 20:44 sort.c
+
+
+NJ 
+TX 

@@ -13,7 +13,6 @@ int* findZeroFromCurrentLocation( int curLocation, int size, char *argv[] )
 	// Find location of 0 in array
     for( int j = (curLocation + 1); j <= size; j++ )
     {
-		//printf("cur location: %s\n", argv[j]);
         if( argv[j] == 0 )
         {
             charLocation = j;
@@ -23,7 +22,6 @@ int* findZeroFromCurrentLocation( int curLocation, int size, char *argv[] )
             charLocation = size;
 	}
 
-	//printf("charLocation: %d\n", charLocation);
 	return charLocation;
 }
 
@@ -143,12 +141,15 @@ for( int i = 0; i <= pipes; i++)
     }
     
     int pid = fork();
+
+	// Move to the next null pointer 
 	oldCharLocation = charLocation + 1;
 	charLocation = findZeroFromCurrentLocation(charLocation, m, argv);
 
+	// If there is an inputRedirection, move
+	// the zero location an extra step
 	if( i == 1 && inputRedirection )
 	{
-		//printf("save me\n");
 		charLocation = findZeroFromCurrentLocation(charLocation, m, argv);
 		oldCharLocation = charLocation - 1;
 	}
@@ -182,19 +183,18 @@ for( int i = 0; i <= pipes; i++)
 		// and there is inputRedirection
         if( i == 0 && inputRedirection )
 		{
-			//printf("input location: %s \n", argv[charLocation+1]);
 
+			// Open file to read
 			int Ifd = open(argv[charLocation+1], O_RDONLY);
 
+			// Close standard input and attach file
 			close(0);
 			dup(Ifd);
 			close(Ifd);
 
 
 			// Move to next 0
-			//printf("old char location %d\n", charLocation);
 			charLocation = findZeroFromCurrentLocation(charLocation, m, argv);
-			//printf(" new - i - char location %s\n", argv[charLocation+1]);
 		}
 
 		// If there are pipes
@@ -217,7 +217,6 @@ for( int i = 0; i <= pipes; i++)
             {
                 // Close standard input & output
                 // and attach left and right pipes
-                
                 close(0);
                 dup(left_fd[0]);
 
@@ -248,33 +247,30 @@ for( int i = 0; i <= pipes; i++)
 		// If there is output redirection, and is the last process
 		if( i == pipes && outputRedirection )
 		{
-			//printf("Output redirection \n" );
-			// Close standard output 
+			// Create the desired output file
 			int Ofd = creat(argv[charLocation+1], 00777);
+
+			// Close standard output and
+			// attach file
 			close(1);
 			dup(Ofd);
 			close(Ofd);	
 
 			// Move to next 0
 			charLocation = findZeroFromCurrentLocation(charLocation, m, argv);
-			//printf("new - o - char location %s\n", argv[charLocation+1]);
 		}
-
+		
+		// Find the list of commands within the pointers
         char *arrayCommand[charLocation - oldCharLocation];
-
-		//printf("oldCharLocation %d\n", oldCharLocation );
-		//printf("charLocation %d \n", charLocation );
 
         for( int j = 0; j < charLocation - oldCharLocation; j++ )
         {
             arrayCommand[j] = argv[oldCharLocation + j];
-			//printf("arrayCommand[%d] %s \n", j, arrayCommand[j]);
         }
 
 		arrayCommand[charLocation - oldCharLocation] = 0;
 
 		execvp(arrayCommand[0], &arrayCommand[0]);
-		//printf("didn't execute \n");
     }
 
 
