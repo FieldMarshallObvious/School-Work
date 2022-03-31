@@ -21,7 +21,7 @@ public class ChatWindow implements ActionListener{
     private int maxLines = 0; 
 
 
-    public ChatWindow(user in) // constructor
+    public ChatWindow(User in) // constructor
     {
         displayName = in.getUsername();
         JFrame jf = new JFrame();
@@ -103,10 +103,16 @@ public class ChatWindow implements ActionListener{
             error.printStackTrace();
         }
 
+        // If the object believes there is no
+        // lines correct it
+        if( maxLines == 0 )
+        {
+            maxLines += 1;
+        }
+
         // Get new line
         while( chatLog.hasNextLine() )
         {
-            curLine++;
             String newMessage = chatLog.nextLine();
             if( curLine == (maxLines - 1) )
             {
@@ -114,6 +120,7 @@ public class ChatWindow implements ActionListener{
                 maxLines++;
                 receiving.append( ( newMessage + "\n" ) );
             }
+            curLine++;
         }
     }
 

@@ -7,7 +7,7 @@ import java.io.IOException;  // Import the IOException class to handle errors
 
 public class Chatty {
     public int numUsers;
-    public user[] users;
+    public User[] users;
     public ChatWindow[] windows;
     private static Chatty chattyInstance;
     public static void main(String[] args)
@@ -18,7 +18,7 @@ public class Chatty {
 
     public Chatty( ) {
         this.numUsers = 2;
-        this.users = new user[numUsers];
+        this.users = new User[numUsers];
 
         // Create chat log if it hasn't been created already
         File chatLogObj = new File("Chatty/chatLog.txt");
@@ -36,7 +36,7 @@ public class Chatty {
         
         for(int i = 0; i < numUsers; i++) 
         {
-            users[i] = new user("null" , i);
+            users[i] = new User("null" , i);
         }
         
         users[0].setUsername("Tanner");

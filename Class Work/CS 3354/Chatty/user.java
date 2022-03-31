@@ -1,11 +1,11 @@
 package Chatty;
 
-public class user {
+public class User {
     private String username = null;
     private int index;
     //private window userWindow;
     
-    public user( String u , int i)
+    public User( String u , int i)
     {
         username = u;
         index = i;
