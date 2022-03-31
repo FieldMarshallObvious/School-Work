@@ -5,10 +5,9 @@ public class User {
     private int index;
     //private window userWindow;
     
-    public User( String u , int i)
+    public User( String u )
     {
         username = u;
-        index = i;
     }
     public String getUsername() {return username;}
     public void setUsername( String in ) {username = in;}

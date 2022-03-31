@@ -18,7 +18,6 @@ public class ChatWindow implements ActionListener{
     public JTextArea receiving;
     private String message;
     private Scanner chatLog; 
-    private int maxLines = 0; 
 
 
     public ChatWindow(User in) // constructor
@@ -69,7 +68,6 @@ public class ChatWindow implements ActionListener{
         // Append all existing items
         while( chatLog.hasNextLine() )
         {
-            maxLines++;
             String newMessage = chatLog.nextLine();
             receiving.append( ( newMessage + "\n" ) );
         }
@@ -95,6 +93,8 @@ public class ChatWindow implements ActionListener{
     public void receiveMessage( )
     {
         int curLine = 0;
+        int maxLines = 0; 
+
         // Refresh chat reader 
         try {
             chatLog = new Scanner( ( new File("Chatty/chatLog.txt") ) );
@@ -103,11 +103,19 @@ public class ChatWindow implements ActionListener{
             error.printStackTrace();
         }
 
-        // If the object believes there is no
-        // lines correct it
-        if( maxLines == 0 )
+        // Determine the new upadted lines
+        while( chatLog.hasNextLine() )
         {
-            maxLines += 1;
+            chatLog.nextLine();
+            maxLines++;
+        }
+
+        // Refresh chat reader 
+        try {
+            chatLog = new Scanner( ( new File("Chatty/chatLog.txt") ) );
+        } catch (FileNotFoundException error) {
+            System.out.print("Error opening file");
+            error.printStackTrace();
         }
 
         // Get new line
@@ -116,8 +124,6 @@ public class ChatWindow implements ActionListener{
             String newMessage = chatLog.nextLine();
             if( curLine == (maxLines - 1) )
             {
-                // Increase the number of max lines
-                maxLines++;
                 receiving.append( ( newMessage + "\n" ) );
             }
             curLine++;

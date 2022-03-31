@@ -36,7 +36,7 @@ public class Chatty {
         
         for(int i = 0; i < numUsers; i++) 
         {
-            users[i] = new User("null" , i);
+            users[i] = new User("null");
         }
         
         users[0].setUsername("Tanner");
