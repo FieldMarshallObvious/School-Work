@@ -39,8 +39,8 @@ public class Chatty {
             users[i] = new User("null");
         }
         
-        users[0].setUsername("Tanner");
-        users[1].setUsername("Noah"); 
+        users[0].setUsername("Clara");
+        users[1].setUsername("Rigsy"); 
         //can instatiate more users here, granted the amount matches numUsers
         
         this.windows = new ChatWindow[numUsers];
