@@ -7,7 +7,7 @@ void *APrinter();
 void *BPrinter(); 
 
 #define CAPACITY 1
-#define ITEMSIZE 20
+#define ITEMSIZE 11
 
 
 pthread_mutex_t mutex;
@@ -43,9 +43,9 @@ int main()
 void *APrinter() 
 {
     int curHalf = 0;
-    int completedItems = 0;
+    int completedItems = 1;
     // print A(x5) 10 times
-    while(completedItems != 2)
+    while(completedItems != ITEMSIZE)
     {
         // If the buffer is full 
         // then wait
@@ -59,12 +59,7 @@ void *APrinter()
             pthread_mutex_lock(&mutex);
             for( int j = 0; j < 5; j++)
             {
-                //Determine current half
-                if( completedItems < 1 )
-                    curHalf = 1;
-                else 
-                    curHalf = 2;
-                printf("%d: AAAAA\n", curHalf);
+                printf("%d: AAAAA\n", completedItems);
             }
             // Keep track of the number of completed items 
             completedItems++;
@@ -82,10 +77,10 @@ void *APrinter()
 void *BPrinter() 
 {
     int curHalf = 0;
-    int completedItems = 0;
+    int completedItems = 1;
 
     // print B(x5) 10 times
-    while(completedItems != 2)
+    while(completedItems != ITEMSIZE)
     {
         if ( buffer.size == 0 )
         {
@@ -96,12 +91,7 @@ void *BPrinter()
             pthread_mutex_lock(&mutex);
             for( int j = 0; j < 5; j++)
             {
-                // Determine current half
-                if( completedItems < 1 )
-                    curHalf = 1;
-                else 
-                    curHalf = 2;
-                printf("%d: BBBBB\n", curHalf);
+                printf("%d: BBBBB\n", completedItems);
             }
             // Keep track of the number of completed items 
             completedItems++;
