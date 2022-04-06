@@ -5,6 +5,8 @@
 void *APrinter(); 
 void *BPrinter(); 
 
+#define ITEMSIZE 11
+
 
 int main() 
 {
@@ -23,30 +25,36 @@ int main()
 
 void *APrinter() 
 {
-    int curHalf = 0;
+    int completedItems = 1;
     // print A(x5) 10 times
-    for( int i = 0; i < 10; i++ )
+    while(completedItems != ITEMSIZE)
     {
-        //Determine current half
-        if( i < 5 )
-            curHalf = 1;
-        else 
-            curHalf = 2;
-        printf("%d: AAAAA\n", curHalf);
+
+        for( int j = 0; j < 5; j++)
+        {
+            printf("%d: AAAAA\n", completedItems);
+        }
+        // Keep track of the number of completed items 
+        completedItems++;
+
+        printf("\n");
     }
 }
 
 void *BPrinter() 
 {
-    int curHalf = 0;
-    // print A(x5) 10 times
-    for( int i = 0; i < 10; i++ )
+    int completedItems = 1;
+
+    // print B(x5) 10 times
+    while(completedItems != ITEMSIZE)
     {
-        // Determine current half
-        if( i < 5 )
-            curHalf = 1;
-        else 
-            curHalf = 2;
-        printf("%d: BBBBB\n", curHalf);
+        for( int j = 0; j < 5; j++)
+        {
+            printf("%d: BBBBB\n", completedItems);
+        }
+        // Keep track of the number of completed items 
+        completedItems++;
+
+        printf("\n");
     }
 }

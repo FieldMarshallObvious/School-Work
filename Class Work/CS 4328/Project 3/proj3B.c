@@ -42,7 +42,6 @@ int main()
 
 void *APrinter() 
 {
-    int curHalf = 0;
     int completedItems = 1;
     // print A(x5) 10 times
     while(completedItems != ITEMSIZE)
@@ -76,7 +75,6 @@ void *APrinter()
 
 void *BPrinter() 
 {
-    int curHalf = 0;
     int completedItems = 1;
 
     // print B(x5) 10 times
