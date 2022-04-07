@@ -50,8 +50,7 @@ void *APrinter()
         // then wait
         while (buffer.size > 0)
         {
-            pthread_cond_wait(&full_cond, &mutex);
-
+            continue;
         }
 
         pthread_mutex_lock(&mutex);
@@ -67,7 +66,6 @@ void *APrinter()
 
         printf("\n");
 
-        pthread_cond_broadcast(&empty_cond);
         pthread_mutex_unlock(&mutex);
 
     }
@@ -82,7 +80,7 @@ void *BPrinter()
     {
         while ( buffer.size < CAPACITY )
         {
-            pthread_cond_wait(&empty_cond, &mutex);
+            continue;
         }
 
         pthread_mutex_lock(&mutex);
@@ -97,7 +95,6 @@ void *BPrinter()
         buffer.size--;
         printf("\n");
         
-        pthread_cond_broadcast(&full_cond);
         pthread_mutex_unlock(&mutex);
     }
 }
