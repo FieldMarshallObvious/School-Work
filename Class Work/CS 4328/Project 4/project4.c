@@ -6,16 +6,20 @@
 
 // Function prototypes
 void stringRandomizer ( char *refString, int stringSize );
-void LRU ( char refString[], int refStringSize, char frameTable[],
+int LRU ( char refString[], int refStringSize, char frameTable[],
            int numOfFrames );
 int findLRU ( int time[], int frameTableSize );
+int optimal( char refString[], int refStringSize, char frameTable[],
+              int numOfFrames );
+int predict( char refString[], int refStringSize, char frameTable[],
+             int frameTableSize, int index );
 
 
 int main ( ) 
 {
     int numOfFrames = 0;
-    int i;
-    int j;
+    int i, j;
+    int LRUPageFaults, OptimalPageFaults;
 
 
     printf("Please enter number of frames: ");
@@ -36,6 +40,7 @@ int main ( )
     char refString[refStringSize];
 
 
+
     printf("String size %d \n", refStringSize);
 
     // Create the random ref string
@@ -49,11 +54,34 @@ int main ( )
     }
     printf("\n");
 
-    printf("------- Using LRU Replacement Algorithim -------\n");
+    printf("-------   Using LRU Replacement Algorithim   -------\n");
     // Use the LRU method to 
     // load the pages
-    LRU( refString, refStringSize, frameTable, numOfFrames );
-    printf("------- End LRU Replacement Algorithim -------\n");
+    LRUPageFaults = LRU( refString, refStringSize, frameTable, numOfFrames );
+    printf("-------    End LRU Replacement Algorithim    -------\n");
+
+
+    // reset frame table
+    for ( i = 0; i < numOfFrames; i++ )
+    {
+        frameTable[i] = ' ';
+    }
+    printf("------- Using Optimal Replacement Algorithim -------\n");
+
+    // Use the LRU method to 
+    // load the pages
+    OptimalPageFaults = optimal( refString, refStringSize, frameTable, numOfFrames );
+    printf("------- End Optimal Replacement Algorithim -------\n");
+
+
+    // Output summary
+    printf("-------   Replacement Algorithim Results   -------\n");
+    printf("LRU Page Faults: %d\n", LRUPageFaults);
+    printf("Optimal Page Faults: %d\n", OptimalPageFaults);
+    printf("-------                End                 -------\n");
+
+
+
 
  
 
@@ -77,7 +105,7 @@ void stringRandomizer ( char *refString, int stringSize )
 }
 
 
-void LRU ( char refString[], int refStringSize, char frameTable[],
+int LRU ( char refString[], int refStringSize, char frameTable[],
            int numOfFrames )
 {
     int LRUIndex = 0;
@@ -170,6 +198,9 @@ void LRU ( char refString[], int refStringSize, char frameTable[],
     }
 
     printf("Total Page Faults: %d\n", pageFaults);
+
+    // Send the page fauls to the main class
+    return pageFaults;
 }
 
 int findLRU ( int time[], int frameTableSize )
@@ -188,7 +219,7 @@ int findLRU ( int time[], int frameTableSize )
    return pos;
 }
 
-void optimal( char refString[], int refStringSize, char frameTable[],
+int optimal( char refString[], int refStringSize, char frameTable[],
               int numOfFrames )
 {
     int idexToReplace = 0;
@@ -235,7 +266,8 @@ void optimal( char refString[], int refStringSize, char frameTable[],
         if ( framesFull == true )
         {
             // Find the LRU
-            idexToReplace = findLRU(time, numOfFrames);
+            idexToReplace = predict( refString, refStringSize, frameTable,
+                                     numOfFrames, i + 1 );
             
             printf("Seg fault\n");
             printf("Replacing %c with %c\n", frameTable[idexToReplace], refString[i]);
@@ -264,6 +296,9 @@ void optimal( char refString[], int refStringSize, char frameTable[],
     }
 
     printf("Total Page Faults: %d\n", pageFaults);
+
+    // Send the page fauls to the main class
+    return pageFaults;
 }
 
 int predict( char refString[], int refStringSize, char frameTable[],
@@ -287,6 +322,7 @@ int predict( char refString[], int refStringSize, char frameTable[],
                     farthest = j;
                     res = i;
                 }
+                break;
             }
         }
 
@@ -295,6 +331,8 @@ int predict( char refString[], int refStringSize, char frameTable[],
         if( j == refStringSize )
             return i;
     }
+
+    //printf("res %d\n", res);
 
     // If all the frames were not used 
     // in the future then return 0 
