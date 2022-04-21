@@ -1,0 +1,193 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <time.h>
+
+// Function prototypes
+void stringRandomizer ( char *refString, int stringSize );
+void LRU ( char refString[], int refStringSize, char frameTable[],
+           int numOfFrames );
+int findLRU ( int time[], int frameTableSize );
+
+
+int main ( ) 
+{
+    int numOfFrames = 0;
+    int i;
+    int j;
+
+
+    printf("Please enter number of frames: ");
+    scanf("%d", &numOfFrames);
+
+    // Create the frame table size
+    char frameTable[numOfFrames];
+
+    // Initialize the frame table to 
+    for ( i = 0; i < numOfFrames; i++ )
+    {
+        frameTable[i] = ' ';
+    }
+
+    // Generate random ref string size 
+    srand(time(0));
+    int refStringSize = (rand() % (19 - 2 + 2)) + 2;
+    char refString[refStringSize];
+
+
+    printf("String size %d \n", refStringSize);
+
+    // Create the random ref string
+    stringRandomizer( &refString, refStringSize );
+
+    // Output the ref string
+    printf("refString ");
+    for ( i = 0; i < refStringSize; i++ )
+    {
+        printf("%c", refString[i]);
+    }
+    printf("\n");
+
+    printf("------- Using LRU Replacement Algorithim -------\n");
+    // Use the LRU method to 
+    // load the pages
+    LRU( refString, refStringSize, frameTable, numOfFrames );
+    printf("------- End LRU Replacement Algorithim -------\n");
+
+ 
+
+} 
+
+void stringRandomizer ( char *refString, int stringSize ) 
+{
+    int i;
+
+    // Generate random numbers for refString
+    srand(time(0));
+
+    // Generate the random number, convert it 
+    // to a char then append it to the ref
+    for( i = 0; i < stringSize; i++ )
+    {
+        int randNumber = (rand() % (5 - 1 + 1)) + 1;
+        char randChar = randNumber + '0';
+        refString[i] = randChar;
+    }
+}
+
+
+void LRU ( char refString[], int refStringSize, char frameTable[],
+           int numOfFrames )
+{
+    int LRUIndex = 0;
+    int pageFaults = 0;
+    int time[numOfFrames];
+    int counter = 0;
+    int i;
+    int j;
+    bool framesFull = false;
+
+    // initalize time array
+    for( i = 0; i < numOfFrames; i++ )
+    {
+        time[i] = 0;
+    }
+
+    
+
+    // Load all of the frames into the 
+    // into the 'memory' using LRU
+    for ( i = 0; i < refStringSize; i++ )
+    {
+        // See if the page has already been loaded
+        for ( j = 0; j < numOfFrames; j++ )
+        {
+            // If the current index is the same as the one we are 
+            // lloking for break the loop
+            if (  frameTable[j] == refString[i] )
+            {
+                printf("Page hit!\n");
+                printf("%c is already loaded\n", refString[i]);
+
+                counter++;
+                time[j] = counter;
+
+
+                break;
+            }
+
+            // If the current index is empty, load the page
+            if ( frameTable[j] == ' ' )
+            {
+                counter++;
+                frameTable[j] = refString[i];
+                break;
+            }
+            // If we are at the end of the array, 
+            // trigger the frames full flag
+            if( j == numOfFrames - 1 )
+            {
+                framesFull = true;
+            }
+        }
+
+        // If the frame table is full, replace a frame
+        if ( framesFull == true )
+        {
+            // Find the LRU
+            LRUIndex = findLRU(time, numOfFrames);
+
+            counter++;
+            time[j] = counter;
+            time[LRUIndex] = counter;
+            
+            printf("Seg fault\n");
+            printf("Replacing %c with %c\n", frameTable[LRUIndex], refString[i]);
+            printf("Index that is being replaced %d\n", LRUIndex);
+
+            frameTable[LRUIndex] = refString[i];
+
+            pageFaults++;
+        }
+
+        // output the current frame table
+        printf("[");
+        for ( j = 0; j < numOfFrames; j++ )
+        {
+            if( j != numOfFrames - 1 )
+                printf("%c, ", frameTable[j] );
+            else
+                printf("%c", frameTable[j] );
+        }
+        printf("]\n");
+
+        printf("\n");
+
+        // Reset loaded frame 
+        framesFull = false; 
+    }
+
+    printf("Total Page Faults: %d\n", pageFaults);
+}
+
+int findLRU ( int time[], int frameTableSize )
+{
+    int i, minimum = time[0], pos = 0;
+ 
+   for (i = 1; i < frameTableSize; ++i)
+   {
+      if (time[i] < minimum)
+      {
+         minimum = time[i];
+         pos = i;
+      }
+   }
+ 
+   return pos;
+}
+
+void optimal( )
+{
+    
+}
