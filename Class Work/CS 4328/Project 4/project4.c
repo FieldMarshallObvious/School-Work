@@ -81,6 +81,7 @@ void LRU ( char refString[], int refStringSize, char frameTable[],
            int numOfFrames )
 {
     int LRUIndex = 0;
+    int index = 0;
     int pageFaults = 0;
     int time[numOfFrames];
     int counter = 0;
@@ -187,7 +188,116 @@ int findLRU ( int time[], int frameTableSize )
    return pos;
 }
 
-void optimal( )
+void optimal( char refString[], int refStringSize, char frameTable[],
+              int numOfFrames )
 {
+    int idexToReplace = 0;
+    int pageFaults = 0;
+    int i;
+    int j;
+    bool framesFull = false;
+
+
     
+
+    // Load all of the frames into the 
+    // into the 'memory' using LRU
+    for ( i = 0; i < refStringSize; i++ )
+    {
+        // See if the page has already been loaded
+        for ( j = 0; j < numOfFrames; j++ )
+        {
+            // If the current index is the same as the one we are 
+            // lloking for break the loop
+            if (  frameTable[j] == refString[i] )
+            {
+                printf("Page hit!\n");
+                printf("%c is already loaded\n", refString[i]);
+
+                break;
+            }
+
+            // If the current index is empty, load the page
+            if ( frameTable[j] == ' ' )
+            {
+                frameTable[j] = refString[i];
+                break;
+            }
+            // If we are at the end of the array, 
+            // trigger the frames full flag
+            if( j == numOfFrames - 1 )
+            {
+                framesFull = true;
+            }
+        }
+
+        // If the frame table is full, replace a frame
+        if ( framesFull == true )
+        {
+            // Find the LRU
+            idexToReplace = findLRU(time, numOfFrames);
+            
+            printf("Seg fault\n");
+            printf("Replacing %c with %c\n", frameTable[idexToReplace], refString[i]);
+            printf("Index that is being replaced %d\n", idexToReplace);
+
+            frameTable[idexToReplace] = refString[i];
+
+            pageFaults++;
+        }
+
+        // output the current frame table
+        printf("[");
+        for ( j = 0; j < numOfFrames; j++ )
+        {
+            if( j != numOfFrames - 1 )
+                printf("%c, ", frameTable[j] );
+            else
+                printf("%c", frameTable[j] );
+        }
+        printf("]\n");
+
+        printf("\n");
+
+        // Reset loaded frame 
+        framesFull = false; 
+    }
+
+    printf("Total Page Faults: %d\n", pageFaults);
+}
+
+int predict( char refString[], int refStringSize, char frameTable[],
+             int frameTableSize, int index )
+{
+    int res = -1;
+    int farthest = index;
+    int i;
+    int j;
+
+    for ( i = 0; i < frameTableSize; i++ )
+    {
+        for( j = index; j < refStringSize; j++ )
+        {
+            if ( frameTable[i] == refString[j] )
+            {
+                // If there is a new farthest location
+                // index keep note 
+                if ( j > farthest ) 
+                {
+                    farthest = j;
+                    res = i;
+                }
+            }
+        }
+
+        // If a page is never referenced in future,
+        // return it
+        if( j == refStringSize )
+            return i;
+    }
+
+    // If all the frames were not used 
+    // in the future then return 0 
+    // If a frame is used in the future then return res
+    return ( res == -1 ) ? 0 : res;
 }
