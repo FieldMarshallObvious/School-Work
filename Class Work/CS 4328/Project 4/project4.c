@@ -36,18 +36,15 @@ int main ( )
 
     // Generate random ref string size 
     srand(time(0));
-    //int refStringSize = (rand() % (19 - 2 + 2)) + 2;
-    //char refString[refStringSize];
-
-    int refStringSize = 19;
-    char refString[19] = "1355511134541451422";
+    int refStringSize = (rand() % (19 - 2 + 2)) + 2;
+    char refString[refStringSize];
 
 
 
     printf("String size %d \n", refStringSize);
 
     // Create the random ref string
-    //stringRandomizer( &refString, refStringSize );
+    stringRandomizer( &refString, refStringSize );
 
     // Output the ref string
     printf("refString ");
