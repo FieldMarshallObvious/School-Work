@@ -110,17 +110,6 @@ public class grid {
             {
                 int numNeighbors = this.findNeighbors( x, y, oldGrid );
 
-                /*if( x == 9 && y == 9 )
-                {
-                    System.out.println("Num of neighbors at 9,9 " + numNeighbors);
-                }*/
-
-                if( oldGrid[x][y].isAlive == true )
-                {
-                    System.out.println("Current coords " + x + " " + y );
-                    System.out.println("Num of neighbors " + numNeighbors);
-                }
-
                 // if the cell has less than two neighbors 
                 // kill the cell
                 if ( numNeighbors < 2 && oldGrid[x][y].isAlive == true )
