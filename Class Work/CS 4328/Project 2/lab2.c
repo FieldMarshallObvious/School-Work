@@ -3,7 +3,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <string.h>
-#include <stdbool.h>
+#include <stdbool.h>                                                                              
 #include <fcntl.h> 
 
 int* findZeroFromCurrentLocation( int curLocation, int size, char *argv[] )
