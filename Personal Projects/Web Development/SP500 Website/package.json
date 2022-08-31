@@ -51,7 +51,7 @@
     "fuse.js": "^6.4.0",
     "hasher": "^1.2.0",
     "marked": "^1.1.0",
-    "moment-timezone": "^0.5.31",
+    "moment-timezone": "^0.5.35",
     "nedb": "^1.8.0",
     "node-fetch": "^2.6.0",
     "nodemon": "^2.0.4",
