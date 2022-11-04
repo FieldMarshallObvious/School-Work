@@ -1,0 +1,8 @@
+argc: 5 
+child - charLocation: 5 
+child - oldCharLocation: 0 
+arrayCommand[j]: ls 
+arrayCommand[j]: t 
+arrayCommand[j]: -al 
+arrayCommand[j]: (null) 
+arrayCommand[j]: output2.txt 

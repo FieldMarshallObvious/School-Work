@@ -1,0 +1,41 @@
+// preprocessing
+
+   use a for loop to check:
+   "<":
+   ">":
+   "|":
+
+   for (i = 0; i <= pipes; i++)
+  {
+    if (there are pipe && this is not the last process) create a right pipe
+ 
+    pid = fork();
+
+    if (pid < 0) //error
+    else if (pid > 0)
+    {
+     if (i > 0) {
+        close(left_fd[0]);
+        close(left_fd[1]);
+     }
+     left_fd[0] = right_fd[0];
+     left_fd[1] = right_fd[1];
+    }
+  else
+   {
+     if there is input redirection && this is the first process)
+      {// deal with input redirection }
+     
+     if there are pipes
+      {
+       if (1st process): 
+       else if (last process):
+       else //middle process
+       }
+      if there is output redirection && this is the last process)
+       {// deal with output redirection}
+   }
+   execvp(argv[k[i]], &argv[k[i]]);
+ } // end of for loop
+
+   
