@@ -19,12 +19,17 @@
 Adafruit_NeoPixel pixels(NUMPIXELS, RGBRINPIN, NEO_GRB + NEO_KHZ800);
 
 // Keep track of if the button has been
-// pressed0
+// pressed
 bool curButtonState = false;
 
+bool colorsInitialized = false;
+
 int colorSet1[4][3] = { {30, 203, 225}, {150, 30, 225}, {225, 52, 30}, {106, 225, 30}};
+  int curPixelColorIndex[16] = {-1, -1, -1, -1, -1, -1, -1, -1, -1 ,-1, -1, -1, -1, -1, -1, -1};
 
 void setup() {
+  Serial.begin(115200);
+
   // setup button pins
   pinMode(BUTTONPINSET1, INPUT);
   pinMode(BUTTONPINSET1, INPUT);
@@ -42,95 +47,78 @@ void loop() {
   pixels.clear();
   pixels.setBrightness(10);
 
-  cycleColors(colorSet1);
+  // Do not reinitialize the 
+  // colors if they are not initialized
+  if (!colorsInitialized)
+    initializeColors(colorSet1);
 }
 
-void cycleColors(int colorSet[][3]) {
-  int counter = 0;
-  int offsetIteration = 4;
-  int starterIndex = 0;
-  bool firstPass = false;
-  int curPixelColorIndex[16] = {-1, -1, -1, -1, -1, -1, -1, -1, -1 ,-1, -1, -1, -1, -1, -1, -1};
-
-  while(true)
+void initializeColors(int colorSet[][3]) {
+  for( int i = 0; i < 16; i++ )
   {
     // If the current index is not initialized
     // initialize it
-    if( curPixelColorIndex[counter] == -1 )
+    if( curPixelColorIndex[i] == -1 )
     {
       // Set each of the pixel blocks
       // to their corresponding starting color
-      if ( counter < 4 )
+      if ( i < 4 )
       {
-        curPixelColorIndex[counter] = 0;      
+        curPixelColorIndex[i] = 0;      
       }
-      else if ( counter < 8 )
+      else if ( i < 8 )
       {
-        curPixelColorIndex[counter] = 1;    
+        curPixelColorIndex[i] = 1;    
         digitalWrite(WHITESQUAREPIN, HIGH);
   
       }
-      else if ( counter < 12 )
+      else if ( i < 12 )
       {
-        curPixelColorIndex[counter] = 2;      
+        curPixelColorIndex[i] = 2;      
       }
-      else if ( counter < 16 )
+      else if ( i < 16 )
       {
-        curPixelColorIndex[counter] = 3;      
+        curPixelColorIndex[i] = 3;      
       }
-
     }
-    else 
-    {
-      swapItems(counter, curPixelColorIndex);
-    }    
+
+    Serial.print("Pixel array is ");
+    Serial.print(curPixelColorIndex[i], DEC);
+    Serial.print(" @ ");
+    Serial.println(i, DEC);
 
     // Set the current pixel 
-    pixels.setPixelColor(counter, pixels.Color(colorSet[curPixelColorIndex[counter]][0], colorSet[curPixelColorIndex[counter]][1], colorSet[curPixelColorIndex[counter]][2]));
-
-
-    if( !firstPass ) { counter++; }
-    else { counter += offsetIteration; }
-
-    // If this is the first pass
-    // and we have iterated through all the pixels
-    // display the pixels
-    if( counter > 15)
-    {
-      pixels.show();
-
-      delay(500);
-    }    
-
-    // If the counter has reached the end,
-    // reset it
-    if ( counter > 15 )
-    {
-      starterIndex++;
-      if ( starterIndex >= 15 )
-      {
-        counter = starterIndex;
-      }
-      else 
-      {
-        counter = 0;
-      }
-    }
-
+    pixels.setPixelColor(i, pixels.Color(colorSet[curPixelColorIndex[i]][0], colorSet[curPixelColorIndex[i]][1], colorSet[curPixelColorIndex[i]][2]));
   }
+  pixels.show();
+
+  Serial.println("Showing pixels!");
+
+  delay(500);
+
+  colorsInitialized = true;
 }
 
-void swapItems(int counter,  int * curPixelColorIndex) {
-    // If this is the first item
-    // swap it with the end of array
-    if ( counter <= 4 )
+// Iterate each of the four leds
+void cycleColors(int colorSet[][3], int curPixelColorIndex[], int counter) 
+{
+  changeItem(counter, curPixelColorIndex);
+  pixels.setPixelColor(counter, pixels.Color(colorSet[curPixelColorIndex[counter]][0], colorSet[curPixelColorIndex[counter]][1], colorSet[curPixelColorIndex[counter]][2]));
+  pixels.show();
+
+}
+
+
+
+void changeItem(int counter,  int * curPixelColorIndex) {
+    // Decrease this items value if it is greater than 0
+    if( curPixelColorIndex[counter] > 0 )
     {
-      curPixelColorIndex[0] = curPixelColorIndex[15 - counter];
+      curPixelColorIndex[counter] -= 1;
     }
-    // Otherwise swap it with the item 4 spaces back
-    else 
+    else
     {
-      curPixelColorIndex[counter] = curPixelColorIndex[counter - 4];
+      curPixelColorIndex[counter] = 3;
     }
 }
 
