@@ -11,7 +11,7 @@
 
 # define PIXELBRIGHTNESS 255
 
-# define COLORSETS 5
+# define COLORSETS 2
 
 // All button pins
 # define BUTTONPINSET1 7
@@ -23,7 +23,7 @@
 
 // All delay time values
 # define STANDARDTIME 50
-# define DEBUGTIME 500
+# define DEBUGTIME 100
 
 // Program flags
 # define DISABLE_BUTTONS false
@@ -35,26 +35,19 @@ Adafruit_NeoPixel pixels(NUMPIXELS, RGBRINPIN, NEO_GRB + NEO_KHZ800);
 // Handle debouncing
 int lastButtonState = 0;
 unsigned long lastDebounceTime = 0;
-unsigned long debounceDelay = 1;
+unsigned long debounceDelay = 50;
 int buttonState;
 int buttonPressedCounter = 0; // Keep track of where the user is in the cycle
 
 bool colorsInitialized = true;
 bool colorActive = false;
 bool dimmingRing = false;
+bool processedInput = false;
 
 // Manage the ring light colors
-struct colorSet {
-  int colors[4][3];
-  colorSet *next;
-};
-
-colorSet *colorSetsHead;
-colorSet *curColorSet = colorSetsHead;
-
 int colorSet[4][3] = { {30, 203, 225}, {150, 30, 225}, {225, 52, 30}, {106, 225, 30}};
 int colorSet1[4][3] = { {30, 203, 225}, {150, 30, 225}, {225, 52, 30}, {106, 225, 30}};
-int colorSet2[4][3] = { {30, 203, 225}, {150, 30, 225}, {225, 52, 30}, {106, 225, 30}};
+int colorSet2[4][3] = { {30, 225, 72}, {225, 169, 30}, {225, 30, 184}, {30, 86, 225}};
 int curPixelColorIndex[16] = {-1, -1, -1, -1, -1, -1, -1, -1, -1 ,-1, -1, -1, -1, -1, -1, -1};
 int counter = 0;
 int sleepCounter = 10;
@@ -86,11 +79,12 @@ void loop() {
   if( reading != lastButtonState )
   {
     lastDebounceTime = millis();
+    processedInput = false;
   }
 
   if( (millis() - lastDebounceTime) > debounceDelay )
   {
-    if( reading != buttonState )
+    if( reading != buttonState & processedInput )
     {
       buttonState = reading;      
       if( buttonState == 0 && !DISABLE_BUTTONS )
@@ -119,30 +113,35 @@ void loop() {
         case 2:
           dimmingRing = true;
 
+          // Determine wich color set to be 
+          // based on where we are in the counter
+          switch (colorSetCounter) 
+          {
+            case 0:
+              changeColorSet(colorSet1);
+              Serial.println("Using color 1");
+              break;
+            case 1:
+              changeColorSet(colorSet2);
+              Serial.println("Using color 2");
+              break;
+            default:
+              changeColorSet(colorSet1);
+              Serial.println("Using color 1");
+              break;
+
+          }
+
           // Move to the next color set 
-          if( colorSetCounter < COLORSETS )
+          if( colorSetCounter <= COLORSETS )
           {
             colorSetCounter++;
           }
           else
           {
             colorSetCounter = 0;
+            Serial.println("reset color set counter");
           }
-
-          // Determine wich color set to be 
-          // based on where we are in the counter
-          /*switch (colorSetCounter) 
-          {
-            case 0:
-              changeColorSet();
-              break;
-            case 1:
-              changeColorSet();
-              break;
-            default:
-              changeColorSet();
-
-          }*/
           break;
         case 3:
           changeSquareState(false);
@@ -185,6 +184,7 @@ void loop() {
   lastButtonState = reading;
 
   delay(DEBUG ? DEBUGTIME : STANDARDTIME);
+  processedInput = true;
 }
 
 // Reset all items in the color array
@@ -225,7 +225,7 @@ void changeSquareState(bool state) {
 // Inititalize all colors in the color array to their
 // starting values
 void initializeColors(int colorSet[][3]) {
-  pixels.setBrightness(10);
+  pixels.setBrightness(PIXELBRIGHTNESS);
   for( int i = 0; i < 16; i++ )
   {
     // If the current index is not initialized
