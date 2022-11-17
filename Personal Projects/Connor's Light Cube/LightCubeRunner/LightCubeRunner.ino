@@ -5,11 +5,10 @@
 */
 
 #include <Adafruit_NeoPixel.h>
-#include <vector>
 
 # define NUMPIXELS 16
 
-# define PIXELBRIGHTNESS 255
+# define PIXELBRIGHTNESS 100
 
 # define COLORSETS 2
 
@@ -22,7 +21,7 @@
 # define WHITESQUAREPIN 3
 
 // All delay time values
-# define STANDARDTIME 50
+# define STANDARDTIME 25
 # define DEBUGTIME 100
 
 // Program flags
@@ -52,6 +51,7 @@ int curPixelColorIndex[16] = {-1, -1, -1, -1, -1, -1, -1, -1, -1 ,-1, -1, -1, -1
 int counter = 0;
 int sleepCounter = 10;
 int colorSetCounter = 0;
+int finalBrightnessValue = 0;
 
 void setup() {
   Serial.begin(9600);
@@ -106,44 +106,22 @@ void loop() {
           colorsInitialized = false;
           colorActive = true;
           resetCurColorArray();
-          break;
-        case 1:
           changeSquareState(true);
           break;
-        case 2:
+        case 1:
           dimmingRing = true;
-
-          // Determine wich color set to be 
-          // based on where we are in the counter
-          switch (colorSetCounter) 
-          {
-            case 0:
-              changeColorSet(colorSet1);
-              Serial.println("Using color 1");
-              break;
-            case 1:
-              changeColorSet(colorSet2);
-              Serial.println("Using color 2");
-              break;
-            default:
-              changeColorSet(colorSet1);
-              Serial.println("Using color 1");
-              break;
-
-          }
-
-          // Move to the next color set 
-          if( colorSetCounter <= COLORSETS )
-          {
-            colorSetCounter++;
-          }
-          else
-          {
-            colorSetCounter = 0;
-            Serial.println("reset color set counter");
-          }
+          finalBrightnessValue = 170;
+          sleepCounter = 0;
+          break;
+        case 2:
+          finalBrightnessValue = 85;
+          dimmingRing = true;
+          sleepCounter = 85;
           break;
         case 3:
+          dimmingRing = true;
+          finalBrightnessValue = 0;
+          sleepCounter = 170;
           changeSquareState(false);
 
       }
@@ -160,20 +138,36 @@ void loop() {
   
   if ( dimmingRing )
   {
-    sleepCounter += 20;
+    sleepCounter += 17;
 
-    // If the ring has been put to sleep
-    // the sleep flags
-    if ( sleepCounter > 255 )
+    Serial.print("sleep counter ");
+    Serial.println(sleepCounter);
+    Serial.print("final brightness value ");
+    Serial.println(finalBrightnessValue);
+    Serial.print("Cur pixel value ");
+    Serial.println(( PIXELBRIGHTNESS - sleepCounter ));
+    
+    // Once the sleep counter has reached it's desired
+    // desintation, reset the flags  
+    if ( ( PIXELBRIGHTNESS - sleepCounter ) <= finalBrightnessValue )
     {
-      sleepCounter = 0;
       dimmingRing = false;
-      colorActive = false;
-    }    
+
+      // If the ring is supposed to be disabled, 
+      // set the pixels to zero
+      if( finalBrightnessValue <= 0 )
+      {
+        colorActive = false;
+        pixels.setBrightness(0);
+        pixels.show();
+
+      }
+
+    }
+
   }
   else if ( counter < 4 )
   {
-    sleepCounter = 0;
     counter++;
   }
   else 
@@ -279,6 +273,9 @@ void cycleColors(int colorSet[][3], int curPixelColorIndex[], int counter, int b
   changeItem(counter + 4, curPixelColorIndex);
   changeItem(counter + 8, curPixelColorIndex);
   changeItem(counter + 12, curPixelColorIndex);
+
+  /*Serial.print("Pixel brightness");
+  Serial.println(brightness);*/
 
   for( int i = 0; i < 16; i++ )
   {
