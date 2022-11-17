@@ -20,8 +20,11 @@
 # define RGBRINPIN 2
 # define WHITESQUAREPIN 3
 
+// Counter for sleep
+# define SLEEPINCREMENT 5
+
 // All delay time values
-# define STANDARDTIME 25
+# define STANDARDTIME 50
 # define DEBUGTIME 100
 
 // Program flags
@@ -74,6 +77,7 @@ void loop() {
   int reading = digitalRead(BUTTONPINSET1);
   //int buttonState2 = digitalRead(BUTTONPINSET2);
 
+
   // If the siwtch changed due to noise
   // log the debounce time
   if( reading != lastButtonState )
@@ -110,18 +114,18 @@ void loop() {
           break;
         case 1:
           dimmingRing = true;
-          finalBrightnessValue = 170;
-          sleepCounter = 0;
+          finalBrightnessValue = 85;
+          sleepCounter = SLEEPINCREMENT ;
           break;
         case 2:
-          finalBrightnessValue = 85;
+          finalBrightnessValue = 175;
           dimmingRing = true;
-          sleepCounter = 85;
+          sleepCounter = SLEEPINCREMENT + 5;
           break;
         case 3:
           dimmingRing = true;
-          finalBrightnessValue = 0;
-          sleepCounter = 170;
+          finalBrightnessValue = 255;
+          sleepCounter = SLEEPINCREMENT + 5;
           changeSquareState(false);
 
       }
@@ -138,7 +142,7 @@ void loop() {
   
   if ( dimmingRing )
   {
-    sleepCounter += 17;
+    sleepCounter += SLEEPINCREMENT;
 
     Serial.print("sleep counter ");
     Serial.println(sleepCounter);
@@ -146,27 +150,29 @@ void loop() {
     Serial.println(finalBrightnessValue);
     Serial.print("Cur pixel value ");
     Serial.println(( PIXELBRIGHTNESS - sleepCounter ));
+
     
     // Once the sleep counter has reached it's desired
     // desintation, reset the flags  
-    if ( ( PIXELBRIGHTNESS - sleepCounter ) <= finalBrightnessValue )
+    if ( sleepCounter >= finalBrightnessValue )
     {
       dimmingRing = false;
 
       // If the ring is supposed to be disabled, 
       // set the pixels to zero
-      if( finalBrightnessValue <= 0 )
+      if( finalBrightnessValue = 255 )
       {
         colorActive = false;
         pixels.setBrightness(0);
         pixels.show();
-
+        sleepCounter = 0;
       }
 
     }
 
   }
-  else if ( counter < 4 )
+  
+  if ( counter < 4 )
   {
     counter++;
   }
@@ -178,6 +184,7 @@ void loop() {
   lastButtonState = reading;
 
   delay(DEBUG ? DEBUGTIME : STANDARDTIME);
+    
   processedInput = true;
 }
 
