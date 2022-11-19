@@ -22,16 +22,21 @@
 
 // Counter for sleep
 # define SLEEPINCREMENT 5
-# define INITIALSLEEPCHANGE 10
+# define INITIALSLEEPCHANGE 0
 # define WAKEINCREMENT -5 
 
 // All delay time values
 # define STANDARDTIME 50
 # define DEBUGTIME 100
 
-// Program flags
+// Debug flags 
 # define DISABLE_BUTTONS false
 # define DEBUG false 
+# define VERBOSEOUTPUT false 
+# define SWITCHOUTPUT false
+# define WAKINGOUT false
+# define SLEEPINGOUT false
+# define INITOUT true
 
 Adafruit_NeoPixel pixels(NUMPIXELS, RGBRINPIN, NEO_GRB + NEO_KHZ800);
 
@@ -43,7 +48,7 @@ int lastButtonState = 0;
 unsigned long lastDebounceTime = 0;
 unsigned long debounceDelay = 50;
 int buttonState;
-int buttonPressedCounter = 0; // Keep track of where the user is in the cycle
+int buttonPressedCounter = -1; // Keep track of where the user is in the cycle
 
 bool colorsInitialized = true;
 bool colorActive = false;
@@ -55,7 +60,7 @@ bool processedInput = true;
 int colorSet[4][3] = { {30, 203, 225}, {150, 30, 225}, {225, 52, 30}, {106, 225, 30}};
 int curPixelColorIndex[16] = {-1, -1, -1, -1, -1, -1, -1, -1, -1 ,-1, -1, -1, -1, -1, -1, -1};
 int counter = 0;
-int sleepCounter = 10;
+int sleepCounter = 255;
 int colorSetCounter = 0;
 int finalBrightnessValue = 0;
 
@@ -103,43 +108,76 @@ void loop() {
           buttonPressedCounter++;
         else
           buttonPressedCounter = 0;
+
+        // Determine how to switch the device
+        // based on what state we are currently in
+        switch (buttonPressedCounter) {
+          case 0:
+            colorsInitialized = false;
+            wakingRing = true;
+            colorActive = true;
+            sleepCounter = 255;
+            resetCurColorArray();
+            changeSquareState(true);
+            if( SWITCHOUTPUT || VERBOSEOUTPUT ) 
+            { 
+              Serial.println("Using button 0");
+              Serial.print("sleep counter ");
+              Serial.println(sleepCounter);
+            }
+            break;
+          case 1:
+            colorsInitialized = true;
+            wakingRing = false;
+            dimmingRing = true;
+            finalBrightnessValue = 175;
+            sleepCounter = 0;
+            if( SWITCHOUTPUT || VERBOSEOUTPUT )
+            { 
+              Serial.println("Using button 1");
+              Serial.print("sleep counter ");
+              Serial.println(sleepCounter);
+            }
+            break;
+          case 2:
+            finalBrightnessValue = 85;
+            dimmingRing = true;
+            wakingRing = false;
+            sleepCounter += SLEEPINCREMENT + INITIALSLEEPCHANGE;
+            if( SWITCHOUTPUT || VERBOSEOUTPUT )
+            { 
+              Serial.println("Using button 2");
+              Serial.print("sleep counter ");
+              Serial.println(sleepCounter);
+            }
+            break;
+          case 3:
+            dimmingRing = true;
+            wakingRing = false;
+            finalBrightnessValue = 0;
+            sleepCounter += SLEEPINCREMENT + INITIALSLEEPCHANGE;
+            if( SWITCHOUTPUT || VERBOSEOUTPUT )
+            {
+              Serial.println("Using button 3");
+              Serial.print("sleep counter ");
+              Serial.println(sleepCounter);
+            }
+            break;
+        }
       }
       else 
         Serial.println("Button is not pressed!");  
-
-      // Determine how to switch the device
-      // based on what state we are currently in
-      switch (buttonPressedCounter) {
-        case 0:
-          colorsInitialized = false;
-          wakingRing = true;
-          colorActive = true;
-          sleepCounter = 255;
-          resetCurColorArray();
-          changeSquareState(true);
-          break;
-        case 1:
-          dimmingRing = true;
-          finalBrightnessValue = 85;
-          sleepCounter = SLEEPINCREMENT + INITIALSLEEPCHANGE;
-          break;
-        case 2:
-          finalBrightnessValue = 175;
-          dimmingRing = true;
-          sleepCounter = SLEEPINCREMENT + INITIALSLEEPCHANGE;
-          break;
-        case 3:
-          dimmingRing = true;
-          finalBrightnessValue = 255;
-          sleepCounter = SLEEPINCREMENT + INITIALSLEEPCHANGE;
-      }
     }
   }  
 
   // Do not reinitialize the 
   // colors if they are not initialized
   if (!colorsInitialized)
+  {
     initializeColors(colorSet, ( PIXELBRIGHTNESS - sleepCounter ));
+    //cycleColors(colorSet, curPixelColorIndex, counter, PIXELBRIGHTNESS - sleepCounter ); 
+
+  }
 
   else if ( colorActive )
     cycleColors(colorSet, curPixelColorIndex, counter, PIXELBRIGHTNESS - sleepCounter ); 
@@ -149,27 +187,33 @@ void loop() {
   if ( dimmingRing )
   {
     sleepCounter += SLEEPINCREMENT;
-
-    Serial.print("sleep counter ");
-    Serial.println(sleepCounter);
-    Serial.print("final brightness value ");
-    Serial.println(finalBrightnessValue);
-    Serial.print("button pressed ");
-    Serial.println(buttonPressedCounter);
-    Serial.print("Cur pixel value ");
-    Serial.println(( PIXELBRIGHTNESS - sleepCounter ));
+    if ( VERBOSEOUTPUT || SLEEPINGOUT )
+    {
+      Serial.println("----------------");
+      Serial.print("sleep counter ");
+      Serial.println(sleepCounter);
+      Serial.print("final brightness value ");
+      Serial.println(finalBrightnessValue);
+      Serial.print("button pressed ");
+      Serial.println(buttonPressedCounter);
+      Serial.print("Cur pixel value ");
+      Serial.println(( PIXELBRIGHTNESS - sleepCounter ));
+      Serial.println("----------------");
+    }
 
     
     // Once the sleep counter has reached it's desired
     // desintation, reset the flags  
-    if ( sleepCounter >= finalBrightnessValue )
+    if ( ( PIXELBRIGHTNESS - sleepCounter ) == finalBrightnessValue )
     {
+      if ( VERBOSEOUTPUT || SLEEPINGOUT ) Serial.println("Completed sleep action");
+
       dimmingRing = false;
       processedInput = true;
 
       // If the ring is supposed to be disabled, 
       // set the pixels to zero
-      if( finalBrightnessValue == 255 )
+      if( finalBrightnessValue == 0 )
       {
         colorActive = false;
         pixels.setBrightness(0);
@@ -185,20 +229,25 @@ void loop() {
   {
     sleepCounter += WAKEINCREMENT;
 
-    Serial.println("Waking ring");
-    Serial.print("sleep counter ");
-    Serial.println(sleepCounter);
-    Serial.print("Cur pixel value ");
-    Serial.println(( PIXELBRIGHTNESS - sleepCounter ));
-    Serial.print("button pressed ");
-    Serial.println(buttonPressedCounter);
-      pixels.show();
-
+    if ( VERBOSEOUTPUT || WAKINGOUT )
+    {
+      Serial.println("**********");
+      Serial.println("Waking ring");
+      Serial.print("sleep counter ");
+      Serial.println(sleepCounter);
+      Serial.print("Cur pixel value ");
+      Serial.println(( PIXELBRIGHTNESS - sleepCounter ));
+      Serial.print("button pressed ");
+      Serial.println(buttonPressedCounter);
+      Serial.println("**********");
+    }
 
 
     // Once the sleep counter has been reset stop waking
-    if( sleepCounter == 0 )
+    if( ( PIXELBRIGHTNESS - sleepCounter ) == 255 )
     {
+      if ( VERBOSEOUTPUT || WAKINGOUT ) Serial.println("Completed wake action");
+
       wakingRing = false;
       pixels.show();
       processedInput = true;      
@@ -262,42 +311,40 @@ void initializeColors(int colorSet[][3], int brightness ) {
   pixels.setBrightness(PIXELBRIGHTNESS);
   for( int i = 0; i < 16; i++ )
   {
-    // If the current index is not initialized
-    // initialize it
-    if( curPixelColorIndex[i] == -1 )
+
+    // Set each of the pixel blocks
+    // to their corresponding starting color
+    if ( i == 0 || i == 4 || i == 8 || i == 12 )
     {
-      // Set each of the pixel blocks
-      // to their corresponding starting color
-      if ( i == 0 || i == 4 || i == 8 || i == 12 )
-      {
-        curPixelColorIndex[i] = 0;      
-      }
-      else if ( i == 1 || i == 5 || i == 9 || i == 13 )
-      {
-        curPixelColorIndex[i] = 1;      
-      }
-      else if ( i == 2 || i == 6 || i == 10 || i == 14 )
-      {
-        curPixelColorIndex[i] = 2;      
-      }
-      else if ( i == 3 || i == 7 || i == 11 || i == 15 )
-      {
-        curPixelColorIndex[i] = 3;      
-      }
+      curPixelColorIndex[i] = 0;      
+    }
+    else if ( i == 1 || i == 5 || i == 9 || i == 13 )
+    {
+      curPixelColorIndex[i] = 1;      
+    }
+    else if ( i == 2 || i == 6 || i == 10 || i == 14 )
+    {
+      curPixelColorIndex[i] = 2;      
+    }
+    else if ( i == 3 || i == 7 || i == 11 || i == 15 )
+    {
+      curPixelColorIndex[i] = 3;      
     }
 
     // Only print these items if debug is true 
-    if (DEBUG) {
+    if (INITOUT) {
       Serial.print("Pixel array is ");
       Serial.print(curPixelColorIndex[i], DEC);
       Serial.print(" @ ");
       Serial.println(i, DEC);
+      Serial.print("Brightness ");
+      Serial.println(brightness);
     }
     
     // Set the current pixel 
     setPixelColor(i, colorSet[curPixelColorIndex[i]][0], colorSet[curPixelColorIndex[i]][1], colorSet[curPixelColorIndex[i]][2], brightness);
   }
-  pixels.show();
+  //pixels.show();
 
   Serial.println("Showing pixels!");
 
@@ -311,10 +358,13 @@ void cycleColors(int colorSet[][3], int curPixelColorIndex[], int counter, int b
 {
 
   // Change this item set of 4
-  changeItem(counter, curPixelColorIndex);
-  changeItem(counter + 4, curPixelColorIndex);
-  changeItem(counter + 8, curPixelColorIndex);
-  changeItem(counter + 12, curPixelColorIndex);
+  for( int i = 0; i < 4; i++ )
+  {
+    changeItem(i, curPixelColorIndex);
+    changeItem(i + 4, curPixelColorIndex);
+    changeItem(i + 8, curPixelColorIndex);
+    changeItem(i + 12, curPixelColorIndex);
+  }
 
   /*Serial.print("Pixel brightness");
   Serial.println(brightness);*/
@@ -335,8 +385,9 @@ void setPixelColor( uint16_t n, uint8_t r, uint8_t g, uint8_t b, uint16_t bright
 void changeItem(int counter,  int * curPixelColorIndex) {
   // If there is another value after this one
   // set this value to the next value
-  if( counter < 15 )
+  /*if( counter < 15 )
   {
+    // Set previous node to this node
     curPixelColorIndex[counter] = curPixelColorIndex[counter + 1];    
   }
   // Otherwise set it to the first 
@@ -344,6 +395,15 @@ void changeItem(int counter,  int * curPixelColorIndex) {
   else 
   {
     curPixelColorIndex[counter] = curPixelColorIndex[0];
+  }*/
+
+  if ( curPixelColorIndex[counter] < 3 )
+  {
+    curPixelColorIndex[counter] += 1;
+  }
+  else 
+  {
+    curPixelColorIndex[counter] = 0;
   }
 }
 
