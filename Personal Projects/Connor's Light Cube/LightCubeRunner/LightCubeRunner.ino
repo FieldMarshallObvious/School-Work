@@ -22,6 +22,8 @@
 
 // Counter for sleep
 # define SLEEPINCREMENT 5
+# define INITIALSLEEPCHANGE 10
+# define WAKEINCREMENT -5 
 
 // All delay time values
 # define STANDARDTIME 50
@@ -32,6 +34,8 @@
 # define DEBUG false 
 
 Adafruit_NeoPixel pixels(NUMPIXELS, RGBRINPIN, NEO_GRB + NEO_KHZ800);
+
+void initializeColors(int colorSet[][3], int brightness = 0);
 
 
 // Handle debouncing
@@ -44,12 +48,11 @@ int buttonPressedCounter = 0; // Keep track of where the user is in the cycle
 bool colorsInitialized = true;
 bool colorActive = false;
 bool dimmingRing = false;
-bool processedInput = false;
+bool wakingRing = false;
+bool processedInput = true;
 
 // Manage the ring light colors
 int colorSet[4][3] = { {30, 203, 225}, {150, 30, 225}, {225, 52, 30}, {106, 225, 30}};
-int colorSet1[4][3] = { {30, 203, 225}, {150, 30, 225}, {225, 52, 30}, {106, 225, 30}};
-int colorSet2[4][3] = { {30, 225, 72}, {225, 169, 30}, {225, 30, 184}, {30, 86, 225}};
 int curPixelColorIndex[16] = {-1, -1, -1, -1, -1, -1, -1, -1, -1 ,-1, -1, -1, -1, -1, -1, -1};
 int counter = 0;
 int sleepCounter = 10;
@@ -80,16 +83,17 @@ void loop() {
 
   // If the siwtch changed due to noise
   // log the debounce time
-  if( reading != lastButtonState )
+  if( reading != lastButtonState  && !processedInput )
   {
     lastDebounceTime = millis();
-    processedInput = false;
   }
 
   if( (millis() - lastDebounceTime) > debounceDelay )
   {
-    if( reading != buttonState & processedInput )
+    if( reading != buttonState && processedInput )
     {
+      processedInput = true;
+
       buttonState = reading;      
       if( buttonState == 0 && !DISABLE_BUTTONS )
       {
@@ -108,26 +112,26 @@ void loop() {
       switch (buttonPressedCounter) {
         case 0:
           colorsInitialized = false;
+          wakingRing = true;
           colorActive = true;
+          sleepCounter = 255;
           resetCurColorArray();
           changeSquareState(true);
           break;
         case 1:
           dimmingRing = true;
           finalBrightnessValue = 85;
-          sleepCounter = SLEEPINCREMENT ;
+          sleepCounter = SLEEPINCREMENT + INITIALSLEEPCHANGE;
           break;
         case 2:
           finalBrightnessValue = 175;
           dimmingRing = true;
-          sleepCounter = SLEEPINCREMENT + 5;
+          sleepCounter = SLEEPINCREMENT + INITIALSLEEPCHANGE;
           break;
         case 3:
           dimmingRing = true;
           finalBrightnessValue = 255;
-          sleepCounter = SLEEPINCREMENT + 5;
-          changeSquareState(false);
-
+          sleepCounter = SLEEPINCREMENT + INITIALSLEEPCHANGE;
       }
     }
   }  
@@ -135,11 +139,13 @@ void loop() {
   // Do not reinitialize the 
   // colors if they are not initialized
   if (!colorsInitialized)
-    initializeColors(colorSet);
+    initializeColors(colorSet, ( PIXELBRIGHTNESS - sleepCounter ));
 
   else if ( colorActive )
     cycleColors(colorSet, curPixelColorIndex, counter, PIXELBRIGHTNESS - sleepCounter ); 
   
+  // Change the brigthness of the 
+  // neopixel when the flag is active
   if ( dimmingRing )
   {
     sleepCounter += SLEEPINCREMENT;
@@ -148,6 +154,8 @@ void loop() {
     Serial.println(sleepCounter);
     Serial.print("final brightness value ");
     Serial.println(finalBrightnessValue);
+    Serial.print("button pressed ");
+    Serial.println(buttonPressedCounter);
     Serial.print("Cur pixel value ");
     Serial.println(( PIXELBRIGHTNESS - sleepCounter ));
 
@@ -157,19 +165,44 @@ void loop() {
     if ( sleepCounter >= finalBrightnessValue )
     {
       dimmingRing = false;
+      processedInput = true;
 
       // If the ring is supposed to be disabled, 
       // set the pixels to zero
-      if( finalBrightnessValue = 255 )
+      if( finalBrightnessValue == 255 )
       {
         colorActive = false;
         pixels.setBrightness(0);
         pixels.show();
-        sleepCounter = 0;
+        changeSquareState(false);
+        //sleepCounter = 0;
       }
 
     }
 
+  }
+  else if ( wakingRing )
+  {
+    sleepCounter += WAKEINCREMENT;
+
+    Serial.println("Waking ring");
+    Serial.print("sleep counter ");
+    Serial.println(sleepCounter);
+    Serial.print("Cur pixel value ");
+    Serial.println(( PIXELBRIGHTNESS - sleepCounter ));
+    Serial.print("button pressed ");
+    Serial.println(buttonPressedCounter);
+      pixels.show();
+
+
+
+    // Once the sleep counter has been reset stop waking
+    if( sleepCounter == 0 )
+    {
+      wakingRing = false;
+      pixels.show();
+      processedInput = true;      
+    }
   }
   
   if ( counter < 4 )
@@ -185,7 +218,7 @@ void loop() {
 
   delay(DEBUG ? DEBUGTIME : STANDARDTIME);
     
-  processedInput = true;
+  //processedInput = true;
 }
 
 // Reset all items in the color array
@@ -225,7 +258,7 @@ void changeSquareState(bool state) {
 
 // Inititalize all colors in the color array to their
 // starting values
-void initializeColors(int colorSet[][3]) {
+void initializeColors(int colorSet[][3], int brightness ) {
   pixels.setBrightness(PIXELBRIGHTNESS);
   for( int i = 0; i < 16; i++ )
   {
@@ -235,19 +268,19 @@ void initializeColors(int colorSet[][3]) {
     {
       // Set each of the pixel blocks
       // to their corresponding starting color
-      if ( i < 4 )
+      if ( i == 0 || i == 4 || i == 8 || i == 12 )
       {
         curPixelColorIndex[i] = 0;      
       }
-      else if ( i < 8 )
+      else if ( i == 1 || i == 5 || i == 9 || i == 13 )
       {
         curPixelColorIndex[i] = 1;      
       }
-      else if ( i < 12 )
+      else if ( i == 2 || i == 6 || i == 10 || i == 14 )
       {
         curPixelColorIndex[i] = 2;      
       }
-      else if ( i < 16 )
+      else if ( i == 3 || i == 7 || i == 11 || i == 15 )
       {
         curPixelColorIndex[i] = 3;      
       }
@@ -262,7 +295,7 @@ void initializeColors(int colorSet[][3]) {
     }
     
     // Set the current pixel 
-    pixels.setPixelColor(i, pixels.Color(colorSet[curPixelColorIndex[i]][0], colorSet[curPixelColorIndex[i]][1], colorSet[curPixelColorIndex[i]][2]));
+    setPixelColor(i, colorSet[curPixelColorIndex[i]][0], colorSet[curPixelColorIndex[i]][1], colorSet[curPixelColorIndex[i]][2], brightness);
   }
   pixels.show();
 
@@ -276,6 +309,8 @@ void initializeColors(int colorSet[][3]) {
 // neighboor
 void cycleColors(int colorSet[][3], int curPixelColorIndex[], int counter, int brightness) 
 {
+
+  // Change this item set of 4
   changeItem(counter, curPixelColorIndex);
   changeItem(counter + 4, curPixelColorIndex);
   changeItem(counter + 8, curPixelColorIndex);
