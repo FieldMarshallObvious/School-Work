@@ -8,7 +8,7 @@
 
 # define NUMPIXELS 16
 
-# define PIXELBRIGHTNESS 100
+# define PIXELBRIGHTNESS 255
 
 # define COLORSETS 2
 
