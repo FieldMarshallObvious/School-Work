@@ -26,7 +26,7 @@
 # define WAKEINCREMENT -5 
 
 // All delay time values
-# define STANDARDTIME 50
+# define STANDARDTIME 100
 # define DEBUGTIME 100
 
 // Debug flags 
@@ -40,7 +40,7 @@
 
 Adafruit_NeoPixel pixels(NUMPIXELS, RGBRINPIN, NEO_GRB + NEO_KHZ800);
 
-void initializeColors(int colorSet[][3], int brightness = 0);
+void initializeColors(int colorSet[][3], int colorSetCounter, int brightness = 0);
 
 
 // Handle debouncing
@@ -104,8 +104,10 @@ void loop() {
       {
         Serial.println("Button pressed!");
         // Change the cycle to next value
-        if (buttonPressedCounter < 3)
+        if (buttonPressedCounter < 4)
+        {
           buttonPressedCounter++;
+        }
         else
           buttonPressedCounter = 0;
 
@@ -163,6 +165,8 @@ void loop() {
               Serial.println(sleepCounter);
             }
             break;
+          case 4: 
+            changeSquareState(false);
         }
       }
       else 
@@ -174,7 +178,7 @@ void loop() {
   // colors if they are not initialized
   if (!colorsInitialized)
   {
-    initializeColors(colorSet, ( PIXELBRIGHTNESS - sleepCounter ));
+    initializeColors(colorSet, counter, ( PIXELBRIGHTNESS - sleepCounter ));
     //cycleColors(colorSet, curPixelColorIndex, counter, PIXELBRIGHTNESS - sleepCounter ); 
 
   }
@@ -218,7 +222,6 @@ void loop() {
         colorActive = false;
         pixels.setBrightness(0);
         pixels.show();
-        changeSquareState(false);
         //sleepCounter = 0;
       }
 
@@ -307,29 +310,14 @@ void changeSquareState(bool state) {
 
 // Inititalize all colors in the color array to their
 // starting values
-void initializeColors(int colorSet[][3], int brightness ) {
+void initializeColors(int colorSet[][3], int colorSetCounter, int brightness ) {
   pixels.setBrightness(PIXELBRIGHTNESS);
   for( int i = 0; i < 16; i++ )
   {
 
     // Set each of the pixel blocks
     // to their corresponding starting color
-    if ( i == 0 || i == 4 || i == 8 || i == 12 )
-    {
-      curPixelColorIndex[i] = 0;      
-    }
-    else if ( i == 1 || i == 5 || i == 9 || i == 13 )
-    {
-      curPixelColorIndex[i] = 1;      
-    }
-    else if ( i == 2 || i == 6 || i == 10 || i == 14 )
-    {
-      curPixelColorIndex[i] = 2;      
-    }
-    else if ( i == 3 || i == 7 || i == 11 || i == 15 )
-    {
-      curPixelColorIndex[i] = 3;      
-    }
+    curPixelColorIndex[i] = colorSetCounter;      
 
     // Only print these items if debug is true 
     if (INITOUT) {
@@ -342,7 +330,7 @@ void initializeColors(int colorSet[][3], int brightness ) {
     }
     
     // Set the current pixel 
-    setPixelColor(i, colorSet[curPixelColorIndex[i]][0], colorSet[curPixelColorIndex[i]][1], colorSet[curPixelColorIndex[i]][2], brightness);
+    //setPixelColor(i, colorSet[curPixelColorIndex[i]][0], colorSet[curPixelColorIndex[i]][1], colorSet[curPixelColorIndex[i]][2], brightness);
   }
   //pixels.show();
 
@@ -357,19 +345,16 @@ void initializeColors(int colorSet[][3], int brightness ) {
 void cycleColors(int colorSet[][3], int curPixelColorIndex[], int counter, int brightness) 
 {
 
-  // Change this item set of 4
-  for( int i = 0; i < 4; i++ )
-  {
-    changeItem(i, curPixelColorIndex);
-    changeItem(i + 4, curPixelColorIndex);
-    changeItem(i + 8, curPixelColorIndex);
-    changeItem(i + 12, curPixelColorIndex);
-  }
+  // Light the next 4 pixels
+  changeItem(counter, curPixelColorIndex);
+  changeItem(counter + 4, curPixelColorIndex);
+  changeItem(counter + 8, curPixelColorIndex);
+  changeItem(counter + 12, curPixelColorIndex);
 
   /*Serial.print("Pixel brightness");
   Serial.println(brightness);*/
 
-  for( int i = 0; i < 16; i++ )
+  for( int i = i; i < 16; i++ )
   {
     setPixelColor(i, colorSet[curPixelColorIndex[i]][0], colorSet[curPixelColorIndex[i]][1], colorSet[curPixelColorIndex[i]][2], brightness);
   }
@@ -385,7 +370,7 @@ void setPixelColor( uint16_t n, uint8_t r, uint8_t g, uint8_t b, uint16_t bright
 void changeItem(int counter,  int * curPixelColorIndex) {
   // If there is another value after this one
   // set this value to the next value
-  /*if( counter < 15 )
+  if( counter < 15 )
   {
     // Set previous node to this node
     curPixelColorIndex[counter] = curPixelColorIndex[counter + 1];    
@@ -395,15 +380,6 @@ void changeItem(int counter,  int * curPixelColorIndex) {
   else 
   {
     curPixelColorIndex[counter] = curPixelColorIndex[0];
-  }*/
-
-  if ( curPixelColorIndex[counter] < 3 )
-  {
-    curPixelColorIndex[counter] += 1;
-  }
-  else 
-  {
-    curPixelColorIndex[counter] = 0;
   }
 }
 
