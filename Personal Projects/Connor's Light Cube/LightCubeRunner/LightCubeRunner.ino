@@ -65,7 +65,7 @@ bool reachedDest = false;
 bool switchColorDirection = false;
 
 // Manage the ring light colors
-int colorSet[4][3] = { {0, 56, 240}, {48, 83, 199}, {83, 121, 249}, {107, 137, 234}};
+int colorSet[4][3] = { {75, 201003, 225}, {100, 125, 225}, {125, 150, 30}, {150, 175, 255}};
 int curPixelColorIndex[16] = {-1, -1, -1, -1, -1, -1, -1, -1, -1 ,-1, -1, -1, -1, -1, -1, -1};
 int counter = 0;
 int sleepCounter = 255;
@@ -98,98 +98,89 @@ void loop() {
   //int buttonState2 = digitalRead(BUTTONPINSET2);
 
 
-  // If the siwtch changed due to noise
-  // log the debounce time
-  if( reading != lastButtonState )
+  if( processedInput )
   {
-    lastDebounceTime = millis();
-  }
 
-  if( (millis() - lastDebounceTime) > debounceDelay )
-  {
-    if( reading != buttonState && processedInput )
+    buttonState = reading;      
+    if( buttonState == 1 && !DISABLE_BUTTONS )
     {
+      processedInput = false;
 
-      buttonState = reading;      
-      if( buttonState == 0 && !DISABLE_BUTTONS )
+      Serial.println("Button pressed!");
+      // Change the cycle to next value
+      if (buttonPressedCounter < 4)
       {
-        processedInput = false;
-
-        Serial.println("Button pressed!");
-        // Change the cycle to next value
-        if (buttonPressedCounter < 4)
-        {
-          buttonPressedCounter++;
-        }
-        else
-        {
-          buttonPressedCounter = 0;
-        }
-
-        // Determine how to switch the device
-        // based on what state we are currently in
-        switch (buttonPressedCounter) {
-          case 0:
-            colorsInitialized = false;
-            wakingRing = true;
-            colorActive = true;
-            sleepCounter = 255;
-            resetCurColorArray();
-            changeSquareState(true);
-            if( SWITCHOUTPUT || VERBOSEOUTPUT ) 
-            { 
-              Serial.println("Using button 0");
-              Serial.print("sleep counter ");
-              Serial.println(sleepCounter);
-            }
-            break;
-          case 1:
-            colorsInitialized = true;
-            wakingRing = false;
-            dimmingRing = true;
-            finalBrightnessValue = 175;
-            sleepCounter = 0;
-            if( SWITCHOUTPUT || VERBOSEOUTPUT )
-            { 
-              Serial.println("Using button 1");
-              Serial.print("sleep counter ");
-              Serial.println(sleepCounter);
-            }
-            break;
-          case 2:
-            finalBrightnessValue = 85;
-            dimmingRing = true;
-            wakingRing = false;
-            sleepCounter += SLEEPINCREMENT + INITIALSLEEPCHANGE;
-            if( SWITCHOUTPUT || VERBOSEOUTPUT )
-            { 
-              Serial.println("Using button 2");
-              Serial.print("sleep counter ");
-              Serial.println(sleepCounter);
-            }
-            break;
-          case 3:
-            dimmingRing = true;
-            wakingRing = false;
-            finalBrightnessValue = 0;
-            sleepCounter += SLEEPINCREMENT + INITIALSLEEPCHANGE;
-            if( SWITCHOUTPUT || VERBOSEOUTPUT )
-            {
-              Serial.println("Using button 3");
-              Serial.print("sleep counter ");
-              Serial.println(sleepCounter);
-            }
-            break;
-          case 4: 
-            changeSquareState(false);
-            swappingColor = false;
-            break;
-        }
+        buttonPressedCounter++;
       }
-      else 
-        Serial.println("Button is not pressed!");  
+      else
+      {
+        buttonPressedCounter = 0;
+      }
+
+      // Determine how to switch the device
+      // based on what state we are currently in
+      switch (buttonPressedCounter) {
+        case 0:
+          colorsInitialized = false;
+          wakingRing = true;
+          colorActive = true;
+          sleepCounter = 255;
+          resetCurColorArray();
+          changeSquareState(true);
+          if( SWITCHOUTPUT || VERBOSEOUTPUT ) 
+          { 
+            Serial.println("Using button 0");
+            Serial.print("sleep counter ");
+            Serial.println(sleepCounter);
+          }
+          break;
+        case 1:
+          colorsInitialized = true;
+          wakingRing = false;
+          dimmingRing = true;
+          finalBrightnessValue = 175;
+          sleepCounter = 0;
+          if( SWITCHOUTPUT || VERBOSEOUTPUT )
+          { 
+            Serial.println("Using button 1");
+            Serial.print("sleep counter ");
+            Serial.println(sleepCounter);
+          }
+          break;
+        case 2:
+          finalBrightnessValue = 85;
+          dimmingRing = true;
+          wakingRing = false;
+          sleepCounter += SLEEPINCREMENT + INITIALSLEEPCHANGE;
+          if( SWITCHOUTPUT || VERBOSEOUTPUT )
+          { 
+            Serial.println("Using button 2");
+            Serial.print("sleep counter ");
+            Serial.println(sleepCounter);
+          }
+          break;
+        case 3:
+          dimmingRing = true;
+          wakingRing = false;
+          finalBrightnessValue = 0;
+          sleepCounter += SLEEPINCREMENT + INITIALSLEEPCHANGE;
+          if( SWITCHOUTPUT || VERBOSEOUTPUT )
+          {
+            Serial.println("Using button 3");
+            Serial.print("sleep counter ");
+            Serial.println(sleepCounter);
+          }
+          break;
+        case 4: 
+          changeSquareState(false);
+          swappingColor = false;
+          processedInput = true;
+          break;
+      }
     }
-  }  
+    else 
+      Serial.println("Button is not pressed!");  
+  }
 
   // Do not reinitialize the 
   // colors if they are not initialized
@@ -203,7 +194,7 @@ void loop() {
   else if ( colorActive )
   {
     cycleColors(colorSet, curPixelColorIndex, counter, colorSetCounter, PIXELBRIGHTNESS - sleepCounter ); 
-    if ( swappingColor && (!dimmingRing || !wakingRing) && colorActive )
+    if ( swappingColor && (!dimmingRing || !wakingRing) && colorActive && false )
     {
       if( colorSetCounter > 0 )
         moveBetweenTwoColors(colorSet[!switchColorDirection ? (colorSetCounter == 2 ? 0 : colorSetCounter - 1) : (colorSetCounter)][0], 
@@ -332,12 +323,12 @@ void loop() {
       reachedDest = false;
     }
 
-    Serial.print("final r ");
+    /*Serial.print("final r ");
     Serial.print(colorSet[colorSetCounter][0]);
     Serial.print(" final g ");
     Serial.print(colorSet[colorSetCounter][1]);
     Serial.print(" final b ");
-    Serial.println(colorSet[colorSetCounter][2]);
+    Serial.println(colorSet[colorSetCounter][2]);*/
 
     if(!dimmingRing && !wakingRing )
       processedInput = true;
@@ -396,23 +387,40 @@ void initializeColors(int colorSet[][3], int colorSetCounter, int brightness ) {
   pixels.setBrightness(PIXELBRIGHTNESS);
   for( int i = 0; i < 16; i++ )
   {
-
-    // Set each of the pixel blocks
-    // to their corresponding starting color
-    curPixelColorIndex[i] = colorSetCounter;      
+    // If the current index is not initialized
+    // initialize it
+    if( curPixelColorIndex[i] == -1 )
+    {
+      // Set each of the pixel blocks
+      // to their corresponding starting color
+      if ( i < 4 )
+      {
+        curPixelColorIndex[i] = 0;
+      }
+      else if ( i < 8 )
+      {
+        curPixelColorIndex[i] = 1;
+      }
+      else if ( i < 12 )
+      {
+        curPixelColorIndex[i] = 2;
+      }
+      else if ( i < 16 )
+      {
+        curPixelColorIndex[i] = 3;
+      }
+    }
 
     // Only print these items if debug is true 
-    if (INITOUT) {
+    if (DEBUG) {
       Serial.print("Pixel array is ");
       Serial.print(curPixelColorIndex[i], DEC);
       Serial.print(" @ ");
       Serial.println(i, DEC);
-      Serial.print("Brightness ");
-      Serial.println(brightness);
     }
-    
+
     // Set the current pixel 
-    //setPixelColor(i, colorSet[curPixelColorIndex[i]][0], colorSet[curPixelColorIndex[i]][1], colorSet[curPixelColorIndex[i]][2], brightness);
+    setPixelColor(i, colorSet[curPixelColorIndex[i]][0], colorSet[i][1], colorSet[i][2], brightness);
   }
   pixels.show();
 
@@ -428,10 +436,10 @@ void cycleColors(int colorSet[][3], int curPixelColorIndex[], int counter, int c
 {
 
   // Light the next 4 pixels
-  //changeItem(counter, curPixelColorIndex);
-  //changeItem(counter + 4, curPixelColorIndex);
-  //changeItem(counter + 8, curPixelColorIndex);
-  //changeItem(counter + 12, curPixelColorIndex);
+  changeItem(counter, curPixelColorIndex);
+  changeItem(counter + 4, curPixelColorIndex);
+  changeItem(counter + 8, curPixelColorIndex);
+  changeItem(counter + 12, curPixelColorIndex);
 
   /*Serial.print("Pixel brightness");
   Serial.println(brightness);*/
@@ -446,7 +454,7 @@ void cycleColors(int colorSet[][3], int curPixelColorIndex[], int counter, int c
 
 // Set the pixel color based on brightness
 void setPixelColor( uint16_t n, uint8_t r, uint8_t g, uint8_t b, uint16_t brightness) {
-	pixels.setPixelColor(n, pixels.Color( r, g, b));
+	pixels.setPixelColor(n, pixels.Color( (r * brightness)/255, (g * brightness)/255, (b * brightness)/255));
 }
 
 // Draw a line between the two different colors
@@ -462,7 +470,7 @@ void moveBetweenTwoColors( int r1, int g1, int b1,
   newB += newB != float(b2) ? incrementB:0;
 
 
-  /*Serial.print("new R ");
+  Serial.print("new R ");
   Serial.print(newR);
   Serial.print(", new G ");
   Serial.print(newG);
@@ -474,7 +482,7 @@ void moveBetweenTwoColors( int r1, int g1, int b1,
   Serial.print(g2);
   Serial.print(" final b ");
   Serial.println(b2);
-  Serial.print("Increment newR ");
+  /*Serial.print("Increment newR ");
   Serial.print(incrementR);
   Serial.print(" Increment newG ");
   Serial.print(incrementG);
