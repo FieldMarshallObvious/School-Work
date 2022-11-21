@@ -108,7 +108,7 @@ void loop() {
 
       Serial.println("Button pressed!");
       // Change the cycle to next value
-      if (buttonPressedCounter < 4)
+      if (buttonPressedCounter < 5)
       {
         buttonPressedCounter++;
       }
@@ -176,6 +176,10 @@ void loop() {
           swappingColor = false;
           processedInput = true;
           break;
+        default:
+          Serial.println("Using invalid input");
+          processedInput = true;
+
       }
     }
     else 
