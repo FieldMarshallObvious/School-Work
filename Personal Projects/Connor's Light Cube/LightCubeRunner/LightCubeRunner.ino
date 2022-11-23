@@ -65,7 +65,7 @@ bool reachedDest = false;
 bool switchColorDirection = false;
 
 // Manage the ring light colors
-int colorSet[4][3] = { {75, 201003, 225}, {100, 125, 225}, {125, 150, 30}, {150, 175, 255}};
+int colorSet[4][3] = { {75, 100, 225}, {100, 125, 225}, {125, 150, 30}, {150, 175, 255}};
 int curPixelColorIndex[16] = {-1, -1, -1, -1, -1, -1, -1, -1, -1 ,-1, -1, -1, -1, -1, -1, -1};
 int counter = 0;
 int sleepCounter = 255;
@@ -179,6 +179,7 @@ void loop() {
         default:
           Serial.println("Using invalid input");
           processedInput = true;
+          delay(2*STANDARDTIME);          
 
       }
     }
