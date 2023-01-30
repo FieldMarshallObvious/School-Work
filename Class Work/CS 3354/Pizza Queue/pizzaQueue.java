@@ -6,14 +6,14 @@ public class pizzaQueue
         // Create objects for first and last objects 
         pizzaList queue = new pizzaList();
 
-        queue.enqueue( new pizza("pepperoni", "1234 Bobcat Trail"));
-        queue.enqueue(new pizza("sausage", "2345 University Drive"));
+        queue.enqueue( new pizza("pepperoni", "1234 Bobcat Trail") );
+        queue.enqueue( new pizza("sausage", "2345 University Drive") );
 
         queue.deliver();
 
-        queue.enqueue( new pizza("extra cheese", "3456 Rickster Road"));
-        queue.enqueue(new pizza("everything", "4567 King Court"));
-        queue.enqueue( new pizza("coffee beans", "5678 Java Circle"));
+        queue.enqueue( new pizza("extra cheese", "3456 Rickster Road") );
+        queue.enqueue( new pizza("everything", "4567 King Court") );
+        queue.enqueue( new pizza("coffee beans", "5678 Java Circle") );
 
         queue.deliver();
         queue.deliver();
