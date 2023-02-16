@@ -1,0 +1,182 @@
+Tue Oct 25 00:44:05 CDT 2022
+N-body v1.2
+thread count: 1
+bodies: 16384
+time steps: 32
+images: no
+compute time: 13.692880 s
+N-body v1.2
+thread count: 3
+bodies: 16384
+time steps: 32
+images: no
+compute time: 4.970373 s
+N-body v1.2
+thread count: 5
+bodies: 16384
+time steps: 32
+images: no
+compute time: 3.058545 s
+N-body v1.2
+thread count: 7
+bodies: 16384
+time steps: 32
+images: no
+compute time: 2.125603 s
+N-body v1.2
+thread count: 9
+bodies: 16384
+time steps: 32
+images: no
+compute time: 1.689363 s
+N-body v1.2
+thread count: 11
+bodies: 16384
+time steps: 32
+images: no
+compute time: 1.447055 s
+N-body v1.2
+thread count: 13
+bodies: 16384
+time steps: 32
+images: no
+compute time: 1.237644 s
+N-body v1.2
+thread count: 15
+bodies: 16384
+time steps: 32
+images: no
+compute time: 1.080049 s
+N-body v1.2
+thread count: 17
+bodies: 16384
+time steps: 32
+images: no
+compute time: 0.964574 s
+N-body v1.2
+thread count: 19
+bodies: 16384
+time steps: 32
+images: no
+compute time: 0.872747 s
+N-body v1.2
+thread count: 21
+bodies: 16384
+time steps: 32
+images: no
+compute time: 0.754123 s
+N-body v1.2
+thread count: 23
+bodies: 16384
+time steps: 32
+images: no
+compute time: 0.699069 s
+N-body v1.2
+thread count: 25
+bodies: 16384
+time steps: 32
+images: no
+compute time: 0.650664 s
+N-body v1.2
+thread count: 27
+bodies: 16384
+time steps: 32
+images: no
+compute time: 0.631597 s
+N-body v1.2
+thread count: 29
+bodies: 16384
+time steps: 32
+images: no
+compute time: 0.603974 s
+N-body v1.2
+thread count: 31
+bodies: 16384
+time steps: 32
+images: no
+compute time: 0.540423 s
+N-body v1.2
+thread count: 33
+bodies: 16384
+time steps: 32
+images: no
+compute time: 0.524724 s
+N-body v1.2
+thread count: 35
+bodies: 16384
+time steps: 32
+images: no
+compute time: 0.501559 s
+N-body v1.2
+thread count: 37
+bodies: 16384
+time steps: 32
+images: no
+compute time: 0.467306 s
+N-body v1.2
+thread count: 39
+bodies: 16384
+time steps: 32
+images: no
+compute time: 0.456018 s
+N-body v1.2
+thread count: 41
+bodies: 16384
+time steps: 32
+images: no
+compute time: 0.427010 s
+N-body v1.2
+thread count: 43
+bodies: 16384
+time steps: 32
+images: no
+compute time: 0.446777 s
+N-body v1.2
+thread count: 45
+bodies: 16384
+time steps: 32
+images: no
+compute time: 0.524456 s
+N-body v1.2
+thread count: 47
+bodies: 16384
+time steps: 32
+images: no
+compute time: 0.398299 s
+N-body v1.2
+thread count: 49
+bodies: 16384
+time steps: 32
+images: no
+compute time: 0.391190 s
+N-body v1.2
+thread count: 51
+bodies: 16384
+time steps: 32
+images: no
+compute time: 0.383669 s
+N-body v1.2
+thread count: 53
+bodies: 16384
+time steps: 32
+images: no
+compute time: 0.368656 s
+N-body v1.2
+thread count: 55
+bodies: 16384
+time steps: 32
+images: no
+compute time: 0.358462 s
+N-body v1.2
+thread count: 57
+bodies: 16384
+time steps: 32
+images: no
+compute time: 0.617961 s
+N-body v1.2
+thread count: 59
+bodies: 16384
+time steps: 32
+images: no
+compute time: 0.590306 s
+Tue Oct 25 00:44:47 CDT 2022

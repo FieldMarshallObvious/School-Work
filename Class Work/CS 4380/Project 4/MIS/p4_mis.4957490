@@ -1,0 +1,177 @@
+Mon Oct 31 11:36:54 CDT 2022
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/USA-road-d.USA.egr
+nodes: 23947347
+edges: 57708624
+compute time: 0.669749 s
+elements in set: 10765766 (45.0%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/USA-road-d.USA.egr
+nodes: 23947347
+edges: 57708624
+compute time: 0.063806 s
+elements in set: 10765766 (45.0%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/USA-road-d.USA.egr
+nodes: 23947347
+edges: 57708624
+compute time: 0.061478 s
+elements in set: 10765766 (45.0%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/USA-road-d.USA.egr
+nodes: 23947347
+edges: 57708624
+compute time: 0.061353 s
+elements in set: 10765766 (45.0%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/USA-road-d.USA.egr
+nodes: 23947347
+edges: 57708624
+compute time: 0.066108 s
+elements in set: 10765766 (45.0%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/europe_osm.egr
+nodes: 50912018
+edges: 108109320
+compute time: 1.156899 s
+elements in set: 22161271 (43.5%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/europe_osm.egr
+nodes: 50912018
+edges: 108109320
+compute time: 0.130975 s
+elements in set: 22161271 (43.5%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/europe_osm.egr
+nodes: 50912018
+edges: 108109320
+compute time: 0.082401 s
+elements in set: 22161271 (43.5%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/europe_osm.egr
+nodes: 50912018
+edges: 108109320
+compute time: 0.087043 s
+elements in set: 22161271 (43.5%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/europe_osm.egr
+nodes: 50912018
+edges: 108109320
+compute time: 0.048666 s
+elements in set: 22161271 (43.5%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/r4-2e23.sym.egr
+nodes: 8388608
+edges: 67108846
+compute time: 0.615562 s
+elements in set: 2208598 (26.3%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/r4-2e23.sym.egr
+nodes: 8388608
+edges: 67108846
+compute time: 0.070302 s
+elements in set: 2208598 (26.3%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/r4-2e23.sym.egr
+nodes: 8388608
+edges: 67108846
+compute time: 0.043360 s
+elements in set: 2208598 (26.3%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/r4-2e23.sym.egr
+nodes: 8388608
+edges: 67108846
+compute time: 0.063149 s
+elements in set: 2208598 (26.3%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/r4-2e23.sym.egr
+nodes: 8388608
+edges: 67108846
+compute time: 0.088768 s
+elements in set: 2208598 (26.3%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/soc-LiveJournal1.egr
+nodes: 4847571
+edges: 85702474
+compute time: 0.291595 s
+elements in set: 2316339 (47.8%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/soc-LiveJournal1.egr
+nodes: 4847571
+edges: 85702474
+compute time: 0.044980 s
+elements in set: 2316339 (47.8%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/soc-LiveJournal1.egr
+nodes: 4847571
+edges: 85702474
+compute time: 0.071460 s
+elements in set: 2316339 (47.8%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/soc-LiveJournal1.egr
+nodes: 4847571
+edges: 85702474
+compute time: 0.037762 s
+elements in set: 2316339 (47.8%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/soc-LiveJournal1.egr
+nodes: 4847571
+edges: 85702474
+compute time: 0.043048 s
+elements in set: 2316339 (47.8%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/uk-2002.egr
+nodes: 18520486
+edges: 523574516
+compute time: 0.794696 s
+elements in set: 10551016 (57.0%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/uk-2002.egr
+nodes: 18520486
+edges: 523574516
+compute time: 0.087804 s
+elements in set: 10551016 (57.0%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/uk-2002.egr
+nodes: 18520486
+edges: 523574516
+compute time: 0.082110 s
+elements in set: 10551016 (57.0%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/uk-2002.egr
+nodes: 18520486
+edges: 523574516
+compute time: 0.046993 s
+elements in set: 10551016 (57.0%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/uk-2002.egr
+nodes: 18520486
+edges: 523574516
+compute time: 0.074866 s
+elements in set: 10551016 (57.0%)
+verification passed
+Mon Oct 31 11:37:24 CDT 2022

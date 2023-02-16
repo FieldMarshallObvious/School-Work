@@ -1,0 +1,26 @@
+Collatz v1.8
+start value: 3
+upper bound: 2000000
+processes: 56
+compute time: 0.008091 s
+maximum length: 557
+TACC:  Shutdown complete. Exiting. 
+TACC:  Starting up job 4868759 
+TACC:  Starting parallel tasks... 
+Collatz v1.8
+start value: 5
+upper bound: 20000000
+processes: 56
+compute time: 0.067860 s
+maximum length: 705
+TACC:  Shutdown complete. Exiting. 
+TACC:  Starting up job 4868759 
+TACC:  Starting parallel tasks... 
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+processes: 56
+compute time: 0.761274 s
+maximum length: 954
+TACC:  Shutdown complete. Exiting. 
+Wed Sep 28 11:20:31 CDT 2022

@@ -1,0 +1,97 @@
+Mon Oct 24 15:50:25 CDT 2022
+Fractal v2.3
+frames: 256
+width: 512
+thread count: 48
+compute time: 0.856560 s
+Fractal v2.3
+frames: 256
+width: 512
+thread count: 1
+compute time: 27.218412 s
+Fractal v2.3
+frames: 256
+width: 512
+thread count: 12
+compute time: 2.743342 s
+Fractal v2.3
+frames: 256
+width: 512
+thread count: 24
+compute time: 1.383435 s
+Fractal v2.3
+frames: 256
+width: 512
+thread count: 36
+compute time: 1.009754 s
+Fractal v2.3
+frames: 256
+width: 512
+thread count: 48
+compute time: 0.759984 s
+Fractal v2.3
+frames: 256
+width: 512
+thread count: 60
+compute time: 0.754955 s
+Fractal v2.3
+frames: 256
+width: 512
+thread count: 1
+compute time: 27.099905 s
+Fractal v2.3
+frames: 256
+width: 512
+thread count: 12
+compute time: 4.098492 s
+Fractal v2.3
+frames: 256
+width: 512
+thread count: 24
+compute time: 2.161466 s
+Fractal v2.3
+frames: 256
+width: 512
+thread count: 36
+compute time: 1.488973 s
+Fractal v2.3
+frames: 256
+width: 512
+thread count: 48
+compute time: 1.144056 s
+Fractal v2.3
+frames: 256
+width: 512
+thread count: 60
+compute time: 1.439847 s
+Fractal v2.3
+frames: 256
+width: 512
+thread count: 1
+compute time: 27.081712 s
+Fractal v2.3
+frames: 256
+width: 512
+thread count: 12
+compute time: 4.093520 s
+Fractal v2.3
+frames: 256
+width: 512
+thread count: 24
+compute time: 2.534027 s
+Fractal v2.3
+frames: 256
+width: 512
+thread count: 36
+compute time: 2.192698 s
+Fractal v2.3
+frames: 256
+width: 512
+thread count: 48
+compute time: 2.579633 s
+Fractal v2.3
+frames: 256
+width: 512
+thread count: 60
+compute time: 2.212043 s
+Mon Oct 24 15:52:18 CDT 2022

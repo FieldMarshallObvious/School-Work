@@ -1,0 +1,16 @@
+#!/bin/bash
+#SBATCH -A SEE22001         # account name
+#SBATCH -J p6_fractalT       # job name
+#SBATCH -o p6_fractalT.%j    # name of the output and error file
+#SBATCH -N 4                # total number of nodes requested
+#SBATCH -n 4                # total number of tasks requested
+#SBATCH -p rtx              # queue name
+#SBATCH -t 00:01:30         # expected maximum runtime (hh:mm:ss)
+
+date
+
+export OMP_NUM_THREADS=32
+
+ibrun tacc_affinity ./fractal_hybrid 256 60 5
+
+date

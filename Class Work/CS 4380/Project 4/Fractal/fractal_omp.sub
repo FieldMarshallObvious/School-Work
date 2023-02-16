@@ -1,0 +1,35 @@
+#!/bin/bash
+#SBATCH -A SEE22001         # account name
+#SBATCH -J p4_fractal       # job name
+#SBATCH -o p4_fractal.%j    # name of the output and error file
+#SBATCH -N 1                # total number of nodes requested
+#SBATCH -n 1                # total number of tasks requested
+#SBATCH -p small            # queue name
+#SBATCH -t 00:02:30         # expected maximum runtime (hh:mm:ss)
+
+date
+
+./fractal1_omp 512 256 48
+
+./fractal1_omp 512 256 1
+./fractal1_omp 512 256 12
+./fractal1_omp 512 256 24
+./fractal1_omp 512 256 36
+./fractal1_omp 512 256 48
+./fractal1_omp 512 256 60
+
+./fractal2_omp 512 256 1
+./fractal2_omp 512 256 12
+./fractal2_omp 512 256 24
+./fractal2_omp 512 256 36
+./fractal2_omp 512 256 48
+./fractal2_omp 512 256 60
+
+./fractal3_omp 512 256 1
+./fractal3_omp 512 256 12
+./fractal3_omp 512 256 24
+./fractal3_omp 512 256 36
+./fractal3_omp 512 256 48
+./fractal3_omp 512 256 60
+
+date

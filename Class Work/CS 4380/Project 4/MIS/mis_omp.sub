@@ -1,0 +1,67 @@
+#!/bin/bash
+#SBATCH -A SEE22001         # account name
+#SBATCH -J p4_mis           # job name
+#SBATCH -o p4_mis.%j        # name of the output and error file
+#SBATCH -N 1                # total number of nodes requested
+#SBATCH -n 1                # total number of tasks requested
+#SBATCH -p small            # queue name
+#SBATCH -t 00:00:45         # expected maximum runtime (hh:mm:ss)
+
+date
+
+export OMP_NUM_THREADS=1
+./mis_omp /home1/00976/burtsche/Graphs/USA-road-d.USA.egr
+export OMP_NUM_THREADS=14
+./mis_omp /home1/00976/burtsche/Graphs/USA-road-d.USA.egr
+export OMP_NUM_THREADS=28
+./mis_omp /home1/00976/burtsche/Graphs/USA-road-d.USA.egr
+export OMP_NUM_THREADS=42
+./mis_omp /home1/00976/burtsche/Graphs/USA-road-d.USA.egr
+export OMP_NUM_THREADS=56
+./mis_omp /home1/00976/burtsche/Graphs/USA-road-d.USA.egr
+
+export OMP_NUM_THREADS=1
+./mis_omp /home1/00976/burtsche/Graphs/europe_osm.egr
+export OMP_NUM_THREADS=14
+./mis_omp /home1/00976/burtsche/Graphs/europe_osm.egr
+export OMP_NUM_THREADS=28
+./mis_omp /home1/00976/burtsche/Graphs/europe_osm.egr
+export OMP_NUM_THREADS=42
+./mis_omp /home1/00976/burtsche/Graphs/europe_osm.egr
+export OMP_NUM_THREADS=56
+./mis_omp /home1/00976/burtsche/Graphs/europe_osm.egr
+
+export OMP_NUM_THREADS=1
+./mis_omp /home1/00976/burtsche/Graphs/r4-2e23.sym.egr
+export OMP_NUM_THREADS=14
+./mis_omp /home1/00976/burtsche/Graphs/r4-2e23.sym.egr
+export OMP_NUM_THREADS=28
+./mis_omp /home1/00976/burtsche/Graphs/r4-2e23.sym.egr
+export OMP_NUM_THREADS=42
+./mis_omp /home1/00976/burtsche/Graphs/r4-2e23.sym.egr
+export OMP_NUM_THREADS=56
+./mis_omp /home1/00976/burtsche/Graphs/r4-2e23.sym.egr
+
+export OMP_NUM_THREADS=1
+./mis_omp /home1/00976/burtsche/Graphs/soc-LiveJournal1.egr
+export OMP_NUM_THREADS=14
+./mis_omp /home1/00976/burtsche/Graphs/soc-LiveJournal1.egr
+export OMP_NUM_THREADS=28
+./mis_omp /home1/00976/burtsche/Graphs/soc-LiveJournal1.egr
+export OMP_NUM_THREADS=42
+./mis_omp /home1/00976/burtsche/Graphs/soc-LiveJournal1.egr
+export OMP_NUM_THREADS=56
+./mis_omp /home1/00976/burtsche/Graphs/soc-LiveJournal1.egr
+
+export OMP_NUM_THREADS=1
+./mis_omp /home1/00976/burtsche/Graphs/uk-2002.egr
+export OMP_NUM_THREADS=14
+./mis_omp /home1/00976/burtsche/Graphs/uk-2002.egr
+export OMP_NUM_THREADS=28
+./mis_omp /home1/00976/burtsche/Graphs/uk-2002.egr
+export OMP_NUM_THREADS=42
+./mis_omp /home1/00976/burtsche/Graphs/uk-2002.egr
+export OMP_NUM_THREADS=56
+./mis_omp /home1/00976/burtsche/Graphs/uk-2002.egr
+
+date

@@ -1,0 +1,218 @@
+Mon Oct 24 14:17:37 CDT 2022
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 14
+compute time: 2.927973 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 28
+compute time: 1.510564 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 42
+compute time: 0.994337 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 56
+compute time: 1.079361 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 14
+compute time: 2.760781 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 28
+compute time: 1.389232 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 42
+compute time: 0.938461 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 56
+compute time: 0.758875 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 14
+compute time: 2.759313 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 28
+compute time: 1.376815 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 42
+compute time: 0.943884 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 56
+compute time: 0.714599 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 14
+compute time: 6.006398 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 28
+compute time: 5.788293 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 42
+compute time: 5.559619 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 56
+compute time: 5.345155 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 14
+compute time: 2.755895 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 28
+compute time: 1.383242 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 42
+compute time: 0.930253 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 56
+compute time: 0.708177 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 14
+compute time: 2.745501 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 28
+compute time: 1.373911 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 42
+compute time: 0.919792 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 56
+compute time: 0.697670 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 14
+compute time: 2.737989 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 28
+compute time: 1.374997 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 42
+compute time: 0.919359 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 56
+compute time: 0.699403 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 14
+compute time: 2.738277 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 28
+compute time: 1.375262 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 42
+compute time: 0.930166 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 56
+compute time: 0.769408 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 14
+compute time: 2.737034 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 28
+compute time: 1.371125 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 42
+compute time: 0.919841 s
+maximum length: 954
+Collatz v1.8
+start value: 7
+upper bound: 200000000
+thread count: 56
+compute time: 0.697874 s
+maximum length: 954
+Mon Oct 24 14:18:49 CDT 2022

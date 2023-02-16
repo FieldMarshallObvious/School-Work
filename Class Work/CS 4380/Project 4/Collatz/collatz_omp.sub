@@ -1,0 +1,66 @@
+#!/bin/bash
+#SBATCH -A SEE22001         # account name
+#SBATCH -J p4_collatz       # job name
+#SBATCH -o p4_collatz.%j    # name of the output and error file
+#SBATCH -N 1                # total number of nodes requested
+#SBATCH -n 1                # total number of tasks requested
+#SBATCH -p small            # queue name
+#SBATCH -t 00:01:30         # expected maximum runtime (hh:mm:ss)
+
+date
+
+export OMP_SCHEDULE=static,1
+./collatz_omp 7 200000000 14
+./collatz_omp 7 200000000 28
+./collatz_omp 7 200000000 42
+./collatz_omp 7 200000000 56
+
+export OMP_SCHEDULE=static,64
+./collatz_omp 7 200000000 14
+./collatz_omp 7 200000000 28
+./collatz_omp 7 200000000 42
+./collatz_omp 7 200000000 56
+
+export OMP_SCHEDULE=static,1024
+./collatz_omp 7 200000000 14
+./collatz_omp 7 200000000 28
+./collatz_omp 7 200000000 42
+./collatz_omp 7 200000000 56
+
+export OMP_SCHEDULE=dynamic,1
+./collatz_omp 7 200000000 14
+./collatz_omp 7 200000000 28
+./collatz_omp 7 200000000 42
+./collatz_omp 7 200000000 56
+
+export OMP_SCHEDULE=dynamic,64
+./collatz_omp 7 200000000 14
+./collatz_omp 7 200000000 28
+./collatz_omp 7 200000000 42
+./collatz_omp 7 200000000 56
+
+export OMP_SCHEDULE=dynamic,1024
+./collatz_omp 7 200000000 14
+./collatz_omp 7 200000000 28
+./collatz_omp 7 200000000 42
+./collatz_omp 7 200000000 56
+
+export OMP_SCHEDULE=guided,1
+./collatz_omp 7 200000000 14
+./collatz_omp 7 200000000 28
+./collatz_omp 7 200000000 42
+./collatz_omp 7 200000000 56
+
+export OMP_SCHEDULE=guided,64
+./collatz_omp 7 200000000 14
+./collatz_omp 7 200000000 28
+./collatz_omp 7 200000000 42
+./collatz_omp 7 200000000 56
+
+export OMP_SCHEDULE=guided,1024
+./collatz_omp 7 200000000 14
+./collatz_omp 7 200000000 28
+./collatz_omp 7 200000000 42
+./collatz_omp 7 200000000 56
+
+date

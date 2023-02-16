@@ -1,0 +1,12 @@
+Tue Nov  8 10:12:28 CST 2022
+Collatz v1.8
+start value: 5
+upper bound: 10000
+compute time: 0.000056 s
+maximum length: 262
+Collatz v1.8
+start value: 5
+upper bound: 20
+compute time: 0.000039 s
+maximum length: 21
+Tue Nov  8 10:12:29 CST 2022

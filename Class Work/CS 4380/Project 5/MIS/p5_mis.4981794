@@ -1,0 +1,37 @@
+Tue Nov  8 15:53:52 CST 2022
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/USA-road-d.USA.egr
+nodes: 23947347
+edges: 57708624
+compute time: 0.006662 s
+elements in set: 10765766 (45.0%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/europe_osm.egr
+nodes: 50912018
+edges: 108109320
+compute time: 0.014816 s
+elements in set: 22161271 (43.5%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/r4-2e23.sym.egr
+nodes: 8388608
+edges: 67108846
+compute time: 0.018356 s
+elements in set: 2208598 (26.3%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/soc-LiveJournal1.egr
+nodes: 4847571
+edges: 85702474
+compute time: 0.007518 s
+elements in set: 2316339 (47.8%)
+verification passed
+Maximal independent set v1.9
+input: /home1/00976/burtsche/Graphs/uk-2002.egr
+nodes: 18520486
+edges: 523574516
+compute time: 0.023299 s
+elements in set: 10551016 (57.0%)
+verification passed
+Tue Nov  8 15:54:01 CST 2022
