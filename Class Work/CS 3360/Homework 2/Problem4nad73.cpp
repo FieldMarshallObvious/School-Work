@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <math.h>
 #include <random>
+#include <chrono>
 #include <fstream>
 
 #define MTBF_H 500
@@ -56,19 +57,14 @@ void outputServerData( bool server1Data[], bool server2Data [], int timeframe ) 
 
     int totalFailuresS1 = 0;
     int totalFailuresS2 = 0;
+    int totalDowntimeS1 = 0;
+    int totalDowntimeS2 = 0;
 
     for( int i = 0; i < timeframe; i++ ) {
         
+        // Output server 1 failures to file
         if (server1Data[i])
         {
-            // Outuput data to console
-            cout << "------------------" << endl;
-            cout << "Server 1 " << endl
-                << "Failed at time (hours) " << i << endl 
-                << "Service time (hours) " << i + 10 << endl;
-            cout << "------------------" << endl;
-
-
             // output to file
             outputFile << "------------------" << endl;
             outputFile << "Server 1 " << endl
@@ -76,31 +72,39 @@ void outputServerData( bool server1Data[], bool server2Data [], int timeframe ) 
                 << "Service time (hours) " << i + 10 << endl;
             outputFile << "------------------" << endl;
 
+            totalDowntimeS1 += 10;
+
             totalFailuresS1 += 1;
         }
 
+        // Outuput server 2 failures to file
         if (server2Data[i])
         {
-            // Outuput data to console
-            cout << "------------------" << endl;
-            cout << "Server 2 " << endl
-                << "Failed at time (hours) " << i << endl 
-                << "Service time (hours) " << i + 10 << endl;
-            cout << "------------------" << endl;
-
             outputFile << "------------------" << endl;
             outputFile << "Server 2 " << endl
                 << "Failed at time (hours) " << i << endl 
                 << "Service time (hours) " << i + 10 << endl;
             outputFile << "------------------" << endl;
 
+            totalDowntimeS2 += 10;
+
             totalFailuresS2 += 1;
         }
 
+        // Output to console and file
         if( i == timeframe - 2 ) 
         {
             outputFile << "Total Failures S1: " << totalFailuresS1 << endl;
             outputFile << "Total Failures S2: " << totalFailuresS2 << endl;
+
+            outputFile << "Total Down Time S1: " << totalDowntimeS1 << endl;
+            outputFile << "Total Down Time S2: " << totalDowntimeS2 << endl;
+
+            cout << "Total Failures S1: " << totalFailuresS1 << endl;
+            cout << "Total Failures S2: " << totalFailuresS2 << endl;
+
+            cout << "Total Down Time S1: " << totalDowntimeS1 << endl;
+            cout << "Total Down Time S2: " << totalDowntimeS2 << endl;        
         }
     }
 
@@ -147,26 +151,24 @@ void generateFailureData( bool serverData[], int timeframe ) {
     int i = 0;
     float totalTime = 0;
     float serverFailedTime = 0;
+    float totalPr = 0;
+
+    unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+    default_random_engine generator (seed);
+    exponential_distribution<float> distribution (MTBF_H);
 
     while( i < timeframe ) {
-        // Generate failed time
-        serverFailedTime = generateExpTime(MTBF_H);
-
+        // Generate probability this is the failure
+        totalPr += distribution(generator);
 
         // Only peform the operations if it's within the timeframe
-        if( serverFailedTime < timeframe) 
+        if( totalPr >= 1.0 ) 
         {
+            totalPr = 0;
             // store failed time in approriate index 
-            serverData[(int)serverFailedTime] = true;
-
-            // increment index by hours passed plus
-            // service time
-            i += serverFailedTime + 10;
+            serverData[i] = true;
         } 
-        else 
-        {
-            i++;
-        }
+        i++;
     }
 
 }
