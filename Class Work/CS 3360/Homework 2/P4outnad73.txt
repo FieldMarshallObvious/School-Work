@@ -1,0 +1,2882 @@
+------------------
+Server 2 
+Failed at time (hours) 0
+Service time (hours) 10
+------------------
+------------------
+Server 1 
+Failed at time (hours) 2
+Service time (hours) 12
+------------------
+------------------
+Server 1 
+Failed at time (hours) 3
+Service time (hours) 13
+------------------
+------------------
+Server 2 
+Failed at time (hours) 3
+Service time (hours) 13
+------------------
+------------------
+Server 1 
+Failed at time (hours) 4
+Service time (hours) 14
+------------------
+------------------
+Server 2 
+Failed at time (hours) 4
+Service time (hours) 14
+------------------
+------------------
+Server 1 
+Failed at time (hours) 5
+Service time (hours) 15
+------------------
+------------------
+Server 1 
+Failed at time (hours) 7
+Service time (hours) 17
+------------------
+------------------
+Server 2 
+Failed at time (hours) 7
+Service time (hours) 17
+------------------
+------------------
+Server 1 
+Failed at time (hours) 8
+Service time (hours) 18
+------------------
+------------------
+Server 1 
+Failed at time (hours) 9
+Service time (hours) 19
+------------------
+------------------
+Server 2 
+Failed at time (hours) 9
+Service time (hours) 19
+------------------
+------------------
+Server 2 
+Failed at time (hours) 10
+Service time (hours) 20
+------------------
+------------------
+Server 2 
+Failed at time (hours) 11
+Service time (hours) 21
+------------------
+------------------
+Server 1 
+Failed at time (hours) 12
+Service time (hours) 22
+------------------
+------------------
+Server 2 
+Failed at time (hours) 12
+Service time (hours) 22
+------------------
+------------------
+Server 1 
+Failed at time (hours) 13
+Service time (hours) 23
+------------------
+------------------
+Server 2 
+Failed at time (hours) 13
+Service time (hours) 23
+------------------
+------------------
+Server 1 
+Failed at time (hours) 16
+Service time (hours) 26
+------------------
+------------------
+Server 1 
+Failed at time (hours) 17
+Service time (hours) 27
+------------------
+------------------
+Server 2 
+Failed at time (hours) 17
+Service time (hours) 27
+------------------
+------------------
+Server 1 
+Failed at time (hours) 20
+Service time (hours) 30
+------------------
+------------------
+Server 1 
+Failed at time (hours) 21
+Service time (hours) 31
+------------------
+------------------
+Server 2 
+Failed at time (hours) 21
+Service time (hours) 31
+------------------
+------------------
+Server 1 
+Failed at time (hours) 23
+Service time (hours) 33
+------------------
+------------------
+Server 1 
+Failed at time (hours) 24
+Service time (hours) 34
+------------------
+------------------
+Server 2 
+Failed at time (hours) 24
+Service time (hours) 34
+------------------
+------------------
+Server 1 
+Failed at time (hours) 25
+Service time (hours) 35
+------------------
+------------------
+Server 2 
+Failed at time (hours) 25
+Service time (hours) 35
+------------------
+------------------
+Server 2 
+Failed at time (hours) 27
+Service time (hours) 37
+------------------
+------------------
+Server 1 
+Failed at time (hours) 28
+Service time (hours) 38
+------------------
+------------------
+Server 1 
+Failed at time (hours) 30
+Service time (hours) 40
+------------------
+------------------
+Server 1 
+Failed at time (hours) 31
+Service time (hours) 41
+------------------
+------------------
+Server 2 
+Failed at time (hours) 31
+Service time (hours) 41
+------------------
+------------------
+Server 2 
+Failed at time (hours) 32
+Service time (hours) 42
+------------------
+------------------
+Server 1 
+Failed at time (hours) 33
+Service time (hours) 43
+------------------
+------------------
+Server 1 
+Failed at time (hours) 34
+Service time (hours) 44
+------------------
+------------------
+Server 1 
+Failed at time (hours) 35
+Service time (hours) 45
+------------------
+------------------
+Server 1 
+Failed at time (hours) 36
+Service time (hours) 46
+------------------
+------------------
+Server 1 
+Failed at time (hours) 40
+Service time (hours) 50
+------------------
+------------------
+Server 2 
+Failed at time (hours) 40
+Service time (hours) 50
+------------------
+------------------
+Server 2 
+Failed at time (hours) 41
+Service time (hours) 51
+------------------
+------------------
+Server 2 
+Failed at time (hours) 42
+Service time (hours) 52
+------------------
+------------------
+Server 1 
+Failed at time (hours) 43
+Service time (hours) 53
+------------------
+------------------
+Server 1 
+Failed at time (hours) 44
+Service time (hours) 54
+------------------
+------------------
+Server 2 
+Failed at time (hours) 44
+Service time (hours) 54
+------------------
+------------------
+Server 2 
+Failed at time (hours) 45
+Service time (hours) 55
+------------------
+------------------
+Server 2 
+Failed at time (hours) 49
+Service time (hours) 59
+------------------
+------------------
+Server 2 
+Failed at time (hours) 50
+Service time (hours) 60
+------------------
+------------------
+Server 2 
+Failed at time (hours) 52
+Service time (hours) 62
+------------------
+------------------
+Server 2 
+Failed at time (hours) 53
+Service time (hours) 63
+------------------
+------------------
+Server 2 
+Failed at time (hours) 54
+Service time (hours) 64
+------------------
+------------------
+Server 1 
+Failed at time (hours) 55
+Service time (hours) 65
+------------------
+------------------
+Server 2 
+Failed at time (hours) 55
+Service time (hours) 65
+------------------
+------------------
+Server 1 
+Failed at time (hours) 56
+Service time (hours) 66
+------------------
+------------------
+Server 2 
+Failed at time (hours) 56
+Service time (hours) 66
+------------------
+------------------
+Server 1 
+Failed at time (hours) 59
+Service time (hours) 69
+------------------
+------------------
+Server 2 
+Failed at time (hours) 59
+Service time (hours) 69
+------------------
+------------------
+Server 2 
+Failed at time (hours) 60
+Service time (hours) 70
+------------------
+------------------
+Server 1 
+Failed at time (hours) 61
+Service time (hours) 71
+------------------
+------------------
+Server 1 
+Failed at time (hours) 62
+Service time (hours) 72
+------------------
+------------------
+Server 2 
+Failed at time (hours) 62
+Service time (hours) 72
+------------------
+------------------
+Server 1 
+Failed at time (hours) 65
+Service time (hours) 75
+------------------
+------------------
+Server 2 
+Failed at time (hours) 65
+Service time (hours) 75
+------------------
+------------------
+Server 2 
+Failed at time (hours) 66
+Service time (hours) 76
+------------------
+------------------
+Server 1 
+Failed at time (hours) 69
+Service time (hours) 79
+------------------
+------------------
+Server 2 
+Failed at time (hours) 69
+Service time (hours) 79
+------------------
+------------------
+Server 1 
+Failed at time (hours) 71
+Service time (hours) 81
+------------------
+------------------
+Server 2 
+Failed at time (hours) 71
+Service time (hours) 81
+------------------
+------------------
+Server 1 
+Failed at time (hours) 76
+Service time (hours) 86
+------------------
+------------------
+Server 2 
+Failed at time (hours) 78
+Service time (hours) 88
+------------------
+------------------
+Server 1 
+Failed at time (hours) 80
+Service time (hours) 90
+------------------
+------------------
+Server 2 
+Failed at time (hours) 80
+Service time (hours) 90
+------------------
+------------------
+Server 1 
+Failed at time (hours) 81
+Service time (hours) 91
+------------------
+------------------
+Server 2 
+Failed at time (hours) 81
+Service time (hours) 91
+------------------
+------------------
+Server 1 
+Failed at time (hours) 82
+Service time (hours) 92
+------------------
+------------------
+Server 2 
+Failed at time (hours) 83
+Service time (hours) 93
+------------------
+------------------
+Server 1 
+Failed at time (hours) 84
+Service time (hours) 94
+------------------
+------------------
+Server 1 
+Failed at time (hours) 85
+Service time (hours) 95
+------------------
+------------------
+Server 1 
+Failed at time (hours) 86
+Service time (hours) 96
+------------------
+------------------
+Server 2 
+Failed at time (hours) 86
+Service time (hours) 96
+------------------
+------------------
+Server 2 
+Failed at time (hours) 87
+Service time (hours) 97
+------------------
+------------------
+Server 1 
+Failed at time (hours) 88
+Service time (hours) 98
+------------------
+------------------
+Server 2 
+Failed at time (hours) 88
+Service time (hours) 98
+------------------
+------------------
+Server 1 
+Failed at time (hours) 89
+Service time (hours) 99
+------------------
+------------------
+Server 2 
+Failed at time (hours) 89
+Service time (hours) 99
+------------------
+------------------
+Server 1 
+Failed at time (hours) 91
+Service time (hours) 101
+------------------
+------------------
+Server 1 
+Failed at time (hours) 92
+Service time (hours) 102
+------------------
+------------------
+Server 1 
+Failed at time (hours) 93
+Service time (hours) 103
+------------------
+------------------
+Server 2 
+Failed at time (hours) 93
+Service time (hours) 103
+------------------
+------------------
+Server 1 
+Failed at time (hours) 94
+Service time (hours) 104
+------------------
+------------------
+Server 2 
+Failed at time (hours) 94
+Service time (hours) 104
+------------------
+------------------
+Server 1 
+Failed at time (hours) 96
+Service time (hours) 106
+------------------
+------------------
+Server 2 
+Failed at time (hours) 96
+Service time (hours) 106
+------------------
+------------------
+Server 1 
+Failed at time (hours) 101
+Service time (hours) 111
+------------------
+------------------
+Server 1 
+Failed at time (hours) 102
+Service time (hours) 112
+------------------
+------------------
+Server 1 
+Failed at time (hours) 105
+Service time (hours) 115
+------------------
+------------------
+Server 1 
+Failed at time (hours) 109
+Service time (hours) 119
+------------------
+------------------
+Server 2 
+Failed at time (hours) 109
+Service time (hours) 119
+------------------
+------------------
+Server 1 
+Failed at time (hours) 111
+Service time (hours) 121
+------------------
+------------------
+Server 2 
+Failed at time (hours) 112
+Service time (hours) 122
+------------------
+------------------
+Server 1 
+Failed at time (hours) 114
+Service time (hours) 124
+------------------
+------------------
+Server 1 
+Failed at time (hours) 115
+Service time (hours) 125
+------------------
+------------------
+Server 2 
+Failed at time (hours) 116
+Service time (hours) 126
+------------------
+------------------
+Server 2 
+Failed at time (hours) 117
+Service time (hours) 127
+------------------
+------------------
+Server 2 
+Failed at time (hours) 118
+Service time (hours) 128
+------------------
+------------------
+Server 1 
+Failed at time (hours) 119
+Service time (hours) 129
+------------------
+------------------
+Server 1 
+Failed at time (hours) 120
+Service time (hours) 130
+------------------
+------------------
+Server 1 
+Failed at time (hours) 122
+Service time (hours) 132
+------------------
+------------------
+Server 2 
+Failed at time (hours) 122
+Service time (hours) 132
+------------------
+------------------
+Server 2 
+Failed at time (hours) 123
+Service time (hours) 133
+------------------
+------------------
+Server 1 
+Failed at time (hours) 124
+Service time (hours) 134
+------------------
+------------------
+Server 1 
+Failed at time (hours) 127
+Service time (hours) 137
+------------------
+------------------
+Server 1 
+Failed at time (hours) 129
+Service time (hours) 139
+------------------
+------------------
+Server 1 
+Failed at time (hours) 130
+Service time (hours) 140
+------------------
+------------------
+Server 2 
+Failed at time (hours) 130
+Service time (hours) 140
+------------------
+------------------
+Server 2 
+Failed at time (hours) 132
+Service time (hours) 142
+------------------
+------------------
+Server 1 
+Failed at time (hours) 133
+Service time (hours) 143
+------------------
+------------------
+Server 1 
+Failed at time (hours) 134
+Service time (hours) 144
+------------------
+------------------
+Server 1 
+Failed at time (hours) 137
+Service time (hours) 147
+------------------
+------------------
+Server 2 
+Failed at time (hours) 137
+Service time (hours) 147
+------------------
+------------------
+Server 1 
+Failed at time (hours) 138
+Service time (hours) 148
+------------------
+------------------
+Server 2 
+Failed at time (hours) 138
+Service time (hours) 148
+------------------
+------------------
+Server 1 
+Failed at time (hours) 139
+Service time (hours) 149
+------------------
+------------------
+Server 1 
+Failed at time (hours) 140
+Service time (hours) 150
+------------------
+------------------
+Server 1 
+Failed at time (hours) 143
+Service time (hours) 153
+------------------
+------------------
+Server 2 
+Failed at time (hours) 143
+Service time (hours) 153
+------------------
+------------------
+Server 1 
+Failed at time (hours) 144
+Service time (hours) 154
+------------------
+------------------
+Server 1 
+Failed at time (hours) 145
+Service time (hours) 155
+------------------
+------------------
+Server 1 
+Failed at time (hours) 146
+Service time (hours) 156
+------------------
+------------------
+Server 2 
+Failed at time (hours) 146
+Service time (hours) 156
+------------------
+------------------
+Server 1 
+Failed at time (hours) 147
+Service time (hours) 157
+------------------
+------------------
+Server 2 
+Failed at time (hours) 147
+Service time (hours) 157
+------------------
+------------------
+Server 2 
+Failed at time (hours) 148
+Service time (hours) 158
+------------------
+------------------
+Server 1 
+Failed at time (hours) 150
+Service time (hours) 160
+------------------
+------------------
+Server 2 
+Failed at time (hours) 150
+Service time (hours) 160
+------------------
+------------------
+Server 1 
+Failed at time (hours) 152
+Service time (hours) 162
+------------------
+------------------
+Server 2 
+Failed at time (hours) 153
+Service time (hours) 163
+------------------
+------------------
+Server 1 
+Failed at time (hours) 154
+Service time (hours) 164
+------------------
+------------------
+Server 1 
+Failed at time (hours) 155
+Service time (hours) 165
+------------------
+------------------
+Server 2 
+Failed at time (hours) 156
+Service time (hours) 166
+------------------
+------------------
+Server 1 
+Failed at time (hours) 157
+Service time (hours) 167
+------------------
+------------------
+Server 2 
+Failed at time (hours) 158
+Service time (hours) 168
+------------------
+------------------
+Server 2 
+Failed at time (hours) 159
+Service time (hours) 169
+------------------
+------------------
+Server 2 
+Failed at time (hours) 160
+Service time (hours) 170
+------------------
+------------------
+Server 1 
+Failed at time (hours) 161
+Service time (hours) 171
+------------------
+------------------
+Server 2 
+Failed at time (hours) 164
+Service time (hours) 174
+------------------
+------------------
+Server 1 
+Failed at time (hours) 165
+Service time (hours) 175
+------------------
+------------------
+Server 2 
+Failed at time (hours) 167
+Service time (hours) 177
+------------------
+------------------
+Server 2 
+Failed at time (hours) 168
+Service time (hours) 178
+------------------
+------------------
+Server 1 
+Failed at time (hours) 169
+Service time (hours) 179
+------------------
+------------------
+Server 2 
+Failed at time (hours) 170
+Service time (hours) 180
+------------------
+------------------
+Server 1 
+Failed at time (hours) 171
+Service time (hours) 181
+------------------
+------------------
+Server 1 
+Failed at time (hours) 172
+Service time (hours) 182
+------------------
+------------------
+Server 2 
+Failed at time (hours) 172
+Service time (hours) 182
+------------------
+------------------
+Server 1 
+Failed at time (hours) 173
+Service time (hours) 183
+------------------
+------------------
+Server 1 
+Failed at time (hours) 174
+Service time (hours) 184
+------------------
+------------------
+Server 2 
+Failed at time (hours) 174
+Service time (hours) 184
+------------------
+------------------
+Server 1 
+Failed at time (hours) 176
+Service time (hours) 186
+------------------
+------------------
+Server 2 
+Failed at time (hours) 180
+Service time (hours) 190
+------------------
+------------------
+Server 1 
+Failed at time (hours) 181
+Service time (hours) 191
+------------------
+------------------
+Server 2 
+Failed at time (hours) 181
+Service time (hours) 191
+------------------
+------------------
+Server 2 
+Failed at time (hours) 182
+Service time (hours) 192
+------------------
+------------------
+Server 2 
+Failed at time (hours) 184
+Service time (hours) 194
+------------------
+------------------
+Server 2 
+Failed at time (hours) 185
+Service time (hours) 195
+------------------
+------------------
+Server 1 
+Failed at time (hours) 189
+Service time (hours) 199
+------------------
+------------------
+Server 2 
+Failed at time (hours) 190
+Service time (hours) 200
+------------------
+------------------
+Server 1 
+Failed at time (hours) 191
+Service time (hours) 201
+------------------
+------------------
+Server 1 
+Failed at time (hours) 193
+Service time (hours) 203
+------------------
+------------------
+Server 1 
+Failed at time (hours) 195
+Service time (hours) 205
+------------------
+------------------
+Server 2 
+Failed at time (hours) 195
+Service time (hours) 205
+------------------
+------------------
+Server 1 
+Failed at time (hours) 197
+Service time (hours) 207
+------------------
+------------------
+Server 1 
+Failed at time (hours) 198
+Service time (hours) 208
+------------------
+------------------
+Server 2 
+Failed at time (hours) 200
+Service time (hours) 210
+------------------
+------------------
+Server 2 
+Failed at time (hours) 201
+Service time (hours) 211
+------------------
+------------------
+Server 1 
+Failed at time (hours) 202
+Service time (hours) 212
+------------------
+------------------
+Server 2 
+Failed at time (hours) 202
+Service time (hours) 212
+------------------
+------------------
+Server 2 
+Failed at time (hours) 204
+Service time (hours) 214
+------------------
+------------------
+Server 1 
+Failed at time (hours) 205
+Service time (hours) 215
+------------------
+------------------
+Server 2 
+Failed at time (hours) 205
+Service time (hours) 215
+------------------
+------------------
+Server 1 
+Failed at time (hours) 207
+Service time (hours) 217
+------------------
+------------------
+Server 2 
+Failed at time (hours) 207
+Service time (hours) 217
+------------------
+------------------
+Server 2 
+Failed at time (hours) 208
+Service time (hours) 218
+------------------
+------------------
+Server 1 
+Failed at time (hours) 209
+Service time (hours) 219
+------------------
+------------------
+Server 1 
+Failed at time (hours) 210
+Service time (hours) 220
+------------------
+------------------
+Server 1 
+Failed at time (hours) 211
+Service time (hours) 221
+------------------
+------------------
+Server 2 
+Failed at time (hours) 211
+Service time (hours) 221
+------------------
+------------------
+Server 2 
+Failed at time (hours) 212
+Service time (hours) 222
+------------------
+------------------
+Server 1 
+Failed at time (hours) 213
+Service time (hours) 223
+------------------
+------------------
+Server 1 
+Failed at time (hours) 215
+Service time (hours) 225
+------------------
+------------------
+Server 2 
+Failed at time (hours) 216
+Service time (hours) 226
+------------------
+------------------
+Server 1 
+Failed at time (hours) 217
+Service time (hours) 227
+------------------
+------------------
+Server 2 
+Failed at time (hours) 217
+Service time (hours) 227
+------------------
+------------------
+Server 1 
+Failed at time (hours) 220
+Service time (hours) 230
+------------------
+------------------
+Server 1 
+Failed at time (hours) 224
+Service time (hours) 234
+------------------
+------------------
+Server 2 
+Failed at time (hours) 224
+Service time (hours) 234
+------------------
+------------------
+Server 1 
+Failed at time (hours) 225
+Service time (hours) 235
+------------------
+------------------
+Server 2 
+Failed at time (hours) 225
+Service time (hours) 235
+------------------
+------------------
+Server 2 
+Failed at time (hours) 226
+Service time (hours) 236
+------------------
+------------------
+Server 1 
+Failed at time (hours) 227
+Service time (hours) 237
+------------------
+------------------
+Server 2 
+Failed at time (hours) 229
+Service time (hours) 239
+------------------
+------------------
+Server 1 
+Failed at time (hours) 230
+Service time (hours) 240
+------------------
+------------------
+Server 1 
+Failed at time (hours) 231
+Service time (hours) 241
+------------------
+------------------
+Server 1 
+Failed at time (hours) 234
+Service time (hours) 244
+------------------
+------------------
+Server 1 
+Failed at time (hours) 236
+Service time (hours) 246
+------------------
+------------------
+Server 1 
+Failed at time (hours) 238
+Service time (hours) 248
+------------------
+------------------
+Server 1 
+Failed at time (hours) 239
+Service time (hours) 249
+------------------
+------------------
+Server 2 
+Failed at time (hours) 239
+Service time (hours) 249
+------------------
+------------------
+Server 2 
+Failed at time (hours) 240
+Service time (hours) 250
+------------------
+------------------
+Server 1 
+Failed at time (hours) 242
+Service time (hours) 252
+------------------
+------------------
+Server 1 
+Failed at time (hours) 243
+Service time (hours) 253
+------------------
+------------------
+Server 2 
+Failed at time (hours) 244
+Service time (hours) 254
+------------------
+------------------
+Server 1 
+Failed at time (hours) 245
+Service time (hours) 255
+------------------
+------------------
+Server 2 
+Failed at time (hours) 246
+Service time (hours) 256
+------------------
+------------------
+Server 1 
+Failed at time (hours) 248
+Service time (hours) 258
+------------------
+------------------
+Server 2 
+Failed at time (hours) 248
+Service time (hours) 258
+------------------
+------------------
+Server 2 
+Failed at time (hours) 249
+Service time (hours) 259
+------------------
+------------------
+Server 1 
+Failed at time (hours) 250
+Service time (hours) 260
+------------------
+------------------
+Server 2 
+Failed at time (hours) 258
+Service time (hours) 268
+------------------
+------------------
+Server 2 
+Failed at time (hours) 259
+Service time (hours) 269
+------------------
+------------------
+Server 1 
+Failed at time (hours) 260
+Service time (hours) 270
+------------------
+------------------
+Server 2 
+Failed at time (hours) 260
+Service time (hours) 270
+------------------
+------------------
+Server 2 
+Failed at time (hours) 262
+Service time (hours) 272
+------------------
+------------------
+Server 2 
+Failed at time (hours) 263
+Service time (hours) 273
+------------------
+------------------
+Server 2 
+Failed at time (hours) 264
+Service time (hours) 274
+------------------
+------------------
+Server 1 
+Failed at time (hours) 265
+Service time (hours) 275
+------------------
+------------------
+Server 2 
+Failed at time (hours) 267
+Service time (hours) 277
+------------------
+------------------
+Server 2 
+Failed at time (hours) 269
+Service time (hours) 279
+------------------
+------------------
+Server 1 
+Failed at time (hours) 270
+Service time (hours) 280
+------------------
+------------------
+Server 2 
+Failed at time (hours) 270
+Service time (hours) 280
+------------------
+------------------
+Server 1 
+Failed at time (hours) 271
+Service time (hours) 281
+------------------
+------------------
+Server 1 
+Failed at time (hours) 272
+Service time (hours) 282
+------------------
+------------------
+Server 1 
+Failed at time (hours) 275
+Service time (hours) 285
+------------------
+------------------
+Server 2 
+Failed at time (hours) 275
+Service time (hours) 285
+------------------
+------------------
+Server 1 
+Failed at time (hours) 276
+Service time (hours) 286
+------------------
+------------------
+Server 2 
+Failed at time (hours) 278
+Service time (hours) 288
+------------------
+------------------
+Server 1 
+Failed at time (hours) 280
+Service time (hours) 290
+------------------
+------------------
+Server 1 
+Failed at time (hours) 283
+Service time (hours) 293
+------------------
+------------------
+Server 2 
+Failed at time (hours) 285
+Service time (hours) 295
+------------------
+------------------
+Server 1 
+Failed at time (hours) 287
+Service time (hours) 297
+------------------
+------------------
+Server 2 
+Failed at time (hours) 288
+Service time (hours) 298
+------------------
+------------------
+Server 1 
+Failed at time (hours) 289
+Service time (hours) 299
+------------------
+------------------
+Server 1 
+Failed at time (hours) 290
+Service time (hours) 300
+------------------
+------------------
+Server 2 
+Failed at time (hours) 291
+Service time (hours) 301
+------------------
+------------------
+Server 1 
+Failed at time (hours) 292
+Service time (hours) 302
+------------------
+------------------
+Server 2 
+Failed at time (hours) 293
+Service time (hours) 303
+------------------
+------------------
+Server 2 
+Failed at time (hours) 296
+Service time (hours) 306
+------------------
+------------------
+Server 1 
+Failed at time (hours) 298
+Service time (hours) 308
+------------------
+------------------
+Server 2 
+Failed at time (hours) 298
+Service time (hours) 308
+------------------
+------------------
+Server 1 
+Failed at time (hours) 301
+Service time (hours) 311
+------------------
+------------------
+Server 2 
+Failed at time (hours) 302
+Service time (hours) 312
+------------------
+------------------
+Server 1 
+Failed at time (hours) 306
+Service time (hours) 316
+------------------
+------------------
+Server 2 
+Failed at time (hours) 306
+Service time (hours) 316
+------------------
+------------------
+Server 2 
+Failed at time (hours) 307
+Service time (hours) 317
+------------------
+------------------
+Server 2 
+Failed at time (hours) 308
+Service time (hours) 318
+------------------
+------------------
+Server 1 
+Failed at time (hours) 312
+Service time (hours) 322
+------------------
+------------------
+Server 1 
+Failed at time (hours) 313
+Service time (hours) 323
+------------------
+------------------
+Server 1 
+Failed at time (hours) 317
+Service time (hours) 327
+------------------
+------------------
+Server 2 
+Failed at time (hours) 318
+Service time (hours) 328
+------------------
+------------------
+Server 2 
+Failed at time (hours) 320
+Service time (hours) 330
+------------------
+------------------
+Server 2 
+Failed at time (hours) 321
+Service time (hours) 331
+------------------
+------------------
+Server 1 
+Failed at time (hours) 322
+Service time (hours) 332
+------------------
+------------------
+Server 2 
+Failed at time (hours) 323
+Service time (hours) 333
+------------------
+------------------
+Server 1 
+Failed at time (hours) 324
+Service time (hours) 334
+------------------
+------------------
+Server 1 
+Failed at time (hours) 326
+Service time (hours) 336
+------------------
+------------------
+Server 2 
+Failed at time (hours) 327
+Service time (hours) 337
+------------------
+------------------
+Server 2 
+Failed at time (hours) 328
+Service time (hours) 338
+------------------
+------------------
+Server 2 
+Failed at time (hours) 332
+Service time (hours) 342
+------------------
+------------------
+Server 1 
+Failed at time (hours) 334
+Service time (hours) 344
+------------------
+------------------
+Server 1 
+Failed at time (hours) 336
+Service time (hours) 346
+------------------
+------------------
+Server 1 
+Failed at time (hours) 338
+Service time (hours) 348
+------------------
+------------------
+Server 2 
+Failed at time (hours) 340
+Service time (hours) 350
+------------------
+------------------
+Server 2 
+Failed at time (hours) 343
+Service time (hours) 353
+------------------
+------------------
+Server 2 
+Failed at time (hours) 344
+Service time (hours) 354
+------------------
+------------------
+Server 1 
+Failed at time (hours) 346
+Service time (hours) 356
+------------------
+------------------
+Server 2 
+Failed at time (hours) 346
+Service time (hours) 356
+------------------
+------------------
+Server 1 
+Failed at time (hours) 352
+Service time (hours) 362
+------------------
+------------------
+Server 2 
+Failed at time (hours) 355
+Service time (hours) 365
+------------------
+------------------
+Server 1 
+Failed at time (hours) 359
+Service time (hours) 369
+------------------
+------------------
+Server 2 
+Failed at time (hours) 360
+Service time (hours) 370
+------------------
+------------------
+Server 1 
+Failed at time (hours) 361
+Service time (hours) 371
+------------------
+------------------
+Server 1 
+Failed at time (hours) 363
+Service time (hours) 373
+------------------
+------------------
+Server 1 
+Failed at time (hours) 364
+Service time (hours) 374
+------------------
+------------------
+Server 2 
+Failed at time (hours) 364
+Service time (hours) 374
+------------------
+------------------
+Server 2 
+Failed at time (hours) 365
+Service time (hours) 375
+------------------
+------------------
+Server 2 
+Failed at time (hours) 366
+Service time (hours) 376
+------------------
+------------------
+Server 2 
+Failed at time (hours) 368
+Service time (hours) 378
+------------------
+------------------
+Server 1 
+Failed at time (hours) 369
+Service time (hours) 379
+------------------
+------------------
+Server 2 
+Failed at time (hours) 370
+Service time (hours) 380
+------------------
+------------------
+Server 2 
+Failed at time (hours) 371
+Service time (hours) 381
+------------------
+------------------
+Server 2 
+Failed at time (hours) 374
+Service time (hours) 384
+------------------
+------------------
+Server 1 
+Failed at time (hours) 376
+Service time (hours) 386
+------------------
+------------------
+Server 2 
+Failed at time (hours) 377
+Service time (hours) 387
+------------------
+------------------
+Server 2 
+Failed at time (hours) 380
+Service time (hours) 390
+------------------
+------------------
+Server 2 
+Failed at time (hours) 383
+Service time (hours) 393
+------------------
+------------------
+Server 1 
+Failed at time (hours) 384
+Service time (hours) 394
+------------------
+------------------
+Server 1 
+Failed at time (hours) 392
+Service time (hours) 402
+------------------
+------------------
+Server 1 
+Failed at time (hours) 393
+Service time (hours) 403
+------------------
+------------------
+Server 2 
+Failed at time (hours) 393
+Service time (hours) 403
+------------------
+------------------
+Server 2 
+Failed at time (hours) 394
+Service time (hours) 404
+------------------
+------------------
+Server 1 
+Failed at time (hours) 396
+Service time (hours) 406
+------------------
+------------------
+Server 2 
+Failed at time (hours) 396
+Service time (hours) 406
+------------------
+------------------
+Server 1 
+Failed at time (hours) 397
+Service time (hours) 407
+------------------
+------------------
+Server 1 
+Failed at time (hours) 404
+Service time (hours) 414
+------------------
+------------------
+Server 2 
+Failed at time (hours) 404
+Service time (hours) 414
+------------------
+------------------
+Server 1 
+Failed at time (hours) 405
+Service time (hours) 415
+------------------
+------------------
+Server 2 
+Failed at time (hours) 407
+Service time (hours) 417
+------------------
+------------------
+Server 2 
+Failed at time (hours) 409
+Service time (hours) 419
+------------------
+------------------
+Server 1 
+Failed at time (hours) 415
+Service time (hours) 425
+------------------
+------------------
+Server 1 
+Failed at time (hours) 421
+Service time (hours) 431
+------------------
+------------------
+Server 2 
+Failed at time (hours) 422
+Service time (hours) 432
+------------------
+------------------
+Server 1 
+Failed at time (hours) 429
+Service time (hours) 439
+------------------
+------------------
+Server 2 
+Failed at time (hours) 430
+Service time (hours) 440
+------------------
+------------------
+Server 2 
+Failed at time (hours) 432
+Service time (hours) 442
+------------------
+------------------
+Server 1 
+Failed at time (hours) 433
+Service time (hours) 443
+------------------
+------------------
+Server 1 
+Failed at time (hours) 435
+Service time (hours) 445
+------------------
+------------------
+Server 1 
+Failed at time (hours) 436
+Service time (hours) 446
+------------------
+------------------
+Server 2 
+Failed at time (hours) 440
+Service time (hours) 450
+------------------
+------------------
+Server 1 
+Failed at time (hours) 441
+Service time (hours) 451
+------------------
+------------------
+Server 2 
+Failed at time (hours) 443
+Service time (hours) 453
+------------------
+------------------
+Server 2 
+Failed at time (hours) 444
+Service time (hours) 454
+------------------
+------------------
+Server 2 
+Failed at time (hours) 448
+Service time (hours) 458
+------------------
+------------------
+Server 1 
+Failed at time (hours) 449
+Service time (hours) 459
+------------------
+------------------
+Server 1 
+Failed at time (hours) 454
+Service time (hours) 464
+------------------
+------------------
+Server 2 
+Failed at time (hours) 454
+Service time (hours) 464
+------------------
+------------------
+Server 1 
+Failed at time (hours) 456
+Service time (hours) 466
+------------------
+------------------
+Server 2 
+Failed at time (hours) 459
+Service time (hours) 469
+------------------
+------------------
+Server 1 
+Failed at time (hours) 461
+Service time (hours) 471
+------------------
+------------------
+Server 2 
+Failed at time (hours) 461
+Service time (hours) 471
+------------------
+------------------
+Server 1 
+Failed at time (hours) 464
+Service time (hours) 474
+------------------
+------------------
+Server 2 
+Failed at time (hours) 464
+Service time (hours) 474
+------------------
+------------------
+Server 1 
+Failed at time (hours) 466
+Service time (hours) 476
+------------------
+------------------
+Server 1 
+Failed at time (hours) 469
+Service time (hours) 479
+------------------
+------------------
+Server 1 
+Failed at time (hours) 470
+Service time (hours) 480
+------------------
+------------------
+Server 1 
+Failed at time (hours) 471
+Service time (hours) 481
+------------------
+------------------
+Server 1 
+Failed at time (hours) 472
+Service time (hours) 482
+------------------
+------------------
+Server 2 
+Failed at time (hours) 473
+Service time (hours) 483
+------------------
+------------------
+Server 2 
+Failed at time (hours) 474
+Service time (hours) 484
+------------------
+------------------
+Server 2 
+Failed at time (hours) 476
+Service time (hours) 486
+------------------
+------------------
+Server 2 
+Failed at time (hours) 479
+Service time (hours) 489
+------------------
+------------------
+Server 1 
+Failed at time (hours) 482
+Service time (hours) 492
+------------------
+------------------
+Server 2 
+Failed at time (hours) 483
+Service time (hours) 493
+------------------
+------------------
+Server 2 
+Failed at time (hours) 491
+Service time (hours) 501
+------------------
+------------------
+Server 2 
+Failed at time (hours) 492
+Service time (hours) 502
+------------------
+------------------
+Server 2 
+Failed at time (hours) 495
+Service time (hours) 505
+------------------
+------------------
+Server 2 
+Failed at time (hours) 502
+Service time (hours) 512
+------------------
+------------------
+Server 2 
+Failed at time (hours) 509
+Service time (hours) 519
+------------------
+------------------
+Server 1 
+Failed at time (hours) 515
+Service time (hours) 525
+------------------
+------------------
+Server 2 
+Failed at time (hours) 516
+Service time (hours) 526
+------------------
+------------------
+Server 1 
+Failed at time (hours) 517
+Service time (hours) 527
+------------------
+------------------
+Server 1 
+Failed at time (hours) 518
+Service time (hours) 528
+------------------
+------------------
+Server 2 
+Failed at time (hours) 520
+Service time (hours) 530
+------------------
+------------------
+Server 2 
+Failed at time (hours) 523
+Service time (hours) 533
+------------------
+------------------
+Server 2 
+Failed at time (hours) 527
+Service time (hours) 537
+------------------
+------------------
+Server 2 
+Failed at time (hours) 528
+Service time (hours) 538
+------------------
+------------------
+Server 2 
+Failed at time (hours) 530
+Service time (hours) 540
+------------------
+------------------
+Server 2 
+Failed at time (hours) 531
+Service time (hours) 541
+------------------
+------------------
+Server 1 
+Failed at time (hours) 532
+Service time (hours) 542
+------------------
+------------------
+Server 1 
+Failed at time (hours) 538
+Service time (hours) 548
+------------------
+------------------
+Server 1 
+Failed at time (hours) 541
+Service time (hours) 551
+------------------
+------------------
+Server 2 
+Failed at time (hours) 545
+Service time (hours) 555
+------------------
+------------------
+Server 1 
+Failed at time (hours) 546
+Service time (hours) 556
+------------------
+------------------
+Server 1 
+Failed at time (hours) 551
+Service time (hours) 561
+------------------
+------------------
+Server 1 
+Failed at time (hours) 556
+Service time (hours) 566
+------------------
+------------------
+Server 2 
+Failed at time (hours) 557
+Service time (hours) 567
+------------------
+------------------
+Server 2 
+Failed at time (hours) 562
+Service time (hours) 572
+------------------
+------------------
+Server 2 
+Failed at time (hours) 564
+Service time (hours) 574
+------------------
+------------------
+Server 1 
+Failed at time (hours) 569
+Service time (hours) 579
+------------------
+------------------
+Server 1 
+Failed at time (hours) 574
+Service time (hours) 584
+------------------
+------------------
+Server 1 
+Failed at time (hours) 579
+Service time (hours) 589
+------------------
+------------------
+Server 1 
+Failed at time (hours) 582
+Service time (hours) 592
+------------------
+------------------
+Server 2 
+Failed at time (hours) 583
+Service time (hours) 593
+------------------
+------------------
+Server 1 
+Failed at time (hours) 586
+Service time (hours) 596
+------------------
+------------------
+Server 1 
+Failed at time (hours) 590
+Service time (hours) 600
+------------------
+------------------
+Server 1 
+Failed at time (hours) 591
+Service time (hours) 601
+------------------
+------------------
+Server 2 
+Failed at time (hours) 596
+Service time (hours) 606
+------------------
+------------------
+Server 1 
+Failed at time (hours) 600
+Service time (hours) 610
+------------------
+------------------
+Server 1 
+Failed at time (hours) 603
+Service time (hours) 613
+------------------
+------------------
+Server 1 
+Failed at time (hours) 611
+Service time (hours) 621
+------------------
+------------------
+Server 2 
+Failed at time (hours) 614
+Service time (hours) 624
+------------------
+------------------
+Server 1 
+Failed at time (hours) 617
+Service time (hours) 627
+------------------
+------------------
+Server 2 
+Failed at time (hours) 618
+Service time (hours) 628
+------------------
+------------------
+Server 2 
+Failed at time (hours) 619
+Service time (hours) 629
+------------------
+------------------
+Server 1 
+Failed at time (hours) 627
+Service time (hours) 637
+------------------
+------------------
+Server 1 
+Failed at time (hours) 630
+Service time (hours) 640
+------------------
+------------------
+Server 2 
+Failed at time (hours) 632
+Service time (hours) 642
+------------------
+------------------
+Server 2 
+Failed at time (hours) 633
+Service time (hours) 643
+------------------
+------------------
+Server 2 
+Failed at time (hours) 635
+Service time (hours) 645
+------------------
+------------------
+Server 2 
+Failed at time (hours) 636
+Service time (hours) 646
+------------------
+------------------
+Server 1 
+Failed at time (hours) 639
+Service time (hours) 649
+------------------
+------------------
+Server 2 
+Failed at time (hours) 646
+Service time (hours) 656
+------------------
+------------------
+Server 2 
+Failed at time (hours) 657
+Service time (hours) 667
+------------------
+------------------
+Server 2 
+Failed at time (hours) 660
+Service time (hours) 670
+------------------
+------------------
+Server 1 
+Failed at time (hours) 664
+Service time (hours) 674
+------------------
+------------------
+Server 2 
+Failed at time (hours) 666
+Service time (hours) 676
+------------------
+------------------
+Server 2 
+Failed at time (hours) 669
+Service time (hours) 679
+------------------
+------------------
+Server 1 
+Failed at time (hours) 670
+Service time (hours) 680
+------------------
+------------------
+Server 1 
+Failed at time (hours) 680
+Service time (hours) 690
+------------------
+------------------
+Server 1 
+Failed at time (hours) 681
+Service time (hours) 691
+------------------
+------------------
+Server 2 
+Failed at time (hours) 683
+Service time (hours) 693
+------------------
+------------------
+Server 2 
+Failed at time (hours) 691
+Service time (hours) 701
+------------------
+------------------
+Server 2 
+Failed at time (hours) 693
+Service time (hours) 703
+------------------
+------------------
+Server 1 
+Failed at time (hours) 695
+Service time (hours) 705
+------------------
+------------------
+Server 2 
+Failed at time (hours) 695
+Service time (hours) 705
+------------------
+------------------
+Server 2 
+Failed at time (hours) 698
+Service time (hours) 708
+------------------
+------------------
+Server 2 
+Failed at time (hours) 699
+Service time (hours) 709
+------------------
+------------------
+Server 1 
+Failed at time (hours) 701
+Service time (hours) 711
+------------------
+------------------
+Server 1 
+Failed at time (hours) 706
+Service time (hours) 716
+------------------
+------------------
+Server 1 
+Failed at time (hours) 712
+Service time (hours) 722
+------------------
+------------------
+Server 2 
+Failed at time (hours) 713
+Service time (hours) 723
+------------------
+------------------
+Server 1 
+Failed at time (hours) 714
+Service time (hours) 724
+------------------
+------------------
+Server 1 
+Failed at time (hours) 715
+Service time (hours) 725
+------------------
+------------------
+Server 2 
+Failed at time (hours) 717
+Service time (hours) 727
+------------------
+------------------
+Server 2 
+Failed at time (hours) 725
+Service time (hours) 735
+------------------
+------------------
+Server 2 
+Failed at time (hours) 731
+Service time (hours) 741
+------------------
+------------------
+Server 2 
+Failed at time (hours) 734
+Service time (hours) 744
+------------------
+------------------
+Server 1 
+Failed at time (hours) 736
+Service time (hours) 746
+------------------
+------------------
+Server 1 
+Failed at time (hours) 741
+Service time (hours) 751
+------------------
+------------------
+Server 1 
+Failed at time (hours) 745
+Service time (hours) 755
+------------------
+------------------
+Server 1 
+Failed at time (hours) 752
+Service time (hours) 762
+------------------
+------------------
+Server 2 
+Failed at time (hours) 753
+Service time (hours) 763
+------------------
+------------------
+Server 2 
+Failed at time (hours) 755
+Service time (hours) 765
+------------------
+------------------
+Server 1 
+Failed at time (hours) 760
+Service time (hours) 770
+------------------
+------------------
+Server 1 
+Failed at time (hours) 761
+Service time (hours) 771
+------------------
+------------------
+Server 2 
+Failed at time (hours) 768
+Service time (hours) 778
+------------------
+------------------
+Server 1 
+Failed at time (hours) 772
+Service time (hours) 782
+------------------
+------------------
+Server 2 
+Failed at time (hours) 773
+Service time (hours) 783
+------------------
+------------------
+Server 2 
+Failed at time (hours) 780
+Service time (hours) 790
+------------------
+------------------
+Server 2 
+Failed at time (hours) 787
+Service time (hours) 797
+------------------
+------------------
+Server 1 
+Failed at time (hours) 790
+Service time (hours) 800
+------------------
+------------------
+Server 2 
+Failed at time (hours) 796
+Service time (hours) 806
+------------------
+------------------
+Server 2 
+Failed at time (hours) 798
+Service time (hours) 808
+------------------
+------------------
+Server 1 
+Failed at time (hours) 799
+Service time (hours) 809
+------------------
+------------------
+Server 1 
+Failed at time (hours) 800
+Service time (hours) 810
+------------------
+------------------
+Server 2 
+Failed at time (hours) 802
+Service time (hours) 812
+------------------
+------------------
+Server 1 
+Failed at time (hours) 804
+Service time (hours) 814
+------------------
+------------------
+Server 1 
+Failed at time (hours) 815
+Service time (hours) 825
+------------------
+------------------
+Server 1 
+Failed at time (hours) 819
+Service time (hours) 829
+------------------
+------------------
+Server 1 
+Failed at time (hours) 821
+Service time (hours) 831
+------------------
+------------------
+Server 2 
+Failed at time (hours) 821
+Service time (hours) 831
+------------------
+------------------
+Server 2 
+Failed at time (hours) 826
+Service time (hours) 836
+------------------
+------------------
+Server 2 
+Failed at time (hours) 831
+Service time (hours) 841
+------------------
+------------------
+Server 2 
+Failed at time (hours) 833
+Service time (hours) 843
+------------------
+------------------
+Server 2 
+Failed at time (hours) 834
+Service time (hours) 844
+------------------
+------------------
+Server 2 
+Failed at time (hours) 839
+Service time (hours) 849
+------------------
+------------------
+Server 2 
+Failed at time (hours) 840
+Service time (hours) 850
+------------------
+------------------
+Server 1 
+Failed at time (hours) 843
+Service time (hours) 853
+------------------
+------------------
+Server 2 
+Failed at time (hours) 843
+Service time (hours) 853
+------------------
+------------------
+Server 1 
+Failed at time (hours) 846
+Service time (hours) 856
+------------------
+------------------
+Server 2 
+Failed at time (hours) 848
+Service time (hours) 858
+------------------
+------------------
+Server 1 
+Failed at time (hours) 852
+Service time (hours) 862
+------------------
+------------------
+Server 1 
+Failed at time (hours) 855
+Service time (hours) 865
+------------------
+------------------
+Server 2 
+Failed at time (hours) 855
+Service time (hours) 865
+------------------
+------------------
+Server 2 
+Failed at time (hours) 870
+Service time (hours) 880
+------------------
+------------------
+Server 1 
+Failed at time (hours) 873
+Service time (hours) 883
+------------------
+------------------
+Server 2 
+Failed at time (hours) 873
+Service time (hours) 883
+------------------
+------------------
+Server 2 
+Failed at time (hours) 876
+Service time (hours) 886
+------------------
+------------------
+Server 2 
+Failed at time (hours) 879
+Service time (hours) 889
+------------------
+------------------
+Server 1 
+Failed at time (hours) 882
+Service time (hours) 892
+------------------
+------------------
+Server 2 
+Failed at time (hours) 886
+Service time (hours) 896
+------------------
+------------------
+Server 1 
+Failed at time (hours) 898
+Service time (hours) 908
+------------------
+------------------
+Server 1 
+Failed at time (hours) 899
+Service time (hours) 909
+------------------
+------------------
+Server 1 
+Failed at time (hours) 908
+Service time (hours) 918
+------------------
+------------------
+Server 2 
+Failed at time (hours) 909
+Service time (hours) 919
+------------------
+------------------
+Server 2 
+Failed at time (hours) 914
+Service time (hours) 924
+------------------
+------------------
+Server 2 
+Failed at time (hours) 922
+Service time (hours) 932
+------------------
+------------------
+Server 2 
+Failed at time (hours) 926
+Service time (hours) 936
+------------------
+------------------
+Server 2 
+Failed at time (hours) 936
+Service time (hours) 946
+------------------
+------------------
+Server 1 
+Failed at time (hours) 937
+Service time (hours) 947
+------------------
+------------------
+Server 1 
+Failed at time (hours) 939
+Service time (hours) 949
+------------------
+------------------
+Server 1 
+Failed at time (hours) 940
+Service time (hours) 950
+------------------
+------------------
+Server 2 
+Failed at time (hours) 941
+Service time (hours) 951
+------------------
+------------------
+Server 1 
+Failed at time (hours) 945
+Service time (hours) 955
+------------------
+------------------
+Server 2 
+Failed at time (hours) 947
+Service time (hours) 957
+------------------
+------------------
+Server 2 
+Failed at time (hours) 953
+Service time (hours) 963
+------------------
+------------------
+Server 1 
+Failed at time (hours) 959
+Service time (hours) 969
+------------------
+------------------
+Server 2 
+Failed at time (hours) 964
+Service time (hours) 974
+------------------
+------------------
+Server 2 
+Failed at time (hours) 966
+Service time (hours) 976
+------------------
+------------------
+Server 2 
+Failed at time (hours) 968
+Service time (hours) 978
+------------------
+------------------
+Server 1 
+Failed at time (hours) 969
+Service time (hours) 979
+------------------
+------------------
+Server 1 
+Failed at time (hours) 975
+Service time (hours) 985
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1015
+Service time (hours) 1025
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1021
+Service time (hours) 1031
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1033
+Service time (hours) 1043
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1035
+Service time (hours) 1045
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1039
+Service time (hours) 1049
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1040
+Service time (hours) 1050
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1044
+Service time (hours) 1054
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1049
+Service time (hours) 1059
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1050
+Service time (hours) 1060
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1056
+Service time (hours) 1066
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1061
+Service time (hours) 1071
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1065
+Service time (hours) 1075
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1070
+Service time (hours) 1080
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1074
+Service time (hours) 1084
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1075
+Service time (hours) 1085
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1088
+Service time (hours) 1098
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1097
+Service time (hours) 1107
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1104
+Service time (hours) 1114
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1108
+Service time (hours) 1118
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1108
+Service time (hours) 1118
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1114
+Service time (hours) 1124
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1115
+Service time (hours) 1125
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1121
+Service time (hours) 1131
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1123
+Service time (hours) 1133
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1146
+Service time (hours) 1156
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1148
+Service time (hours) 1158
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1149
+Service time (hours) 1159
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1152
+Service time (hours) 1162
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1180
+Service time (hours) 1190
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1180
+Service time (hours) 1190
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1189
+Service time (hours) 1199
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1192
+Service time (hours) 1202
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1197
+Service time (hours) 1207
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1200
+Service time (hours) 1210
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1207
+Service time (hours) 1217
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1227
+Service time (hours) 1237
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1236
+Service time (hours) 1246
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1240
+Service time (hours) 1250
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1248
+Service time (hours) 1258
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1267
+Service time (hours) 1277
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1275
+Service time (hours) 1285
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1284
+Service time (hours) 1294
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1285
+Service time (hours) 1295
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1307
+Service time (hours) 1317
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1350
+Service time (hours) 1360
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1353
+Service time (hours) 1363
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1354
+Service time (hours) 1364
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1363
+Service time (hours) 1373
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1391
+Service time (hours) 1401
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1396
+Service time (hours) 1406
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1407
+Service time (hours) 1417
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1426
+Service time (hours) 1436
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1427
+Service time (hours) 1437
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1440
+Service time (hours) 1450
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1441
+Service time (hours) 1451
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1449
+Service time (hours) 1459
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1452
+Service time (hours) 1462
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1456
+Service time (hours) 1466
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1457
+Service time (hours) 1467
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1459
+Service time (hours) 1469
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1467
+Service time (hours) 1477
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1476
+Service time (hours) 1486
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1477
+Service time (hours) 1487
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1478
+Service time (hours) 1488
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1504
+Service time (hours) 1514
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1518
+Service time (hours) 1528
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1545
+Service time (hours) 1555
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1553
+Service time (hours) 1563
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1560
+Service time (hours) 1570
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1589
+Service time (hours) 1599
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1590
+Service time (hours) 1600
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1668
+Service time (hours) 1678
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1744
+Service time (hours) 1754
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1749
+Service time (hours) 1759
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1784
+Service time (hours) 1794
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1786
+Service time (hours) 1796
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1829
+Service time (hours) 1839
+------------------
+------------------
+Server 2 
+Failed at time (hours) 1844
+Service time (hours) 1854
+------------------
+------------------
+Server 1 
+Failed at time (hours) 1932
+Service time (hours) 1942
+------------------
+------------------
+Server 2 
+Failed at time (hours) 2049
+Service time (hours) 2059
+------------------
+------------------
+Server 1 
+Failed at time (hours) 2094
+Service time (hours) 2104
+------------------
+------------------
+Server 2 
+Failed at time (hours) 2096
+Service time (hours) 2106
+------------------
+------------------
+Server 1 
+Failed at time (hours) 2182
+Service time (hours) 2192
+------------------
+------------------
+Server 2 
+Failed at time (hours) 2213
+Service time (hours) 2223
+------------------
+------------------
+Server 1 
+Failed at time (hours) 2220
+Service time (hours) 2230
+------------------
+------------------
+Server 2 
+Failed at time (hours) 2246
+Service time (hours) 2256
+------------------
+------------------
+Server 1 
+Failed at time (hours) 2424
+Service time (hours) 2434
+------------------
+------------------
+Server 1 
+Failed at time (hours) 2444
+Service time (hours) 2454
+------------------
+------------------
+Server 1 
+Failed at time (hours) 2581
+Service time (hours) 2591
+------------------
+------------------
+Server 2 
+Failed at time (hours) 2643
+Service time (hours) 2653
+------------------
+------------------
+Server 1 
+Failed at time (hours) 2692
+Service time (hours) 2702
+------------------
+------------------
+Server 1 
+Failed at time (hours) 2694
+Service time (hours) 2704
+------------------
+------------------
+Server 1 
+Failed at time (hours) 2789
+Service time (hours) 2799
+------------------
+------------------
+Server 1 
+Failed at time (hours) 3021
+Service time (hours) 3031
+------------------
+------------------
+Server 2 
+Failed at time (hours) 3707
+Service time (hours) 3717
+------------------
+Total Failures S1: 287
+Total Failures S2: 289

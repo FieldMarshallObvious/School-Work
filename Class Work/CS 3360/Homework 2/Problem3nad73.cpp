@@ -44,7 +44,7 @@ int main() {
 
     cout << "Average Service Time: " << averageService << endl;
 
-
+    return 0;
 }
 
 void generateProcesses(float process_data[][3], float* totalTime, int processes) {
@@ -71,12 +71,12 @@ void printReceivedProccesses(float process_data[][3], int processes ) {
 
 // Generate arrival time via poission distribution
 float generateArrivalTime( float lambda ) {
-    return -log(1-  ( (float)rand()/RAND_MAX))/lambda;
+    return -log( 1 - ( (float)rand()/RAND_MAX) )/lambda;
 }
 
 // Generate service time via exponential distribution
 float generateServiceTime( float lambda ) {
-    return -log(1-  ( (float)rand()/RAND_MAX)) * lambda;
+    return -log( 1 - ( (float)rand()/RAND_MAX)) * lambda;
 }
 
 

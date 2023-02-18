@@ -37,7 +37,7 @@ int main() {
     cout << "Specific Distribution Float Array: " << endl;
     outputArr(floatArrSpecific, 100);
 
-
+    return 0;
 }
 
 // Generate random numbers between lower and max
