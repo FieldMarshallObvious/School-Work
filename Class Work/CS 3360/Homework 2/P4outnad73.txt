@@ -1,667 +1,657 @@
 ------------------
 Server 2 
-Failed at time (hours) 469
-Service time (hours) 479
+Failed at time (hours) 508
+Service time (hours) 518
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 502
-Service time (hours) 512
+Failed at time (hours) 518
+Service time (hours) 528
+------------------
+------------------
+Server 2 
+Failed at time (hours) 976
+Service time (hours) 986
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 951
-Service time (hours) 961
+Failed at time (hours) 1053
+Service time (hours) 1063
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 968
-Service time (hours) 978
+Failed at time (hours) 1492
+Service time (hours) 1502
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 1457
-Service time (hours) 1467
+Failed at time (hours) 1553
+Service time (hours) 1563
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 1474
-Service time (hours) 1484
-------------------
-------------------
-Server 2 
-Failed at time (hours) 1961
-Service time (hours) 1971
+Failed at time (hours) 2003
+Service time (hours) 2013
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 1970
-Service time (hours) 1980
+Failed at time (hours) 2055
+Service time (hours) 2065
+------------------
+------------------
+Server 2 
+Failed at time (hours) 2493
+Service time (hours) 2503
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 2459
-Service time (hours) 2469
+Failed at time (hours) 2577
+Service time (hours) 2587
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 2481
-Service time (hours) 2491
+Failed at time (hours) 2992
+Service time (hours) 3002
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 2971
-Service time (hours) 2981
+Failed at time (hours) 3087
+Service time (hours) 3097
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 3007
-Service time (hours) 3017
+Failed at time (hours) 3466
+Service time (hours) 3476
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 3484
-Service time (hours) 3494
+Failed at time (hours) 3603
+Service time (hours) 3613
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 3517
-Service time (hours) 3527
+Failed at time (hours) 3933
+Service time (hours) 3943
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 3984
-Service time (hours) 3994
+Failed at time (hours) 4168
+Service time (hours) 4178
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 4021
-Service time (hours) 4031
+Failed at time (hours) 4430
+Service time (hours) 4440
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 4475
-Service time (hours) 4485
+Failed at time (hours) 4655
+Service time (hours) 4665
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 4539
-Service time (hours) 4549
+Failed at time (hours) 4915
+Service time (hours) 4925
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 4999
-Service time (hours) 5009
+Failed at time (hours) 5160
+Service time (hours) 5170
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 5044
-Service time (hours) 5054
+Failed at time (hours) 5457
+Service time (hours) 5467
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 5531
-Service time (hours) 5541
+Failed at time (hours) 5690
+Service time (hours) 5700
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 5538
-Service time (hours) 5548
+Failed at time (hours) 5969
+Service time (hours) 5979
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 6039
-Service time (hours) 6049
+Failed at time (hours) 6208
+Service time (hours) 6218
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 6080
-Service time (hours) 6090
+Failed at time (hours) 6479
+Service time (hours) 6489
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 6518
-Service time (hours) 6528
+Failed at time (hours) 6711
+Service time (hours) 6721
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 6607
-Service time (hours) 6617
+Failed at time (hours) 6970
+Service time (hours) 6980
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 7003
-Service time (hours) 7013
+Failed at time (hours) 7237
+Service time (hours) 7247
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 7103
-Service time (hours) 7113
+Failed at time (hours) 7469
+Service time (hours) 7479
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 7534
-Service time (hours) 7544
+Failed at time (hours) 7776
+Service time (hours) 7786
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 7642
-Service time (hours) 7652
+Failed at time (hours) 8002
+Service time (hours) 8012
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 7989
-Service time (hours) 7999
+Failed at time (hours) 8308
+Service time (hours) 8318
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 8123
-Service time (hours) 8133
+Failed at time (hours) 8500
+Service time (hours) 8510
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 8494
-Service time (hours) 8504
+Failed at time (hours) 8842
+Service time (hours) 8852
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 8610
-Service time (hours) 8620
+Failed at time (hours) 9045
+Service time (hours) 9055
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 9011
-Service time (hours) 9021
+Failed at time (hours) 9307
+Service time (hours) 9317
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 9095
-Service time (hours) 9105
+Failed at time (hours) 9546
+Service time (hours) 9556
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 9519
-Service time (hours) 9529
+Failed at time (hours) 9816
+Service time (hours) 9826
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 9591
-Service time (hours) 9601
+Failed at time (hours) 10056
+Service time (hours) 10066
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 10022
-Service time (hours) 10032
+Failed at time (hours) 10323
+Service time (hours) 10333
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 10058
-Service time (hours) 10068
+Failed at time (hours) 10579
+Service time (hours) 10589
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 10539
-Service time (hours) 10549
+Failed at time (hours) 10880
+Service time (hours) 10890
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 10553
-Service time (hours) 10563
+Failed at time (hours) 11092
+Service time (hours) 11102
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 11046
-Service time (hours) 11056
+Failed at time (hours) 11439
+Service time (hours) 11449
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 11048
-Service time (hours) 11058
+Failed at time (hours) 11617
+Service time (hours) 11627
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 11530
-Service time (hours) 11540
+Failed at time (hours) 11922
+Service time (hours) 11932
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 11534
-Service time (hours) 11544
+Failed at time (hours) 12078
+Service time (hours) 12088
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 12007
-Service time (hours) 12017
+Failed at time (hours) 12427
+Service time (hours) 12437
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 12008
-Service time (hours) 12018
-------------------
-------------------
-Server 2 
-Failed at time (hours) 12509
-Service time (hours) 12519
+Failed at time (hours) 12617
+Service time (hours) 12627
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 12519
-Service time (hours) 12529
+Failed at time (hours) 12944
+Service time (hours) 12954
+------------------
+------------------
+Server 2 
+Failed at time (hours) 13152
+Service time (hours) 13162
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 12989
-Service time (hours) 12999
+Failed at time (hours) 13497
+Service time (hours) 13507
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 13020
-Service time (hours) 13030
-------------------
-------------------
-Server 2 
-Failed at time (hours) 13514
-Service time (hours) 13524
+Failed at time (hours) 13610
+Service time (hours) 13620
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 13516
-Service time (hours) 13526
+Failed at time (hours) 13970
+Service time (hours) 13980
+------------------
+------------------
+Server 2 
+Failed at time (hours) 14109
+Service time (hours) 14119
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 14016
-Service time (hours) 14026
+Failed at time (hours) 14441
+Service time (hours) 14451
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 14020
-Service time (hours) 14030
-------------------
-------------------
-Server 2 
-Failed at time (hours) 14515
-Service time (hours) 14525
+Failed at time (hours) 14646
+Service time (hours) 14656
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 14535
-Service time (hours) 14545
+Failed at time (hours) 14997
+Service time (hours) 15007
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 15030
-Service time (hours) 15040
+Failed at time (hours) 15141
+Service time (hours) 15151
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 15067
-Service time (hours) 15077
+Failed at time (hours) 15529
+Service time (hours) 15539
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 15504
-Service time (hours) 15514
+Failed at time (hours) 15640
+Service time (hours) 15650
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 15594
-Service time (hours) 15604
+Failed at time (hours) 15991
+Service time (hours) 16001
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 15996
-Service time (hours) 16006
+Failed at time (hours) 16132
+Service time (hours) 16142
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 16115
-Service time (hours) 16125
+Failed at time (hours) 16516
+Service time (hours) 16526
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 16495
-Service time (hours) 16505
+Failed at time (hours) 16663
+Service time (hours) 16673
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 16633
-Service time (hours) 16643
+Failed at time (hours) 17034
+Service time (hours) 17044
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 17000
-Service time (hours) 17010
+Failed at time (hours) 17171
+Service time (hours) 17181
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 17083
-Service time (hours) 17093
+Failed at time (hours) 17505
+Service time (hours) 17515
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 17531
-Service time (hours) 17541
+Failed at time (hours) 17673
+Service time (hours) 17683
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 17604
-Service time (hours) 17614
+Failed at time (hours) 18020
+Service time (hours) 18030
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 18017
-Service time (hours) 18027
+Failed at time (hours) 18204
+Service time (hours) 18214
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 18108
-Service time (hours) 18118
+Failed at time (hours) 18503
+Service time (hours) 18513
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 18511
-Service time (hours) 18521
+Failed at time (hours) 18737
+Service time (hours) 18747
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 18582
-Service time (hours) 18592
+Failed at time (hours) 18995
+Service time (hours) 19005
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 18974
-Service time (hours) 18984
+Failed at time (hours) 19196
+Service time (hours) 19206
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 19113
-Service time (hours) 19123
+Failed at time (hours) 19521
+Service time (hours) 19531
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 19512
-Service time (hours) 19522
+Failed at time (hours) 19734
+Service time (hours) 19744
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 19638
-Service time (hours) 19648
+Failed at time (hours) 20029
+Service time (hours) 20039
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 20039
-Service time (hours) 20049
+Failed at time (hours) 20280
+Service time (hours) 20290
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 20127
-Service time (hours) 20137
+Failed at time (hours) 20517
+Service time (hours) 20527
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 20552
-Service time (hours) 20562
+Failed at time (hours) 20786
+Service time (hours) 20796
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 20641
-Service time (hours) 20651
+Failed at time (hours) 21040
+Service time (hours) 21050
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 21008
-Service time (hours) 21018
+Failed at time (hours) 21310
+Service time (hours) 21320
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 21148
-Service time (hours) 21158
+Failed at time (hours) 21572
+Service time (hours) 21582
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 21489
-Service time (hours) 21499
+Failed at time (hours) 21814
+Service time (hours) 21824
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 21648
-Service time (hours) 21658
+Failed at time (hours) 22103
+Service time (hours) 22113
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 22007
-Service time (hours) 22017
+Failed at time (hours) 22314
+Service time (hours) 22324
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 22132
-Service time (hours) 22142
+Failed at time (hours) 22589
+Service time (hours) 22599
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 22514
-Service time (hours) 22524
+Failed at time (hours) 22844
+Service time (hours) 22854
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 22662
-Service time (hours) 22672
+Failed at time (hours) 23084
+Service time (hours) 23094
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 23004
-Service time (hours) 23014
+Failed at time (hours) 23359
+Service time (hours) 23369
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 23182
-Service time (hours) 23192
+Failed at time (hours) 23599
+Service time (hours) 23609
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 23533
-Service time (hours) 23543
+Failed at time (hours) 23863
+Service time (hours) 23873
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 23686
-Service time (hours) 23696
+Failed at time (hours) 24095
+Service time (hours) 24105
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 24050
-Service time (hours) 24060
+Failed at time (hours) 24381
+Service time (hours) 24391
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 24182
-Service time (hours) 24192
-------------------
-------------------
-Server 2 
 Failed at time (hours) 24570
 Service time (hours) 24580
 ------------------
 ------------------
+Server 2 
+Failed at time (hours) 24915
+Service time (hours) 24925
+------------------
+------------------
 Server 1 
-Failed at time (hours) 24662
-Service time (hours) 24672
+Failed at time (hours) 25082
+Service time (hours) 25092
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 25036
-Service time (hours) 25046
+Failed at time (hours) 25480
+Service time (hours) 25490
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 25211
-Service time (hours) 25221
+Failed at time (hours) 25585
+Service time (hours) 25595
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 25535
-Service time (hours) 25545
+Failed at time (hours) 25986
+Service time (hours) 25996
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 25717
-Service time (hours) 25727
+Failed at time (hours) 26077
+Service time (hours) 26087
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 26075
-Service time (hours) 26085
+Failed at time (hours) 26490
+Service time (hours) 26500
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 26222
-Service time (hours) 26232
+Failed at time (hours) 26618
+Service time (hours) 26628
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 26591
-Service time (hours) 26601
+Failed at time (hours) 26996
+Service time (hours) 27006
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 26702
-Service time (hours) 26712
+Failed at time (hours) 27138
+Service time (hours) 27148
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 27129
-Service time (hours) 27139
+Failed at time (hours) 27519
+Service time (hours) 27529
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 27182
-Service time (hours) 27192
+Failed at time (hours) 27691
+Service time (hours) 27701
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 27650
-Service time (hours) 27660
+Failed at time (hours) 28024
+Service time (hours) 28034
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 27706
-Service time (hours) 27716
+Failed at time (hours) 28208
+Service time (hours) 28218
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 28127
-Service time (hours) 28137
+Failed at time (hours) 28542
+Service time (hours) 28552
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 28181
-Service time (hours) 28191
+Failed at time (hours) 28728
+Service time (hours) 28738
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 28640
-Service time (hours) 28650
+Failed at time (hours) 29042
+Service time (hours) 29052
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 28655
-Service time (hours) 28665
+Failed at time (hours) 29224
+Service time (hours) 29234
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 29103
-Service time (hours) 29113
+Failed at time (hours) 29570
+Service time (hours) 29580
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 29204
-Service time (hours) 29214
+Failed at time (hours) 29721
+Service time (hours) 29731
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 29586
-Service time (hours) 29596
+Failed at time (hours) 30094
+Service time (hours) 30104
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 29680
-Service time (hours) 29690
+Failed at time (hours) 30223
+Service time (hours) 30233
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 30077
-Service time (hours) 30087
+Failed at time (hours) 30575
+Service time (hours) 30585
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 30146
-Service time (hours) 30156
+Failed at time (hours) 30721
+Service time (hours) 30731
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 30578
-Service time (hours) 30588
+Failed at time (hours) 31128
+Service time (hours) 31138
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 30683
-Service time (hours) 30693
+Failed at time (hours) 31226
+Service time (hours) 31236
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 31100
-Service time (hours) 31110
+Failed at time (hours) 31674
+Service time (hours) 31684
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 31155
-Service time (hours) 31165
+Failed at time (hours) 31726
+Service time (hours) 31736
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 31614
-Service time (hours) 31624
+Failed at time (hours) 32186
+Service time (hours) 32196
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 31676
-Service time (hours) 31686
+Failed at time (hours) 32250
+Service time (hours) 32260
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 32139
-Service time (hours) 32149
+Failed at time (hours) 32680
+Service time (hours) 32690
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 32221
-Service time (hours) 32231
+Failed at time (hours) 32735
+Service time (hours) 32745
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 32665
-Service time (hours) 32675
+Failed at time (hours) 33191
+Service time (hours) 33201
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 32717
-Service time (hours) 32727
-------------------
-------------------
-Server 2 
-Failed at time (hours) 33183
-Service time (hours) 33193
+Failed at time (hours) 33209
+Service time (hours) 33219
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 33226
-Service time (hours) 33236
-------------------
-------------------
-Server 1 
-Failed at time (hours) 33699
-Service time (hours) 33709
+Failed at time (hours) 33704
+Service time (hours) 33714
 ------------------
 ------------------
 Server 2 
@@ -670,1008 +660,983 @@ Service time (hours) 33735
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 34220
-Service time (hours) 34230
+Failed at time (hours) 34230
+Service time (hours) 34240
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 34256
-Service time (hours) 34266
+Failed at time (hours) 34232
+Service time (hours) 34242
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 34718
-Service time (hours) 34728
+Failed at time (hours) 34719
+Service time (hours) 34729
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 34787
-Service time (hours) 34797
+Failed at time (hours) 34754
+Service time (hours) 34764
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 35215
-Service time (hours) 35225
+Failed at time (hours) 35214
+Service time (hours) 35224
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 35311
-Service time (hours) 35321
+Failed at time (hours) 35237
+Service time (hours) 35247
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 35663
-Service time (hours) 35673
+Failed at time (hours) 35739
+Service time (hours) 35749
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 35823
-Service time (hours) 35833
+Failed at time (hours) 35759
+Service time (hours) 35769
 ------------------
 ------------------
-Server 1 
-Failed at time (hours) 36160
-Service time (hours) 36170
-------------------
-------------------
 Server 2 
-Failed at time (hours) 36344
-Service time (hours) 36354
+Failed at time (hours) 36237
+Service time (hours) 36247
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 36687
-Service time (hours) 36697
+Failed at time (hours) 36256
+Service time (hours) 36266
 ------------------
 ------------------
-Server 2 
-Failed at time (hours) 36853
-Service time (hours) 36863
+Server 1 
+Failed at time (hours) 36788
+Service time (hours) 36798
 ------------------
 ------------------
-Server 1 
-Failed at time (hours) 37169
-Service time (hours) 37179
+Server 2 
+Failed at time (hours) 36793
+Service time (hours) 36803
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 37352
-Service time (hours) 37362
+Failed at time (hours) 37318
+Service time (hours) 37328
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 37644
-Service time (hours) 37654
+Failed at time (hours) 37325
+Service time (hours) 37335
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 37856
-Service time (hours) 37866
+Failed at time (hours) 37811
+Service time (hours) 37821
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 38150
-Service time (hours) 38160
-------------------
-------------------
-Server 2 
-Failed at time (hours) 38392
-Service time (hours) 38402
+Failed at time (hours) 37817
+Service time (hours) 37827
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 38655
-Service time (hours) 38665
+Failed at time (hours) 38338
+Service time (hours) 38348
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 38875
-Service time (hours) 38885
+Failed at time (hours) 38353
+Service time (hours) 38363
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 39171
-Service time (hours) 39181
+Failed at time (hours) 38811
+Service time (hours) 38821
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 39388
-Service time (hours) 39398
+Failed at time (hours) 38910
+Service time (hours) 38920
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 39633
-Service time (hours) 39643
+Failed at time (hours) 39322
+Service time (hours) 39332
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 39856
-Service time (hours) 39866
+Failed at time (hours) 39431
+Service time (hours) 39441
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 40134
-Service time (hours) 40144
+Failed at time (hours) 39865
+Service time (hours) 39875
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 40404
-Service time (hours) 40414
+Failed at time (hours) 39930
+Service time (hours) 39940
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 40651
-Service time (hours) 40661
+Failed at time (hours) 40378
+Service time (hours) 40388
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 40879
-Service time (hours) 40889
+Failed at time (hours) 40461
+Service time (hours) 40471
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 41120
-Service time (hours) 41130
+Failed at time (hours) 40938
+Service time (hours) 40948
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 41356
-Service time (hours) 41366
+Failed at time (hours) 40965
+Service time (hours) 40975
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 41618
-Service time (hours) 41628
+Failed at time (hours) 41437
+Service time (hours) 41447
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 41881
-Service time (hours) 41891
-------------------
+Failed at time (hours) 41490
+Service time (hours) 41500
 ------------------
-Server 1 
-Failed at time (hours) 42117
-Service time (hours) 42127
 ------------------
-------------------
 Server 2 
-Failed at time (hours) 42389
-Service time (hours) 42399
+Failed at time (hours) 41991
+Service time (hours) 42001
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 42613
-Service time (hours) 42623
+Failed at time (hours) 42022
+Service time (hours) 42032
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 42842
-Service time (hours) 42852
+Failed at time (hours) 42497
+Service time (hours) 42507
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 43115
-Service time (hours) 43125
+Failed at time (hours) 42509
+Service time (hours) 42519
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 43352
-Service time (hours) 43362
+Failed at time (hours) 42998
+Service time (hours) 43008
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 43628
-Service time (hours) 43638
+Failed at time (hours) 43067
+Service time (hours) 43077
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 43852
-Service time (hours) 43862
+Failed at time (hours) 43461
+Service time (hours) 43471
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 44108
-Service time (hours) 44118
+Failed at time (hours) 43552
+Service time (hours) 43562
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 44336
-Service time (hours) 44346
+Failed at time (hours) 43972
+Service time (hours) 43982
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 44615
-Service time (hours) 44625
+Failed at time (hours) 44113
+Service time (hours) 44123
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 44829
-Service time (hours) 44839
+Failed at time (hours) 44482
+Service time (hours) 44492
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 45095
-Service time (hours) 45105
+Failed at time (hours) 44604
+Service time (hours) 44614
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 45298
-Service time (hours) 45308
+Failed at time (hours) 45014
+Service time (hours) 45024
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 45616
-Service time (hours) 45626
+Failed at time (hours) 45113
+Service time (hours) 45123
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 45783
-Service time (hours) 45793
+Failed at time (hours) 45515
+Service time (hours) 45525
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 46087
-Service time (hours) 46097
+Failed at time (hours) 45597
+Service time (hours) 45607
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 46270
-Service time (hours) 46280
+Failed at time (hours) 46053
+Service time (hours) 46063
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 46606
-Service time (hours) 46616
+Failed at time (hours) 46097
+Service time (hours) 46107
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 46789
-Service time (hours) 46799
+Failed at time (hours) 46564
+Service time (hours) 46574
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 47085
-Service time (hours) 47095
+Failed at time (hours) 46594
+Service time (hours) 46604
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 47255
-Service time (hours) 47265
+Failed at time (hours) 47065
+Service time (hours) 47075
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 47561
-Service time (hours) 47571
+Failed at time (hours) 47132
+Service time (hours) 47142
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 47731
-Service time (hours) 47741
+Failed at time (hours) 47574
+Service time (hours) 47584
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 48082
-Service time (hours) 48092
+Failed at time (hours) 47626
+Service time (hours) 47636
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 48230
-Service time (hours) 48240
+Failed at time (hours) 48073
+Service time (hours) 48083
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 48602
-Service time (hours) 48612
+Failed at time (hours) 48141
+Service time (hours) 48151
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 48746
-Service time (hours) 48756
+Failed at time (hours) 48594
+Service time (hours) 48604
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 49107
-Service time (hours) 49117
+Failed at time (hours) 48645
+Service time (hours) 48655
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 49254
-Service time (hours) 49264
+Failed at time (hours) 49117
+Service time (hours) 49127
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 49607
-Service time (hours) 49617
+Failed at time (hours) 49135
+Service time (hours) 49145
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 49750
-Service time (hours) 49760
+Failed at time (hours) 49643
+Service time (hours) 49653
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 50104
-Service time (hours) 50114
-------------------
+Failed at time (hours) 49655
+Service time (hours) 49665
 ------------------
-Server 2 
-Failed at time (hours) 50234
-Service time (hours) 50244
-------------------
 ------------------
 Server 1 
-Failed at time (hours) 50655
-Service time (hours) 50665
+Failed at time (hours) 50136
+Service time (hours) 50146
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 50736
-Service time (hours) 50746
+Failed at time (hours) 50143
+Service time (hours) 50153
 ------------------
 ------------------
-Server 1 
-Failed at time (hours) 51148
-Service time (hours) 51158
+Server 2 
+Failed at time (hours) 50638
+Service time (hours) 50648
 ------------------
 ------------------
-Server 2 
-Failed at time (hours) 51218
-Service time (hours) 51228
+Server 1 
+Failed at time (hours) 50641
+Service time (hours) 50651
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 51649
-Service time (hours) 51659
+Failed at time (hours) 51147
+Service time (hours) 51157
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 51728
-Service time (hours) 51738
+Failed at time (hours) 51154
+Service time (hours) 51164
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 52160
-Service time (hours) 52170
+Failed at time (hours) 51671
+Service time (hours) 51681
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 52217
-Service time (hours) 52227
-------------------
+Failed at time (hours) 51680
+Service time (hours) 51690
 ------------------
-Server 1 
-Failed at time (hours) 52676
-Service time (hours) 52686
 ------------------
-------------------
 Server 2 
-Failed at time (hours) 52715
-Service time (hours) 52725
+Failed at time (hours) 52164
+Service time (hours) 52174
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 53174
-Service time (hours) 53184
+Failed at time (hours) 52183
+Service time (hours) 52193
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 53237
-Service time (hours) 53247
+Failed at time (hours) 52651
+Service time (hours) 52661
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 53717
-Service time (hours) 53727
+Failed at time (hours) 52720
+Service time (hours) 52730
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 53729
-Service time (hours) 53739
+Failed at time (hours) 53153
+Service time (hours) 53163
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 54206
-Service time (hours) 54216
+Failed at time (hours) 53255
+Service time (hours) 53265
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 54221
-Service time (hours) 54231
+Failed at time (hours) 53671
+Service time (hours) 53681
 ------------------
 ------------------
-Server 2 
-Failed at time (hours) 54703
-Service time (hours) 54713
+Server 1 
+Failed at time (hours) 53763
+Service time (hours) 53773
 ------------------
 ------------------
-Server 1 
-Failed at time (hours) 54726
-Service time (hours) 54736
+Server 2 
+Failed at time (hours) 54159
+Service time (hours) 54169
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 55227
-Service time (hours) 55237
+Failed at time (hours) 54280
+Service time (hours) 54290
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 55240
-Service time (hours) 55250
+Failed at time (hours) 54680
+Service time (hours) 54690
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 55688
-Service time (hours) 55698
+Failed at time (hours) 54787
+Service time (hours) 54797
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 55717
-Service time (hours) 55727
+Failed at time (hours) 55192
+Service time (hours) 55202
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 56225
-Service time (hours) 56235
-------------------
-------------------
-Server 2 
-Failed at time (hours) 56232
-Service time (hours) 56242
+Failed at time (hours) 55299
+Service time (hours) 55309
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 56751
-Service time (hours) 56761
+Failed at time (hours) 55674
+Service time (hours) 55684
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 56754
-Service time (hours) 56764
+Failed at time (hours) 55778
+Service time (hours) 55788
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 57224
-Service time (hours) 57234
+Failed at time (hours) 56170
+Service time (hours) 56180
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 57299
-Service time (hours) 57309
+Failed at time (hours) 56303
+Service time (hours) 56313
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 57723
-Service time (hours) 57733
+Failed at time (hours) 56712
+Service time (hours) 56722
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 57805
-Service time (hours) 57815
+Failed at time (hours) 56796
+Service time (hours) 56806
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 58245
-Service time (hours) 58255
+Failed at time (hours) 57189
+Service time (hours) 57199
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 58287
-Service time (hours) 58297
+Failed at time (hours) 57283
+Service time (hours) 57293
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 58727
-Service time (hours) 58737
+Failed at time (hours) 57750
+Service time (hours) 57760
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 58750
-Service time (hours) 58760
+Failed at time (hours) 57808
+Service time (hours) 57818
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 59214
-Service time (hours) 59224
+Failed at time (hours) 58267
+Service time (hours) 58277
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 59243
-Service time (hours) 59253
+Failed at time (hours) 58317
+Service time (hours) 58327
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 59684
-Service time (hours) 59694
+Failed at time (hours) 58792
+Service time (hours) 58802
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 59746
-Service time (hours) 59756
+Failed at time (hours) 58837
+Service time (hours) 58847
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 60172
-Service time (hours) 60182
+Failed at time (hours) 59293
+Service time (hours) 59303
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 60238
-Service time (hours) 60248
+Failed at time (hours) 59376
+Service time (hours) 59386
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 60634
-Service time (hours) 60644
+Failed at time (hours) 59857
+Service time (hours) 59867
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 60747
-Service time (hours) 60757
+Failed at time (hours) 59892
+Service time (hours) 59902
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 61117
-Service time (hours) 61127
+Failed at time (hours) 60396
+Service time (hours) 60406
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 61254
-Service time (hours) 61264
+Failed at time (hours) 60421
+Service time (hours) 60431
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 61622
-Service time (hours) 61632
+Failed at time (hours) 60899
+Service time (hours) 60909
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 61772
-Service time (hours) 61782
+Failed at time (hours) 60904
+Service time (hours) 60914
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 62127
-Service time (hours) 62137
+Failed at time (hours) 61432
+Service time (hours) 61442
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 62270
-Service time (hours) 62280
-------------------
+Failed at time (hours) 61450
+Service time (hours) 61460
 ------------------
-Server 2 
-Failed at time (hours) 62635
-Service time (hours) 62645
 ------------------
-------------------
 Server 1 
-Failed at time (hours) 62744
-Service time (hours) 62754
+Failed at time (hours) 61931
+Service time (hours) 61941
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 63146
-Service time (hours) 63156
+Failed at time (hours) 61960
+Service time (hours) 61970
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 63235
-Service time (hours) 63245
+Failed at time (hours) 62459
+Service time (hours) 62469
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 63650
-Service time (hours) 63660
+Failed at time (hours) 62464
+Service time (hours) 62474
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 63747
-Service time (hours) 63757
+Failed at time (hours) 62952
+Service time (hours) 62962
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 64138
-Service time (hours) 64148
+Failed at time (hours) 62965
+Service time (hours) 62975
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 64228
-Service time (hours) 64238
+Failed at time (hours) 63468
+Service time (hours) 63478
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 64638
-Service time (hours) 64648
+Failed at time (hours) 63492
+Service time (hours) 63502
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 64738
-Service time (hours) 64748
+Failed at time (hours) 63958
+Service time (hours) 63968
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 65166
-Service time (hours) 65176
+Failed at time (hours) 64001
+Service time (hours) 64011
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 65226
-Service time (hours) 65236
+Failed at time (hours) 64471
+Service time (hours) 64481
+------------------
 ------------------
+Server 2 
+Failed at time (hours) 64522
+Service time (hours) 64532
+------------------
 ------------------
 Server 2 
-Failed at time (hours) 65639
-Service time (hours) 65649
+Failed at time (hours) 65026
+Service time (hours) 65036
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 65721
-Service time (hours) 65731
+Failed at time (hours) 65058
+Service time (hours) 65068
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 66163
-Service time (hours) 66173
+Failed at time (hours) 65537
+Service time (hours) 65547
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 66222
-Service time (hours) 66232
+Failed at time (hours) 65550
+Service time (hours) 65560
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 66646
-Service time (hours) 66656
+Failed at time (hours) 66040
+Service time (hours) 66050
+------------------
+------------------
+Server 2 
+Failed at time (hours) 66053
+Service time (hours) 66063
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 66719
-Service time (hours) 66729
+Failed at time (hours) 66577
+Service time (hours) 66587
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 67204
-Service time (hours) 67214
+Failed at time (hours) 66590
+Service time (hours) 66600
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 67231
-Service time (hours) 67241
+Failed at time (hours) 67075
+Service time (hours) 67085
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 67728
-Service time (hours) 67738
+Failed at time (hours) 67116
+Service time (hours) 67126
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 67763
-Service time (hours) 67773
+Failed at time (hours) 67568
+Service time (hours) 67578
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 68247
-Service time (hours) 68257
+Failed at time (hours) 67624
+Service time (hours) 67634
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 68284
-Service time (hours) 68294
+Failed at time (hours) 68066
+Service time (hours) 68076
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 68761
-Service time (hours) 68771
+Failed at time (hours) 68125
+Service time (hours) 68135
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 68771
-Service time (hours) 68781
+Failed at time (hours) 68572
+Service time (hours) 68582
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 69273
-Service time (hours) 69283
+Failed at time (hours) 68631
+Service time (hours) 68641
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 69330
-Service time (hours) 69340
+Failed at time (hours) 69069
+Service time (hours) 69079
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 69734
-Service time (hours) 69744
+Failed at time (hours) 69166
+Service time (hours) 69176
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 69849
-Service time (hours) 69859
+Failed at time (hours) 69558
+Service time (hours) 69568
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 70222
-Service time (hours) 70232
+Failed at time (hours) 69668
+Service time (hours) 69678
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 70334
-Service time (hours) 70344
+Failed at time (hours) 70037
+Service time (hours) 70047
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 70741
-Service time (hours) 70751
+Failed at time (hours) 70187
+Service time (hours) 70197
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 70859
-Service time (hours) 70869
+Failed at time (hours) 70518
+Service time (hours) 70528
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 71227
-Service time (hours) 71237
+Failed at time (hours) 70723
+Service time (hours) 70733
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 71348
-Service time (hours) 71358
+Failed at time (hours) 70978
+Service time (hours) 70988
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 71732
-Service time (hours) 71742
+Failed at time (hours) 71253
+Service time (hours) 71263
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 71878
-Service time (hours) 71888
+Failed at time (hours) 71470
+Service time (hours) 71480
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 72249
-Service time (hours) 72259
+Failed at time (hours) 71777
+Service time (hours) 71787
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 72388
-Service time (hours) 72398
+Failed at time (hours) 71988
+Service time (hours) 71998
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 72765
-Service time (hours) 72775
+Failed at time (hours) 72261
+Service time (hours) 72271
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 72899
-Service time (hours) 72909
+Failed at time (hours) 72524
+Service time (hours) 72534
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 73272
-Service time (hours) 73282
+Failed at time (hours) 72757
+Service time (hours) 72767
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 73402
-Service time (hours) 73412
+Failed at time (hours) 73051
+Service time (hours) 73061
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 73736
-Service time (hours) 73746
+Failed at time (hours) 73254
+Service time (hours) 73264
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 73859
-Service time (hours) 73869
+Failed at time (hours) 73560
+Service time (hours) 73570
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 74224
-Service time (hours) 74234
+Failed at time (hours) 73763
+Service time (hours) 73773
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 74398
-Service time (hours) 74408
+Failed at time (hours) 74095
+Service time (hours) 74105
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 74719
-Service time (hours) 74729
+Failed at time (hours) 74315
+Service time (hours) 74325
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 74887
-Service time (hours) 74897
+Failed at time (hours) 74647
+Service time (hours) 74657
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 75217
-Service time (hours) 75227
+Failed at time (hours) 74837
+Service time (hours) 74847
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 75391
-Service time (hours) 75401
+Failed at time (hours) 75172
+Service time (hours) 75182
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 75683
-Service time (hours) 75693
+Failed at time (hours) 75313
+Service time (hours) 75323
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 75940
-Service time (hours) 75950
+Failed at time (hours) 75646
+Service time (hours) 75656
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 76178
-Service time (hours) 76188
+Failed at time (hours) 75856
+Service time (hours) 75866
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 76437
-Service time (hours) 76447
+Failed at time (hours) 76152
+Service time (hours) 76162
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 76695
-Service time (hours) 76705
+Failed at time (hours) 76366
+Service time (hours) 76376
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 76949
-Service time (hours) 76959
+Failed at time (hours) 76636
+Service time (hours) 76646
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 77215
-Service time (hours) 77225
+Failed at time (hours) 76874
+Service time (hours) 76884
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 77463
-Service time (hours) 77473
+Failed at time (hours) 77144
+Service time (hours) 77154
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 77729
-Service time (hours) 77739
+Failed at time (hours) 77403
+Service time (hours) 77413
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 77949
-Service time (hours) 77959
+Failed at time (hours) 77673
+Service time (hours) 77683
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 78267
-Service time (hours) 78277
+Failed at time (hours) 77973
+Service time (hours) 77983
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 78464
-Service time (hours) 78474
+Failed at time (hours) 78204
+Service time (hours) 78214
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 78789
-Service time (hours) 78799
+Failed at time (hours) 78440
+Service time (hours) 78450
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 79001
-Service time (hours) 79011
+Failed at time (hours) 78688
+Service time (hours) 78698
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 79317
-Service time (hours) 79327
+Failed at time (hours) 78938
+Service time (hours) 78948
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 79517
-Service time (hours) 79527
+Failed at time (hours) 79189
+Service time (hours) 79199
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 79809
-Service time (hours) 79819
+Failed at time (hours) 79463
+Service time (hours) 79473
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 79990
-Service time (hours) 80000
+Failed at time (hours) 79728
+Service time (hours) 79738
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 80312
-Service time (hours) 80322
+Failed at time (hours) 80005
+Service time (hours) 80015
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 80451
-Service time (hours) 80461
+Failed at time (hours) 80193
+Service time (hours) 80203
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 80843
-Service time (hours) 80853
+Failed at time (hours) 80483
+Service time (hours) 80493
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 80930
-Service time (hours) 80940
+Failed at time (hours) 80755
+Service time (hours) 80765
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 81338
-Service time (hours) 81348
+Failed at time (hours) 80999
+Service time (hours) 81009
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 81446
-Service time (hours) 81456
+Failed at time (hours) 81285
+Service time (hours) 81295
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 81832
-Service time (hours) 81842
+Failed at time (hours) 81539
+Service time (hours) 81549
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 81916
-Service time (hours) 81926
+Failed at time (hours) 81831
+Service time (hours) 81841
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 82333
-Service time (hours) 82343
+Failed at time (hours) 82060
+Service time (hours) 82070
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 82410
-Service time (hours) 82420
+Failed at time (hours) 82344
+Service time (hours) 82354
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 82812
-Service time (hours) 82822
+Failed at time (hours) 82571
+Service time (hours) 82581
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 82867
-Service time (hours) 82877
+Failed at time (hours) 82851
+Service time (hours) 82861
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 83317
-Service time (hours) 83327
+Failed at time (hours) 83050
+Service time (hours) 83060
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 83332
-Service time (hours) 83342
+Failed at time (hours) 83376
+Service time (hours) 83386
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 83815
-Service time (hours) 83825
+Failed at time (hours) 83545
+Service time (hours) 83555
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 83851
-Service time (hours) 83861
+Failed at time (hours) 83883
+Service time (hours) 83893
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 84328
-Service time (hours) 84338
+Failed at time (hours) 84064
+Service time (hours) 84074
 ------------------
 ------------------
 Server 2 
@@ -1680,1723 +1645,1683 @@ Service time (hours) 84399
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 84814
-Service time (hours) 84824
+Failed at time (hours) 84563
+Service time (hours) 84573
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 84905
-Service time (hours) 84915
+Failed at time (hours) 84891
+Service time (hours) 84901
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 85289
-Service time (hours) 85299
+Failed at time (hours) 85061
+Service time (hours) 85071
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 85409
-Service time (hours) 85419
+Failed at time (hours) 85439
+Service time (hours) 85449
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 85772
-Service time (hours) 85782
+Failed at time (hours) 85589
+Service time (hours) 85599
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 85931
-Service time (hours) 85941
+Failed at time (hours) 85957
+Service time (hours) 85967
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 86321
-Service time (hours) 86331
+Failed at time (hours) 86081
+Service time (hours) 86091
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 86395
-Service time (hours) 86405
+Failed at time (hours) 86471
+Service time (hours) 86481
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 86836
-Service time (hours) 86846
+Failed at time (hours) 86579
+Service time (hours) 86589
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 86882
-Service time (hours) 86892
+Failed at time (hours) 86950
+Service time (hours) 86960
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 87327
-Service time (hours) 87337
+Failed at time (hours) 87100
+Service time (hours) 87110
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 87358
-Service time (hours) 87368
+Failed at time (hours) 87427
+Service time (hours) 87437
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 87826
-Service time (hours) 87836
+Failed at time (hours) 87601
+Service time (hours) 87611
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 87866
-Service time (hours) 87876
+Failed at time (hours) 88002
+Service time (hours) 88012
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 88336
-Service time (hours) 88346
+Failed at time (hours) 88119
+Service time (hours) 88129
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 88360
-Service time (hours) 88370
+Failed at time (hours) 88509
+Service time (hours) 88519
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 88837
-Service time (hours) 88847
+Failed at time (hours) 88638
+Service time (hours) 88648
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 88874
-Service time (hours) 88884
+Failed at time (hours) 89014
+Service time (hours) 89024
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 89332
-Service time (hours) 89342
+Failed at time (hours) 89150
+Service time (hours) 89160
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 89378
-Service time (hours) 89388
+Failed at time (hours) 89542
+Service time (hours) 89552
 ------------------
 ------------------
-Server 2 
-Failed at time (hours) 89807
-Service time (hours) 89817
-------------------
-------------------
 Server 1 
-Failed at time (hours) 89833
-Service time (hours) 89843
+Failed at time (hours) 89647
+Service time (hours) 89657
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 90294
-Service time (hours) 90304
+Failed at time (hours) 90053
+Service time (hours) 90063
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 90335
-Service time (hours) 90345
+Failed at time (hours) 90177
+Service time (hours) 90187
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 90787
-Service time (hours) 90797
+Failed at time (hours) 90568
+Service time (hours) 90578
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 90824
-Service time (hours) 90834
+Failed at time (hours) 90675
+Service time (hours) 90685
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 91274
-Service time (hours) 91284
+Failed at time (hours) 91106
+Service time (hours) 91116
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 91338
-Service time (hours) 91348
+Failed at time (hours) 91161
+Service time (hours) 91171
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 91754
-Service time (hours) 91764
+Failed at time (hours) 91587
+Service time (hours) 91597
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 91788
-Service time (hours) 91798
+Failed at time (hours) 91675
+Service time (hours) 91685
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 92234
-Service time (hours) 92244
+Failed at time (hours) 92108
+Service time (hours) 92118
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 92296
-Service time (hours) 92306
+Failed at time (hours) 92189
+Service time (hours) 92199
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 92753
-Service time (hours) 92763
+Failed at time (hours) 92599
+Service time (hours) 92609
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 92783
-Service time (hours) 92793
+Failed at time (hours) 92684
+Service time (hours) 92694
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 93222
-Service time (hours) 93232
+Failed at time (hours) 93137
+Service time (hours) 93147
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 93333
-Service time (hours) 93343
+Failed at time (hours) 93208
+Service time (hours) 93218
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 93716
-Service time (hours) 93726
+Failed at time (hours) 93657
+Service time (hours) 93667
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 93850
-Service time (hours) 93860
+Failed at time (hours) 93717
+Service time (hours) 93727
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 94200
-Service time (hours) 94210
+Failed at time (hours) 94170
+Service time (hours) 94180
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 94337
-Service time (hours) 94347
+Failed at time (hours) 94241
+Service time (hours) 94251
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 94714
-Service time (hours) 94724
+Failed at time (hours) 94704
+Service time (hours) 94714
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 94837
-Service time (hours) 94847
+Failed at time (hours) 94723
+Service time (hours) 94733
 ------------------
 ------------------
-Server 2 
-Failed at time (hours) 95235
-Service time (hours) 95245
-------------------
-------------------
 Server 1 
-Failed at time (hours) 95341
-Service time (hours) 95351
+Failed at time (hours) 95207
+Service time (hours) 95217
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 95736
-Service time (hours) 95746
+Failed at time (hours) 95231
+Service time (hours) 95241
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 95851
-Service time (hours) 95861
+Failed at time (hours) 95739
+Service time (hours) 95749
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 96209
-Service time (hours) 96219
+Failed at time (hours) 95758
+Service time (hours) 95768
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 96345
-Service time (hours) 96355
+Failed at time (hours) 96233
+Service time (hours) 96243
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 96699
-Service time (hours) 96709
-------------------
+Failed at time (hours) 96281
+Service time (hours) 96291
 ------------------
-Server 1 
-Failed at time (hours) 96878
-Service time (hours) 96888
 ------------------
-------------------
 Server 2 
-Failed at time (hours) 97181
-Service time (hours) 97191
+Failed at time (hours) 96759
+Service time (hours) 96769
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 97323
-Service time (hours) 97333
-------------------
+Failed at time (hours) 96781
+Service time (hours) 96791
 ------------------
-Server 2 
-Failed at time (hours) 97670
-Service time (hours) 97680
-------------------
 ------------------
 Server 1 
-Failed at time (hours) 97826
-Service time (hours) 97836
+Failed at time (hours) 97259
+Service time (hours) 97269
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 98152
-Service time (hours) 98162
+Failed at time (hours) 97309
+Service time (hours) 97319
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 98296
-Service time (hours) 98306
+Failed at time (hours) 97790
+Service time (hours) 97800
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 98639
-Service time (hours) 98649
+Failed at time (hours) 97807
+Service time (hours) 97817
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 98804
-Service time (hours) 98814
+Failed at time (hours) 98317
+Service time (hours) 98327
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 99165
-Service time (hours) 99175
+Failed at time (hours) 98341
+Service time (hours) 98351
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 99323
-Service time (hours) 99333
+Failed at time (hours) 98827
+Service time (hours) 98837
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 99653
-Service time (hours) 99663
+Failed at time (hours) 98853
+Service time (hours) 98863
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 99796
-Service time (hours) 99806
+Failed at time (hours) 99342
+Service time (hours) 99352
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 100135
-Service time (hours) 100145
+Failed at time (hours) 99411
+Service time (hours) 99421
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 100342
-Service time (hours) 100352
+Failed at time (hours) 99857
+Service time (hours) 99867
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 100651
-Service time (hours) 100661
+Failed at time (hours) 99959
+Service time (hours) 99969
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 100826
-Service time (hours) 100836
+Failed at time (hours) 100353
+Service time (hours) 100363
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 101160
-Service time (hours) 101170
+Failed at time (hours) 100477
+Service time (hours) 100487
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 101318
-Service time (hours) 101328
+Failed at time (hours) 100843
+Service time (hours) 100853
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 101618
-Service time (hours) 101628
+Failed at time (hours) 100966
+Service time (hours) 100976
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 101821
-Service time (hours) 101831
+Failed at time (hours) 101342
+Service time (hours) 101352
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 102120
-Service time (hours) 102130
+Failed at time (hours) 101475
+Service time (hours) 101485
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 102359
-Service time (hours) 102369
+Failed at time (hours) 101870
+Service time (hours) 101880
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 102607
-Service time (hours) 102617
+Failed at time (hours) 101981
+Service time (hours) 101991
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 102885
-Service time (hours) 102895
+Failed at time (hours) 102378
+Service time (hours) 102388
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 103110
-Service time (hours) 103120
+Failed at time (hours) 102540
+Service time (hours) 102550
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 103380
-Service time (hours) 103390
+Failed at time (hours) 102912
+Service time (hours) 102922
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 103598
-Service time (hours) 103608
+Failed at time (hours) 103047
+Service time (hours) 103057
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 103859
-Service time (hours) 103869
+Failed at time (hours) 103421
+Service time (hours) 103431
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 104100
-Service time (hours) 104110
+Failed at time (hours) 103553
+Service time (hours) 103563
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 104368
-Service time (hours) 104378
+Failed at time (hours) 103912
+Service time (hours) 103922
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 104600
-Service time (hours) 104610
+Failed at time (hours) 104095
+Service time (hours) 104105
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 104856
-Service time (hours) 104866
+Failed at time (hours) 104456
+Service time (hours) 104466
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 105106
-Service time (hours) 105116
+Failed at time (hours) 104608
+Service time (hours) 104618
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 105384
-Service time (hours) 105394
+Failed at time (hours) 104990
+Service time (hours) 105000
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 105627
-Service time (hours) 105637
+Failed at time (hours) 105121
+Service time (hours) 105131
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 105899
-Service time (hours) 105909
+Failed at time (hours) 105478
+Service time (hours) 105488
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 106129
-Service time (hours) 106139
+Failed at time (hours) 105595
+Service time (hours) 105605
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 106387
-Service time (hours) 106397
+Failed at time (hours) 106045
+Service time (hours) 106055
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 106646
-Service time (hours) 106656
+Failed at time (hours) 106088
+Service time (hours) 106098
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 106874
-Service time (hours) 106884
+Failed at time (hours) 106573
+Service time (hours) 106583
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 107123
-Service time (hours) 107133
+Failed at time (hours) 106578
+Service time (hours) 106588
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 107369
-Service time (hours) 107379
+Failed at time (hours) 107078
+Service time (hours) 107088
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 107624
-Service time (hours) 107634
+Failed at time (hours) 107089
+Service time (hours) 107099
 ------------------
 ------------------
-Server 1 
-Failed at time (hours) 107840
-Service time (hours) 107850
+Server 2 
+Failed at time (hours) 107561
+Service time (hours) 107571
 ------------------
 ------------------
-Server 2 
-Failed at time (hours) 108159
-Service time (hours) 108169
+Server 1 
+Failed at time (hours) 107576
+Service time (hours) 107586
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 108344
-Service time (hours) 108354
+Failed at time (hours) 108077
+Service time (hours) 108087
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 108675
-Service time (hours) 108685
+Failed at time (hours) 108085
+Service time (hours) 108095
 ------------------
 ------------------
-Server 1 
-Failed at time (hours) 108869
-Service time (hours) 108879
+Server 2 
+Failed at time (hours) 108551
+Service time (hours) 108561
 ------------------
 ------------------
-Server 2 
-Failed at time (hours) 109193
-Service time (hours) 109203
+Server 1 
+Failed at time (hours) 108586
+Service time (hours) 108596
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 109336
-Service time (hours) 109346
+Failed at time (hours) 109080
+Service time (hours) 109090
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 109731
-Service time (hours) 109741
+Failed at time (hours) 109088
+Service time (hours) 109098
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 109814
-Service time (hours) 109824
+Failed at time (hours) 109579
+Service time (hours) 109589
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 110243
-Service time (hours) 110253
+Failed at time (hours) 109608
+Service time (hours) 109618
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 110287
-Service time (hours) 110297
+Failed at time (hours) 110106
+Service time (hours) 110116
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 110721
-Service time (hours) 110731
+Failed at time (hours) 110148
+Service time (hours) 110158
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 110785
-Service time (hours) 110795
+Failed at time (hours) 110625
+Service time (hours) 110635
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 111241
-Service time (hours) 111251
+Failed at time (hours) 110658
+Service time (hours) 110668
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 111264
-Service time (hours) 111274
+Failed at time (hours) 111119
+Service time (hours) 111129
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 111745
-Service time (hours) 111755
-------------------
+Failed at time (hours) 111145
+Service time (hours) 111155
 ------------------
-Server 1 
-Failed at time (hours) 111749
-Service time (hours) 111759
-------------------
 ------------------
 Server 2 
-Failed at time (hours) 112233
-Service time (hours) 112243
+Failed at time (hours) 111627
+Service time (hours) 111637
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 112275
-Service time (hours) 112285
+Failed at time (hours) 111663
+Service time (hours) 111673
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 112762
-Service time (hours) 112772
+Failed at time (hours) 112135
+Service time (hours) 112145
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 112768
-Service time (hours) 112778
+Failed at time (hours) 112189
+Service time (hours) 112199
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 113272
-Service time (hours) 113282
+Failed at time (hours) 112655
+Service time (hours) 112665
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 113287
-Service time (hours) 113297
+Failed at time (hours) 112700
+Service time (hours) 112710
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 113721
-Service time (hours) 113731
+Failed at time (hours) 113159
+Service time (hours) 113169
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 113823
-Service time (hours) 113833
-------------------
-------------------
-Server 2 
-Failed at time (hours) 114228
-Service time (hours) 114238
+Failed at time (hours) 113219
+Service time (hours) 113229
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 114318
-Service time (hours) 114328
+Failed at time (hours) 113694
+Service time (hours) 113704
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 114772
-Service time (hours) 114782
+Failed at time (hours) 113697
+Service time (hours) 113707
 ------------------
 ------------------
-Server 1 
-Failed at time (hours) 114811
-Service time (hours) 114821
+Server 2 
+Failed at time (hours) 114170
+Service time (hours) 114180
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 115266
-Service time (hours) 115276
+Failed at time (hours) 114202
+Service time (hours) 114212
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 115291
-Service time (hours) 115301
+Failed at time (hours) 114673
+Service time (hours) 114683
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 115750
-Service time (hours) 115760
+Failed at time (hours) 114746
+Service time (hours) 114756
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 115828
-Service time (hours) 115838
+Failed at time (hours) 115185
+Service time (hours) 115195
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 116240
-Service time (hours) 116250
+Failed at time (hours) 115210
+Service time (hours) 115220
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 116316
-Service time (hours) 116326
+Failed at time (hours) 115698
+Service time (hours) 115708
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 116709
-Service time (hours) 116719
+Failed at time (hours) 115738
+Service time (hours) 115748
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 116839
-Service time (hours) 116849
+Failed at time (hours) 116199
+Service time (hours) 116209
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 117205
-Service time (hours) 117215
+Failed at time (hours) 116237
+Service time (hours) 116247
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 117366
-Service time (hours) 117376
+Failed at time (hours) 116735
+Service time (hours) 116745
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 117754
-Service time (hours) 117764
-------------------
+Failed at time (hours) 116757
+Service time (hours) 116767
 ------------------
-Server 2 
-Failed at time (hours) 117895
-Service time (hours) 117905
 ------------------
-------------------
 Server 1 
-Failed at time (hours) 118258
-Service time (hours) 118268
+Failed at time (hours) 117243
+Service time (hours) 117253
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 118378
-Service time (hours) 118388
+Failed at time (hours) 117251
+Service time (hours) 117261
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 118771
-Service time (hours) 118781
+Failed at time (hours) 117748
+Service time (hours) 117758
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 118897
-Service time (hours) 118907
+Failed at time (hours) 117764
+Service time (hours) 117774
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 119283
-Service time (hours) 119293
+Failed at time (hours) 118223
+Service time (hours) 118233
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 119429
-Service time (hours) 119439
+Failed at time (hours) 118251
+Service time (hours) 118261
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 119780
-Service time (hours) 119790
+Failed at time (hours) 118714
+Service time (hours) 118724
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 119939
-Service time (hours) 119949
+Failed at time (hours) 118770
+Service time (hours) 118780
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 120334
-Service time (hours) 120344
+Failed at time (hours) 119209
+Service time (hours) 119219
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 120480
-Service time (hours) 120490
+Failed at time (hours) 119241
+Service time (hours) 119251
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 120874
-Service time (hours) 120884
+Failed at time (hours) 119680
+Service time (hours) 119690
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 121012
-Service time (hours) 121022
+Failed at time (hours) 119778
+Service time (hours) 119788
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 121374
-Service time (hours) 121384
+Failed at time (hours) 120217
+Service time (hours) 120227
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 121528
-Service time (hours) 121538
+Failed at time (hours) 120296
+Service time (hours) 120306
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 121893
-Service time (hours) 121903
+Failed at time (hours) 120712
+Service time (hours) 120722
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 122023
-Service time (hours) 122033
+Failed at time (hours) 120760
+Service time (hours) 120770
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 122394
-Service time (hours) 122404
+Failed at time (hours) 121195
+Service time (hours) 121205
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 122522
-Service time (hours) 122532
+Failed at time (hours) 121292
+Service time (hours) 121302
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 122844
-Service time (hours) 122854
+Failed at time (hours) 121745
+Service time (hours) 121755
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 123045
-Service time (hours) 123055
+Failed at time (hours) 121815
+Service time (hours) 121825
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 123361
-Service time (hours) 123371
+Failed at time (hours) 122242
+Service time (hours) 122252
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 123538
-Service time (hours) 123548
+Failed at time (hours) 122300
+Service time (hours) 122310
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 123830
-Service time (hours) 123840
+Failed at time (hours) 122742
+Service time (hours) 122752
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 124024
-Service time (hours) 124034
+Failed at time (hours) 122803
+Service time (hours) 122813
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 124318
-Service time (hours) 124328
+Failed at time (hours) 123255
+Service time (hours) 123265
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 124578
-Service time (hours) 124588
+Failed at time (hours) 123293
+Service time (hours) 123303
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 124808
-Service time (hours) 124818
+Failed at time (hours) 123763
+Service time (hours) 123773
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 125067
-Service time (hours) 125077
+Failed at time (hours) 123823
+Service time (hours) 123833
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 125318
-Service time (hours) 125328
+Failed at time (hours) 124299
+Service time (hours) 124309
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 125575
-Service time (hours) 125585
+Failed at time (hours) 124342
+Service time (hours) 124352
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 125800
-Service time (hours) 125810
+Failed at time (hours) 124818
+Service time (hours) 124828
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 126029
-Service time (hours) 126039
-------------------
+Failed at time (hours) 124852
+Service time (hours) 124862
 ------------------
-Server 1 
-Failed at time (hours) 126307
-Service time (hours) 126317
-------------------
 ------------------
 Server 2 
-Failed at time (hours) 126564
-Service time (hours) 126574
+Failed at time (hours) 125374
+Service time (hours) 125384
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 126805
-Service time (hours) 126815
+Failed at time (hours) 125379
+Service time (hours) 125389
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 127062
-Service time (hours) 127072
+Failed at time (hours) 125886
+Service time (hours) 125896
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 127316
-Service time (hours) 127326
+Failed at time (hours) 125900
+Service time (hours) 125910
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 127557
-Service time (hours) 127567
+Failed at time (hours) 126422
+Service time (hours) 126432
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 127797
-Service time (hours) 127807
+Failed at time (hours) 126453
+Service time (hours) 126463
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 128073
-Service time (hours) 128083
+Failed at time (hours) 126963
+Service time (hours) 126973
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 128324
-Service time (hours) 128334
+Failed at time (hours) 126973
+Service time (hours) 126983
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 128602
-Service time (hours) 128612
+Failed at time (hours) 127479
+Service time (hours) 127489
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 128832
-Service time (hours) 128842
+Failed at time (hours) 127481
+Service time (hours) 127491
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 129112
-Service time (hours) 129122
+Failed at time (hours) 127994
+Service time (hours) 128004
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 129368
-Service time (hours) 129378
-------------------
-------------------
-Server 2 
-Failed at time (hours) 129621
-Service time (hours) 129631
+Failed at time (hours) 127999
+Service time (hours) 128009
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 129832
-Service time (hours) 129842
+Failed at time (hours) 128477
+Service time (hours) 128487
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 130083
-Service time (hours) 130093
+Failed at time (hours) 128527
+Service time (hours) 128537
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 130336
-Service time (hours) 130346
+Failed at time (hours) 128971
+Service time (hours) 128981
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 130561
-Service time (hours) 130571
+Failed at time (hours) 129056
+Service time (hours) 129066
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 130832
-Service time (hours) 130842
+Failed at time (hours) 129446
+Service time (hours) 129456
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 131033
-Service time (hours) 131043
+Failed at time (hours) 129550
+Service time (hours) 129560
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 131320
-Service time (hours) 131330
+Failed at time (hours) 129949
+Service time (hours) 129959
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 131532
-Service time (hours) 131542
+Failed at time (hours) 130052
+Service time (hours) 130062
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 131810
-Service time (hours) 131820
+Failed at time (hours) 130472
+Service time (hours) 130482
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 132078
-Service time (hours) 132088
+Failed at time (hours) 130585
+Service time (hours) 130595
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 132316
-Service time (hours) 132326
+Failed at time (hours) 130946
+Service time (hours) 130956
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 132587
-Service time (hours) 132597
+Failed at time (hours) 131103
+Service time (hours) 131113
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 132815
-Service time (hours) 132825
+Failed at time (hours) 131462
+Service time (hours) 131472
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 133080
-Service time (hours) 133090
+Failed at time (hours) 131659
+Service time (hours) 131669
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 133309
-Service time (hours) 133319
+Failed at time (hours) 131970
+Service time (hours) 131980
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 133603
-Service time (hours) 133613
+Failed at time (hours) 132190
+Service time (hours) 132200
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 133797
-Service time (hours) 133807
+Failed at time (hours) 132466
+Service time (hours) 132476
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 134057
-Service time (hours) 134067
+Failed at time (hours) 132693
+Service time (hours) 132703
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 134296
-Service time (hours) 134306
+Failed at time (hours) 132997
+Service time (hours) 133007
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 134550
-Service time (hours) 134560
+Failed at time (hours) 133195
+Service time (hours) 133205
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 134809
-Service time (hours) 134819
+Failed at time (hours) 133490
+Service time (hours) 133500
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 135046
-Service time (hours) 135056
+Failed at time (hours) 133725
+Service time (hours) 133735
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 135292
-Service time (hours) 135302
+Failed at time (hours) 134013
+Service time (hours) 134023
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 135544
-Service time (hours) 135554
+Failed at time (hours) 134236
+Service time (hours) 134246
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 135797
-Service time (hours) 135807
+Failed at time (hours) 134497
+Service time (hours) 134507
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 136058
-Service time (hours) 136068
+Failed at time (hours) 134723
+Service time (hours) 134733
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 136282
-Service time (hours) 136292
+Failed at time (hours) 135048
+Service time (hours) 135058
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 136542
-Service time (hours) 136552
+Failed at time (hours) 135212
+Service time (hours) 135222
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 136810
-Service time (hours) 136820
+Failed at time (hours) 135568
+Service time (hours) 135578
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 137042
-Service time (hours) 137052
+Failed at time (hours) 135758
+Service time (hours) 135768
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 137301
-Service time (hours) 137311
+Failed at time (hours) 136090
+Service time (hours) 136100
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 137508
-Service time (hours) 137518
+Failed at time (hours) 136259
+Service time (hours) 136269
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 137794
-Service time (hours) 137804
+Failed at time (hours) 136589
+Service time (hours) 136599
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 138007
-Service time (hours) 138017
+Failed at time (hours) 136785
+Service time (hours) 136795
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 138299
-Service time (hours) 138309
+Failed at time (hours) 137082
+Service time (hours) 137092
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 138485
-Service time (hours) 138495
+Failed at time (hours) 137286
+Service time (hours) 137296
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 138813
-Service time (hours) 138823
+Failed at time (hours) 137587
+Service time (hours) 137597
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 138981
-Service time (hours) 138991
+Failed at time (hours) 137804
+Service time (hours) 137814
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 139302
-Service time (hours) 139312
+Failed at time (hours) 138088
+Service time (hours) 138098
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 139464
-Service time (hours) 139474
+Failed at time (hours) 138313
+Service time (hours) 138323
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 139782
-Service time (hours) 139792
+Failed at time (hours) 138643
+Service time (hours) 138653
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 139961
-Service time (hours) 139971
+Failed at time (hours) 138788
+Service time (hours) 138798
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 140316
-Service time (hours) 140326
+Failed at time (hours) 139148
+Service time (hours) 139158
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 140443
-Service time (hours) 140453
+Failed at time (hours) 139325
+Service time (hours) 139335
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 140822
-Service time (hours) 140832
+Failed at time (hours) 139621
+Service time (hours) 139631
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 140948
-Service time (hours) 140958
+Failed at time (hours) 139843
+Service time (hours) 139853
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 141307
-Service time (hours) 141317
+Failed at time (hours) 140153
+Service time (hours) 140163
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 141473
-Service time (hours) 141483
+Failed at time (hours) 140401
+Service time (hours) 140411
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 141798
-Service time (hours) 141808
+Failed at time (hours) 140634
+Service time (hours) 140644
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 141973
-Service time (hours) 141983
+Failed at time (hours) 140922
+Service time (hours) 140932
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 142280
-Service time (hours) 142290
+Failed at time (hours) 141142
+Service time (hours) 141152
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 142494
-Service time (hours) 142504
+Failed at time (hours) 141448
+Service time (hours) 141458
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 142782
-Service time (hours) 142792
+Failed at time (hours) 141616
+Service time (hours) 141626
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 142978
-Service time (hours) 142988
+Failed at time (hours) 141940
+Service time (hours) 141950
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 143291
-Service time (hours) 143301
+Failed at time (hours) 142109
+Service time (hours) 142119
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 143496
-Service time (hours) 143506
+Failed at time (hours) 142459
+Service time (hours) 142469
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 143802
-Service time (hours) 143812
+Failed at time (hours) 142627
+Service time (hours) 142637
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 143940
-Service time (hours) 143950
+Failed at time (hours) 142953
+Service time (hours) 142963
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 144296
-Service time (hours) 144306
+Failed at time (hours) 143143
+Service time (hours) 143153
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 144427
-Service time (hours) 144437
+Failed at time (hours) 143426
+Service time (hours) 143436
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 144789
-Service time (hours) 144799
+Failed at time (hours) 143685
+Service time (hours) 143695
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 144922
-Service time (hours) 144932
+Failed at time (hours) 143923
+Service time (hours) 143933
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 145246
-Service time (hours) 145256
+Failed at time (hours) 144206
+Service time (hours) 144216
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 145405
-Service time (hours) 145415
+Failed at time (hours) 144459
+Service time (hours) 144469
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 145752
-Service time (hours) 145762
+Failed at time (hours) 144730
+Service time (hours) 144740
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 145928
-Service time (hours) 145938
+Failed at time (hours) 144938
+Service time (hours) 144948
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 146259
-Service time (hours) 146269
+Failed at time (hours) 145259
+Service time (hours) 145269
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 146415
-Service time (hours) 146425
+Failed at time (hours) 145406
+Service time (hours) 145416
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 146726
-Service time (hours) 146736
+Failed at time (hours) 145763
+Service time (hours) 145773
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 146911
-Service time (hours) 146921
+Failed at time (hours) 145911
+Service time (hours) 145921
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 147296
-Service time (hours) 147306
+Failed at time (hours) 146253
+Service time (hours) 146263
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 147425
-Service time (hours) 147435
+Failed at time (hours) 146430
+Service time (hours) 146440
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 147792
-Service time (hours) 147802
+Failed at time (hours) 146763
+Service time (hours) 146773
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 147889
-Service time (hours) 147899
+Failed at time (hours) 146965
+Service time (hours) 146975
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 148292
-Service time (hours) 148302
+Failed at time (hours) 147268
+Service time (hours) 147278
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 148397
-Service time (hours) 148407
+Failed at time (hours) 147473
+Service time (hours) 147483
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 148854
-Service time (hours) 148864
+Failed at time (hours) 147769
+Service time (hours) 147779
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 148899
-Service time (hours) 148909
+Failed at time (hours) 147992
+Service time (hours) 148002
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 149376
-Service time (hours) 149386
+Failed at time (hours) 148258
+Service time (hours) 148268
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 149381
-Service time (hours) 149391
+Failed at time (hours) 148495
+Service time (hours) 148505
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 149871
-Service time (hours) 149881
+Failed at time (hours) 148744
+Service time (hours) 148754
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 149876
-Service time (hours) 149886
+Failed at time (hours) 148975
+Service time (hours) 148985
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 150374
-Service time (hours) 150384
+Failed at time (hours) 149233
+Service time (hours) 149243
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 150394
-Service time (hours) 150404
+Failed at time (hours) 149510
+Service time (hours) 149520
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 150877
-Service time (hours) 150887
+Failed at time (hours) 149740
+Service time (hours) 149750
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 150922
-Service time (hours) 150932
+Failed at time (hours) 150041
+Service time (hours) 150051
+------------------
+------------------
+Server 1 
+Failed at time (hours) 150278
+Service time (hours) 150288
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 151420
-Service time (hours) 151430
+Failed at time (hours) 150591
+Service time (hours) 150601
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 151426
-Service time (hours) 151436
+Failed at time (hours) 150765
+Service time (hours) 150775
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 151891
-Service time (hours) 151901
+Failed at time (hours) 151095
+Service time (hours) 151105
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 151923
-Service time (hours) 151933
+Failed at time (hours) 151293
+Service time (hours) 151303
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 152430
-Service time (hours) 152440
+Failed at time (hours) 151674
+Service time (hours) 151684
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 152453
-Service time (hours) 152463
+Failed at time (hours) 151812
+Service time (hours) 151822
+------------------
+------------------
+Server 2 
+Failed at time (hours) 152197
+Service time (hours) 152207
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 152906
-Service time (hours) 152916
+Failed at time (hours) 152359
+Service time (hours) 152369
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 152964
-Service time (hours) 152974
+Failed at time (hours) 152707
+Service time (hours) 152717
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 153401
-Service time (hours) 153411
+Failed at time (hours) 152892
+Service time (hours) 152902
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 153434
-Service time (hours) 153444
+Failed at time (hours) 153213
+Service time (hours) 153223
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 153944
-Service time (hours) 153954
+Failed at time (hours) 153402
+Service time (hours) 153412
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 153954
-Service time (hours) 153964
+Failed at time (hours) 153725
+Service time (hours) 153735
 ------------------
 ------------------
+Server 1 
+Failed at time (hours) 153918
+Service time (hours) 153928
+------------------
+------------------
 Server 2 
-Failed at time (hours) 154415
-Service time (hours) 154425
+Failed at time (hours) 154234
+Service time (hours) 154244
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 154472
-Service time (hours) 154482
+Failed at time (hours) 154397
+Service time (hours) 154407
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 154903
-Service time (hours) 154913
+Failed at time (hours) 154782
+Service time (hours) 154792
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 154983
-Service time (hours) 154993
+Failed at time (hours) 154928
+Service time (hours) 154938
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 155390
-Service time (hours) 155400
+Failed at time (hours) 155287
+Service time (hours) 155297
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 155489
-Service time (hours) 155499
+Failed at time (hours) 155413
+Service time (hours) 155423
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 155861
-Service time (hours) 155871
+Failed at time (hours) 155773
+Service time (hours) 155783
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 155966
-Service time (hours) 155976
+Failed at time (hours) 155939
+Service time (hours) 155949
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 156332
-Service time (hours) 156342
+Failed at time (hours) 156296
+Service time (hours) 156306
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 156417
-Service time (hours) 156427
+Failed at time (hours) 156441
+Service time (hours) 156451
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 156848
-Service time (hours) 156858
+Failed at time (hours) 156820
+Service time (hours) 156830
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 156917
-Service time (hours) 156927
+Failed at time (hours) 156913
+Service time (hours) 156923
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 157362
-Service time (hours) 157372
+Failed at time (hours) 157300
+Service time (hours) 157310
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 157412
-Service time (hours) 157422
+Failed at time (hours) 157406
+Service time (hours) 157416
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 157860
-Service time (hours) 157870
+Failed at time (hours) 157783
+Service time (hours) 157793
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 157908
-Service time (hours) 157918
+Failed at time (hours) 157911
+Service time (hours) 157921
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 158328
-Service time (hours) 158338
+Failed at time (hours) 158313
+Service time (hours) 158323
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 158445
-Service time (hours) 158455
+Failed at time (hours) 158391
+Service time (hours) 158401
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 158820
-Service time (hours) 158830
+Failed at time (hours) 158825
+Service time (hours) 158835
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 158959
-Service time (hours) 158969
+Failed at time (hours) 158906
+Service time (hours) 158916
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 159335
-Service time (hours) 159345
+Failed at time (hours) 159358
+Service time (hours) 159368
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 159486
-Service time (hours) 159496
+Failed at time (hours) 159414
+Service time (hours) 159424
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 159846
-Service time (hours) 159856
+Failed at time (hours) 159843
+Service time (hours) 159853
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 159959
-Service time (hours) 159969
+Failed at time (hours) 159929
+Service time (hours) 159939
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 160351
-Service time (hours) 160361
+Failed at time (hours) 160376
+Service time (hours) 160386
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 160459
-Service time (hours) 160469
+Failed at time (hours) 160440
+Service time (hours) 160450
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 160839
-Service time (hours) 160849
+Failed at time (hours) 160893
+Service time (hours) 160903
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 160929
-Service time (hours) 160939
+Failed at time (hours) 160942
+Service time (hours) 160952
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 161382
-Service time (hours) 161392
+Failed at time (hours) 161394
+Service time (hours) 161404
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 161403
-Service time (hours) 161413
+Failed at time (hours) 161444
+Service time (hours) 161454
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 161881
-Service time (hours) 161891
+Failed at time (hours) 161920
+Service time (hours) 161930
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 161891
-Service time (hours) 161901
+Failed at time (hours) 161988
+Service time (hours) 161998
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 162372
-Service time (hours) 162382
+Failed at time (hours) 162441
+Service time (hours) 162451
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 162420
-Service time (hours) 162430
+Failed at time (hours) 162481
+Service time (hours) 162491
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 162880
-Service time (hours) 162890
+Failed at time (hours) 162957
+Service time (hours) 162967
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 162937
-Service time (hours) 162947
+Failed at time (hours) 162983
+Service time (hours) 162993
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 163387
-Service time (hours) 163397
+Failed at time (hours) 163464
+Service time (hours) 163474
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 163415
-Service time (hours) 163425
+Failed at time (hours) 163512
+Service time (hours) 163522
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 163869
-Service time (hours) 163879
+Failed at time (hours) 163977
+Service time (hours) 163987
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 163898
-Service time (hours) 163908
+Failed at time (hours) 164029
+Service time (hours) 164039
 ------------------
 ------------------
-Server 2 
-Failed at time (hours) 164375
-Service time (hours) 164385
-------------------
-------------------
 Server 1 
-Failed at time (hours) 164392
-Service time (hours) 164402
+Failed at time (hours) 164531
+Service time (hours) 164541
 ------------------
 ------------------
-Server 1 
-Failed at time (hours) 164838
-Service time (hours) 164848
+Server 2 
+Failed at time (hours) 164552
+Service time (hours) 164562
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 164878
-Service time (hours) 164888
+Failed at time (hours) 165052
+Service time (hours) 165062
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 165356
-Service time (hours) 165366
+Failed at time (hours) 165058
+Service time (hours) 165068
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 165389
-Service time (hours) 165399
+Failed at time (hours) 165539
+Service time (hours) 165549
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 165887
-Service time (hours) 165897
+Failed at time (hours) 165586
+Service time (hours) 165596
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 165909
-Service time (hours) 165919
+Failed at time (hours) 166027
+Service time (hours) 166037
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 166393
-Service time (hours) 166403
+Failed at time (hours) 166128
+Service time (hours) 166138
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 166399
-Service time (hours) 166409
+Failed at time (hours) 166543
+Service time (hours) 166553
 ------------------
 ------------------
-Server 2 
-Failed at time (hours) 166876
-Service time (hours) 166886
+Server 1 
+Failed at time (hours) 166678
+Service time (hours) 166688
 ------------------
 ------------------
-Server 1 
-Failed at time (hours) 166882
-Service time (hours) 166892
+Server 2 
+Failed at time (hours) 167088
+Service time (hours) 167098
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 167349
-Service time (hours) 167359
+Failed at time (hours) 167177
+Service time (hours) 167187
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 167416
-Service time (hours) 167426
+Failed at time (hours) 167582
+Service time (hours) 167592
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 167846
-Service time (hours) 167856
+Failed at time (hours) 167679
+Service time (hours) 167689
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 167859
-Service time (hours) 167869
+Failed at time (hours) 168133
+Service time (hours) 168143
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 168308
-Service time (hours) 168318
-------------------
-------------------
-Server 2 
-Failed at time (hours) 168344
-Service time (hours) 168354
+Failed at time (hours) 168171
+Service time (hours) 168181
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 168783
-Service time (hours) 168793
+Failed at time (hours) 168675
+Service time (hours) 168685
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 168807
-Service time (hours) 168817
+Failed at time (hours) 168700
+Service time (hours) 168710
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 169249
-Service time (hours) 169259
+Failed at time (hours) 169201
+Service time (hours) 169211
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 169340
-Service time (hours) 169350
+Failed at time (hours) 169251
+Service time (hours) 169261
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 169743
-Service time (hours) 169753
+Failed at time (hours) 169727
+Service time (hours) 169737
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 169864
-Service time (hours) 169874
+Failed at time (hours) 169796
+Service time (hours) 169806
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 170262
-Service time (hours) 170272
+Failed at time (hours) 170263
+Service time (hours) 170273
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 170378
-Service time (hours) 170388
+Failed at time (hours) 170296
+Service time (hours) 170306
 ------------------
 ------------------
 Server 1 
@@ -3405,95 +3330,90 @@ Service time (hours) 170783
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 170888
-Service time (hours) 170898
+Failed at time (hours) 170837
+Service time (hours) 170847
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 171251
-Service time (hours) 171261
+Failed at time (hours) 171250
+Service time (hours) 171260
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 171444
-Service time (hours) 171454
+Failed at time (hours) 171361
+Service time (hours) 171371
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 171746
-Service time (hours) 171756
+Failed at time (hours) 171754
+Service time (hours) 171764
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 171911
-Service time (hours) 171921
+Failed at time (hours) 171875
+Service time (hours) 171885
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 172265
-Service time (hours) 172275
+Failed at time (hours) 172246
+Service time (hours) 172256
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 172412
-Service time (hours) 172422
+Failed at time (hours) 172390
+Service time (hours) 172400
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 172755
-Service time (hours) 172765
+Failed at time (hours) 172788
+Service time (hours) 172798
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 172895
-Service time (hours) 172905
+Failed at time (hours) 172934
+Service time (hours) 172944
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 173248
-Service time (hours) 173258
+Failed at time (hours) 173254
+Service time (hours) 173264
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 173393
-Service time (hours) 173403
+Failed at time (hours) 173442
+Service time (hours) 173452
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 173722
-Service time (hours) 173732
+Failed at time (hours) 173768
+Service time (hours) 173778
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 173914
-Service time (hours) 173924
+Failed at time (hours) 173985
+Service time (hours) 173995
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 174183
-Service time (hours) 174193
+Failed at time (hours) 174250
+Service time (hours) 174260
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 174449
-Service time (hours) 174459
+Failed at time (hours) 174522
+Service time (hours) 174532
 ------------------
 ------------------
 Server 1 
-Failed at time (hours) 174685
-Service time (hours) 174695
+Failed at time (hours) 174767
+Service time (hours) 174777
 ------------------
 ------------------
 Server 2 
-Failed at time (hours) 174929
-Service time (hours) 174939
+Failed at time (hours) 175046
+Service time (hours) 175056
 ------------------
-------------------
-Server 1 
-Failed at time (hours) 175177
-Service time (hours) 175187
-------------------
-Total Failures S1: 350
-Total Failures S2: 349
-Total Down Time S1: 3500
-Total Down Time S2: 3490
+Total Failures S1: 342
+Total Failures S2: 341
+Total Down Time S1: 3420
+Total Down Time S2: 3410

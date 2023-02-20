@@ -167,6 +167,8 @@ void generateFailureData( bool serverData[], int timeframe ) {
             totalPr = 0;
             // store failed time in approriate index 
             serverData[i] = true;
+
+            i += 10;
         } 
         i++;
     }
