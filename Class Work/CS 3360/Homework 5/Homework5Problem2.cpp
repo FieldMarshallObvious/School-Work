@@ -52,6 +52,10 @@ int main( ) {
     // Output Expirement results
     for(int i = 0; i < 5; i++ ) {
         cout << "Average service for expirement " << i + 1 << ": " << averageComputationTime[i] << endl;
+
+        if( i > 0 ) {
+            cout << "Speed up: " << averageComputationTime[0]/averageComputationTime[i] << "%" << endl;
+        }
     }
 
     return 0;
@@ -65,7 +69,7 @@ void generateRandomArray( int* randIntArray ) {
         // Generate a random int 
         int randInt = rand();
 
-        randIntArray[0] = randInt;
+        randIntArray[i] = randInt;
     }
 }
 
@@ -74,7 +78,7 @@ void performParallelComputation( int randIntArray [] ) {
     #pragma omp parallel for shared(randIntArray)
     for(int i = 0; i < ARRAYSIZE; i++ ) {
         int tempResult = 0;
-        for(int j = 1; j < ITERATIONS; j++ ) {
+        for(int j = 1; j <= ITERATIONS; j++ ) {
             // Perform Computation
             tempResult = randIntArray[i] % j;
         }
@@ -87,10 +91,12 @@ void runExpirement( int expirementNum, double * averageComputationTime, timeval*
 
     // Run Expirement 5 times
     for(int i = 0; i < 5; i++ ) { 
+        // Get start time of computation
         gettimeofday(beg, NULL);
 
         performParallelComputation(randIntArray); 
 
+        // Get end time of computation
         gettimeofday(end, NULL);
 
         averageComputationTime[expirementNum] += end->tv_sec - beg->tv_sec + (end->tv_usec - beg->tv_usec) / 1000000.0;
